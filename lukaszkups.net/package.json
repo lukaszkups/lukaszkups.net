@@ -1,0 +1,15 @@
+{
+  "name": "lukaszkups.net",
+  "version": "1.0.0",
+  "description": "website of lukaszkups",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lukaszkups",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "fs": "0.0.1-security"
+  }
+}
