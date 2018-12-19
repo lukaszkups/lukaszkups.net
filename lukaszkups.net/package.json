@@ -11,5 +11,8 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "fs": "0.0.1-security"
+  },
+  "dependencies": {
+    "showdown": "^1.9.0"
   }
 }
