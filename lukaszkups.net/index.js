@@ -1,8 +1,8 @@
-const pages = require('./cms/pages')
+const content = require('./cms/content')
 const store = require('./cms/store')
 
-pages.getPages(store).then(resp => {
-  store.lists.map(list => {
-    pages.getListEntries(list.entriesPath)
-  })
+content.getAllContent(store).then(r => {
+  console.log(r)
+  console.log('-------')
+  console.log(store)
 })
