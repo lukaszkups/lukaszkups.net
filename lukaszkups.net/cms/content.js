@@ -68,7 +68,7 @@ module.exports = {
         if (!err) {
           const mdObj = _mdConverter.makeHtml(data)
           const obj = {
-            id: _index,
+            id: _index + 1,
             meta: _mdConverter.getMetadata(),
             contents: mdObj
           }
@@ -80,17 +80,18 @@ module.exports = {
     })
   },
   getAllContent: (_store) => {
-    return module.exports.getPages(_store).then(resp => {
+    return module.exports.getPages(_store).then(() => {
       let promises = []
-      _store.lists.map(list => {
+      _store.lists.map((list, index) => {
         promises.push(module.exports.getListEntries(list.entriesPath).then(arr => {
-          list.entries = arr
+          _store.lists[index].entries = arr
           return Promise.resolve()
         }))
       })
       _store.pages.map((page, index) => {
         promises.push(module.exports.getMdFileContents(page.path, index).then(obj => {
-          page = {...page, ...obj}
+          console.log(obj)
+          _store.pages[index] = {...page, ...obj}
         }))
       })
       return Promise.all(promises).then(() => {
