@@ -83,6 +83,9 @@ module.exports = {
     return module.exports.getPages(_store).then(() => {
       let promises = []
       _store.lists.map((list, index) => {
+        promises.push(module.exports.getMdFileContents(list.path, index).then(obj => {
+          _store.lists[index] = {..._store.lists[index], ...obj}
+        }))
         promises.push(module.exports.getListEntries(list.entriesPath).then(arr => {
           _store.lists[index].entries = arr
           return Promise.resolve()
