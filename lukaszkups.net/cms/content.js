@@ -1,5 +1,6 @@
 const showdown = require('showdown')
 const fs = require('fs')
+const pug = require('pug')
 const CONFIG = require('./../config')
 
 const _mdConverter = new showdown.Converter({metadata: true})
@@ -18,6 +19,7 @@ module.exports = {
                 id: listsArr.length + 1,
                 path: `./contents/${obj}/index.md`,
                 template: `./theme/${CONFIG.theme}/${obj}.pug`,
+                meta: {},
                 contents: ''
               })
             } else if (obj.includes('--list')) {
@@ -27,6 +29,8 @@ module.exports = {
                 entriesPath: `./contents/${obj}/list/`,
                 template: `./theme/${CONFIG.theme}/${obj}.pug`,
                 entryTemplate: `./theme/${CONFIG.theme}/${obj}--entry.pug`,
+                meta: {},
+                contents: '',
                 entries: []
               })
             }
@@ -47,7 +51,7 @@ module.exports = {
           let contents = []
           let promises = []
           files.forEach((obj, index) => {
-            promises.push(module.exports.getListEntryContents(`${_path}${obj}`, index))
+            promises.push(module.exports.getMdFileContents(`${_path}${obj}`, index))
           })
           Promise.all(promises).then(arr => {
             resolve(arr)
@@ -58,7 +62,7 @@ module.exports = {
       })
     })
   },
-  getListEntryContents: (_path, _index) => {
+  getMdFileContents: (_path, _index) => {
     return new Promise((resolve, reject) => {
       fs.readFile(_path, 'utf8', (err, data) => {
         if (!err) {
@@ -79,14 +83,23 @@ module.exports = {
     return module.exports.getPages(_store).then(resp => {
       let promises = []
       _store.lists.map(list => {
-        promises.push(module.exports.getListEntries(list.entriesPath).then((arr) => {
+        promises.push(module.exports.getListEntries(list.entriesPath).then(arr => {
           list.entries = arr
           return Promise.resolve()
+        }))
+      })
+      _store.pages.map((page, index) => {
+        promises.push(module.exports.getMdFileContents(page.path, index).then(obj => {
+          page = {...page, ...obj}
         }))
       })
       return Promise.all(promises).then(() => {
         return Promise.resolve(_store)
       })
     })
+  },
+  compilePage: (pageObj) => {
+    const compiled = pug.compileFile(pageObj.template)
+    return compiled
   }
 }
