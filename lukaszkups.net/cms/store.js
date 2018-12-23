@@ -9,7 +9,8 @@ module.exports = {
   //     path: './contents/about--page/index.md',
   //     template: './theme/lukaszkups/about--page.pug',
   //     meta: {},
-  //     contents: '...'
+  //     slug: 'slug',
+  //     content: '...'
   //   }
   // ]
   // lists: [
@@ -21,13 +22,15 @@ module.exports = {
   //     template: './theme/lukaszkups/notes--list.pug',
   //     entryTemplate: './theme/lukaszkups/notes--list--entry.pug',
   //     meta: {},
-  //     contents: '...'
+  //     slug: 'slug',
+  //     content: '...'
   //     entries: [
   //       {
   //         id: 1,
   //         path: './contents/notes--list/list/2018-12-19-hello.world.md',
   //         meta: {},
-  //         contents: '...'
+  //         slug: 'slug',
+  //         content: '...'
   //       }
   //     ]
   //   }
