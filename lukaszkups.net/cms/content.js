@@ -2,6 +2,7 @@ const showdown = require('showdown')
 const fs = require('fs')
 const pug = require('pug')
 const CONFIG = require('./../config')
+const _helpers = require('./helpers')
 
 const _mdConverter = new showdown.Converter({metadata: true})
 _mdConverter.setFlavor('github')
@@ -51,7 +52,7 @@ module.exports = {
           let contents = []
           let promises = []
           files.forEach((obj, index) => {
-            promises.push(module.exports.getMdFileContents(`${_path}${obj}`, index, `./cms/output/${listObj.slug}/`))
+            promises.push(module.exports.getMdFileContents(`${_path}${obj}`, index, `./output/${listObj.slug}/`))
           })
           Promise.all(promises).then(arr => {
             resolve(arr)
@@ -71,10 +72,10 @@ module.exports = {
           let obj = {
             id: _index + 1,
             meta: meta,
-            slug: meta && meta.slug ? meta.slug : module.exports.slugify(meta.title || Date.now()),
+            slug: meta && meta.slug ? meta.slug : _helpers.slugify(meta.title || Date.now()),
             content: mdObj
           }
-          obj.output = _parentOutputPath ? `${_parentOutputPath}${obj.slug}/index.html` :`./cms/output/${obj.slug}/index.html`
+          obj.output = _parentOutputPath ? `${_parentOutputPath}${obj.slug}/index.html` :`./output/${obj.slug}/index.html`
           resolve(obj)
         } else {
           reject(err)
@@ -121,16 +122,82 @@ module.exports = {
     const compiled = pug.compileFile(pageObj.template)
     return compiled
   },
-  slugify: (string) => {
-    const a = 'àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;'
-    const b = 'aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------'
-    const p = new RegExp(a.split('').join('|'), 'g')
-    return string.toString().toLowerCase()
-      .replace(/\s+/g, '-') // Replace spaces with
-      .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
-      .replace(/&/g, '-and-') // Replace & with ‘and’
-      .replace(/[^\w\-]+/g, '') // Remove all non-word characters
-      .replace(/\-\-+/g, '-') // Replace multiple — with single -
-      .replace(/^-+/, '') // Trim — from start of text .replace(/-+$/, '') // Trim — from end of text
+  createOutputFolders: (_store) => {
+    let promises = []
+    _store.pages.map(page => {
+      promises.push(new Promise((resolve, reject) => {
+        try {
+          _helpers.mkDirByPathSync(page.output.slice(0, -10))
+          resolve()
+        } catch (err) {
+          reject(err)
+        }
+      }))
+    })
+    _store.lists.map(list => {
+      promises.push(new Promise((resolve, reject) => {
+        try {
+          _helpers.mkDirByPathSync(list.output.slice(0, -10))
+          resolve()
+        } catch (err) {
+          reject(err)
+        }
+      }))
+    })
+    _store.lists.map(list => list.entries.map(entry => {
+      promises.push(new Promise((resolve, reject) => {
+        try {
+          _helpers.mkDirByPathSync(entry.output.slice(0, -10))
+          resolve()
+        } catch (error) {
+          reject(error)
+        }
+      }))
+    }))
+    return Promise.all(promises).then(() => {
+      return Promise.resolve(_store)
+    })
+  },
+  createOutputPageFiles: (_store, contentTemplateOptions = {}, fullTemplateOptions = {}) => {
+    let promises = []
+    _store.pages.map(page => {
+      promises.push(new Promise((resolve, reject) => {
+        const contentTemplate = pug.compileFile(page.template)
+        const parsedContentTemplate = contentTemplate({
+          title: page.meta && page.meta.title ? page.meta.title : '',
+          date: page.meta && page.meta.date ? page.meta.date : '',
+          tags: page.meta && page.meta.tags ? page.meta.tags : '',
+          description: page.meta && page.meta.description ? page.meta.description : '',
+          content: page.content,
+          ...contentTemplateOptions
+        })
+        // console.log(page.content, contentTemplate())
+        // console.log('-------')
+        const fullTemplate = pug.compileFile(`./theme/${CONFIG.theme}/layout.pug`)
+        const parsedFullTemplate = fullTemplate({
+          title: page.meta && page.meta.title ? page.meta.title : '',
+          date: page.meta && page.meta.date ? page.meta.date : '',
+          tags: page.meta && page.meta.tags ? page.meta.tags : '',
+          content: parsedContentTemplate,
+          description: page.meta && page.meta.description ? page.meta.description : '',
+          ...fullTemplateOptions
+        })
+        fs.writeFile(page.output, parsedFullTemplate, (err) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve()
+          }
+        })
+      }))
+    })
+    return Promise.all(promises).then(() => {
+      return Promise.resolve(_store)
+    })
+  },
+  createOutputFiles: (_store) => {
+    return module.exports.createOutputPageFiles(_store).then((store) => {
+      return Promise.resolve(store)
+    })
   }
 }
