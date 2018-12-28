@@ -53,5 +53,24 @@ module.exports = {
       });
       fs.rmdirSync(path)
     }
+  },
+  compileSass: (_source, _target) => {
+    return new Promise((resolve, reject) => {
+      sass.render({
+        file: _source
+      }, (err, result) => {
+        if (err) {
+          reject(err)
+        } else {
+          fs.writeFile(_target, result, (err) => {
+            if (err) {
+              reject(err)
+            } else {
+              resolve(result)              
+            }
+          })
+        }
+      })
+    })
   }
 }
