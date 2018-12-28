@@ -1,7 +1,8 @@
-h1
-  {title}
-ul
-  each item, index in list.length ? list : ['No entries yet.']
-  li
-    a(href='item.url')
-      {item.title}
+extends layout.pug
+
+block content
+  h1= title
+  ul
+    each item, index in list.length ? list : ['No entries yet.']
+      li
+        a(href=item.url) #{item.meta.title}

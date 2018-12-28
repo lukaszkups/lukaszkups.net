@@ -52,7 +52,7 @@ module.exports = {
           let contents = []
           let promises = []
           files.forEach((obj, index) => {
-            promises.push(module.exports.getMdFileContents(`${_path}${obj}`, index, `./output/${listObj.slug}/`))
+            promises.push(module.exports.getMdFileContents(`${_path}${obj}`, index, `./output/${listObj.slug}/`, listObj))
           })
           Promise.all(promises).then(arr => {
             resolve(arr)
@@ -63,7 +63,7 @@ module.exports = {
       })
     })
   },
-  getMdFileContents: (_path, _index, _parentOutputPath) => {
+  getMdFileContents: (_path, _index, _parentOutputPath, parentObj) => {
     return new Promise((resolve, reject) => {
       fs.readFile(_path, 'utf8', (err, data) => {
         if (!err) {
@@ -76,6 +76,12 @@ module.exports = {
             content: mdObj
           }
           obj.output = _parentOutputPath ? `${_parentOutputPath}${obj.slug}/index.html` :`./output/${obj.slug}/index.html`
+          if (parentObj && parentObj.slug) {
+            obj.url = `/${parentObj.slug}/${obj.slug}/`
+          }
+          if (parentObj && parentObj.entryTemplate) {
+            obj.template = parentObj.entryTemplate
+          }
           resolve(obj)
         } else {
           reject(err)
@@ -158,7 +164,7 @@ module.exports = {
       return Promise.resolve(_store)
     })
   },
-  createOutputPageFiles: (_store, contentTemplateOptions = {}, fullTemplateOptions = {}) => {
+  createOutputPageFiles: (_store, contentTemplateOptions = {}) => {
     let promises = []
     _store.pages.map(page => {
       promises.push(new Promise((resolve, reject) => {
@@ -171,18 +177,7 @@ module.exports = {
           content: page.content,
           ...contentTemplateOptions
         })
-        // console.log(page.content, contentTemplate())
-        // console.log('-------')
-        const fullTemplate = pug.compileFile(`./theme/${CONFIG.theme}/layout.pug`)
-        const parsedFullTemplate = fullTemplate({
-          title: page.meta && page.meta.title ? page.meta.title : '',
-          date: page.meta && page.meta.date ? page.meta.date : '',
-          tags: page.meta && page.meta.tags ? page.meta.tags : '',
-          content: parsedContentTemplate,
-          description: page.meta && page.meta.description ? page.meta.description : '',
-          ...fullTemplateOptions
-        })
-        fs.writeFile(page.output, parsedFullTemplate, (err) => {
+        fs.writeFile(page.output, parsedContentTemplate, (err) => {
           if (err) {
             reject(err)
           } else {
@@ -195,9 +190,90 @@ module.exports = {
       return Promise.resolve(_store)
     })
   },
+  createOutputListIndexFiles: (_store, contentTemplateOptions = {}) => {
+    let promises = []
+    _store.lists.map(list => {
+      promises.push(new Promise((resolve, reject) => {
+        const contentTemplate = pug.compileFile(list.template)
+        const parsedContentTemplate = contentTemplate({
+          title: list.meta && list.meta.title ? list.meta.title : '',
+          date: list.meta && list.meta.date ? list.meta.date : '',
+          tags: list.meta && list.meta.tags ? list.meta.tags : '',
+          description: list.meta && list.meta.description ? list.meta.description : '',
+          list: list.entries || [],
+          content: list.content,
+          ...contentTemplateOptions
+        })
+        fs.writeFile(list.output, parsedContentTemplate, (err) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve()
+          }
+        })
+      }))
+    })
+    return Promise.all(promises).then(() => {
+      return Promise.resolve(_store)
+    })
+  },
+  createOutputListEntryFiles: (_store, contentTemplateOptions = {}) => {
+    let promises = []
+    _store.lists.map(list => {
+      list.entries.map(entry => {
+        promises.push(new Promise((resolve, reject) => {
+          const contentTemplate = pug.compileFile(entry.template)
+          const parsedContentTemplate = contentTemplate({
+            title: entry.meta && entry.meta.title ? entry.meta.title : '',
+            date: entry.meta && entry.meta.date ? entry.meta.date : '',
+            tags: entry.meta && entry.meta.tags ? entry.meta.tags : '',
+            description: entry.meta && entry.meta.description ? entry.meta.description : '',
+            content: entry.content,
+            ...contentTemplateOptions
+          })
+          fs.writeFile(entry.output, parsedContentTemplate, (err) => {
+            if (err) {
+              reject(err)
+            } else {
+              resolve()
+            }
+          })
+        }))
+      })
+    })
+    return Promise.all(promises).then(() => {
+      return Promise.resolve(_store)
+    })
+  },
   createOutputFiles: (_store) => {
-    return module.exports.createOutputPageFiles(_store).then((store) => {
-      return Promise.resolve(store)
+    _helpers.deleteFolderRecursive('./../output/') // empty output folder for new content
+    return module.exports.createOutputPageFiles(_store).then(() => {
+      return module.exports.createOutputListIndexFiles(_store).then(() => {
+        return module.exports.createOutputListEntryFiles(_store).then(() => {
+          module.exports.createAssetFolders()
+          return Promise.resolve(_store)
+        })
+      })
+    })
+  },
+  createAssetFolders: () => {
+    _helpers.mkDirByPathSync('./output/assets/css')
+    _helpers.mkDirByPathSync('./output/assets/js')
+    _helpers.mkDirByPathSync('./output/assets/img')
+    _helpers.mkDirByPathSync('./output/static/')
+  },
+  copyAssetImages: () => {
+    fs.readdir(`./../theme/${CONFIG.theme}/assets/img`, (err, files) => {
+      if (!err) {
+        let pagesArr = []
+        let listsArr = []
+        files.forEach(obj => {
+          console.log(obj)
+          // fs.writeFile(targetFile, fs.readFileSync(sourceFile));
+        })
+      } else {
+
+      }
     })
   }
 }

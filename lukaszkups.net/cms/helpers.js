@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const sass = require('node-sass')
 
 module.exports = {
   // method below source: https://stackoverflow.com/a/40686853/1004946
@@ -38,5 +39,19 @@ module.exports = {
       .replace(/[^\w\-]+/g, '') // Remove all non-word characters
       .replace(/\-\-+/g, '-') // Replace multiple — with single -
       .replace(/^-+/, '') // Trim — from start of text .replace(/-+$/, '') // Trim — from end of text
+  },
+  // method below source: https://geedew.com/remove-a-directory-that-is-not-empty-in-nodejs/
+  deleteFolderRecursive: (path) => {
+    if (fs.existsSync(path)) {
+      fs.readdirSync(path).forEach((file,index) => {
+        var curPath = path + "/" + file
+        if(fs.lstatSync(curPath).isDirectory()) { // recurse
+          module.exports.deleteFolderRecursive(curPath)
+        } else { // delete file
+          fs.unlinkSync(curPath)
+        }
+      });
+      fs.rmdirSync(path)
+    }
   }
 }

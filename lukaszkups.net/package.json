@@ -13,6 +13,7 @@
     "fs": "0.0.1-security"
   },
   "dependencies": {
+    "node-sass": "^4.11.0",
     "pug": "^2.0.3",
     "showdown": "^1.9.0"
   }
