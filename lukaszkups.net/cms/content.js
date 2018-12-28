@@ -250,30 +250,48 @@ module.exports = {
     return module.exports.createOutputPageFiles(_store).then(() => {
       return module.exports.createOutputListIndexFiles(_store).then(() => {
         return module.exports.createOutputListEntryFiles(_store).then(() => {
-          module.exports.createAssetFolders()
-          return Promise.resolve(_store)
+          return module.exports.prepareAssets().then(() => {
+            return Promise.resolve(_store)
+          })
         })
       })
     })
   },
-  createAssetFolders: () => {
+  prepareAssets: () => {
     _helpers.mkDirByPathSync('./output/assets/css')
     _helpers.mkDirByPathSync('./output/assets/js')
     _helpers.mkDirByPathSync('./output/assets/img')
     _helpers.mkDirByPathSync('./output/static/')
+    return module.exports.copyAssetImages().then(() => {
+      return Promise.resolve()
+    })
   },
   copyAssetImages: () => {
-    fs.readdir(`./../theme/${CONFIG.theme}/assets/img`, (err, files) => {
-      if (!err) {
-        let pagesArr = []
-        let listsArr = []
-        files.forEach(obj => {
-          console.log(obj)
-          // fs.writeFile(targetFile, fs.readFileSync(sourceFile));
-        })
-      } else {
-
-      }
+    return new Promise((resolve, reject) => {
+      const assetsFolder = `./theme/${CONFIG.theme}/assets/img/`
+      fs.readdir(assetsFolder, (err, files) => {
+        if (!err) {
+          let promises = []
+          files.forEach(file => {
+            promises.push(new Promise((resolve, reject) => {
+              const sourceFile = `${assetsFolder}${file}`
+              const targetFile = `./output/assets/img/${file}`
+              fs.writeFile(targetFile, fs.readFileSync(sourceFile), (err) => {
+                if (err) {
+                  reject(err)
+                } else {
+                  resolve()
+                }
+              })            
+            }))
+          })
+          Promise.all(promises).then(() => {
+            resolve()
+          })
+        } else {
+          reject(err)
+        }
+      })
     })
   }
 }
