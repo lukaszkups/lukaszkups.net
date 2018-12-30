@@ -265,6 +265,8 @@ module.exports = {
     let promises = []
     // copy image assets
     promises.push(_helpers.copyFolderContents(`./theme/${CONFIG.theme}/assets/img/`, './output/assets/img/'))
+    // copy content images/static files
+    promises.push(_helpers.copyFolderContents('./contents/static/', './output/static/'))
     // copy vendor files
     promises.push(_helpers.copyFolderContents(CONFIG.vendorsPath || `./theme/${CONFIG.theme}/vendor/`, './output/vendor/'))
     // compile sass
