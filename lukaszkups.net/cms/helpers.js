@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const sass = require('node-sass')
+const CONFIG = require('./../config')
 
 module.exports = {
   // method below source: https://stackoverflow.com/a/40686853/1004946
@@ -58,7 +59,8 @@ module.exports = {
     return new Promise((resolve, reject) => {
       sass.render({
         file: _source,
-        outputStyle: 'compressed'
+        outputStyle: 'compressed',
+        indentedSyntax: CONFIG.indentedSass || false
       }, (err, result) => {
         if (err) {
           reject(err)

@@ -1,3 +1,4 @@
 module.exports = {
-  theme: 'lukaszkups'
+  theme: 'lukaszkups',
+  indentedSass: true
 }
