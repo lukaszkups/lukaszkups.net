@@ -57,12 +57,13 @@ module.exports = {
   compileSass: (_source, _target) => {
     return new Promise((resolve, reject) => {
       sass.render({
-        file: _source
+        file: _source,
+        outputStyle: 'compressed'
       }, (err, result) => {
         if (err) {
           reject(err)
         } else {
-          fs.writeFile(_target, result, (err) => {
+          fs.writeFile(_target, result && result.css ? result.css : '', (err) => {
             if (err) {
               reject(err)
             } else {

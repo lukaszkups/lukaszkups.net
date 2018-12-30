@@ -263,7 +263,9 @@ module.exports = {
     _helpers.mkDirByPathSync('./output/assets/img')
     _helpers.mkDirByPathSync('./output/static/')
     return module.exports.copyAssetImages().then(() => {
-      return Promise.resolve()
+      _helpers.compileSass(`./theme/${CONFIG.theme}/assets/css/main.sass`, './output/assets/css/main.css').then(() => {
+        return Promise.resolve()
+      })
     })
   },
   copyAssetImages: () => {
