@@ -1,4 +1,6 @@
 module.exports = {
   theme: 'lukaszkups',
-  indentedSass: true
+  indentedSass: true,
+  ie8support: true,
+  vendorsPath: ''
 }
