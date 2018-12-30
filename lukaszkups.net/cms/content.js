@@ -283,6 +283,15 @@ module.exports = {
       module.exports.createOutputFolders(_store).then(() => {
         module.exports.createOutputFiles(_store).then(() => {
           console.log('Content compiled.')
+          if (CONFIG.recompile === true) {
+            setInterval(() => {
+              module.exports.createOutputFolders(_store).then(() => {
+                module.exports.createOutputFiles(_store).then(() => {
+                  console.log('Content recompiled.')
+                })
+              })
+            }, CONFIG.recompileInterval || 60000)
+          }
           _helpers.startServer()
         })
       })
