@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const sass = require('node-sass')
+const UglifyJS = require('uglify-es')
 const CONFIG = require('./../config')
 
 module.exports = {
@@ -72,6 +73,57 @@ module.exports = {
               resolve(result)              
             }
           })
+        }
+      })
+    })
+  },
+  uglifyJs: (_source, _target) => {
+    return new Promise((resolve, reject) => {
+      fs.readFile(_source, 'utf8', (err, data) => {
+        if (err) {
+          reject(err)
+        } else {
+          const uglified = UglifyJS.minify(data, {
+            ie8: CONFIG.ie8support || false
+          })
+          if (uglified && uglified.error) {
+            reject(uglified.error)
+          } else if (uglified && uglified.code) {
+            fs.writeFile(_target, uglified.code, (error) => {
+              if (error) {
+                reject(error)
+              } else {
+                resolve()
+              }
+            })
+          }
+        }
+      })
+    })
+  },
+  copyFolderContents: (_sourcePath, _targetPath) => {
+    return new Promise((resolve, reject) => {
+      fs.readdir(_sourcePath, (err, files) => {
+        if (!err) {
+          let promises = []
+          files.forEach(file => {
+            promises.push(new Promise((resolve, reject) => {
+              const sourceFile = `${_sourcePath}${file}`
+              const targetFile = `${_targetPath}${file}`
+              fs.writeFile(targetFile, fs.readFileSync(sourceFile), (err) => {
+                if (err) {
+                  reject(err)
+                } else {
+                  resolve()
+                }
+              })            
+            }))
+          })
+          Promise.all(promises).then(() => {
+            resolve()
+          })
+        } else {
+          reject(err)
         }
       })
     })

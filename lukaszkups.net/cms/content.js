@@ -246,7 +246,6 @@ module.exports = {
     })
   },
   createOutputFiles: (_store) => {
-    _helpers.deleteFolderRecursive('./../output/') // empty output folder for new content
     return module.exports.createOutputPageFiles(_store).then(() => {
       return module.exports.createOutputListIndexFiles(_store).then(() => {
         return module.exports.createOutputListEntryFiles(_store).then(() => {
@@ -262,37 +261,27 @@ module.exports = {
     _helpers.mkDirByPathSync('./output/assets/js')
     _helpers.mkDirByPathSync('./output/assets/img')
     _helpers.mkDirByPathSync('./output/static/')
-    return module.exports.copyAssetImages().then(() => {
-      _helpers.compileSass(`./theme/${CONFIG.theme}/assets/css/main.sass`, './output/assets/css/main.css').then(() => {
-        return Promise.resolve()
-      })
+    _helpers.mkDirByPathSync('./output/vendor/')
+    let promises = []
+    // copy image assets
+    promises.push(_helpers.copyFolderContents(`./theme/${CONFIG.theme}/assets/img/`, './output/assets/img/'))
+    // copy vendor files
+    promises.push(_helpers.copyFolderContents(CONFIG.vendorsPath || `./theme/${CONFIG.theme}/vendor/`, './output/vendor/'))
+    // compile sass
+    promises.push(_helpers.compileSass(`./theme/${CONFIG.theme}/assets/css/main.sass`, './output/assets/css/main.css'))
+    // compile js
+    promises.push(_helpers.uglifyJs(`./theme/${CONFIG.theme}/assets/js/main.js`, './output/assets/js/main.js'))
+    return Promise.all(promises).then(() => {
+      return Promise.resolve()
     })
-  },
-  copyAssetImages: () => {
-    return new Promise((resolve, reject) => {
-      const assetsFolder = `./theme/${CONFIG.theme}/assets/img/`
-      fs.readdir(assetsFolder, (err, files) => {
-        if (!err) {
-          let promises = []
-          files.forEach(file => {
-            promises.push(new Promise((resolve, reject) => {
-              const sourceFile = `${assetsFolder}${file}`
-              const targetFile = `./output/assets/img/${file}`
-              fs.writeFile(targetFile, fs.readFileSync(sourceFile), (err) => {
-                if (err) {
-                  reject(err)
-                } else {
-                  resolve()
-                }
-              })            
-            }))
-          })
-          Promise.all(promises).then(() => {
-            resolve()
-          })
-        } else {
-          reject(err)
-        }
+  },  
+  init: (_store) => {
+    _helpers.deleteFolderRecursive('./output/') // empty output folder for new content
+    module.exports.getAllContent(_store).then(store => {
+      module.exports.createOutputFolders(_store).then(() => {
+        module.exports.createOutputFiles(_store).then(() => {
+          console.log('done.')
+        })
       })
     })
   }
