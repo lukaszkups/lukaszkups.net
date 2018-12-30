@@ -16,6 +16,6 @@
     "node-sass": "^4.11.0",
     "pug": "^2.0.3",
     "showdown": "^1.9.0",
-    "uglify-js": "^3.4.9"
+    "uglify-es": "^3.3.9"
   }
 }
