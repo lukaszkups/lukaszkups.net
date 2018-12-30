@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const http = require('http-server')
 const sass = require('node-sass')
 const UglifyJS = require('uglify-es')
 const CONFIG = require('./../config')
@@ -127,5 +128,10 @@ module.exports = {
         }
       })
     })
+  },
+  startServer: () => {
+    const server = http.createServer({root: './output/'})
+    server.listen(3000)
+    console.log('Output folder is now served under http://localhost:3000')
   }
 }

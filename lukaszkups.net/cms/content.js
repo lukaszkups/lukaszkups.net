@@ -282,7 +282,8 @@ module.exports = {
     module.exports.getAllContent(_store).then(store => {
       module.exports.createOutputFolders(_store).then(() => {
         module.exports.createOutputFiles(_store).then(() => {
-          console.log('done.')
+          console.log('Content compiled.')
+          _helpers.startServer()
         })
       })
     })
