@@ -276,23 +276,39 @@ module.exports = {
     return Promise.all(promises).then(() => {
       return Promise.resolve()
     })
-  },  
+  },
+  moveRootFolder: () => {
+    return new Promise((resolve, reject) => {
+      if (CONFIG.rootFolder) {
+        _helpers.copyFolderContents(`./output/${CONFIG.rootFolder}/`, `./output/`).then(() => {
+          resolve()
+        })
+      } else {
+        console.log('No root page folder has been defined in CONFIG file.')
+        resolve()
+      }
+    })
+  },
   init: (_store) => {
     _helpers.deleteFolderRecursive('./output/') // empty output folder for new content
     module.exports.getAllContent(_store).then(store => {
       module.exports.createOutputFolders(_store).then(() => {
         module.exports.createOutputFiles(_store).then(() => {
-          console.log('Content compiled.')
-          if (CONFIG.recompile === true) {
-            setInterval(() => {
-              module.exports.createOutputFolders(_store).then(() => {
-                module.exports.createOutputFiles(_store).then(() => {
-                  console.log('Content recompiled.')
+          module.exports.moveRootFolder().then(() => {
+            console.log('Content compiled.')
+            if (CONFIG.recompile === true) {
+              setInterval(() => {
+                module.exports.createOutputFolders(_store).then(() => {
+                  module.exports.createOutputFiles(_store).then(() => {
+                    module.exports.moveRootFolder().then(() => {
+                      console.log('Content recompiled.')
+                    })
+                  })
                 })
-              })
-            }, CONFIG.recompileInterval || 60000)
-          }
-          _helpers.startServer()
+              }, CONFIG.recompileInterval || 60000)
+            }
+            _helpers.startServer()
+          })
         })
       })
     })
