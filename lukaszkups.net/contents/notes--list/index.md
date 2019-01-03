@@ -1,5 +1,5 @@
 ---
-title: List of notes
+title: Notes
 tags: blog, notes, articles
 ---
 

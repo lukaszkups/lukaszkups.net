@@ -1,13 +1,186 @@
-$red: #ff5555
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed')
+
+$red: #ED4125
+$blue: #0189e8
+$dark-purple: #3f1d67
+$light-purple: #5e3f8b
+$purple: #4c2a76
+$silver: #e0e2ee
+$slate: #222f38
 $white: #f1f1f1
 $black: #171717
 
+.logo-wrapper
+  display: inline-block
+  height: 50px
+  margin: 10px 0 0 25px
+  padding: 0
+  width: 50px
+  overflow: visible
+  background-color: transparent
+  border: none
+  outline: 0
+
+.logo
+  background-color: $purple
+  -webkit-transform: skew(25deg,0deg)
+  -ms-transform: skew(25deg,0deg)
+  transform: skew(25deg,0deg)
+  float: left
+  clear: both
+  width: 11.428px
+  height: 10px
+  margin-top: 18px
+  margin-left: 15px
+  &,
+  &:after,
+  &:before
+    display: block
+    position: relative
+  &:after,
+  &:before
+    content: " "
+    background-color: $black
+    -webkit-transform: skew(-50deg,0deg)
+    -ms-transform: skew(-50deg,0deg)
+    transform: skew(-50deg,0deg)
+  &:before
+    margin-top: -10px
+    margin-left: 17.3px
+    margin-right: -18px
+    height: 10px
+  &:after
+    margin-top: 10px
+    margin-left: -5.9px
+    margin-right: -7.3px
+    height: 10px
+
 html,
 body
-  background: $white
+  background: linear-gradient($silver, $white)
+  font-family: 'Segoe UI', sans-serif
   height: 100%
   margin: 0
   min-height: 100%
   overflow-x: hidden
   padding: 0
   width: 100%
+
+  .row
+    display: flex
+    margin: 0
+    padding: 0
+    width: 100%
+
+    .col-25
+      flex: 1
+      max-width: 25%
+    .col-50
+      flex: 1
+      max-width: 50%
+    .col-75
+      flex: 1
+      max-width: 75%
+
+  .main-container
+    margin: 0 auto
+    width: 75%
+
+  .white-bg
+    background: $white
+
+  header
+    display: block
+    left: 0
+    height: 60px
+    position: fixed
+    right: 0
+    top: 0
+
+    nav
+      display: inline-block
+      float: right
+      font-size: 14px
+      height: 60px
+      letter-spacing: 1px
+
+      ul
+        list-style: none
+        margin: 0
+        padding: 0
+
+        li
+          display: inline-block
+          margin: 0
+          overflow: hidden
+          padding: 0
+
+          a
+            color: $black
+            height: 60px
+            line-height: 60px
+            padding: 0 20px
+            text-decoration: none
+
+            &:after
+              border-bottom: 1px solid $black
+              content: ' '
+              display: block
+              margin: -8px auto auto auto
+              transition: 0.25s width
+              width: 0
+
+            &:hover,
+            &.active-link
+              &:after
+                transition: 0.25s width
+                width: 70px
+
+  .square-avatar
+    // background: url('/assets/img/lego.png') no-repeat
+    background-size: cover
+    height: 350px
+    position: absolute
+    top: 50px
+    right: 50px
+    width: 350px
+
+  .home-title
+    background: $purple
+    color: $white
+    display: inline-block
+    font-size: 35px
+    min-height: 47px
+    margin:
+      left: 10vw
+      right: 10vw
+    padding: 10px 20px
+    position: absolute
+    top: 40vh
+
+  .top-menu
+    background: transparent
+    left: 0
+    height: 30px
+    position: fixed
+    right: 0
+    top: 0
+    z-index: 3
+
+  .promo
+    background: $blue
+    box-sizing: border-box
+    color: $white
+    display: flex
+    flex-direction: column
+    font-size: 18px
+    justify-content: center
+    min-height: 250px
+    padding: 20px
+
+    &__text
+      font-weight: 400
+      font-size: 40px
+      letter-spacing: 1px
+      text-align: center
+
