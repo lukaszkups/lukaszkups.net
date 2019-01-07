@@ -71,7 +71,7 @@ module.exports = {
             if (err) {
               reject(err)
             } else {
-              resolve(result)              
+              resolve(result)
             }
           })
         }
@@ -117,7 +117,7 @@ module.exports = {
                 } else {
                   resolve()
                 }
-              })            
+              })
             }))
           })
           Promise.all(promises).then(() => {
@@ -131,7 +131,7 @@ module.exports = {
   },
   startServer: () => {
     const server = http.createServer({root: './output/'})
-    server.listen(3000)
+    server.listen(3002)
     console.log('Output folder is now served under http://localhost:3000')
   }
 }
