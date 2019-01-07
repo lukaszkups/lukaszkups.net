@@ -4,11 +4,11 @@ $red: #ED4125
 $blue: #0189e8
 $dark-purple: #3f1d67
 $light-purple: #5e3f8b
-$purple: #4c2a76
+$purple: #35586e
 $silver: #e0e2ee
 $slate: #222f38
 $white: #f1f1f1
-$black: #171717
+$black: #252525
 
 .logo-wrapper
   display: inline-block
@@ -96,6 +96,7 @@ body
     position: fixed
     right: 0
     top: 0
+    z-index: 3
 
     nav
       display: inline-block
@@ -141,13 +142,12 @@ body
     background-size: contain
     background-position-x: center
     background-position-y: bottom
-    bottom: 50px
-    height: calc(100% - 200px)
+    bottom: 0
+    height: 100%
     position: absolute
-    left: 50px
-    top: 100px
+    left: 0
+    top: 0
     width: 50vw
-    z-index: 1
 
   .home-title
     background: $purple
@@ -193,34 +193,35 @@ body
 
   ul.bottom-bar
     background: $purple
-    bottom: 0
+    bottom: 150px
+    display: inline-block
     list-style: none
-    left: 0
     margin: 0
-    padding: 0 0 0 50px
+    padding: 0
     position: absolute
-    right: 0
+    left: calc(50% - 150px)
     z-index: 3
 
     li
       display: inline-block
-      vertical-align: middle
       margin: 0
       padding: 0
 
       a
+        align-items: center
         box-sizing: border-box
-        color: $white
-        display: block
-        height: 100px
+        color: $black
+        display: flex
+        flex-direction: row
+        height: 150px
         margin: 0
-        max-width: 150px
+        width: 150px
         padding: 0 20px
         text-align: center
         text-decoration: none
         transition: 0.3s background, 0.3s color
 
         &:hover
-          background: $white
-          color: $black
+          background: $purple
+          color: $white
         transition: 0.3s background, 0.3s color
