@@ -1,10 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed')
 
 $red: #ED4125
-$blue: #0189e8
-$dark-purple: #3f1d67
-$light-purple: #5e3f8b
-$purple: #35586e
+$purple: #3f1d67
 $silver: #e0e2ee
 $slate: #222f38
 $white: #f1f1f1
@@ -138,31 +135,27 @@ body
                 width: 70px
 
   .square-avatar
-    background: $white url('/assets/img/avatar2.svg') no-repeat
+    background: $white url('/assets/img/avatar.svg') no-repeat
     background-size: contain
-    background-position-x: center
-    background-position-y: bottom
-    bottom: 0
-    height: 100%
-    position: absolute
-    left: 0
-    top: 0
-    width: 50vw
+    background-position-x: right
+    background-position-y: center
+    flex: 1
+    height: 75vh
+    width: 75vh
 
   .home-title
     background: $purple
+    box-sizing: border-box
     color: $white
-    display: inline-block
+    flex: 1
     font-size: 35px
-    min-height: 47px
-    margin:
-      left: 10vw
-      right: 40px
-    padding: 10px 20px
-    right: 40px
-    text-align: right
-    position: absolute
+    height: 25vh
+    line-height: 25vh
+    margin: 50vh 0 0 0
+    padding: 0 50px
+    text-align: left
     top: 40vh
+    width: calc(100% - 75vh)
     z-index: 2
 
   .top-menu
@@ -175,7 +168,6 @@ body
     z-index: 3
 
   .promo
-    background: $blue
     box-sizing: border-box
     color: $white
     display: flex
@@ -192,30 +184,27 @@ body
       text-align: center
 
   ul.bottom-bar
-    background: $purple
-    bottom: 150px
-    display: inline-block
+    background: $black
+    display: flex
     list-style: none
+    height: 25vh
     margin: 0
+    width: 100%
     padding: 0
-    position: absolute
-    left: calc(50% - 150px)
-    z-index: 3
 
     li
-      display: inline-block
+      flex: 1
       margin: 0
       padding: 0
+      max-width: 25vh
 
       a
-        align-items: center
         box-sizing: border-box
-        color: $black
-        display: flex
-        flex-direction: row
-        height: 150px
+        color: $white
+        display: block
+        height: 25vh
         margin: 0
-        width: 150px
+        width: 25vh
         padding: 0 20px
         text-align: center
         text-decoration: none
@@ -225,3 +214,10 @@ body
           background: $purple
           color: $white
         transition: 0.3s background, 0.3s color
+
+        div
+          strong,
+          span
+            display: block
+          strong
+            padding-top: 10vh
