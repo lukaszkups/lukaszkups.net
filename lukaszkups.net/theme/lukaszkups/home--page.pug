@@ -1,29 +1,30 @@
 extends layout.pug
 
 block content
-  .row.row--flex
-    h1.home-title#home-title
-    .square-avatar#svg
-  ul.bottom-bar
-    li
-    li
-      a(href='/notes/?category=vue')
-        div
-          strong Vue.js
-          span My tips & tricks from real-life projects
+  .home-wrapper
+    .row.row--flex
+      .square-avatar
+      h1.home-title#home-title
+    ul.bottom-bar
+      li
+      li
+        a(href='/notes/?category=vue')
+          div
+            strong Vue.js
+            span My tips & tricks from real-life projects
 
-    li
-      a(href='/notes/?category=lifestyle')
-        div
-          strong Batteries not included
-          span Random thoughts not necessarily related to tech
-    li
-      a(href='/notes/?category=reviews')
-        div
-          strong Spoilers ahead
-          span Reviewing stuff
-    li
-      a(href='/experience')
-        div
-          strong My experience
-          span Some stuff I've worked on
+      li
+        a(href='/notes/?category=lifestyle')
+          div
+            strong Batteries not included
+            span Random thoughts not necessarily related to tech
+      li
+        a(href='/notes/?category=reviews')
+          div
+            strong Spoilers ahead
+            span Reviewing stuff
+      li
+        a(href='/experience')
+          div
+            strong My experience
+            span Some stuff I've worked on

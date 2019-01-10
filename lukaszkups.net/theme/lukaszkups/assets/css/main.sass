@@ -7,6 +7,14 @@ $slate: #222f38
 $white: #f1f1f1
 $black: #252525
 
+@keyframes avatar-fade-in
+  0%
+    opacity: 0
+    top: 50px
+  100%
+    opacity: 1
+    top: 10px
+
 .logo-wrapper
   display: inline-block
   height: 50px
@@ -56,12 +64,21 @@ html,
 body
   background: linear-gradient($silver, $white)
   font-family: 'Segoe UI', sans-serif
-  height: 100vh
+  height: 100%
   margin: 0
-  min-height: 100vh
+  min-height: 100%
   overflow-x: hidden
   padding: 0
   width: 100%
+
+  .home-wrapper
+    display: block
+    margin: 0
+    padding: 0
+    height: 100%
+    max-height: 100%
+    max-width: 100%
+    width: 100%
 
   .row
     display: flex
@@ -101,47 +118,85 @@ body
       font-size: 14px
       height: 60px
       letter-spacing: 1px
+      width: calc(100vw - 75vh)
 
       ul
         list-style: none
         margin: 0
+        overflow: hidden
         padding: 0
 
         li
           display: inline-block
           margin: 0
-          overflow: hidden
           padding: 0
+          perspective: 1000px
+          position: relative
+
+          &:hover a
+            lighten($purple, 15%)
+            transform: rotateX(90deg) translateY(-22px)
+
+            &:before
+              transition: background 0.3s
+              background: $purple
 
           a
-            color: $black
+            background: $purple
+            color: $white
+            display: block
             height: 60px
             line-height: 60px
             padding: 0 20px
+            position: relative
             text-decoration: none
+            text-transform: uppercase
+            transition: transform 0.3s, background 0.3s
+            transform-style: preserve-3d
+            transform-origin: 50% 0
 
-            &:after
-              border-bottom: 1px solid $black
-              content: ' '
-              display: block
-              margin: -8px auto auto auto
-              transition: 0.25s width
-              width: 0
+            &:before
+              background: darken($purple, 15%)
+              color: $white
+              content: attr(data-hover)
+              top: 100%
+              left: 0
+              width: 100%
+              height: 100%
+              position: absolute
+              text-align: center
+              text-transform: uppercase
+              transition: background 0.3s
+              // transform: translate3d(0, 0, 0)
+              transform: rotateX(-90deg)
+              transform-origin: 50% 0
 
             &:hover,
             &.active-link
-              &:after
-                transition: 0.25s width
-                width: 70px
+
 
   .square-avatar
-    background: $white url('/assets/img/avatar.svg') no-repeat
-    background-size: contain
-    background-position-x: right
-    background-position-y: center
+    background: $white
     flex: 1
     height: 75vh
+    overflow: hidden
+    position: relative
     width: 75vh
+
+    &:after
+      animation: avatar-fade-in 2s
+      background: $white url('/assets/img/avatar2.svg') no-repeat
+      background-size: contain
+      background-position-x: center
+      background-position-y: bottom
+      content: ' '
+      display: block
+      height: 100%
+      min-height: 100%
+      min-width: 100%
+      position: absolute
+      top: 10px
+      width: 100%
 
   .home-title
     background: $purple
