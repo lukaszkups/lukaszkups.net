@@ -388,3 +388,41 @@ body
           border-right: 5px solid darken($silver, 25%)
           transition: border-right 0.3s
 
+@media screen and (max-width: 700px)
+  body
+    .home-wrapper
+      overflow-y: auto
+
+    header
+      overflow: hidden
+
+    .square-avatar
+      height: 500px
+      top: 60px
+      width: 100%
+      position: relative
+      min-width: 100%
+      max-width: 100%
+
+      &:after
+        background-position: left bottom
+        background-size: contain
+        margin: 0
+        padding: 0
+        width: 100%
+    .home-title
+      bottom: auto
+      left: 0
+      height: 100px
+      margin: 0
+      padding-top: 30px
+      right: 0
+      top: 60px
+      width: 100%
+
+    ul.bottom-bar
+      bottom: 0
+      left: 0
+      right: 0
+      width: 100%
+      position: relative
