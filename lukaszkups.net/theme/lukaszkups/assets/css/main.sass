@@ -65,11 +65,13 @@ body
   background: linear-gradient($silver, $white)
   font-family: 'Segoe UI', sans-serif
   height: 100%
+  max-height: 100%
   margin: 0
   min-height: 100%
-  overflow-x: hidden
+  overflow: hidden
   padding: 0
   width: 100%
+  max-width: 100%
 
   .home-wrapper
     display: block
@@ -114,11 +116,13 @@ body
 
     nav
       display: inline-block
-      float: right
+      float: left
       font-size: 14px
       height: 60px
+      left: calc(50% - 90px)
       letter-spacing: 1px
-      width: calc(100vw - 75vh)
+      position: absolute
+      width: auto
 
       ul
         list-style: none
@@ -128,7 +132,7 @@ body
 
         li
           display: inline-block
-          margin: 0
+          margin: 0 -1px 0 0
           padding: 0
           perspective: 1000px
           position: relative
@@ -167,7 +171,6 @@ body
               text-align: center
               text-transform: uppercase
               transition: background 0.3s
-              // transform: translate3d(0, 0, 0)
               transform: rotateX(-90deg)
               transform-origin: 50% 0
 
@@ -181,17 +184,21 @@ body
     height: 75vh
     overflow: hidden
     position: relative
-    width: 75vh
+    min-width: 50%
+    max-width: 50%
+    width: 50%
 
     &:after
       animation: avatar-fade-in 2s
-      background: $white url('/assets/img/avatar2.svg') no-repeat
-      background-size: contain
-      background-position-x: center
+      background: $white url('/assets/img/avatar3.svg') no-repeat
+      background-size: cover
+      background-position-x: left
       background-position-y: bottom
       content: ' '
       display: block
       height: 100%
+      left: -5px
+      padding-right: 5px
       min-height: 100%
       min-width: 100%
       position: absolute
@@ -210,7 +217,7 @@ body
     padding: 0 50px
     text-align: left
     top: 40vh
-    width: calc(100% - 75vh)
+    width: 45%
     z-index: 2
 
   .top-menu
@@ -248,26 +255,33 @@ body
     padding: 0
 
     li
+      box-sizing: border-box
+      border-right: 1px solid lighten($black, 3%)
+      border-top: transparent solid 0
       flex: 1
       margin: 0
-      padding: 0
-      max-width: 25vh
+      max-width: 30vh
+      overflow: hidden
+      padding: 10px
+      transition: border-top 0.3s
+
+      &:hover
+        border-top: 5px solid darken($silver, 25%)
+        transition: border-top 0.3s
+
+      &:last-of-type
+        border-right: none
 
       a
         box-sizing: border-box
-        color: $white
+        color: $black
         display: block
-        height: 25vh
+        height: calc(25vh - 20px)
         margin: 0
-        width: 25vh
+        width: 30vh
         padding: 0 20px
-        text-align: center
+        text-align: left
         text-decoration: none
-        transition: 0.3s background, 0.3s color
-
-        &:hover
-          background: $purple
-          color: $white
         transition: 0.3s background, 0.3s color
 
         div
@@ -275,4 +289,102 @@ body
           span
             display: block
           strong
-            padding-top: 10vh
+            color: $white
+            padding-top: 7vh
+            text-transform: uppercase
+          span
+            color: darken($silver, 25%)
+            padding-top: 5px
+
+@media screen and (max-width: 1280px)
+  html,
+  body
+    .square-avatar:after
+      background-size: contain
+
+    .home-title
+      font-size: 25px
+      line-height: 1.5em
+      padding-top: 9vh
+
+    ul.bottom-bar li,
+    ul.bottom-bar li a
+      width: 25vw
+
+@media screen and (max-width: 968px)
+  html,
+  body
+    .square-avatar:after
+      background-size: cover
+      margin-left: -50%
+      padding-right: 53%
+
+@media screen and (max-width: 836px)
+  body,
+  html
+    .logo,
+    .logo:before,
+    .logo:after
+      background: $white
+
+    .logo-wrapper
+      margin: 10px
+
+    header
+      background: $purple
+
+      nav
+        left: 100px
+
+    .home-wrapper > .row-flex:first-of-type
+      display: block
+
+    .square-avatar
+      display: block
+      width: 60%
+      max-width: 60%
+      min-width: 60%
+
+    .home-title
+      display: block
+      position: absolute
+      bottom: 0
+      left: 0
+      right: 0
+      top: auto
+      width: 100%
+      margin: 0
+
+    ul.bottom-bar
+      bottom: 25vh
+      position: absolute
+      top: 60px
+      right: 0
+      left: 60%
+      width: 40%
+      height: calc(75vh - 60px)
+      display: block
+
+      li
+        display: block
+        border-top: none
+        border-right: 0 solid transparent
+        width: 100%
+        max-width: 100%
+        min-width: 100%
+        margin: 0
+        height: calc(calc((75vh - 60px)/4)
+        transition: border-right 0.3s
+
+        a
+          height: calc(calc(75vh - 60px)/4)
+          width: 100%
+
+          & div strong
+            padding-top: 3vh
+
+        &:hover
+          border-top: none
+          border-right: 5px solid darken($silver, 25%)
+          transition: border-right 0.3s
+

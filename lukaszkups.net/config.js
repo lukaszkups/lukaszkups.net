@@ -4,6 +4,6 @@ module.exports = {
   ie8support: true,
   vendorsPath: '',
   recompile: true,
-  recompileInterval: 10000,
+  recompileInterval: 5000,
   rootFolder: 'home'
 }
