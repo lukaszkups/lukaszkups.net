@@ -1,4 +1,5 @@
 (() => {
+  // home page
   const homeTitleAnimation = (domElement, titles) => {
     let currentTitle = ''
     const animateTitle = (titleIndex) => {
@@ -40,7 +41,46 @@
   if (domElement) {
     homeTitleAnimation(domElement, titles)
   }
-  var myAnimation = new DrawFillSVG({
-    elementId: "svg"
-  });
+
+  // experience page
+  const drawMapPoints = (domElement, pointsList) => {
+    // to make map points responsive, dimensions are calculated like for 1400px/700px map image
+    const mapWidth = domElement.offsetWidth
+    const leftModifier = mapWidth / 1400
+    const topModifier = (mapWidth / 2) / 700
+    domElement.style.height = `${(mapWidth / 2)}px`
+    pointsList.map((point, index) => {
+      let domPoint = document.createElement('div')
+      domPoint.classList = ['point']
+      domPoint.style.top = `${(topModifier * point.top)}px`
+      domPoint.style.left = `${leftModifier * point.left}px`
+      domPoint.title = point.country
+      domElement.appendChild(domPoint)
+    })
+    window.addEventListener('resize', function (event) {
+      const domPoints = document.querySelectorAll('#experience-map .point')
+      const mapWidth = domElement.offsetWidth
+      const leftModifier = mapWidth / 1400
+      const topModifier = (mapWidth / 2) / 700
+      domElement.style.height = `${(mapWidth / 2)}px`
+      domPoints.forEach((point, index) => {
+        point.style.top = `${(pointsList[index].top * topModifier)}px`
+        point.style.left = `${(pointsList[index].left * leftModifier)}px`
+      })
+    })
+  }
+  const points = [
+    {top: 150, left: 630, country: 'Poland'},
+    {top: 155, left: 572, country: 'UK'},
+    {top: 200, left: 290, country: 'New York'},
+    {top: 160, left: 585, country: 'Rotterdam'},
+    {top: 172, left: 578, country: 'Paris'},
+    {top: 300, left: 220, country: 'Cayman Islands'},
+    {top: 150, left: 615, country: 'Berlin'},
+    {top: 165, left: 622, country: 'Prague'}
+  ]
+  const mapDomElement = document.getElementById('experience-map')
+  if (mapDomElement) {
+    drawMapPoints(mapDomElement, points)
+  }
 })();

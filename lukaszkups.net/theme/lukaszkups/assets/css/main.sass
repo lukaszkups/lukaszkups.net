@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed')
 
-$red: #ED4125
-$purple: #3f1d67
+$primary: #345d7e
 $silver: #e0e2ee
-$slate: #222f38
 $white: #f1f1f1
 $black: #252525
+$red: #ed0344
 
 @keyframes avatar-fade-in
   0%
@@ -14,6 +13,15 @@ $black: #252525
   100%
     opacity: 1
     top: 10px
+
+@keyframes map-point-glow
+  0%
+    box-shadow: 0 0 0 0 $red
+  50%
+    box-shadow: 0 0 10px 0 $red
+  100%
+    box-shadow: 0 0 0 0 $red
+
 
 .logo-wrapper
   display: inline-block
@@ -27,7 +35,7 @@ $black: #252525
   outline: 0
 
 .logo
-  background-color: $black
+  background-color: lighten($primary, 25%)
   -webkit-transform: skew(25deg,0deg)
   -ms-transform: skew(25deg,0deg)
   transform: skew(25deg,0deg)
@@ -45,7 +53,7 @@ $black: #252525
   &:after,
   &:before
     content: " "
-    background-color: $purple
+    background-color: $primary
     -webkit-transform: skew(-50deg,0deg)
     -ms-transform: skew(-50deg,0deg)
     transform: skew(-50deg,0deg)
@@ -138,15 +146,15 @@ body
           position: relative
 
           &:hover a
-            lighten($purple, 15%)
+            lighten($primary, 15%)
             transform: rotateX(90deg) translateY(-22px)
 
             &:before
               transition: background 0.3s
-              background: $purple
+              background: $primary
 
           a
-            background: $purple
+            background: $primary
             color: $white
             display: block
             height: 60px
@@ -160,7 +168,7 @@ body
             transform-origin: 50% 0
 
             &:before
-              background: darken($purple, 15%)
+              background: darken($primary, 15%)
               color: $white
               content: attr(data-hover)
               top: 100%
@@ -179,7 +187,6 @@ body
 
 
   .square-avatar
-    background: $white
     flex: 1
     height: 75vh
     overflow: hidden
@@ -190,7 +197,7 @@ body
 
     &:after
       animation: avatar-fade-in 2s
-      background: $white url('/assets/img/avatar3.svg') no-repeat
+      background: url('/assets/img/avatar3.svg') no-repeat
       background-size: cover
       background-position-x: left
       background-position-y: bottom
@@ -206,7 +213,7 @@ body
       width: 100%
 
   .home-title
-    background: $purple
+    background: $primary
     box-sizing: border-box
     color: $white
     flex: 1
@@ -256,7 +263,7 @@ body
 
     li
       box-sizing: border-box
-      border-right: 1px solid lighten($black, 3%)
+      // border-right: 1px solid lighten($black, 3%)
       border-top: transparent solid 0
       flex: 1
       margin: 0
@@ -266,7 +273,7 @@ body
       transition: border-top 0.3s
 
       &:hover
-        border-top: 5px solid darken($silver, 25%)
+        border-top: 5px solid lighten($primary, 25%)
         transition: border-top 0.3s
 
       &:last-of-type
@@ -293,7 +300,7 @@ body
             padding-top: 7vh
             text-transform: uppercase
           span
-            color: darken($silver, 25%)
+            color: lighten($primary, 25%)
             padding-top: 5px
 
 @media screen and (max-width: 1280px)
@@ -331,7 +338,7 @@ body
       margin: 10px
 
     header
-      background: $purple
+      background: $primary
 
       nav
         left: 100px
@@ -385,7 +392,7 @@ body
 
         &:hover
           border-top: none
-          border-right: 5px solid darken($silver, 25%)
+          border-right: 5px solid lighten($primary, 25%)
           transition: border-right 0.3s
 
 @media screen and (max-width: 700px)
@@ -426,3 +433,37 @@ body
       right: 0
       width: 100%
       position: relative
+
+.experience-wrapper
+  height: 100%
+  min-height: 100%
+  max-height: 100%
+  width: 100%
+
+  .map-wrapper
+    height: 100vh
+    max-height: 100vh
+    min-height: 100vh
+    overflow: hidden
+    width: 100vw
+
+    .point
+      animation: map-point-glow 1s infinite
+      border-radius: 5px
+      background: $red
+      cursor: pointer
+      display: block
+      height: 10px
+      position: absolute
+      width: 10px
+
+    .experience-map
+      background: url('/assets/img/map.svg') no-repeat
+      background-size: 100% 100%
+      background-position: center
+      display: block
+      height: auto
+      margin: 100px auto 0 auto
+      overflow: hidden
+      position: relative
+      width: 75%
