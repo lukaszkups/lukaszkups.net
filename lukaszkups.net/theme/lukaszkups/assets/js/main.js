@@ -52,13 +52,15 @@
     pointsList.map((point, index) => {
       let domPoint = document.createElement('div')
       domPoint.classList = ['point']
+      domPoint.dataset.projects = point.projects
       domPoint.style.top = `${(topModifier * point.top)}px`
       domPoint.style.left = `${leftModifier * point.left}px`
       domPoint.title = point.country
       domElement.appendChild(domPoint)
     })
-    window.addEventListener('resize', function (event) {
-      const domPoints = document.querySelectorAll('#experience-map .point')
+    // add resize event to recalculate map points
+    window.addEventListener('resize', function () {
+      const domPoints = domElement.querySelectorAll('.point')
       const mapWidth = domElement.offsetWidth
       const leftModifier = mapWidth / 1400
       const topModifier = (mapWidth / 2) / 700
@@ -68,16 +70,69 @@
         point.style.left = `${(pointsList[index].left * leftModifier)}px`
       })
     })
+    // bind toggle points visibility
+    const domPoints = domElement.querySelectorAll('.point')
+    domPoints.forEach(point => {
+      point.addEventListener('click', function (event) {
+        event.preventDefault()
+        const activeFilterButton = document.querySelector('#experience-filter li.active-filter')
+        if (activeFilterButton) {
+          activeFilterButton.classList.remove('active-filter')
+        }
+        if (event.currentTarget.classList.contains('point--active')) {
+          event.currentTarget.classList.remove('point--active')
+          domPoints.forEach(_point => {
+            _point.classList.remove('point--hidden')
+          })
+        } else {
+          event.currentTarget.classList.add('point--active')
+          domPoints.forEach(_point => {
+            if (_point.title !== event.currentTarget.title) {
+              _point.classList.add('point--hidden')
+            }
+          })
+        }
+      })
+    })
+    // filter method triggered by bottom buttons
+    const filterMapPoints = (filter) => {
+      // remove any existing filters
+      domPoints.forEach(_point => {
+        _point.classList.remove('point--active')
+        _point.classList.remove('point--hidden')
+        if (filter && !_point.dataset.projects.toLowerCase().includes(filter)) {
+          _point.classList.add('point--hidden')
+        }
+      })
+    }
+    // bind bottom menu map points filtering
+    const filterButtons = document.querySelectorAll('#experience-filter li span')
+    filterButtons.forEach(filterButton => {
+      filterButton.addEventListener('click', function (event) {
+        event.preventDefault()
+        // remove all existing filters from map points (method triggered without params un-filter everything)
+        filterMapPoints()
+        const wasActive = filterButton.parentNode.classList.contains('active-filter')
+        // remove active class from filter buttons
+        filterButtons.forEach(btn => {
+          btn.parentNode.classList.remove('active-filter')
+        })
+        if (!wasActive) {
+          filterButton.parentNode.classList.add('active-filter')
+          filterMapPoints(filterButton.parentNode.getAttribute('data-filter'))
+        }
+      })
+    })
   }
   const points = [
-    {top: 150, left: 630, country: 'Poland'},
-    {top: 155, left: 572, country: 'UK'},
-    {top: 200, left: 290, country: 'New York'},
-    {top: 160, left: 585, country: 'Rotterdam'},
-    {top: 172, left: 578, country: 'Paris'},
-    {top: 300, left: 220, country: 'Cayman Islands'},
-    {top: 150, left: 615, country: 'Berlin'},
-    {top: 165, left: 622, country: 'Prague'}
+    {top: 150, left: 630, country: 'Poland', projects: ['10+ websites', '2 mobile applications', '10+ design works']},
+    {top: 155, left: 572, country: 'UK', projects: ['2 websites']},
+    {top: 200, left: 290, country: 'New York', projects: ['1 website']},
+    {top: 160, left: 585, country: 'Rotterdam', projects: ['3 websites']},
+    {top: 172, left: 578, country: 'Paris', projects: ['2 websites']},
+    {top: 300, left: 220, country: 'Cayman Islands', projects: ['1 website']},
+    {top: 150, left: 615, country: 'Berlin', projects: ['1 website', '1 design work']},
+    {top: 165, left: 622, country: 'Prague', projects: ['1 website', '1 design work']}
   ]
   const mapDomElement = document.getElementById('experience-map')
   if (mapDomElement) {
