@@ -298,6 +298,109 @@ body
             color: lighten($primary, 25%)
             padding-top: 5px
 
+  //  EXPERIENCE PAGE
+  .experience-wrapper
+    height: 100%
+    min-height: 100%
+    max-height: 100%
+    width: 100%
+
+    .map-wrapper
+      height: 100vh
+      max-height: 100vh
+      min-height: 100vh
+      overflow: hidden
+      width: 100vw
+
+      .point
+        animation: map-point-glow 1s infinite
+        border-radius: 5px
+        background: $red
+        cursor: pointer
+        display: block
+        height: 10px
+        position: absolute
+        width: 10px
+
+        &--hidden
+          display: none
+
+      .experience-map
+        background: url('/assets/img/map.svg') no-repeat
+        background-size: 100% 100%
+        background-position: center
+        display: block
+        height: auto
+        margin: 100px auto 0 auto
+        overflow: hidden
+        position: relative
+        width: 95%
+
+    ul.experience-filter
+      background: lighten($white, 100%)
+      bottom: 0
+      color: $primary
+      display: flex
+      list-style: none
+      margin: 0 20%
+      overflow: hidden
+      padding: 0
+      position: absolute
+      width: 60%
+
+      li
+        cursor: pointer
+        flex: 1
+        margin: 0 -1px 0 0
+        padding: 0
+        text-align: center
+        perspective: 1000px
+        position: relative
+
+        &:hover span,
+        &.active-filter span
+          background: lighten($white, 100%)
+          transform: rotateX(90deg) translateY(-22px)
+
+          &:before
+            transition: background 0.3s
+            background: $primary
+
+        span
+          background: lighten($white, 100%)
+          box-sizing: border-box
+          color: $black
+          display: block
+          height: 100px
+          line-height: 60px
+          padding: 20px
+          position: relative
+          text-decoration: none
+          text-transform: uppercase
+          transition: transform 0.3s, background 0.3s
+          transform-style: preserve-3d
+          transform-origin: 50% 0
+
+          &:before
+            background: darken($primary, 15%)
+            box-sizing: border-box
+            color: $white
+            content: attr(data-hover)
+            top: 100%
+            left: 0
+            line-height: 60px
+            width: 100%
+            height: 100%
+            padding: 20px
+            position: absolute
+            text-align: center
+            text-transform: uppercase
+            transition: background 0.3s
+            transform: rotateX(-90deg)
+            transform-origin: 50% 0
+
+// RWD
+
 @media screen and (max-width: 1280px)
   html,
   body
@@ -390,6 +493,11 @@ body
           border-right: 5px solid lighten($primary, 25%)
           transition: border-right 0.3s
 
+    .experience-wrapper
+      ul.experience-filter
+        margin: 0
+        width: 100%
+
 @media screen and (max-width: 700px)
   body
     .home-wrapper
@@ -428,103 +536,3 @@ body
       right: 0
       width: 100%
       position: relative
-
-.experience-wrapper
-  height: 100%
-  min-height: 100%
-  max-height: 100%
-  width: 100%
-
-  .map-wrapper
-    height: 100vh
-    max-height: 100vh
-    min-height: 100vh
-    overflow: hidden
-    width: 100vw
-
-    .point
-      animation: map-point-glow 1s infinite
-      border-radius: 5px
-      background: $red
-      cursor: pointer
-      display: block
-      height: 10px
-      position: absolute
-      width: 10px
-
-      &--hidden
-        display: none
-
-    .experience-map
-      background: url('/assets/img/map.svg') no-repeat
-      background-size: 100% 100%
-      background-position: center
-      display: block
-      height: auto
-      margin: 100px auto 0 auto
-      overflow: hidden
-      position: relative
-      width: 95%
-
-  ul.experience-filter
-    background: lighten($white, 100%)
-    bottom: 0
-    color: $primary
-    display: flex
-    list-style: none
-    margin: 0 20%
-    overflow: hidden
-    padding: 0
-    position: absolute
-    width: 60%
-
-    li
-      cursor: pointer
-      flex: 1
-      margin: 0
-      padding: 0
-      text-align: center
-      perspective: 1000px
-      position: relative
-
-      &:hover span,
-      &.active-filter span
-        background: lighten($white, 100%)
-        transform: rotateX(90deg) translateY(-22px)
-
-        &:before
-          transition: background 0.3s
-          background: $red
-
-      span
-        background: lighten($white, 100%)
-        box-sizing: border-box
-        color: $black
-        display: block
-        height: 100px
-        line-height: 60px
-        padding: 20px
-        position: relative
-        text-decoration: none
-        text-transform: uppercase
-        transition: transform 0.3s, background 0.3s
-        transform-style: preserve-3d
-        transform-origin: 50% 0
-
-        &:before
-          background: darken($red, 15%)
-          box-sizing: border-box
-          color: $white
-          content: attr(data-hover)
-          top: 100%
-          left: 0
-          line-height: 60px
-          width: 100%
-          height: 100%
-          padding: 20px
-          position: absolute
-          text-align: center
-          text-transform: uppercase
-          transition: background 0.3s
-          transform: rotateX(-90deg)
-          transform-origin: 50% 0
