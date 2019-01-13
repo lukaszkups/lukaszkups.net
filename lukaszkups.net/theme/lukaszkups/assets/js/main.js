@@ -126,7 +126,7 @@
   }
   const points = [
     {top: 150, left: 630, country: 'Poland', projects: ['10+ websites', '2 mobile applications', '10+ design works']},
-    {top: 155, left: 572, country: 'UK', projects: ['2 websites']},
+    {top: 155, left: 572, country: 'London', projects: ['2 websites']},
     {top: 200, left: 290, country: 'New York', projects: ['1 website']},
     {top: 160, left: 585, country: 'Rotterdam', projects: ['3 websites']},
     {top: 172, left: 578, country: 'Paris', projects: ['2 websites']},

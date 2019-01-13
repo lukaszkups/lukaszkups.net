@@ -1,13 +1,9 @@
+- var menu = [{id: 0, name: 'Home', url: '/'}, {id: 1, name: 'About', url: '/about'}, {id: 2, name: 'Notes', url: '/notes'}, {id: 3, name: 'Experience', url: '/experience'}]
 header
   .logo-wrapper
     .logo
   nav
     ul
-      li
-        a(href='/', data-hover='Home') Home
-      li
-        a(href='/about', data-hover='About') About
-      li
-        a(href='/notes', data-hover='Notes') Notes
-      li
-        a(href='/experience', data-hover='Experience') Experience
+      each item in menu
+        li(class=meta.active == item.id ? 'active': '')
+          a(href=item.url, data-hover=item.name) #{item.name}

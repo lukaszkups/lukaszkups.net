@@ -182,6 +182,15 @@ body
               transform: rotateX(-90deg)
               transform-origin: 50% 0
 
+          &.active
+            a
+              background: $white
+              color: $black
+
+              &:before
+                background: $white
+                color: $black
+
   .square-avatar
     flex: 1
     height: 75vh
@@ -305,6 +314,15 @@ body
     max-height: 100%
     width: 100%
 
+    .experience-title
+      text-align: center
+      margin: 100px 0 0 0
+      span
+        background: lighten($white, 100%)
+        color: $black
+        float: none
+        padding: 10px 20px
+
     .map-wrapper
       height: 100vh
       max-height: 100vh
@@ -331,7 +349,7 @@ body
         background-position: center
         display: block
         height: auto
-        margin: 100px auto 0 auto
+        margin: 50px auto 0 auto
         overflow: hidden
         position: relative
         width: 95%

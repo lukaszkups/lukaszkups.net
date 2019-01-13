@@ -175,6 +175,7 @@ module.exports = {
           tags: page.meta && page.meta.tags ? page.meta.tags : '',
           description: page.meta && page.meta.description ? page.meta.description : '',
           content: page.content,
+          meta: page.meta || {},
           ...contentTemplateOptions
         })
         fs.writeFile(page.output, parsedContentTemplate, (err) => {
@@ -202,6 +203,7 @@ module.exports = {
           description: list.meta && list.meta.description ? list.meta.description : '',
           list: list.entries || [],
           content: list.content,
+          meta: list.meta || {},
           ...contentTemplateOptions
         })
         fs.writeFile(list.output, parsedContentTemplate, (err) => {
@@ -229,6 +231,7 @@ module.exports = {
             tags: entry.meta && entry.meta.tags ? entry.meta.tags : '',
             description: entry.meta && entry.meta.description ? entry.meta.description : '',
             content: entry.content,
+            meta: entry.meta || {},
             ...contentTemplateOptions
           })
           fs.writeFile(entry.output, parsedContentTemplate, (err) => {
@@ -307,6 +310,7 @@ module.exports = {
                 })
               }, CONFIG.recompileInterval || 60000)
             }
+            console.log(_store)
             _helpers.startServer()
           })
         })
