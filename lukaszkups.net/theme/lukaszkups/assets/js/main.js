@@ -77,7 +77,7 @@
       info.split(',').map(obj => {
         text += `<li>${obj}</li>`
       })
-      text += '</ul>'
+      text += '</ul><div><small>*Due to some NDA related stuff I don\'t display exact project names here (if you want to learn more feel free to contact).</small></div>'
       infoDom.innerHTML = text
       infoDom.classList.add('point-info--active')
     }
