@@ -70,6 +70,46 @@
         point.style.left = `${(pointsList[index].left * leftModifier)}px`
       })
     })
+    // show info about point
+    const showPointInfo = (info, name) => {
+      const infoDom = document.getElementById('point-info')
+      let text = `<p>${name}</p><ul>`
+      info.split(',').map(obj => {
+        text += `<li>${obj}</li>`
+      })
+      text += '</ul>'
+      infoDom.innerHTML = text
+      infoDom.classList.add('point-info--active')
+    }
+    // filter method triggered by bottom buttons
+    const filterMapPoints = (filter) => {
+      // remove any existing filters
+      domPoints.forEach(_point => {
+        _point.classList.remove('point--active')
+        _point.classList.remove('point--hidden')
+        if (filter && !_point.dataset.projects.toLowerCase().includes(filter)) {
+          _point.classList.add('point--hidden')
+        }
+      })
+    }
+    // hide point info
+    const hidePointInfo = () => {
+      const infoDom = document.getElementById('point-info')
+      infoDom.classList.remove('point-info--active')
+      // add timeout to let it hide first
+      setTimeout(() => {
+        infoDom.innerHTML = ''
+      }, 1000)
+      // remove map points filtering
+      filterMapPoints()
+    }
+    // bind events to hide point info
+    document.getElementById('point-info').addEventListener('click', () => {
+      hidePointInfo()
+    })
+    document.querySelector('#point-info + .shadow').addEventListener('click', () => {
+      hidePointInfo()
+    })
     // bind toggle points visibility
     const domPoints = domElement.querySelectorAll('.point')
     domPoints.forEach(point => {
@@ -84,8 +124,10 @@
           domPoints.forEach(_point => {
             _point.classList.remove('point--hidden')
           })
+          hidePointInfo()
         } else {
           event.currentTarget.classList.add('point--active')
+          showPointInfo(event.currentTarget.dataset.projects, event.currentTarget.title)
           domPoints.forEach(_point => {
             if (_point.title !== event.currentTarget.title) {
               _point.classList.add('point--hidden')
@@ -94,22 +136,13 @@
         }
       })
     })
-    // filter method triggered by bottom buttons
-    const filterMapPoints = (filter) => {
-      // remove any existing filters
-      domPoints.forEach(_point => {
-        _point.classList.remove('point--active')
-        _point.classList.remove('point--hidden')
-        if (filter && !_point.dataset.projects.toLowerCase().includes(filter)) {
-          _point.classList.add('point--hidden')
-        }
-      })
-    }
     // bind bottom menu map points filtering
     const filterButtons = document.querySelectorAll('#experience-filter li span')
     filterButtons.forEach(filterButton => {
       filterButton.addEventListener('click', function (event) {
         event.preventDefault()
+        // remove point details if needed
+        hidePointInfo()
         // remove all existing filters from map points (method triggered without params un-filter everything)
         filterMapPoints()
         const wasActive = filterButton.parentNode.classList.contains('active-filter')
