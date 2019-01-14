@@ -180,7 +180,7 @@
     const firstMonthDay = new Date(year, month - 1, 1).getDay()
     // append proper amount of blank cells (depends which week day starts the month)
     if (firstMonthDay === 0) {
-      stringBuffer.push('<tr></tr><td></td><td></td><td></td><td></td><td></td><td></td>')
+      stringBuffer.push('<tr><td></td><td></td><td></td><td></td><td></td><td></td>')
     } else {
       let stringHelper = '<tr>'
       for (let i = 1; i < firstMonthDay; i++) {
@@ -200,22 +200,22 @@
       }
     }
     stringBuffer.push('</table>')
-    return stringBuffer.join(',')
+    return stringBuffer.join('')
   }
   const printCalendarForYear = (year) => {
-    let yearArr = []
+    let yearArr = [`<h2 class='year-title'>${year}</h2>`]
     for (let month = 1; month <= 12; month++) {
       yearArr.push(printMonth(month, year))
     }
-    return yearArr.join(',')
+    return yearArr.join('')
   }
-  const years = [2019]
+  const years = [2019, 2018]
   const notesDomElement = document.getElementById('notes-list')
   if (notesDomElement) {
     let calArr = []
     years.map(year => {
       calArr.push(printCalendarForYear(year))
     })
-    document.getElementById('calendar-wrapper').innerHTML = calArr.join(',')
+    document.getElementById('calendar-wrapper').innerHTML = calArr.join('')
   }
 })();

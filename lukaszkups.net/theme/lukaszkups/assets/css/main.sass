@@ -484,6 +484,45 @@ body
             transform: rotateX(-90deg)
             transform-origin: 50% 0
 
+  // NOTES LIST PAGE
+  .notes-list-wrapper
+    display: flex
+    margin-top: 100px
+
+    .calendar-wrapper
+      display: none
+      flex: 1
+      width: 75%
+      height: 100vh
+      overflow-x: hidden
+      overflow-y: auto
+      padding-bottom: 100px
+
+      .year-title
+        text-align: center
+
+      table
+        background: white
+        display: inline-table
+        padding: 20px
+        margin: 20px 20px 0 0
+
+        &:last-of-type
+          margin-bottom: 300px
+
+        td
+          text-align: center
+          padding: 5px
+
+          &:hover
+            background: $primary
+            cursor: pointer
+            color: $white
+
+      &--active
+        display: inline-block
+        flex: 1
+
 // RWD
 
 @media screen and (max-width: 1280px)

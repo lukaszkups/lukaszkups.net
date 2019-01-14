@@ -1,10 +1,10 @@
 extends layout.pug
 
 block content
-  h1= title
-  #calendar-wrapper
-  #notes-list
-  ul
-    each item, index in list.length ? list : ['No entries yet.']
-      li
-        a(href=item.url) #{item.meta.title}
+  .notes-list-wrapper
+    #calendar-wrapper.calendar-wrapper.calendar-wrapper--active
+    #notes-list
+      ul
+        each item, index in list.length ? list : ['No entries yet.']
+          li
+            a(href=item.url) #{item.meta.title}
