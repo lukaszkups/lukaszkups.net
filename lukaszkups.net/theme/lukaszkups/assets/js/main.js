@@ -174,8 +174,9 @@
 
   // notes list page
   const printMonth = (month, year) => {
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let stringBuffer = []
-    stringBuffer.push('<table>')
+    stringBuffer.push(`<table><thead><tr><th colspan='7'>${monthNames[month - 1]}</th></tr></thead><tbody>`)
     const daysInMonth = new Date(year, month, 0).getDate()
     const firstMonthDay = new Date(year, month - 1, 1).getDay()
     // append proper amount of blank cells (depends which week day starts the month)
@@ -194,20 +195,71 @@
       if (currentMonthDay === 1 && currentDay !== 1) {
         stringBuffer.push('<tr>')
       }
-      stringBuffer.push(`<td>${currentDay}</td>`)
+      stringBuffer.push(`<td class='day--active' data-date='${year}-${month}-${currentDay}'>${currentDay}</td>`)
       if (currentMonthDay === 0) {
         stringBuffer.push('</tr>')
       }
     }
-    stringBuffer.push('</table>')
+    stringBuffer.push('</tbody></table>')
     return stringBuffer.join('')
   }
   const printCalendarForYear = (year) => {
-    let yearArr = [`<h2 class='year-title'>${year}</h2>`]
+    let yearArr = []
+    let now = new Date()
     for (let month = 1; month <= 12; month++) {
-      yearArr.push(printMonth(month, year))
+      if (now.getFullYear() === year && now.getMonth() + 1 >= month) {
+        yearArr.push(printMonth(month, year))
+      } else if (now.getFullYear() !== year){
+        yearArr.push(printMonth(month, year))
+      }
     }
-    return yearArr.join('')
+    return `<h2 class='year-title'>${year}</h2>${yearArr.reverse().join('')}`
+  }
+  // mark days with notes in calendars
+  const markDaysWithNotes = (calendars, notes) => {
+    calendars.forEach(calendar => {
+      const cellDate = calendar.dataset.date
+      const dateHasNotes = [...notes].find(obj => obj.dataset.date === cellDate)
+      if (dateHasNotes) {
+        calendar.classList.add('day--has-notes')
+      }
+    })
+  }
+  // add interactivity to calendar and notes list
+  const bindCalendarFiltering = () => {
+    const calendars = document.querySelectorAll('#calendar-wrapper table tbody td')
+    const notes = document.querySelectorAll('#notes-list ul li')
+    markDaysWithNotes(calendars, notes)
+    calendars.forEach(calendar => {
+      calendar.addEventListener('click', function(event) {
+        event.preventDefault()
+        let cell = event.currentTarget
+        if (cell.classList.contains('day--selected')) {
+          // remove previous filter classes
+          calendars.forEach(cell => {
+            cell.classList.remove('day--selected')
+          })
+          document.getElementById('notes-list').classList.remove('notes-list--filtered')
+          notes.forEach(entry => {
+            entry.classList.remove('entry--filtered')
+          })
+        } else {
+          // remove previous filter classes
+          calendars.forEach(cell => {
+            cell.classList.remove('day--selected')
+          })
+          document.getElementById('notes-list').classList.add('notes-list--filtered')
+          notes.forEach(entry => {
+            if (entry.dataset.date === cell.dataset.date) {
+              entry.classList.add('entry--filtered')
+            } else {
+              entry.classList.remove('entry--filtered')
+            }
+          })
+          cell.classList.add('day--selected')
+        }
+      })
+    })
   }
   const years = [2019, 2018]
   const notesDomElement = document.getElementById('notes-list')
@@ -217,5 +269,6 @@
       calArr.push(printCalendarForYear(year))
     })
     document.getElementById('calendar-wrapper').innerHTML = calArr.join('')
+    bindCalendarFiltering()
   }
 })();

@@ -432,6 +432,7 @@ body
       padding: 0
       position: absolute
       width: 60%
+      z-index: 3
 
       li
         cursor: pointer
@@ -504,24 +505,44 @@ body
       table
         background: white
         display: inline-table
-        padding: 20px
+        padding: 10px 20px 20px 20px
         margin: 20px 20px 0 0
 
         &:last-of-type
           margin-bottom: 300px
 
-        td
+        td,
+        th
           text-align: center
           padding: 5px
 
-          &:hover
+          &.day--active:hover,
+          &.day--has-notes
             background: $primary
             cursor: pointer
             color: $white
 
+          &.day--selected
+            background: $red !important
+            color: $white
+
+        th
+          font-weight: normal
+
       &--active
         display: inline-block
         flex: 1
+
+    .notes-list
+      list-style: none
+
+      li
+        display: block
+        a
+          color: $black
+          text-decoration: none
+      &--filtered li:not(.entry--filtered) a
+        color: darken($silver, 15%)
 
 // RWD
 
