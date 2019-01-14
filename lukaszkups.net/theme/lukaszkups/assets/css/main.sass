@@ -83,12 +83,12 @@ body
 
   .home-wrapper
     display: block
-    margin: 0
+    margin: 0 -18px 0 0
     padding: 0
     height: 100%
     max-height: 100%
-    max-width: 100%
-    width: 100%
+    max-width: calc(100% + 18px)
+    width: calc(100% + 18px)
 
   .row
     display: flex
@@ -203,7 +203,7 @@ body
     &:after
       animation: avatar-fade-in 2s
       background: url('/assets/img/avatar3.svg') no-repeat
-      background-size: cover
+      background-size: contain
       background-position-x: left
       background-position-y: bottom
       content: ' '
@@ -263,7 +263,7 @@ body
     list-style: none
     height: 25vh
     margin: 0
-    width: 100%
+    width: calc(100% - 18px)
     padding: 0
 
     li
@@ -271,7 +271,7 @@ body
       border-top: transparent solid 0
       flex: 1
       margin: 0
-      max-width: 30vh
+      max-width: 25%
       overflow: hidden
       padding: 10px
       transition: border-top 0.3s
@@ -289,7 +289,7 @@ body
         display: block
         height: calc(25vh - 20px)
         margin: 0
-        width: 30vh
+        width: 100%
         padding: 0 20px
         text-align: left
         text-decoration: none
@@ -326,7 +326,6 @@ body
 
     .point-info
       background: lighten($white, 100%)
-      // box-shadow: 0 5px 25px  $black
       box-sizing: border-box
       color: $black
       display: block
@@ -493,7 +492,7 @@ body
     .calendar-wrapper
       display: none
       flex: 1
-      width: 75%
+      max-width: 60%
       height: 100vh
       overflow-x: hidden
       overflow-y: auto
@@ -535,6 +534,7 @@ body
 
     .notes-list
       list-style: none
+      max-width: 40%
 
       li
         display: block
@@ -557,15 +557,11 @@ body
       line-height: 1.5em
       padding-top: 9vh
 
-    ul.bottom-bar li,
-    ul.bottom-bar li a
-      width: 25vw
-
 @media screen and (max-width: 968px)
   html,
   body
     .square-avatar:after
-      background-size: cover
+      background-size: contain
       margin-left: -50%
       padding-right: 53%
 
@@ -628,7 +624,7 @@ body
 
         a
           height: calc(calc(75vh - 60px)/4)
-          width: 100%
+          width: 100% !important
 
           & div strong
             padding-top: 3vh
@@ -650,6 +646,18 @@ body
 
     header
       overflow: hidden
+
+      nav
+        height: 78px
+        margin-bottom: -18px
+        overflow-x: auto
+        overflow-y: hidden
+        width: 100%
+
+        ul
+          width: 500px
+          white-space: nowrap
+          overflow: hidden
 
     .square-avatar
       height: 500px
