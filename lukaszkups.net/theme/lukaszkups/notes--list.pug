@@ -2,6 +2,8 @@ extends layout.pug
 
 block content
   h1= title
+  #calendar-wrapper
+  #notes-list
   ul
     each item, index in list.length ? list : ['No entries yet.']
       li

@@ -171,4 +171,51 @@
   if (mapDomElement) {
     drawMapPoints(mapDomElement, points)
   }
+
+  // notes list page
+  const printMonth = (month, year) => {
+    let stringBuffer = []
+    stringBuffer.push('<table>')
+    const daysInMonth = new Date(year, month, 0).getDate()
+    const firstMonthDay = new Date(year, month - 1, 1).getDay()
+    // append proper amount of blank cells (depends which week day starts the month)
+    if (firstMonthDay === 0) {
+      stringBuffer.push('<tr></tr><td></td><td></td><td></td><td></td><td></td><td></td>')
+    } else {
+      let stringHelper = '<tr>'
+      for (let i = 1; i < firstMonthDay; i++) {
+        stringHelper += '<td></td>'
+      }
+      stringBuffer.push(stringHelper)
+
+    }
+    for (let currentDay = 1; currentDay <= daysInMonth; currentDay++) {
+      let currentMonthDay = new Date(year, month - 1, currentDay).getDay()
+      if (currentMonthDay === 1 && currentDay !== 1) {
+        stringBuffer.push('<tr>')
+      }
+      stringBuffer.push(`<td>${currentDay}</td>`)
+      if (currentMonthDay === 0) {
+        stringBuffer.push('</tr>')
+      }
+    }
+    stringBuffer.push('</table>')
+    return stringBuffer.join(',')
+  }
+  const printCalendarForYear = (year) => {
+    let yearArr = []
+    for (let month = 1; month <= 12; month++) {
+      yearArr.push(printMonth(month, year))
+    }
+    return yearArr.join(',')
+  }
+  const years = [2019]
+  const notesDomElement = document.getElementById('notes-list')
+  if (notesDomElement) {
+    let calArr = []
+    years.map(year => {
+      calArr.push(printCalendarForYear(year))
+    })
+    document.getElementById('calendar-wrapper').innerHTML = calArr.join(',')
+  }
 })();
