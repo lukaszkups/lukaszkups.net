@@ -492,11 +492,12 @@ body
     .calendar-wrapper
       display: none
       flex: 1
-      max-width: 60%
+      max-width: 245px
       height: 100vh
       overflow-x: hidden
       overflow-y: auto
       padding-bottom: 100px
+      margin: 0 -18px 0 0
 
       .year-title
         text-align: center
@@ -505,7 +506,7 @@ body
         background: white
         display: inline-table
         padding: 10px 20px 20px 20px
-        margin: 20px 20px 0 0
+        margin: 0
 
         &:last-of-type
           margin-bottom: 300px
@@ -534,7 +535,8 @@ body
 
     .notes-list
       list-style: none
-      max-width: 40%
+      max-width: calc(100% - 245px)
+      width: calc(100% - 245px)
 
       li
         display: block
