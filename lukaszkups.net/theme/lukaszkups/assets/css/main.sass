@@ -496,17 +496,23 @@ body
       height: 100vh
       overflow-x: hidden
       overflow-y: auto
+      padding-top: 100px
       padding-bottom: 100px
+      padding-right: 50px
+      position: fixed
+      top: 0
+      right: 0
       margin: 0 -18px 0 0
 
       .year-title
         text-align: center
+        margin-top: 10px
 
       table
         background: white
         display: inline-table
         padding: 10px 20px 20px 20px
-        margin: 0
+        margin: 0 0 10px 0
 
         &:last-of-type
           margin-bottom: 300px
@@ -534,17 +540,161 @@ body
         flex: 1
 
     .notes-list
+      box-sizing: border-box
       list-style: none
-      max-width: calc(100% - 245px)
-      width: calc(100% - 245px)
+      max-width: calc(100% - 295px)
+      width: calc(100% - 295px)
+      overflow: hidden
+      padding: 50px 0 0 50px
+      height: calc(100vh - 100px)
 
-      li
+      h1
         display: block
-        a
-          color: $black
-          text-decoration: none
-      &--filtered li:not(.entry--filtered) a
-        color: darken($silver, 15%)
+
+      ul
+        display: block
+        list-style: none
+        margin: 0 -18px 0 0
+        padding: 0 18px 0 0
+        overflow-x: hidden
+        overflow-y: auto
+        height: calc(100vh - 200px)
+
+        li
+          display: block
+          margin: 0 0 10px 0
+          padding: 0
+
+          &:last-of-type
+            margin-bottom: 150px
+
+          a
+            background: $primary
+            box-sizing: border-box
+            color: $white
+            display: inline-block
+            text-decoration: none
+            padding: 20px
+            max-width: 90%
+
+            &:hover
+              color: $white
+              background: $red
+        &--filtered li:not(.entry--filtered) a
+          color: darken($silver, 15%)
+          display: none !important
+
+  // SINGLE NOTE LIST ENTRY PAGE
+
+  .note-list-entry__wrapper
+    box-sizing: border-box
+    display: block
+    margin: 150px auto
+    max-width: 800px
+    overflow: hidden
+    width: 75%
+    height: calc(100vh - 150px)
+  .note-list-entry
+    width: 100%
+    margin: 0 -18px 0 0
+    padding: 0 18px 0 0
+    overflow-x: hidden
+    overflow-y: auto
+    height: calc(100vh - 150px)
+    h1,
+    article,
+    .published
+      background: $white
+      box-sizing: border-box
+      color: $black
+      clear: both
+      display: block
+      float: left
+      padding: 20px 30px
+      margin: 0 0 20px 0
+
+    h1,
+    .published
+      clear: both
+      display: inline-block
+
+    & > h1
+      background: $primary
+      color: $white
+
+    article
+      text-align: justify
+      width: 100%
+
+      h1, h2, h3, h4, p
+        display: block
+        line-height: 1.5em
+        margin: 0
+        padding: 15px 0
+        width: 100%
+
+      blockquote
+        border-left: 4px solid $primary
+        margin: 0
+        padding-left: 20px
+        font-style: italic
+
+      p > img
+        display: block
+        clear: both
+        margin: 0 auto
+        max-width: 100%
+        height: auto
+      p > img + br
+        display: block
+        height: 0
+      p > img + br + em
+        display: block
+        text-align: center
+        font-size: 0.9em
+        font-style: italic
+
+      em,
+      p em
+        font-style: italic
+
+      p code
+        background: $black
+        color: $white
+        padding: 5px
+        vertical-align: baseline
+
+      a,
+      p a
+        color: $primary
+        text-decoration: underline
+
+      & > pre,
+      & > pre > code
+        background: $black
+        color: $white
+
+      & > pre
+        padding: 15px 20px
+
+      & > ul
+        list-style-type: none
+        margin: 0
+        padding: 0
+
+        li
+          padding: 0
+
+          p
+            padding: 0 0 0 20px
+
+            &:before
+              content: '-'
+              display: inline-block
+              margin-left: -20px
+              margin-right: 10px
+
+
 
 // RWD
 
@@ -566,6 +716,8 @@ body
       background-size: contain
       margin-left: -50%
       padding-right: 53%
+    .note-list-entry
+      width: 90%
 
 @media screen and (max-width: 836px)
   body,

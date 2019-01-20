@@ -55,7 +55,7 @@ module.exports = {
             promises.push(module.exports.getMdFileContents(`${_path}${obj}`, index, `./output/${listObj.slug}/`, listObj))
           })
           Promise.all(promises).then(arr => {
-            resolve(arr)
+            resolve(arr.reverse())
           })
         } else {
           reject(err)

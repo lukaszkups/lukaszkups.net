@@ -1,6 +1,8 @@
 extends layout.pug
 
 block content
-  h1 #{title}
-  p.published #{date}
-  article !{content}
+  .note-list-entry__wrapper
+    .note-list-entry
+      h1 #{title}
+      .published Published at #{date}
+      article !{content}

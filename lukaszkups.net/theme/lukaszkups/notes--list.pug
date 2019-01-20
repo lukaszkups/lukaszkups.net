@@ -2,11 +2,12 @@ extends layout.pug
 
 block content
   .notes-list-wrapper
+    #calendar-wrapper.calendar-wrapper.calendar-wrapper--active
     #notes-list.notes-list
+      h1 Latest notes
       ul
         each item, index in list.length ? list : ['No entries yet.']
           //- - const parsedDate = item.meta.date.replace(/\//g, '-')
           - const parsedDate = item.meta.date.split('/').map(obj => parseInt(obj)).join('-')
           li(data-date=parsedDate, data-category=item.meta.category)
-            a(href=item.url) #{item.meta.title}
-    #calendar-wrapper.calendar-wrapper.calendar-wrapper--active
+            a(href=item.url) #{item.meta.date} - #{item.meta.title}
