@@ -666,7 +666,7 @@ body
 
       a,
       p a
-        color: $primary
+        color: $red
         text-decoration: underline
 
       & > pre,
@@ -694,7 +694,40 @@ body
               margin-left: -20px
               margin-right: 10px
 
+  // ABOUT PAGE
 
+  .about-page-wrapper
+    background: $white
+    margin-top: 0
+    padding-top: 0
+    width: 100%
+    box-sizing: border-box
+    height: 100vh
+    float: left
+
+    &:after
+      content: ' '
+      position: fixed
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      opacity: 0.1
+      background: url('/assets/img/avatar3bw.svg') no-repeat
+      background-size: contain
+      background-position-x: left
+      background-position-y: bottom
+
+    article
+      display: block
+      margin: 150px auto
+      max-width: 800px
+      text-align: justify
+      width: 75%
+
+      a
+        color: $red
+        text-decoration: underline
 
 // RWD
 
@@ -847,3 +880,16 @@ body
     .experience-wrapper
       .experience-title span
         line-height: 1.75em
+
+    .about-page-wrapper
+      width: 95% !important
+
+    .calendar-wrapper
+      display: none !important
+
+    .notes-list
+      width: 95% !important
+      max-width: 95% !important
+    .note-list-entry,
+    .note-list-entry__wrapper
+      width: 100%
