@@ -1,7 +1,7 @@
 ---
 title: Lessons learned from making a Vue.js puzzle game
-date: 2017/11/15
-category: programming,
+date: 2017/11/17
+category: programming
 tags: vue.js, vue, js, javascript, programming, webdev, web development, development
 active: 2
 ---
