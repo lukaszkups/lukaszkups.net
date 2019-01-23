@@ -39,7 +39,7 @@
   const titles = ['just another front-end developer.', 'AFOL.', 'a tech writer.', 'husband & father.', 'g33k_', 'a web crafter.', 'anyone I want to be.']
   const domElement = document.getElementById('home-title')
   if (domElement) {
-    homeTitleAnimation(domElement, titles)
+    // homeTitleAnimation(domElement, titles)
   }
 
   // experience page

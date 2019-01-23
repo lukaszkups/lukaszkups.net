@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed')
 
-$primary: #345d7e
+// Green primary #02a479
+$primary: #bd8f3a
 $silver: #e0e2ee
 $white: #f1f1f1
-$black: #252525
+$black: #0f0f0f
 $red: #ed0344
 
 @keyframes avatar-fade-in
@@ -16,11 +17,11 @@ $red: #ed0344
 
 @keyframes map-point-glow
   0%
-    box-shadow: 0 0 0 0 $red
+    box-shadow: 0 0 0 0 $white
   50%
-    box-shadow: 0 0 10px 0 $red
+    box-shadow: 0 0 10px 0 $white
   100%
-    box-shadow: 0 0 0 0 $red
+    box-shadow: 0 0 0 0 $white
 
 
 .logo-wrapper
@@ -35,7 +36,7 @@ $red: #ed0344
   outline: 0
 
 .logo
-  background-color: lighten($primary, 25%)
+  background-color: lighten($primary, 10%)
   -webkit-transform: skew(25deg,0deg)
   -ms-transform: skew(25deg,0deg)
   transform: skew(25deg,0deg)
@@ -70,7 +71,7 @@ $red: #ed0344
 
 html,
 body
-  background: linear-gradient($silver, $white)
+  background: $black
   font-family: 'Segoe UI', sans-serif
   height: 100%
   max-height: 100%
@@ -155,7 +156,7 @@ body
 
           a
             background: $primary
-            color: $white
+            color: $black
             display: block
             height: 60px
             line-height: 60px
@@ -202,7 +203,7 @@ body
 
     &:after
       animation: avatar-fade-in 2s
-      background: url('/assets/img/avatar3.svg') no-repeat
+      background: url('/assets/img/avatar3bw.svg') no-repeat
       background-size: contain
       background-position-x: left
       background-position-y: bottom
@@ -217,10 +218,22 @@ body
       top: 10px
       width: 100%
 
+  .home-tag
+    width: 400px
+    position: absolute
+    top: 20%
+    right: 15%
+    color: $primary
+    text-align: justify
+    font-size: 20px
+    text-transform: uppercase
+
+    span
+      color: $white
+
   .home-title
-    background: $primary
     box-sizing: border-box
-    color: $white
+    color: $primary
     flex: 1
     font-size: 35px
     height: 25vh
@@ -277,7 +290,7 @@ body
       transition: border-top 0.3s
 
       &:hover
-        border-top: 5px solid lighten($primary, 25%)
+        border-top: 5px solid $primary
         transition: border-top 0.3s
 
       &:last-of-type
@@ -300,11 +313,11 @@ body
           span
             display: block
           strong
-            color: $white
+            color: $primary
             padding-top: 7vh
             text-transform: uppercase
           span
-            color: lighten($primary, 25%)
+            color: $white
             padding-top: 5px
 
   //  EXPERIENCE PAGE
@@ -397,7 +410,7 @@ body
       .point
         animation: map-point-glow 1s infinite
         border-radius: 5px
-        background: $red
+        background: $white
         cursor: pointer
         display: block
         height: 10px
@@ -702,7 +715,7 @@ body
   // ABOUT PAGE
 
   .about-page-wrapper
-    background: $white
+    background: $black
     margin-top: 0
     padding-top: 0
     width: 100%
@@ -724,6 +737,7 @@ body
       background-position-y: bottom
 
     article
+      color: $white
       display: block
       margin: 150px auto
       max-width: 800px
@@ -731,7 +745,7 @@ body
       width: 75%
 
       a
-        color: $red
+        color: $primary
         text-decoration: underline
 
 // RWD

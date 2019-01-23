@@ -304,7 +304,7 @@ module.exports = {
                 module.exports.createOutputFolders(_store).then(() => {
                   module.exports.createOutputFiles(_store).then(() => {
                     module.exports.moveRootFolder().then(() => {
-                      console.log('Content recompiled.')
+                      console.log('Content recompiled.', Date.now())
                     })
                   })
                 })
