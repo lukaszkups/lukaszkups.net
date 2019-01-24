@@ -1,45 +1,32 @@
 (() => {
   // home page
-  const homeTitleAnimation = (domElement, titles) => {
-    let currentTitle = ''
-    const animateTitle = (titleIndex) => {
-      let promises = []
-      const title = titles[titleIndex]
-      let globalTime = 0
-      if (currentTitle.length > 0) {
-        for (let i = 0; i < currentTitle.length; i++) {
-          const time = Math.floor((Math.random() * 100) + 10)
-          globalTime += time
-          promises.push(Promise.resolve(setTimeout(() => {
-            currentTitle = currentTitle.slice(0, -1)
-            domElement.innerText = currentTitle
-          }, globalTime)))
+  const homeTitleAnimation = (domElement) => {
+    let text = domElement.innerText
+    const len = text.length
+    let pos = 0
+    let cloneTxt = ''
+    text.split('').map(char => {
+      cloneTxt += `<span>${char}</span>`
+    })
+    domElement.innerHTML = cloneTxt
+    const chars = Array.prototype.slice.call(domElement.querySelectorAll('span'))
+    const animate = () => {
+      chars.map(char => {
+        const trueOrFalse = Math.random() >= 0.5
+        if (trueOrFalse) {
+          char.classList.add('white')
+        } else {
+          char.classList.remove('white')
         }
-      }
-      setTimeout(() => {
-        for (let letter in title) {
-          const time = title[letter] !== ' ' ? Math.floor((Math.random() * 200) + 1) : 50
-          globalTime += time
-          promises.push(Promise.resolve(setTimeout(() => {
-            currentTitle += title[letter]
-            domElement.innerText = currentTitle
-          }, globalTime)))
-        }
-        if (titleIndex < titles.length - 1) {
-          Promise.all(promises).then(() => {
-            setTimeout(() => {
-              animateTitle(titleIndex + 1)
-            }, globalTime + 1000)
-          })
-        }
-      }, globalTime - 1000)
+      })
     }
-    animateTitle(0)
+    setInterval(() => {
+      animate()
+    }, 1250)
   }
-  const titles = ['just another front-end developer.', 'AFOL.', 'a tech writer.', 'husband & father.', 'g33k_', 'a web crafter.', 'anyone I want to be.']
-  const domElement = document.getElementById('home-title')
+  const domElement = document.getElementById('home-tag')
   if (domElement) {
-    // homeTitleAnimation(domElement, titles)
+    homeTitleAnimation(domElement)
   }
 
   // experience page
@@ -80,6 +67,7 @@
       text += '</ul><div><small>*Due to some NDA related stuff I don\'t display exact project names here (if you want to learn more feel free to contact).</small></div>'
       infoDom.innerHTML = text
       infoDom.classList.add('point-info--active')
+      infoDom.classList.add('point-info--visible')
     }
     // filter method triggered by bottom buttons
     const filterMapPoints = (filter) => {
@@ -99,6 +87,7 @@
       // add timeout to let it hide first
       setTimeout(() => {
         infoDom.innerHTML = ''
+        infoDom.classList.remove('point-info--visible')
       }, 1000)
       // remove map points filtering
       filterMapPoints()
@@ -133,26 +122,6 @@
               _point.classList.add('point--hidden')
             }
           })
-        }
-      })
-    })
-    // bind bottom menu map points filtering
-    const filterButtons = document.querySelectorAll('#experience-filter li span')
-    filterButtons.forEach(filterButton => {
-      filterButton.addEventListener('click', function (event) {
-        event.preventDefault()
-        // remove point details if needed
-        hidePointInfo()
-        // remove all existing filters from map points (method triggered without params un-filter everything)
-        filterMapPoints()
-        const wasActive = filterButton.parentNode.classList.contains('active-filter')
-        // remove active class from filter buttons
-        filterButtons.forEach(btn => {
-          btn.parentNode.classList.remove('active-filter')
-        })
-        if (!wasActive) {
-          filterButton.parentNode.classList.add('active-filter')
-          filterMapPoints(filterButton.parentNode.getAttribute('data-filter'))
         }
       })
     })
