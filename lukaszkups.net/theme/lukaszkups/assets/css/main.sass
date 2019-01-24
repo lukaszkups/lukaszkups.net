@@ -643,9 +643,8 @@ body
             &:hover
               color: $white
               background: $primary
-        &--filtered li:not(.entry--filtered) a
-          color: darken($silver, 15%)
-          display: none !important
+      &--filtered li:not(.entry--filtered) a
+        display: none !important
 
   // SINGLE NOTE LIST ENTRY PAGE
 
@@ -756,6 +755,9 @@ body
         color: $white
         text-decoration: underline
         text-decoration-color: $primary
+      
+      p:last-of-type
+        color: $white
 
       & > pre,
       & > pre > code
@@ -815,13 +817,16 @@ body
     article
       color: lighten($primary, 15%)
       display: block
-      margin: 150px auto
+      margin: 200px auto
       max-width: 800px
       text-align: justify
       width: 75%
 
       h2
         color: $white
+
+        &:first-of-type
+          font-size: 1.75em
 
       a
         color: $white
@@ -927,6 +932,9 @@ body
       min-width: 100%
       max-width: 100%
       height: 100vh
+      opacity: 0.55
+      animation: none
+      transition: none
 
       &:after
         background-position: left bottom
@@ -934,6 +942,7 @@ body
         margin: 0
         padding: 0
         width: 100%
+
     .home-tag
       width: 75%
       margin:
@@ -943,9 +952,22 @@ body
     .experience-wrapper
       .experience-title span
         line-height: 1.75em
+      .point-info
+        width: 90%
+        margin: 0 5%
+        left: auto
 
     .about-page-wrapper
+      overflow: hidden
       width: 95% !important
+
+      article
+        margin-top: 75px
+        width: 100%
+        overflow-x: hidden
+        overflow-y: scroll
+        margin-right: -18px
+        padding-right: 18px
 
     .calendar-wrapper
       display: none !important
@@ -953,6 +975,15 @@ body
     .notes-list
       width: 95% !important
       max-width: 95% !important
+      margin: 0 auto
+      padding-left: 10px
+
+      ul li a
+        text-align: center
+        max-width: 100%
+        min-width: 100%
+        width: 100%
+
     .note-list-entry,
     .note-list-entry__wrapper
       width: 100%

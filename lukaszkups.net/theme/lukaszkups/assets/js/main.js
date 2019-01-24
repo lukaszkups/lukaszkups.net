@@ -145,7 +145,7 @@
   const printMonth = (month, year) => {
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let stringBuffer = []
-    stringBuffer.push(`<table><thead><tr><th colspan='7'>${monthNames[month - 1]}</th></tr></thead><tbody>`)
+    stringBuffer.push(`<table data-date='${year}-${month}'><thead><tr><th colspan='7'>${monthNames[month - 1]} ${year}</th></tr></thead><tbody>`)
     const daysInMonth = new Date(year, month, 0).getDate()
     const firstMonthDay = new Date(year, month - 1, 1).getDay()
     // append proper amount of blank cells (depends which week day starts the month)
@@ -157,7 +157,6 @@
         stringHelper += '<td></td>'
       }
       stringBuffer.push(stringHelper)
-
     }
     for (let currentDay = 1; currentDay <= daysInMonth; currentDay++) {
       let currentMonthDay = new Date(year, month - 1, currentDay).getDay()
@@ -172,18 +171,18 @@
     stringBuffer.push('</tbody></table>')
     return stringBuffer.join('')
   }
-  const printCalendarForYear = (year) => {
-    let yearArr = []
-    let now = new Date()
-    for (let month = 1; month <= 12; month++) {
-      if (now.getFullYear() === year && now.getMonth() + 1 >= month) {
-        yearArr.push(printMonth(month, year))
-      } else if (now.getFullYear() !== year){
-        yearArr.push(printMonth(month, year))
-      }
-    }
-    return `<h2 class='year-title'>${year}</h2>${yearArr.reverse().join('')}`
-  }
+  // const printCalendarForYear = (year) => {
+  //   let yearArr = []
+  //   let now = new Date()
+  //   for (let month = 1; month <= 12; month++) {
+  //     if (now.getFullYear() === year && now.getMonth() + 1 >= month) {
+  //       yearArr.push(printMonth(month, year))
+  //     } else if (now.getFullYear() !== year){
+  //       yearArr.push(printMonth(month, year))
+  //     }
+  //   }
+  //   return yearArr.reverse().join('')
+  // }
   // mark days with notes in calendars
   const markDaysWithNotes = (calendars, notes) => {
     calendars.forEach(calendar => {
@@ -230,13 +229,26 @@
       })
     })
   }
-  const years = [2019, 2018]
+  const drawCalendars = (notes) => {
+    let renderedCalendars = []
+    let calendar = []
+    notes.map(note => {
+      const noteDate = note.dataset.date.split('-')
+      const noteDateString = `${noteDate[0]}-${noteDate[1]}`
+      const noteYear = noteDate[0]
+      const noteMonth = noteDate[1]
+      if (!renderedCalendars.includes(noteDateString)) {
+        renderedCalendars.push(noteDateString)
+        calendar.push(printMonth(noteMonth, noteYear))
+      }
+    })
+    return calendar
+  }
+  // const years = [2019, 2018]
   const notesDomElement = document.getElementById('notes-list')
   if (notesDomElement) {
-    let calArr = []
-    years.map(year => {
-      calArr.push(printCalendarForYear(year))
-    })
+    const notes = Array.prototype.slice.call(notesDomElement.querySelectorAll('li'))
+    const calArr = drawCalendars(notes)
     document.getElementById('calendar-wrapper').innerHTML = calArr.join('')
     bindCalendarFiltering()
   }
