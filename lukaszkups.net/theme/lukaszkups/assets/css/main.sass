@@ -813,6 +813,7 @@ body
       background-size: contain
       background-position-x: left
       background-position-y: bottom
+      z-index: 1
 
     article
       color: lighten($primary, 15%)
@@ -820,7 +821,9 @@ body
       margin: 200px auto
       max-width: 800px
       text-align: justify
+      position: relative
       width: 75%
+      z-index: 2
 
       h2
         color: $white
@@ -958,16 +961,16 @@ body
         left: auto
 
     .about-page-wrapper
-      overflow: hidden
-      width: 95% !important
-
+      overflow-x: hidden
+      overflow-y: scroll
+      width: calc(100% + 18px)
+      
       article
+        box-sizing: border-box
         margin-top: 75px
         width: 100%
-        overflow-x: hidden
-        overflow-y: scroll
-        margin-right: -18px
-        padding-right: 18px
+        overflow: hidden
+        padding-right: 30px
 
     .calendar-wrapper
       display: none !important
