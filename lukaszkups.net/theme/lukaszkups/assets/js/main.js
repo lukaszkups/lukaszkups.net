@@ -171,18 +171,6 @@
     stringBuffer.push('</tbody></table>')
     return stringBuffer.join('')
   }
-  // const printCalendarForYear = (year) => {
-  //   let yearArr = []
-  //   let now = new Date()
-  //   for (let month = 1; month <= 12; month++) {
-  //     if (now.getFullYear() === year && now.getMonth() + 1 >= month) {
-  //       yearArr.push(printMonth(month, year))
-  //     } else if (now.getFullYear() !== year){
-  //       yearArr.push(printMonth(month, year))
-  //     }
-  //   }
-  //   return yearArr.reverse().join('')
-  // }
   // mark days with notes in calendars
   const markDaysWithNotes = (calendars, notes) => {
     calendars.forEach(calendar => {
@@ -251,5 +239,26 @@
     const calArr = drawCalendars(notes)
     document.getElementById('calendar-wrapper').innerHTML = calArr.join('')
     bindCalendarFiltering()
+  }
+
+  const filterNotes = (category) => {
+    const entryNodes = document.querySelectorAll('#notes-list li')
+    document.getElementById('notes-list').classList.add('notes-list--filtered')
+    entryNodes.forEach(entry => {
+      if (entry.dataset.category.includes(category)) {
+        entry.classList.add('entry--filtered')
+      } else {
+        entry.classList.remove('entry--filtered')
+      }
+    })
+  }
+
+  // notes filtering
+  if (location.pathname === '/notes/') {
+    const params = new URLSearchParams(location.search)
+    const category = params.get('category')
+    if (category !== null && category.length) {
+      filterNotes(category)
+    }
   }
 })();

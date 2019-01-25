@@ -191,6 +191,38 @@ module.exports = {
       return Promise.resolve(_store)
     })
   },
+  createListJsonFiles: (_store) => {
+    let promises = []
+    _store.lists.map(list => {
+      promises.push(new Promise((resolve, reject) => {
+        let path = list.output.split('/')
+        path[path.length - 1] = 'list.json'
+        path = `./${path.join('/')}`
+        let entries = [...list.entries]
+        let parsedList = []
+        entries.map(entry => {
+          parsedList.push({
+            id: entry.id,
+            title: entry.meta.title,
+            date: entry.meta.date,
+            category: entry.meta.category,
+            tags: entry.meta.tags,
+            url: entry.meta.url
+          })
+        })
+        fs.writeFile(path, JSON.stringify({list: parsedList}), (err) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve()
+          }
+        })
+      }))
+    })
+    return Promise.all(promises).then(() => {
+      return Promise.resolve(_store)
+    })
+  },
   createOutputListIndexFiles: (_store, contentTemplateOptions = {}) => {
     let promises = []
     _store.lists.map(list => {
@@ -297,21 +329,22 @@ module.exports = {
     module.exports.getAllContent(_store).then(store => {
       module.exports.createOutputFolders(_store).then(() => {
         module.exports.createOutputFiles(_store).then(() => {
-          module.exports.moveRootFolder().then(() => {
-            console.log('Content compiled.')
-            if (CONFIG.recompile === true) {
-              setInterval(() => {
-                module.exports.createOutputFolders(_store).then(() => {
-                  module.exports.createOutputFiles(_store).then(() => {
-                    module.exports.moveRootFolder().then(() => {
-                      console.log('Content recompiled.')
+          module.exports.createListJsonFiles(_store).then(() => {
+            module.exports.moveRootFolder().then(() => {
+              console.log('Content compiled.')
+              if (CONFIG.recompile === true) {
+                setInterval(() => {
+                  module.exports.createOutputFolders(_store).then(() => {
+                    module.exports.createOutputFiles(_store).then(() => {
+                      module.exports.moveRootFolder().then(() => {
+                        console.log('Content recompiled.')
+                      })
                     })
                   })
-                })
-              }, CONFIG.recompileInterval || 60000)
-            }
-            console.log(_store)
-            _helpers.startServer()
+                }, CONFIG.recompileInterval || 60000)
+              }
+              _helpers.startServer()
+            })
           })
         })
       })
