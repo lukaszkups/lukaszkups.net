@@ -1,6 +1,6 @@
 ---
 title: I am a boring stack developer
-date: 2018/12/19
+date: 2017/01/24
 category: tech, thoughts, shortie
 tags: software, programming, programmer, shortie, technology
 active: 2
@@ -21,5 +21,3 @@ Best,
 – ł.
 
 > Shorties are a series of short articles with my random thoughts. Most of them is heavily inspired by third-party articles which is always linked in the content.
-
-> This is a re-post - it was originialy posted on my previous blog at 24/01/2017.

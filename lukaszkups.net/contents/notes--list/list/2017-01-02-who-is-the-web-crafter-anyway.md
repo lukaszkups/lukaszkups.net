@@ -1,6 +1,6 @@
 ---
 title: Who is the Web Crafter anyway?
-date: 2018/12/04
+date: 2017/01/02
 category: tech, thoughts
 tags: software, web crafter, programming, js, javascript, framework, frameworks
 active: 2
@@ -40,7 +40,7 @@ Just ship something.
 
 And then collect all the satisfaction and remember: don’t be afraid about public response. If Your project solves YOUR problem then YOU are the one who can state an opinion about it.
 
-## Fck all the haters, but…
+## F_ck all the haters, but…
 
 There will be always some group of people with generally negative attitude (a.k.a. douchebags), but listen peacefully to kind people who are giving You advices and show ways to improve. Sometimes You just can miss something.
 Let me give You a real-life example: at the moment of writing this article I’ve already decided to mark current state of Rakun.js with 0.1.0 version signature and soon release next update without backward compatibility.
@@ -62,5 +62,3 @@ And You? What’s Your job title? I’d love to hear about what are You doing.
 Best,
 
 – ł.
-
-> This is a re-post - it was originialy posted on my previous blog at 02/01/2017.

@@ -26,7 +26,7 @@ Fourth talk covered very similar topic - Machine Learning with TensorFlow.js by 
 
 Next presentation was about testing by Piotr Balbier. Since I've heard he's from Netguru and the way of how much I've enjoyed their other presentations about Rails stuff I was hoping for a really good talk about not-so-really interesting topic for me. Unfortunately I was disappointed a bit. Piotr hasn't managed to interest me about his presentation and I felt a bit like he was not prepared good enought (there was a bit too many 'yyy' and 'eee' thingies, comparing to other speakers).
 
-Fun fact #1: a friend of mine almost fell asleep during this talk xD
+> Fun fact #1: a friend of mine almost fell asleep during this talk xD
 
 Sixth talk of the day was about Accessibility in modern web applications by Joanna Kupis. In the past I had an opportunity to work on the related task to make a web app more accessible for some group of users.  Thanks to Joanna's presentation I've learned a couple cool new hacks I didn't know earlier - thanks Joanna! :)
 

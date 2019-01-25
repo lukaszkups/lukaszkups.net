@@ -6,8 +6,6 @@ tags: vue.js, vue, js, javascript, programming, development, front-end, front-en
 active: 2
 ---
 
-> This post is a part of my Vue.js tips & tricks article series, based on personal experience while working on real-life projects.
-
 Today I want to share with you my personal best way how I organize structure of the big Vue.js applications.
 
 In the beginnings of my adventure with Vue.js I've seen opinions that this framework is not very suitable for big/complicated web applications and should be used mainly for small to medium size SPAs.

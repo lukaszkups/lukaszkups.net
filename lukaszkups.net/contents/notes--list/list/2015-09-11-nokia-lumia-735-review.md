@@ -42,7 +42,7 @@ I cannot say the same about the backside speaker (which plays music or ringtones
 
 Nokia Lumia 735 has two cameras: 6.7Mpx rear (with flash) and 5Mpx front one - both are very good, even in low light. In addition, Windows Phone has great software for photography: standard Lumia Camera app with ring controls (I love this idea) or Lumia Refocus which allows You to change photo's depth of field AFTER doing and saving it on the memory card.
 
-##Go, go, Gadget's gadgets!
+## Go, go, Gadget's gadgets!
 
 ![img](/static/1514980362206-lumia_735_06.jpg)
 
