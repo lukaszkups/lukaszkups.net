@@ -401,7 +401,7 @@ body
 
       &.point-info--visible
         z-index: 10
-      
+
       p
         text-align: center
         font-weight: bold
@@ -456,6 +456,7 @@ body
         background-position: center
         display: block
         height: auto
+        max-height: 700px
         margin: 25px auto 50px auto
         overflow: hidden
         position: relative
@@ -618,7 +619,7 @@ body
         padding: 0 18px 0 0
         overflow-x: hidden
         overflow-y: auto
-        height: calc(100vh - 200px)
+        height: calc(100vh - 100px)
 
         li
           display: block
@@ -700,6 +701,7 @@ body
 
     .published
       color: $primary
+      margin: 0
 
     & > h1
       color: $white
@@ -746,7 +748,7 @@ body
 
       p code
         background: $black
-        color: $white
+        color: $primary
         padding: 5px
         vertical-align: baseline
 
@@ -755,14 +757,14 @@ body
         color: $white
         text-decoration: underline
         text-decoration-color: $primary
-      
+
       p:last-of-type
         color: $white
 
       & > pre,
       & > pre > code
         background: $black
-        color: $white
+        color: $primary
 
       & > pre
         padding: 15px 20px
@@ -964,7 +966,7 @@ body
       overflow-x: hidden
       overflow-y: scroll
       width: calc(100% + 18px)
-      
+
       article
         box-sizing: border-box
         margin-top: 75px
