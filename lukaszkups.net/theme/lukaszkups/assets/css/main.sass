@@ -701,6 +701,15 @@ body
       color: $primary
       margin: 0
 
+      .category-link
+        color: $white
+        margin-left: 5px
+        text-decoration: underline
+        text-decoration-color: $primary
+
+        &:not(:last-of-type):after
+          content: ','
+
     & > h1
       color: $white
 

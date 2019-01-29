@@ -7,5 +7,5 @@ block content
       ul
         each item, index in list.length ? list : ['No entries yet.']
           - const parsedDate = item.meta.date.split('/').map(obj => parseInt(obj)).join('-')
-          li(data-date=parsedDate, data-category=item.meta.category)
+          li(data-date=parsedDate, data-category=item.meta.category, data-tags=item.meta.tags)
             a(href=item.url) <span>#{item.meta.date}</span> - #{item.meta.title}

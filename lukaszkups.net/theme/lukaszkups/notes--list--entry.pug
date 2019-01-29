@@ -6,3 +6,12 @@ block content
       h1 #{title}
       .published Published at #{date}
       article !{content}
+      .published
+        p Categories:
+          each category in meta.category.split(', ')
+            - const url = `/notes/?category=${category}`
+            a(href=url, class='category-link') #{category}
+        p Tags:
+          each tag in meta.tags.split(', ')
+            - const url = `/notes/?tag=${tag}`
+            a(href=url, class='category-link') #{tag}

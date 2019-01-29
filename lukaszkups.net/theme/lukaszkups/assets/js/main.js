@@ -241,7 +241,7 @@
     bindCalendarFiltering()
   }
 
-  const filterNotes = (category) => {
+  const filterNotesByCategory = (category) => {
     const entryNodes = document.querySelectorAll('#notes-list li')
     document.getElementById('notes-list').classList.add('notes-list--filtered')
     entryNodes.forEach(entry => {
@@ -253,12 +253,27 @@
     })
   }
 
+  const filterNotesByTag = (tag) => {
+    const entryNodes = document.querySelectorAll('#notes-list li')
+    document.getElementById('notes-list').classList.add('notes-list--filtered')
+    entryNodes.forEach(entry => {
+      if (entry.dataset.tags.includes(tag)) {
+        entry.classList.add('entry--filtered')
+      } else {
+        entry.classList.remove('entry--filtered')
+      }
+    })
+  }
+
   // notes filtering
   if (location.pathname === '/notes/') {
     const params = new URLSearchParams(location.search)
     const category = params.get('category')
+    const tag = params.get('tag')
     if (category !== null && category.length) {
-      filterNotes(category)
+      filterNotesByCategory(category)
+    } else if (tag !== null && tag.length) {
+      filterNotesByTag(tag)
     }
   }
 })();
