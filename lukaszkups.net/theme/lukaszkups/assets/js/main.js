@@ -271,9 +271,9 @@
     const category = params.get('category')
     const tag = params.get('tag')
     if (category !== null && category.length) {
-      filterNotesByCategory(category)
+      filterNotesByCategory(category.toLowerCase())
     } else if (tag !== null && tag.length) {
-      filterNotesByTag(tag)
+      filterNotesByTag(tag.toLowerCase())
     }
   }
 })();

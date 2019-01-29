@@ -1,7 +1,7 @@
 ---
 title: How to structure big Vue.js apps?
 date: 2018/11/04
-category: tech, Vue.js tips & tricks
+category: tech, vue.js
 tags: vue.js, vue, js, javascript, programming, development, front-end, front-end developer, front-end development, architecture, spa, single page apps, single page application, web development
 active: 2
 ---

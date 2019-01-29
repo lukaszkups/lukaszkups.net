@@ -4,7 +4,9 @@
   "description": "website of lukaszkups",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "server": "node -e 'require(\"./index.js\").init()'",
+    "assets": "node -e 'require(\"./index.js\").assets()'",
+    "compile": "node -e 'require(\"./index.js\").once()'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "lukaszkups",

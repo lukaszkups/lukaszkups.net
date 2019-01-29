@@ -1,7 +1,7 @@
 ---
 title: How I convinced myself to use EventBus in Vue.js?
 date: 2018/11/06
-category: tech, Vue.js tips & tricks
+category: tech, Vue.js
 tags: vue.js, vue, js, javascript, programming, development, webdev, front-end, front-end developer, front-end development
 active: 2
 ---

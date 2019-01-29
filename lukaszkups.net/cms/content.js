@@ -324,8 +324,7 @@ module.exports = {
       }
     })
   },
-  init: (_store) => {
-    _helpers.deleteFolderRecursive('./output/') // empty output folder for new content
+  compile: (_store) => {
     module.exports.getAllContent(_store).then(store => {
       module.exports.createOutputFolders(_store).then(() => {
         module.exports.createOutputFiles(_store).then(() => {
@@ -333,21 +332,44 @@ module.exports = {
             module.exports.moveRootFolder().then(() => {
               console.log('Content compiled.')
               if (CONFIG.recompile === true) {
-                setInterval(() => {
-                  module.exports.createOutputFolders(_store).then(() => {
-                    module.exports.createOutputFiles(_store).then(() => {
-                      module.exports.moveRootFolder().then(() => {
-                        console.log('Content recompiled.')
-                      })
-                    })
-                  })
+                setTimeout(() => {
+                  module.exports.compile(_store)
                 }, CONFIG.recompileInterval || 60000)
               }
-              _helpers.startServer()
             })
           })
         })
       })
     })
+  },
+  compileOnce: (_store) => {
+    CONFIG.recompile = false
+    _helpers.deleteFolderRecursive('./output/') // empty output folder for new content
+
+    module.exports.compile(_store)
+  },
+  server: (_store) => {
+    CONFIG.recompile = true
+    _helpers.deleteFolderRecursive('./output/') // empty output folder for new content
+    module.exports.compile(_store)
+    _helpers.startServer()
+  },
+  recompileAssets: (_store) => {
+    module.exports.prepareAssets(_store).then(() => {
+      setTimeout(() => {
+        module.exports.recompileAssets(_store)
+      }, CONFIG.recompileInterval || 60000)
+    })
+  },
+  // when working on theme - it recompiles static asset files only (not theme .pug files!)
+  recompileAssetsServer: (_store) => {
+    _helpers.deleteFolderRecursive('./output/assets/') // empty assets folder to be sure that it's fresh compilation
+    module.exports.prepareAssets(_store).then(() => {
+      _helpers.startServer()
+      module.exports.recompileAssets(_store)
+    })
+  },
+  init: (_store) => {
+    module.exports.server(_store)
   }
 }
