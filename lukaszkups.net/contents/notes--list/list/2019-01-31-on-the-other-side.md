@@ -4,6 +4,7 @@ date: 2019/01/31
 category: thoughts, programming
 tags: programming, career, recruitment, interview, recruiting, job, work, vue, vue.js, recruiter
 active: 2
+draft: true
 ---
 
 > Last year, I've took an active part of the recruitment process for the position of a new front-end developer at the company I'm working at.

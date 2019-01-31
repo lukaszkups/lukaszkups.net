@@ -55,6 +55,9 @@ module.exports = {
             promises.push(module.exports.getMdFileContents(`${_path}${obj}`, index, `./output/${listObj.slug}/`, listObj))
           })
           Promise.all(promises).then(arr => {
+            if (CONFIG.excludeDrafts === true) {
+              arr = arr.filter(obj => !obj.meta.draft)
+            }
             resolve(arr.reverse())
           })
         } else {

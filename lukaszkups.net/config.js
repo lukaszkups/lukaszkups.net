@@ -5,5 +5,6 @@ module.exports = {
   vendorsPath: '',
   recompile: true,
   recompileInterval: 5000,
-  rootFolder: 'home'
+  rootFolder: 'home',
+  excludeDrafts: true
 }
