@@ -380,6 +380,7 @@ body
           box-sizing: border-box
           color: $black
           display: inline-block
+          margin-right: -2px
           padding: 1px 20px
           position: relative
           text-decoration: none
@@ -774,7 +775,8 @@ body
         padding-left: 20px
         font-style: italic
 
-      p > img
+      p > img,
+      .image + p > a > img
         display: block
         clear: both
         margin: 0 auto
@@ -788,6 +790,11 @@ body
         text-align: center
         font-size: 0.9em
         font-style: italic
+      .image + p > a
+        color: inherit
+        display: block
+        text-align: center
+        text-decoration: none
 
       em,
       p em
