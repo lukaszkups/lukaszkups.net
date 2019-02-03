@@ -6,7 +6,7 @@ tags: thoughts, hardware, gaming, games, controller, adaptive controller, xbox, 
 active: 2
 ---
 
-> DISCLAIMER: I'm not associated in any way with Microsoft, and this article is just my own opinion, without 3rd party ingerention
+> DISCLAIMER: I'm not associated in any way with Microsoft or its competitors and this article is just my own opinion, without any 3rd party influence
 
 Today I've learnt that Microsoft has been working on something called *Adaptive Controller* which aims specifically into disabled people who wants to play games in most comfortable way.
 
@@ -29,13 +29,13 @@ The only disadvantage I've noticed about this device is its price. I understand 
 ![img](/static/ms-store-button-device-price.png)
 *Screenshot taken from Microsoft Store at the day of writing this article*
 
-65 freaking dollars for a single button? Something is definitely not right here. I really want to believe that behind this number is space-class quality and hard work of dozens of engineers but... it definitely can be solved with lower price. I wonder how much does it cost to complete a full set of controllers (base + addons) for moderately disabled person - I think that price will be near the price of the Xbox console itself - that's a big no-no, dear Microsoft.
+65 freaking dollars for a single button? Something is definitely not right here. I really want to believe that behind this number is space-class quality and hard work of dozens engineers but... it definitely can be solved with lower price. I wonder how much does it cost to complete a full set of controllers (base + addons) for moderately disabled person - I suppose that the final cost will be near the price of the Xbox console itself - that's a big no-no, dear Microsoft.
 
 ## But anyway, it's a very good idea
 
-Despite the overpriced side of this product, it's great that someone thinks about people with disabilites. I wonder what would happen if other big players of the gaming market has created their own devices that enables disabled people use their consoles comfortably (I'm watching on you Sony, but at the same time I think Nintendo is the one that would figure out some original and clever solution that would not require to break the bank to afford for).
+Despite the overpriced side of this product, it's great that someone thinks about people with disabilites. I wonder what would happen if other big players of the gaming market has created their own versions for such devices. (I'm watching on you Sony, but at the same time I think that Nintendo is the one that would figure out most clever solution, that would not require to break the bank to afford for).
 
-But anyway - big applause for you, Microsoft that you're trying to help people which are often forgotten or ommited by the industry.
+To sum this up: big applause for you Microsoft for that you're trying to help people which are often forgotten or ommited by the industry.
 
 Thank you.
 

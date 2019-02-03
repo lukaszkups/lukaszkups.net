@@ -153,16 +153,44 @@ module.exports = {
         }
       }))
     })
-    _store.lists.map(list => list.entries.map(entry => {
-      promises.push(new Promise((resolve, reject) => {
-        try {
-          _helpers.mkDirByPathSync(entry.output.slice(0, -10))
-          resolve()
-        } catch (error) {
-          reject(error)
+    _store.lists.map(list => {
+      // if list has pagination
+      if (CONFIG && CONFIG.pagination && CONFIG.pagination[list.name]) {
+        const perPage = CONFIG.pagination[list.name]
+        let pages = Math.ceil(list.entries.length / perPage)
+        list.paginationLinks = []
+        for (let i = 0; i < pages; i++) {
+          let item = {}
+          // let first page doesn't have to contain page number
+          item[i + 1] = index === 0 ? `${list.output}/` : `${list.output}/${i + 1}`
+          list.paginationLinks.push(item)
         }
-      }))
-    }))
+        // so first page entry urls doesn't change at all, but the rest will do
+        let counter = 0
+        let currentPage = 0
+        list.entries.map((entry, index) => {
+          if (currentPage > 0) {
+            // TODO 
+            // WORK OUT HOW TO ADD PAGE NUMBER INTO CURRENT ENTRY'S PATH
+            entry.output
+          }
+          counter = counter < perPage ? counter + 1 : 0
+          currentPage += 1
+        })
+      }
+      // prepare folders for list entries
+      list.entries.map(entry => {
+        // if list doesn't have pagination
+        promises.push(new Promise((resolve, reject) => {
+          try {
+            _helpers.mkDirByPathSync(entry.output.slice(0, -10))
+            resolve()
+          } catch (error) {
+            reject(error)
+          }
+        }))
+      })
+    })
     return Promise.all(promises).then(() => {
       return Promise.resolve(_store)
     })
