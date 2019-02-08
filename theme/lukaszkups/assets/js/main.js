@@ -232,7 +232,6 @@
     })
     return calendar
   }
-  // const years = [2019, 2018]
   const notesDomElement = document.getElementById('notes-list')
   if (notesDomElement) {
     const notes = Array.prototype.slice.call(notesDomElement.querySelectorAll('li'))
@@ -241,28 +240,18 @@
     bindCalendarFiltering()
   }
 
-  const filterNotesByCategory = (category) => {
-    const entryNodes = document.querySelectorAll('#notes-list ul.notes li')
-    document.getElementById('notes-list').classList.add('notes-list--filtered')
-    entryNodes.forEach(entry => {
-      if (entry.dataset.category.includes(category)) {
-        entry.classList.add('entry--filtered')
-      } else {
-        entry.classList.remove('entry--filtered')
-      }
-    })
+  const filterNotesByCategory = (category, list) => {
+    const notesWrapper = document.querySelector('#notes-list ul.notes')
+    notesWrapper.innerHTML = `${list.filter(entry => entry.category.includes(category)).map(entry => `
+      <li><a href='${entry.url}'><span>${entry.date}</span> - ${entry.title}</a></li>
+    `).join('')}`
   }
 
-  const filterNotesByTag = (tag) => {
-    const entryNodes = document.querySelectorAll('#notes-list ul.notes li')
-    document.getElementById('notes-list').classList.add('notes-list--filtered')
-    entryNodes.forEach(entry => {
-      if (entry.dataset.tags.includes(tag)) {
-        entry.classList.add('entry--filtered')
-      } else {
-        entry.classList.remove('entry--filtered')
-      }
-    })
+  const filterNotesByTag = (tag, list) => {
+    const notesWrapper = document.querySelector('#notes-list ul.notes')
+    notesWrapper.innerHTML = `${list.filter(entry => entry.tags.includes(tag)).map(entry => `
+      <li><a href='${entry.url}'><span>${entry.date}</span> - ${entry.title}</a></li>
+    `).join('')}`
   }
 
   // notes filtering
@@ -270,10 +259,26 @@
     const params = new URLSearchParams(location.search)
     const category = params.get('category')
     const tag = params.get('tag')
-    if (category !== null && category.length) {
-      filterNotesByCategory(category.toLowerCase())
-    } else if (tag !== null && tag.length) {
-      filterNotesByTag(tag.toLowerCase())
+    // get full entry list if needed
+    if ((category !== null && category.length) || (tag !== null && tag.length)) {
+      fetch('/notes/list.json').then(resp => resp.json()).then(data => {
+        const entryList = data && data.list && data.list.length ? data.list : []
+        // remove current notes entry, calendars and hide pagination
+        const notesWrapper = document.querySelector('#notes-list ul.notes')
+        if (notesWrapper) {
+          notesWrapper.innerHTML = ''
+        }
+        document.getElementById('pagination').style.display = 'none'
+        document.getElementById('calendar-wrapper').innerHTML = ''
+        // handle filtering
+        if (category !== null && category.length) {
+          filterNotesByCategory(category.toLowerCase(), entryList)
+        } else if (tag !== null && tag.length) {
+          filterNotesByTag(tag.toLowerCase(), entryList)
+        }
+      }).catch(err => {
+        throw new Error(err)
+      })
     }
   }
 })();

@@ -12,7 +12,7 @@ block content
               a(href=item.url) <span>#{item.meta.date}</span> - #{item.meta.title}
 
     if paginationLinks && paginationLinks.length
-      ul.pagination
+      ul#pagination.pagination
         each item, index in paginationLinks
           li
             - pageNumber = index + 1

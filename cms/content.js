@@ -237,7 +237,7 @@ module.exports = {
             date: entry.meta.date,
             category: entry.meta.category,
             tags: entry.meta.tags,
-            url: entry.meta.url
+            url: entry.output.slice(8, -10)
           })
         })
         fs.writeFile(path, JSON.stringify({list: parsedList}), (err) => {
