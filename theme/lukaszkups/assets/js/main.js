@@ -184,7 +184,7 @@
   // add interactivity to calendar and notes list
   const bindCalendarFiltering = () => {
     const calendars = document.querySelectorAll('#calendar-wrapper table tbody td')
-    const notes = document.querySelectorAll('#notes-list ul li')
+    const notes = document.querySelectorAll('#notes-list ul.notes li')
     markDaysWithNotes(calendars, notes)
     calendars.forEach(calendar => {
       calendar.addEventListener('click', function(event) {
@@ -242,7 +242,7 @@
   }
 
   const filterNotesByCategory = (category) => {
-    const entryNodes = document.querySelectorAll('#notes-list li')
+    const entryNodes = document.querySelectorAll('#notes-list ul.notes li')
     document.getElementById('notes-list').classList.add('notes-list--filtered')
     entryNodes.forEach(entry => {
       if (entry.dataset.category.includes(category)) {
@@ -254,7 +254,7 @@
   }
 
   const filterNotesByTag = (tag) => {
-    const entryNodes = document.querySelectorAll('#notes-list li')
+    const entryNodes = document.querySelectorAll('#notes-list ul.notes li')
     document.getElementById('notes-list').classList.add('notes-list--filtered')
     entryNodes.forEach(entry => {
       if (entry.dataset.tags.includes(tag)) {

@@ -7,7 +7,8 @@ module.exports = {
   recompileInterval: 5000,
   rootFolder: 'home',
   excludeDrafts: true,
+  paginationSlug: 'page/',
   pagination: {
-    notes: 5
+    notes: 20
   }
 }

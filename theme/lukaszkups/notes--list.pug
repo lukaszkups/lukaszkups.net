@@ -4,9 +4,17 @@ block content
   .notes-list-wrapper
     #calendar-wrapper.calendar-wrapper.calendar-wrapper--active
     #notes-list.notes-list
-      ul
+      ul.notes
         each item, index in list.length ? list : ['No entries yet.']
           - const parsedDate = item.meta.date.split('/').map(obj => parseInt(obj)).join('-')
           if !item.meta.hidden
             li(data-date=parsedDate, data-category=item.meta.category, data-tags=item.meta.tags)
               a(href=item.url) <span>#{item.meta.date}</span> - #{item.meta.title}
+
+    if paginationLinks && paginationLinks.length
+      ul.pagination
+        each item, index in paginationLinks
+          li
+            - pageNumber = index + 1
+            - paginationClass = pageNumber === currentPage ? 'current-page' : ''
+            a(href=item, class=paginationClass) #{pageNumber}

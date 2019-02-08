@@ -133,6 +133,7 @@ module.exports = {
   },
   createOutputFolders: (_store) => {
     let promises = []
+    // create output folders for pages
     _store.pages.map(page => {
       promises.push(new Promise((resolve, reject) => {
         try {
@@ -143,6 +144,7 @@ module.exports = {
         }
       }))
     })
+    // create output folders list index
     _store.lists.map(list => {
       promises.push(new Promise((resolve, reject) => {
         try {
@@ -153,34 +155,31 @@ module.exports = {
         }
       }))
     })
+    // create output folders for list entries / pagination
     _store.lists.map(list => {
       // if list has pagination
-      if (CONFIG && CONFIG.pagination && CONFIG.pagination[list.name]) {
-        const perPage = CONFIG.pagination[list.name]
+      if (CONFIG && CONFIG.pagination && CONFIG.pagination[list.slug]) {
+        const perPage = CONFIG.pagination[list.slug]
         let pages = Math.ceil(list.entries.length / perPage)
         list.paginationLinks = []
         for (let i = 0; i < pages; i++) {
           let item = {}
           // let first page doesn't have to contain page number
-          item[i + 1] = index === 0 ? `${list.output}/` : `${list.output}/${i + 1}`
-          list.paginationLinks.push(item)
+          list.paginationLinks.push(i === 0 ? list.output : `${list.output.slice(0, -11)}/${CONFIG.paginationSlug}${i + 1}/index.html`)
+          // item[i + 1] = i === 0 ? list.output : `${list.output.slice(0, -11)}/${CONFIG.paginationSlug}${i + 1}/index.html`
+          // list.paginationLinks.push(item)
+          promises.push(new Promise((resolve, reject) => {
+            try {
+              _helpers.mkDirByPathSync(list.paginationLinks[i].slice(0, -10))
+              resolve()
+            } catch (error) {
+              reject(error)
+            }
+          }))
         }
-        // so first page entry urls doesn't change at all, but the rest will do
-        let counter = 0
-        let currentPage = 0
-        list.entries.map((entry, index) => {
-          if (currentPage > 0) {
-            // TODO 
-            // WORK OUT HOW TO ADD PAGE NUMBER INTO CURRENT ENTRY'S PATH
-            entry.output
-          }
-          counter = counter < perPage ? counter + 1 : 0
-          currentPage += 1
-        })
       }
       // prepare folders for list entries
-      list.entries.map(entry => {
-        // if list doesn't have pagination
+      list.entries.map((entry) => {
         promises.push(new Promise((resolve, reject) => {
           try {
             _helpers.mkDirByPathSync(entry.output.slice(0, -10))
@@ -257,26 +256,59 @@ module.exports = {
   createOutputListIndexFiles: (_store, contentTemplateOptions = {}) => {
     let promises = []
     _store.lists.map(list => {
-      promises.push(new Promise((resolve, reject) => {
-        const contentTemplate = pug.compileFile(list.template)
-        const parsedContentTemplate = contentTemplate({
-          title: list.meta && list.meta.title ? list.meta.title : '',
-          date: list.meta && list.meta.date ? list.meta.date : '',
-          tags: list.meta && list.meta.tags ? list.meta.tags : '',
-          description: list.meta && list.meta.description ? list.meta.description : '',
-          list: list.entries || [],
-          content: list.content,
-          meta: list.meta || {},
-          ...contentTemplateOptions
+      // list template
+      const contentTemplate = pug.compileFile(list.template)
+      // list object
+      let listObject = {
+        title: list.meta && list.meta.title ? list.meta.title : '',
+        date: list.meta && list.meta.date ? list.meta.date : '',
+        tags: list.meta && list.meta.tags ? list.meta.tags : '',
+        description: list.meta && list.meta.description ? list.meta.description : '',
+        list: list.entries || [],
+        content: list.content,
+        meta: list.meta || {},
+        ...contentTemplateOptions,
+      }
+      // add pagination helper property if list has configured pagination feature
+      if (list.paginationLinks && list.paginationLinks.length > 1) {
+        listObject.paginationLinks = []
+        list.paginationLinks.map(link => {
+          listObject.paginationLinks.push(`${link.slice(8, -10)}`)
         })
-        fs.writeFile(list.output, parsedContentTemplate, (err) => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve()
-          }
+      }
+      // page size variable
+      const pageSize = CONFIG.pagination[list.slug]
+      // if list has pagination
+      if (list.paginationLinks && list.paginationLinks.length > 1) {
+        list.paginationLinks.map((page, index) => {
+          const paginatedListOfEntries = list && list.entries ? list.entries.slice(index * pageSize, (index + 1) * pageSize) : []
+          listObject.list = paginatedListOfEntries || []
+          // add also active page helper property
+          listObject.currentPage = index + 1
+          promises.push(new Promise((resolve, reject) => {
+            const parsedContentTemplate = contentTemplate(listObject)
+            fs.writeFile(page, parsedContentTemplate, (err) => {
+              if (err) {
+                reject(err)
+              } else {
+                resolve()
+              }
+            })
+          }))
         })
-      }))
+      } else {
+        // if list doesn't have pagination
+        promises.push(new Promise((resolve, reject) => {
+          const parsedContentTemplate = contentTemplate(listObject)
+          fs.writeFile(list.output, parsedContentTemplate, (err) => {
+            if (err) {
+              reject(err)
+            } else {
+              resolve()
+            }
+          })
+        }))
+      }
     })
     return Promise.all(promises).then(() => {
       return Promise.resolve(_store)
