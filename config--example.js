@@ -1,3 +1,4 @@
+// IMPORTANT: RENAME THIS FILE TO 'config.js'
 module.exports = {
   theme: 'lukaszkups',
   indentedSass: true,
