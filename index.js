@@ -1,4 +1,5 @@
 const content = require('./cms/content')
+const helpers = require('./cms/helpers')
 const _store = require('./cms/store')
 
 module.exports.init = () => {
@@ -11,4 +12,8 @@ module.exports.once = () => {
 
 module.exports.assets = () => {
   content.recompileAssetsServer(_store)
+}
+
+module.exports.deploy = () => {
+  helpers.deployViaFtp()
 }

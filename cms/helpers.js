@@ -4,6 +4,8 @@ const http = require('http-server')
 const sass = require('node-sass')
 const UglifyJS = require('uglify-es')
 const CONFIG = require('./../config')
+const FtpDeploy = require('ftp-deploy')
+const ftpDeploy = new FtpDeploy()
 
 module.exports = {
   // method below source: https://stackoverflow.com/a/40686853/1004946
@@ -133,5 +135,23 @@ module.exports = {
     const server = http.createServer({root: './output/'})
     server.listen(3000)
     console.log('Output folder is now served under http://localhost:3000')
+  },
+  deployViaFtp: () => {
+    if (CONFIG && CONFIG.deployViaFtp === true) {
+      if (CONFIG.ftpConfig && CONFIG.ftpConfig.user && CONFIG.ftpConfig.localRoot) {
+        ftpDeploy.on('uploading', (data) => {
+          process.stdout.write(`Ftp deploy progress: ${data.transferredFileCount} / ${data.totalFilesCount}\r`)
+        })
+        ftpDeploy.deploy(CONFIG.ftpConfig).then(() => {
+          console.log('All files has been deployed to your ftp server.')
+        }).catch(err => {
+          throw new Error(err && err.message ? err.message : err)
+        })
+      } else {
+        throw new Error('ERROR: Fill in ftp credentials in config.js file to enable built-in deployment.')
+      }
+    } else {
+      throw new Error('ERROR: Deployment via ftp is turned off in config.js file.')
+    }
   }
 }

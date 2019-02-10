@@ -18,7 +18,8 @@ module.exports = {
     password: '<your ftp password>',
     host: '<your ftp host e.g. ftp.goooogle.com>',
     localRoot: './output', // don't change it, it points directly to the source folder of generated website
-    remoteRoot: '/<path to the folder on your ftp server>/',
+    remoteRoot: '/<path to the folder on your ftp server>/', // IMPORTANT: can't handle just '/' or '' as a path at the moment
+    include: ['*', '**/*'], // don't change it
     deleteRemote: false, // if you want always to remove old contents in ftp, change it to true
     forcePasv: true // ftp will force to run in passive mode (EPSV command is not sent)
   }

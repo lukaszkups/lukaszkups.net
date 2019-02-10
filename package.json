@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "node -e 'require(\"./index.js\").init()'",
+    "deploy": "node -e 'require(\"./index.js\").deploy()'",
     "assets": "node -e 'require(\"./index.js\").assets()'",
     "compile": "node -e 'require(\"./index.js\").once()'",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +13,8 @@
   "author": "lukaszkups",
   "license": "UNLICENSED",
   "devDependencies": {
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "ftp-deploy": "^2.3.0"
   },
   "dependencies": {
     "http-server": "^0.11.1",
