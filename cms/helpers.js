@@ -82,7 +82,7 @@ module.exports = {
   },
   uglifyJs: (_source, _target) => {
     return new Promise((resolve, reject) => {
-      fs.readFile(_source, 'utf8', (err, data) => {
+      fs.readFile(path.normalize(_source), 'utf8', (err, data) => {
         if (err) {
           reject(err)
         } else {

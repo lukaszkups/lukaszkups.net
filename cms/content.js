@@ -3,6 +3,7 @@ const fs = require('fs')
 const pug = require('pug')
 const CONFIG = require('./../config')
 const _helpers = require('./helpers')
+const path = require('path')
 
 const _mdConverter = new showdown.Converter({metadata: true})
 _mdConverter.setFlavor('github')
@@ -10,7 +11,7 @@ _mdConverter.setFlavor('github')
 module.exports = {
   getPages: (_store) => {
     return new Promise((resolve, reject) => {
-      fs.readdir('./contents/', (err, files) => {
+      fs.readdir(path.normalize('./contents/'), (err, files) => {
         if (!err) {
           let pagesArr = []
           let listsArr = []
@@ -18,18 +19,18 @@ module.exports = {
             if (obj.includes('--page')) {
               pagesArr.push({
                 id: listsArr.length + 1,
-                path: `./contents/${obj}/index.md`,
-                template: `./theme/${CONFIG.theme}/${obj}.pug`,
+                path: path.normalize(`./contents/${obj}/index.md`),
+                template: path.normalize(`./theme/${CONFIG.theme}/${obj}.pug`),
                 meta: {},
                 contents: ''
               })
             } else if (obj.includes('--list')) {
               listsArr.push({
                 id: listsArr.length + 1,
-                path: `./contents/${obj}/index.md`,
-                entriesPath: `./contents/${obj}/list/`,
-                template: `./theme/${CONFIG.theme}/${obj}.pug`,
-                entryTemplate: `./theme/${CONFIG.theme}/${obj}--entry.pug`,
+                path: path.normalize(`./contents/${obj}/index.md`),
+                entriesPath: path.normalize(`./contents/${obj}/list/`),
+                template: path.normalize(`./theme/${CONFIG.theme}/${obj}.pug`),
+                entryTemplate: path.normalize(`./theme/${CONFIG.theme}/${obj}--entry.pug`),
                 meta: {},
                 contents: '',
                 entries: []
@@ -47,12 +48,12 @@ module.exports = {
   },
   getListEntries: (_path, listObj) => {
     return new Promise((resolve, reject) => {
-      fs.readdir(_path, (err, files) => {
+      fs.readdir(path.normalize(_path), (err, files) => {
         if (!err) {
           let contents = []
           let promises = []
           files.forEach((obj, index) => {
-            promises.push(module.exports.getMdFileContents(`${_path}${obj}`, index, `./output/${listObj.slug}/`, listObj))
+            promises.push(module.exports.getMdFileContents(`${_path}${obj}`, index, path.normalize(`./output/${listObj.slug}/`), listObj))
           })
           Promise.all(promises).then(arr => {
             if (CONFIG.excludeDrafts === true) {
@@ -68,7 +69,7 @@ module.exports = {
   },
   getMdFileContents: (_path, _index, _parentOutputPath, parentObj) => {
     return new Promise((resolve, reject) => {
-      fs.readFile(_path, 'utf8', (err, data) => {
+      fs.readFile(path.normalize(_path), 'utf8', (err, data) => {
         if (!err) {
           const mdObj = _mdConverter.makeHtml(data)
           const meta = _mdConverter.getMetadata()
@@ -170,7 +171,7 @@ module.exports = {
           // list.paginationLinks.push(item)
           promises.push(new Promise((resolve, reject) => {
             try {
-              _helpers.mkDirByPathSync(list.paginationLinks[i].slice(0, -10))
+              _helpers.mkDirByPathSync(path.normalize(list.paginationLinks[i].slice(0, -10)))
               resolve()
             } catch (error) {
               reject(error)
@@ -182,7 +183,7 @@ module.exports = {
       list.entries.map((entry) => {
         promises.push(new Promise((resolve, reject) => {
           try {
-            _helpers.mkDirByPathSync(entry.output.slice(0, -10))
+            _helpers.mkDirByPathSync(path.normalize(entry.output.slice(0, -10)))
             resolve()
           } catch (error) {
             reject(error)
@@ -208,7 +209,7 @@ module.exports = {
           meta: page.meta || {},
           ...contentTemplateOptions
         })
-        fs.writeFile(page.output, parsedContentTemplate, (err) => {
+        fs.writeFile(path.normalize(page.output), parsedContentTemplate, (err) => {
           if (err) {
             reject(err)
           } else {
@@ -240,7 +241,7 @@ module.exports = {
             url: entry.output.slice(8, -10)
           })
         })
-        fs.writeFile(path, JSON.stringify({list: parsedList}), (err) => {
+        fs.writeFile(path.normalize(path), JSON.stringify({list: parsedList}), (err) => {
           if (err) {
             reject(err)
           } else {
@@ -287,7 +288,7 @@ module.exports = {
           listObject.currentPage = index + 1
           promises.push(new Promise((resolve, reject) => {
             const parsedContentTemplate = contentTemplate(listObject)
-            fs.writeFile(page, parsedContentTemplate, (err) => {
+            fs.writeFile(path.normalize(page), parsedContentTemplate, (err) => {
               if (err) {
                 reject(err)
               } else {
@@ -300,7 +301,7 @@ module.exports = {
         // if list doesn't have pagination
         promises.push(new Promise((resolve, reject) => {
           const parsedContentTemplate = contentTemplate(listObject)
-          fs.writeFile(list.output, parsedContentTemplate, (err) => {
+          fs.writeFile(path.normalize(list.output), parsedContentTemplate, (err) => {
             if (err) {
               reject(err)
             } else {
@@ -329,7 +330,7 @@ module.exports = {
             meta: entry.meta || {},
             ...contentTemplateOptions
           })
-          fs.writeFile(entry.output, parsedContentTemplate, (err) => {
+          fs.writeFile(path.normalize(entry.output), parsedContentTemplate, (err) => {
             if (err) {
               reject(err)
             } else {
