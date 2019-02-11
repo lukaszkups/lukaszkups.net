@@ -1,4 +1,5 @@
 const fs = require('fs')
+const fse = require('fs-extra')
 const path = require('path')
 const http = require('http-server')
 const sass = require('node-sass')
@@ -113,7 +114,7 @@ module.exports = {
             promises.push(new Promise((resolve, reject) => {
               const sourceFile = `${_sourcePath}${file}`
               const targetFile = `${_targetPath}${file}`
-              fs.writeFile(path.normalize(targetFile), fs.readFileSync(sourceFile), (err) => {
+              fs.writeFile(path.normalize(targetFile), fs.readFileSync(path.normalize(sourceFile))  , (err) => {
                 if (err) {
                   reject(err)
                 } else {
@@ -128,6 +129,15 @@ module.exports = {
         } else {
           reject(err)
         }
+      })
+    })
+  },
+  copyFolderRecursively: (_sourcePath, _targetPath) => {
+    return new Promise((resolve, reject) => {
+      fse.copy(path.normalize(_sourcePath), path.normalize(_targetPath)).then(() => {
+        resolve()
+      }).catch(err => {
+        reject(err)
       })
     })
   },

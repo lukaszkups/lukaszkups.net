@@ -367,7 +367,7 @@ module.exports = {
     // copy content images/static files
     promises.push(_helpers.copyFolderContents('./contents/static/', './output/static/'))
     // copy vendor files
-    promises.push(_helpers.copyFolderContents(CONFIG.vendorsPath || `./theme/${CONFIG.theme}/vendor/`, './output/vendor/'))
+    promises.push(_helpers.copyFolderRecursively(CONFIG.vendorsPath || `./theme/${CONFIG.theme}/vendor/`, './output/vendor/'))
     // compile sass
     promises.push(_helpers.compileSass(`./theme/${CONFIG.theme}/assets/css/main.sass`, './output/assets/css/main.css'))
     // compile js
