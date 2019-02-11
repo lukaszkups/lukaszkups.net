@@ -2,7 +2,7 @@ extends layout.pug
 
 block content
   .note-list-entry__wrapper
-    .note-list-entry
+    .note-list-entry(data-simplebar, data-simplebar-auto-hide=false)
       h1 #{title}
       .published Published at #{date}
       article !{content}
