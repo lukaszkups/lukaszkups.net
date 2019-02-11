@@ -46,17 +46,17 @@ module.exports = {
       .replace(/^-+/, '') // Trim — from start of text .replace(/-+$/, '') // Trim — from end of text
   },
   // method below source: https://geedew.com/remove-a-directory-that-is-not-empty-in-nodejs/
-  deleteFolderRecursive: (path) => {
-    if (fs.existsSync(path)) {
-      fs.readdirSync(path).forEach((file,index) => {
-        var curPath = path + "/" + file
+  deleteFolderRecursive: (url) => {
+    if (fs.existsSync(url)) {
+      fs.readdirSync(url).forEach((file,index) => {
+        var curPath = url + "/" + file
         if(fs.lstatSync(curPath).isDirectory()) { // recurse
-          module.exports.deleteFolderRecursive(curPath)
+          module.exports.deleteFolderRecursive(path.normalize(curPath))
         } else { // delete file
           fs.unlinkSync(curPath)
         }
       });
-      fs.rmdirSync(path)
+      fs.rmdirSync(url)
     }
   },
   compileSass: (_source, _target) => {
@@ -69,7 +69,7 @@ module.exports = {
         if (err) {
           reject(err)
         } else {
-          fs.writeFile(_target, result && result.css ? result.css : '', (err) => {
+          fs.writeFile(path.normalize(_target), result && result.css ? result.css : '', (err) => {
             if (err) {
               reject(err)
             } else {
@@ -106,14 +106,14 @@ module.exports = {
   },
   copyFolderContents: (_sourcePath, _targetPath) => {
     return new Promise((resolve, reject) => {
-      fs.readdir(_sourcePath, (err, files) => {
+      fs.readdir(path.normalize(_sourcePath), (err, files) => {
         if (!err) {
           let promises = []
           files.forEach(file => {
             promises.push(new Promise((resolve, reject) => {
               const sourceFile = `${_sourcePath}${file}`
               const targetFile = `${_targetPath}${file}`
-              fs.writeFile(targetFile, fs.readFileSync(sourceFile), (err) => {
+              fs.writeFile(path.normalize(targetFile), fs.readFileSync(sourceFile), (err) => {
                 if (err) {
                   reject(err)
                 } else {

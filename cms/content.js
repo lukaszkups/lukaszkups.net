@@ -226,9 +226,9 @@ module.exports = {
     let promises = []
     _store.lists.map(list => {
       promises.push(new Promise((resolve, reject) => {
-        let path = list.output.split('/')
-        path[path.length - 1] = 'list.json'
-        path = `./${path.join('/')}`
+        let url = list.output.split('/')
+        url[url.length - 1] = 'list.json'
+        url = `./${url.join('/')}`
         let entries = [...list.entries]
         let parsedList = []
         entries.map(entry => {
@@ -241,7 +241,7 @@ module.exports = {
             url: entry.output.slice(8, -10)
           })
         })
-        fs.writeFile(path.normalize(path), JSON.stringify({list: parsedList}), (err) => {
+        fs.writeFile(path.normalize(url), JSON.stringify({list: parsedList}), (err) => {
           if (err) {
             reject(err)
           } else {
