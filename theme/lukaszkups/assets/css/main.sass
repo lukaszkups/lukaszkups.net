@@ -589,7 +589,7 @@ body
     .calendar-wrapper
       display: none
       flex: 1
-      max-width: 245px
+      max-width: 248px
       height: 100vh
       overflow-x: hidden
       overflow-y: auto
@@ -597,7 +597,7 @@ body
       padding-bottom: 100px
       padding-right: 50px
       position: fixed
-      top: 0
+      top: 80px
       right: 0
       margin: 0
       z-index: 2
@@ -610,7 +610,7 @@ body
         background: white
         display: inline-table
         padding: 10px 20px 20px 20px
-        margin: 0 0 10px 0
+        margin: 0 10px 10px 0
 
         &:last-of-type
           margin-bottom: 300px
@@ -640,13 +640,16 @@ body
     .notes-list
       box-sizing: border-box
       list-style: none
-      max-width: calc(100% - 240px)
-      width: calc(100% - 235px)
-      overflow: hidden
+      max-width: calc(100% - 246px)
+      width: calc(100% - 246px)
       padding: 0 0 0 50px
       height: calc(100vh - 100px)
       position: relative
       z-index: 2
+
+      .simplebar-track.simplebar-vertical
+        left: 0
+        margin-left: -45px
 
       h1
         display: block
@@ -657,8 +660,6 @@ body
         height: calc(100vh - 100px)
         margin: 0
         min-width: 100%
-        overflow-x: hidden
-        overflow-y: auto
         padding: 0
         width: 100%
 

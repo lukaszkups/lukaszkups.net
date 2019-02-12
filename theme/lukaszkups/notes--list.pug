@@ -2,9 +2,9 @@ extends layout.pug
 
 block content
   .notes-list-wrapper
-    #calendar-wrapper.calendar-wrapper.calendar-wrapper--active(data-simplebar, data-simplebar-auto-hide=false)
+    #calendar-wrapper.calendar-wrapper.calendar-wrapper--active(data-simplebar, data-simplebar-auto-hide='false')
     #notes-list.notes-list
-      ul.notes(data-simplebar, data-simplebar-auto-hide=false)
+      ul.notes(data-simplebar, data-simplebar-auto-hide='false')
         each item, index in list.length ? list : ['No entries yet.']
           - const parsedDate = item.meta.date.split('/').map(obj => parseInt(obj)).join('-')
           if !item.meta.hidden
