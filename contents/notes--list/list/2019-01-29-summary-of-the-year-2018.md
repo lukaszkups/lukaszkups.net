@@ -36,7 +36,7 @@ I've gained 232 points on StackOveflow (which makes 2346 in total) which is a bi
 
 To be honest I was not so active on my social media accounts during the year, which probably is the main cause of its stats:
 
-- twitter: ([@mrmnmly](https://twitter.com/mrmnmly)): +52 new followers (71 in total)
+- twitter: ([@lukaszkups](https://twitter.com/lukaszkups)): +52 new followers (71 in total)
 
 - instagram ([@mrmnmly](https://instagram.com/mrmnmly)): +30 new followers (77 in total)
 

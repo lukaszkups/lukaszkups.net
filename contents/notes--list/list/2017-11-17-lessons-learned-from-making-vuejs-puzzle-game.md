@@ -136,6 +136,6 @@ generatePuzzleTiles() {
 
 In overall, I’m pretty satisfied with the final effect. It took me not so long time to finish, and the code is pretty clean and readable. As (almost) always, I feel bad that I haven’t forced myself to write some tests to it. But maybe some day.. ;)
 
-The whole code is available on [github](https://github.com/mrmnmly/puzzle-game) — feel free to share what do You think about it.
+The whole code is available on [github](https://github.com/lukaszkups/puzzle-game) — feel free to share what do You think about it.
 
 -- ł.

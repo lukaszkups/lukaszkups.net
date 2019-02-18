@@ -34,7 +34,7 @@ You've probably already noticed, that I've gone back to my old domain, instead u
 
 Can't explain this easily or straightforward. Maybe it's because I've missed my personal logo so much? Maybe because I don't *feel* yet that new default nickname? Not sure. Maybe it's just a personality disorder caused by AUGs (hello DeusEx again) or it just feels more personal.
 
-But still, you can find me in social media under [@mrmnmly](https://twitter.com/mrmnmly) nickname - it's easier to read internationally, since most people doesn't even know what `ł` or `ś` are (yep, my real full name is Łukasz Kupś - looking forward if you dare to record trying to read that aloud and send it back to me :)).
+But still, you can find me in social media under <strike>[@mrmnmly](https://twitter.com/mrmnmly) nickname - it's easier to read internationally, since most people doesn't even know what `ł` or `ś` are (yep, my real full name is Łukasz Kupś - looking forward if you dare to record trying to read that aloud and send it back to me :)).</strike> [@lukaszkups](https://twitter.com/lukaszkups) nickname.
 
 ## The future is (almost) here
 

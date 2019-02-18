@@ -32,7 +32,7 @@ All I can tell at this moment is that I'm super excited about it :)
 
 During the 2017, I've made 624 open-source code contributions and gained 263 reputation points on StackOverflow (which makes me to have 2132 in total).
 
-Besides that, I've reset all my tech-related social media accounts and got a new nickname (mrmnmly ;) ). While my new [instagram](https://www.instagram.com/mrmnmly/) followers grow pretty well (47 followers vs ~20 followers on the old one), my [twitter](https://twitter.com/mrmnmly) goes much worse (19 followers currently vs ~225 on the old one).
+Besides that, <strike>I've reset all my tech-related social media accounts and got a new nickname (mrmnmly ;) )</strike>. While my new [instagram](https://www.instagram.com/mrmnmly/) followers grow pretty well (47 followers vs ~20 followers on the old one), my *>new twitter account with old username<* [twitter](https://twitter.com/lukaszkups) goes much worse (19 followers currently vs ~225 on the old one).
 
 In the end, I'm aware that I'm the only one responsible for such situation - I'm pretty focused on programming rather than marketing and it's no magic to me, that it will take long time till anyone get interested in my person to follow ;)
 
