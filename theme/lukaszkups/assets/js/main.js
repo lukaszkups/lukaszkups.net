@@ -276,6 +276,7 @@
         } else if (tag !== null && tag.length) {
           filterNotesByTag(tag.toLowerCase(), entryList)
         }
+        new SimpleBar(notesWrapper)
       }).catch(err => {
         throw new Error(err)
       })
