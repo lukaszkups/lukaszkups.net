@@ -49,14 +49,14 @@ module.exports = {
   // method below source: https://geedew.com/remove-a-directory-that-is-not-empty-in-nodejs/
   deleteFolderRecursive: (url) => {
     if (fs.existsSync(url)) {
-      fs.readdirSync(url).forEach((file,index) => {
+      fs.readdirSync(url).forEach((file) => {
         var curPath = url + "/" + file
         if(fs.lstatSync(curPath).isDirectory()) { // recurse
           module.exports.deleteFolderRecursive(path.normalize(curPath))
         } else { // delete file
           fs.unlinkSync(curPath)
         }
-      });
+      })
       fs.rmdirSync(url)
     }
   },
@@ -143,8 +143,8 @@ module.exports = {
   },
   startServer: () => {
     const server = http.createServer({root: './output/'})
-    server.listen(3001)
-    console.log('Output folder is now served under http://localhost:3000')
+    server.listen(CONFIG.port || 3000)
+    console.log(`Output folder is now served under http://localhost:${CONFIG.port || 3000}`)
   },
   deployViaFtp: () => {
     if (CONFIG && CONFIG.deployViaFtp === true) {
