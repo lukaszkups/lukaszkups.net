@@ -24,14 +24,16 @@ And that's my time for the side-hustle where I try to do something for another 2
 
 But don't get me wrong - this is not my daily, 24/7 must-do plan. If I'm burned out I watch netflix or play some games. Sometimes I just go straight to bed because of the fatigue, but then I feel somehow guilty that I've "wasted" my free time to go to sleep.
 
-? Yes, if I could choose to not have to sleep at all, I would be 200% more happy person (I hate sleeping, but it's not that I'm a workaholic - it's just a boring activity and I would rather spend it on something else).
+> Yes, if I could choose to not have to sleep at all, I would be 200% more happy person (I hate sleeping, but it's not that I'm a workaholic - it's just a boring activity and I would rather spend it on something else).
 
 I also try to fight with that feel of guilt, because I know that I can't cheat nature and from time to time my body need to get a proper (more than usual 6 / 7 hours) amount of rest.
 
 So yeah, this is pretty everything about this topic. Until I've got it right, I've tried couple different scenarios such as:
 
 - waking up early, so I can start working on something in the morning, but usually kids were waking up as well and it was impossible to spend this time on something different than morning babysitting,
+
 - working on side-projects for short amount of time immediately after my daily job ends - that was a failure as well; I've found that my brain often needs a longer break after couple hours of coding, just to reset and switch context properly so I can focus 100% time on something different and don't think about the (daily) job,
+
 - work on side projects during the weekends - this one is a big no-no - weekends are for family (but again, except nighttime when everyone are sleeping already I tend to work on something as well)
 
 All of them were a smaller or bigger bits of a failure - I think it's a very individual problem that everyone should solve exclusively just for their needs - what works fine for me, shouldn't exactly fit to you. But maybe you'll find some of my ideas handy during the search for the perfect self-organizing plan.
