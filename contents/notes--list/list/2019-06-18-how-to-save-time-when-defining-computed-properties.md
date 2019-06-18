@@ -1,12 +1,12 @@
 ---
-title: Define faster computed properties
-date: 2019/05/30
+title: How to save time when defining computed properties
+date: 2019/06/18
 category: vue.js, programming, tech
-tags: vue.js, vue, js, javascript, programming, development, front-end, front-end developer, front-end development, architecture, spa, single page apps, single page application, web development
+tags: vue.js, vue, js, javascript, programming, development, front-end, front-end developer, front-end development, architecture, spa, single page apps, single page application, web development, vuex
 active: 2
 ---
 
-> Hi again! I'm alive and so this blog as well - I just don't spend so much time after work on it as I would like to - but will try my best!
+> Hi again! I'm alive and so this blog as well - just not spending so much time after work on it as I would like to - but will try my best from now!
 
 When you want to define read-only computed property that is purely based on vuex, you write something like this:
 
@@ -126,5 +126,6 @@ const mutations = {
 }
 ```
 
+<a href="https://codesandbox.io/s/86tqt" target="_blank">Here</a> you can see this in action - I hope you'll find it handy in your projects!
 
 -- ł.
