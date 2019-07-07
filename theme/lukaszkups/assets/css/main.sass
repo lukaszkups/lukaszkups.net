@@ -826,11 +826,15 @@ body
       p > img + br
         display: block
         height: 0
-      p > img + br + em
+      p > img + br + em,
+      p > iframe + em
         display: block
         text-align: center
         font-size: 0.9em
         font-style: italic
+      p > iframe
+        display: block
+        margin: 0 auto
       .image + p > a
         color: inherit
         display: block
