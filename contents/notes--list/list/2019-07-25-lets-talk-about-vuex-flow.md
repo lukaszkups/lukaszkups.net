@@ -1,6 +1,6 @@
 ---
 title: Lets talk about Vuex flow
-date: 2019/07/05
+date: 2019/07/25
 category: programming, vue.js, tech
 tags: programming, webdev, vue.js, vuex, javascript, js, development, webdev, front-end
 active: 2
