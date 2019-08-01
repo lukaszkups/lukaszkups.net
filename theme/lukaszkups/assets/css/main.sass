@@ -958,6 +958,23 @@ body
 .simplebar-track .simplebar-scrollbar.simplebar-visible:before
   opacity: 1
 
+// for article needs
+.loading-paragraph
+  span
+    &:before
+      animation: dots 2s linear infinite
+      content: ''
+
+  @keyframes dots
+    0%, 20%
+      content: '.'
+    40%
+      content: '..'
+    60%
+      content: '...'
+    90%, 100%
+      content: ''
+
 // RWD
 
 @media screen and (max-width: 1280px)
