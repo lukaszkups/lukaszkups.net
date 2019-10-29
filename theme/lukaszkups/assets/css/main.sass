@@ -3,30 +3,32 @@
 $primary: #bd8f3a
 $white: #f1f1f1
 $black: #0f0f0f
+$black2: #2d2d2d
+$grey: #e4e4e4
 
 @keyframes animating-opacity
-  0%
-    opacity: 0.1
-  25%
-    opacity: 0.12
-  50%
-    opacity: 0.1
-  75%
-    opacity: 0.08
-  100%
-    opacity: 0.1
+  // 0%
+  //   opacity: 0.1
+  // 25%
+  //   opacity: 0.12
+  // 50%
+  //   opacity: 0.1
+  // 75%
+  //   opacity: 0.08
+  // 100%
+  //   opacity: 0.1
 
 @keyframes animating-opacity-100
-  0%
-    opacity: 1
-  25%
-    opacity: 0.8
-  50%
-    opacity: 0.9
-  75%
-    opacity: 0.8
-  100%
-    opacity: 1
+  // 0%
+  //   opacity: 1
+  // 25%
+  //   opacity: 0.8
+  // 50%
+  //   opacity: 0.9
+  // 75%
+  //   opacity: 0.8
+  // 100%
+  //   opacity: 1
 
 @keyframes avatar-fade-in
   0%
@@ -57,7 +59,7 @@ $black: #0f0f0f
   outline: 0
 
 .logo
-  background-color: $white
+  background-color: $black2
   -webkit-transform: skew(25deg,0deg)
   -ms-transform: skew(25deg,0deg)
   transform: skew(25deg,0deg)
@@ -75,7 +77,7 @@ $black: #0f0f0f
   &:after,
   &:before
     content: " "
-    background-color: $primary
+    background-color: $black
     -webkit-transform: skew(-50deg,0deg)
     -ms-transform: skew(-50deg,0deg)
     transform: skew(-50deg,0deg)
@@ -107,6 +109,7 @@ body
     text-decoration-color: $white
 
   .home-wrapper
+    background: $grey
     display: block
     margin: 0
     padding: 0
@@ -146,6 +149,7 @@ body
     right: 0
     top: 0
     z-index: 5
+    background: $white
 
     nav
       display: inline-block
@@ -171,15 +175,15 @@ body
           position: relative
 
           &:hover a
-            background: lighten($primary, 15%)
+            background: lighten($white, 15%)
             transform: rotateX(90deg) translateY(-22px)
 
             &:before
               transition: background 0.3s
-              background: $primary
+              background: $white
 
           a
-            background: $primary
+            background: $white
             color: $black
             display: block
             height: 60px
@@ -193,8 +197,8 @@ body
             transform-origin: 50% 0
 
             &:before
-              background: darken($primary, 15%)
-              color: $white
+              background: darken($white, 15%)
+              color: $black
               content: attr(data-hover)
               top: 100%
               left: 0
@@ -209,12 +213,12 @@ body
 
           &.active
             a
-              background: $primary
-              color: $white
+              background: $white
+              color: $primary
 
               &:before
-                background: $primary
-                color: $white
+                background: $white
+                color: $primary
 
   .square-avatar
     animation: animating-opacity-100 10s infinite
