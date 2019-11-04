@@ -1,10 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed')
 
+@font-face
+  font-family: 'Bebas Neue'
+  src: url('/assets/fonts/Bebas.eot')
+  src: url('/assets/fonts/Bebas.eot#iefix') format('embedded-opentype'), url('/assets/fonts/Bebas.woff') format('woff'), url('/assets/fonts/Bebas.ttf') format('ttf')
+
+$roboto: 'Roboto Condensed', sans-serif
+$bebas: 'Bebas Neue', Verdana
 $primary: #bd8f3a
-$white: #f1f1f1
+$white: #fff
 $black: #0f0f0f
-$black2: #2d2d2d
-$grey: #e4e4e4
+$black2: #1a1d20
+$grey: #eee
 
 @keyframes animating-opacity
   // 0%
@@ -50,7 +57,7 @@ $grey: #e4e4e4
 .logo-wrapper
   display: inline-block
   height: 50px
-  margin: 10px 0 0 45px
+  margin: 10px 0 0 0
   padding: 0
   width: 50px
   overflow: visible
@@ -59,7 +66,7 @@ $grey: #e4e4e4
   outline: 0
 
 .logo
-  background-color: $black2
+  background-color: $primary
   -webkit-transform: skew(25deg,0deg)
   -ms-transform: skew(25deg,0deg)
   transform: skew(25deg,0deg)
@@ -94,30 +101,28 @@ $grey: #e4e4e4
 
 html,
 body
-  background: $black
-  font-family: 'Roboto Condensed', sans-serif
+  background: $white
+  font-family: $roboto
   height: 100%
-  max-height: 100%
   margin: 0
   min-height: 100%
-  overflow: hidden
   padding: 0
   width: 100%
   max-width: 100%
 
+  .content
+    min-height: calc(90vh + 60px)
+
   strike
     text-decoration-color: $white
 
-  .home-wrapper
-    background: $grey
+  .gap
     display: block
-    margin: 0
-    padding: 0
-    height: 100%
-    max-height: 100%
-    max-width: 100%
+    clear: both
     width: 100%
 
+    &.gap-h-30
+      height: 30px
   .row
     display: flex
     margin: 0
@@ -137,6 +142,12 @@ body
   .main-container
     margin: 0 auto
     width: 75%
+    max-width: 900px
+    // min-width: 700px TODO
+
+  .nav-container,
+  .footer-container
+    width: 100%
 
   .white-bg
     background: $white
@@ -153,13 +164,12 @@ body
 
     nav
       display: inline-block
-      float: left
+      float: right
       font-size: 14px
       height: 60px
-      left: calc(50% - 90px)
       letter-spacing: 1px
-      position: absolute
       width: auto
+      margin-right: -15px
 
       ul
         list-style: none
@@ -169,18 +179,8 @@ body
 
         li
           display: inline-block
-          margin: 0 -1px 0 0
           padding: 0
-          perspective: 1000px
           position: relative
-
-          &:hover a
-            background: lighten($white, 15%)
-            transform: rotateX(90deg) translateY(-22px)
-
-            &:before
-              transition: background 0.3s
-              background: $white
 
           a
             background: $white
@@ -192,24 +192,9 @@ body
             position: relative
             text-decoration: none
             text-transform: uppercase
-            transition: transform 0.3s, background 0.3s
-            transform-style: preserve-3d
-            transform-origin: 50% 0
 
-            &:before
-              background: darken($white, 15%)
-              color: $black
-              content: attr(data-hover)
-              top: 100%
-              left: 0
-              width: 100%
-              height: 100%
-              position: absolute
-              text-align: center
-              text-transform: uppercase
-              transition: background 0.3s
-              transform: rotateX(-90deg)
-              transform-origin: 50% 0
+            &:hover
+              color: $primary
 
           &.active
             a
@@ -219,16 +204,91 @@ body
               &:before
                 background: $white
                 color: $primary
+  .home-content
+    width: 100%
+    h1
+      font-family: $bebas
+      font-weight: 400
+      line-height: 1.5em
+
+  .specialties
+    margin: 0
+    padding: 0
+    list-style: none
+
+    li
+      margin: 0
+      padding: 5px 0
+      line-height: 1.5em
+
+      &.title
+        font-family: $bebas
+
+  footer
+    background: $grey
+    color: $black2
+    padding: 20px 0
+
+    a
+      color: $black2
+      text-decoration: none
+
+      &:hover
+        color: $primary
+
+    ul
+      margin: 20px 0
+      padding: 0
+      line-height: 1.5em
+      list-style: none
+
+      li
+        margin: 0
+        padding: 5px 0
+        font-size: 0.8em
+
+        &.title
+          font-weight: 900
+          font-size: 1em
+          text-transform: uppercase
+
+    .copyrights
+      display: block
+      font-size: 0.8em
+      text-align: right
+
+  .avatar-action
+    background: $black2
+    display: block
+    overflow: hidden
+    position: relative
+    margin-top: 100px
+    margin-bottom: 20px
+    color: $black
+    height: 375px
+    width: 100%
+
+    h2, p
+      color: $white
+      position: absolute
+      left: 50%
+    h2
+      text-transform: uppercase
+      font-family: $bebas
+      top: 110px
+      font-size: 2em
+    p
+      top: 170px
+      width: 40%
+      line-height: 1.5em
 
   .square-avatar
     animation: animating-opacity-100 10s infinite
     flex: 1
-    height: 75vh
+    height: 375px
     overflow: hidden
     position: relative
-    min-width: 50%
-    max-width: 50%
-    width: 50%
+    width: 375px
 
     &:after
       animation: avatar-fade-in 2s
@@ -247,230 +307,12 @@ body
       top: 10px
       width: 100%
 
-  .home-tag
-    width: 400px
-    position: absolute
-    top: 20%
-    right: 15%
-    color: $primary
-    text-align: justify
-    font-size: 20px
-    text-transform: uppercase
-
-    span
-      color: $primary
-      transition: 2s color
-
-      &.white
-        color: lighten($primary, 20%)
-        transition: 2s color
-
-  .home-title
-    box-sizing: border-box
-    color: $primary
-    flex: 1
-    font-size: 35px
-    height: 25vh
-    line-height: 25vh
-    margin: 50vh 0 0 0
-    padding: 0 50px
-    text-align: left
-    top: 40vh
-    width: 45%
-    z-index: 2
-
-  .top-menu
-    background: transparent
-    left: 0
-    height: 30px
-    position: fixed
-    right: 0
-    top: 0
-    z-index: 3
-
-  .promo
-    box-sizing: border-box
-    color: $white
-    display: flex
-    flex-direction: column
-    font-size: 18px
-    justify-content: center
-    min-height: 250px
-    padding: 20px
-
-    &__text
-      font-weight: 400
-      font-size: 40px
-      letter-spacing: 1px
-      text-align: center
-
-  ul.bottom-bar
-    background: $black
-    display: flex
-    list-style: none
-    height: 25vh
-    margin: 0
-    width: calc(100% - 18px)
-    padding: 0
-
-    li
-      box-sizing: border-box
-      border-top: transparent solid 0
-      flex: 1
-      margin: 0
-      max-width: 25%
-      overflow: hidden
-      padding: 10px
-      transition: border-top 0.3s
-
-      &:hover
-        border-top: 5px solid $primary
-        transition: border-top 0.3s
-
-      &:last-of-type
-        border-right: none
-
-      a
-        box-sizing: border-box
-        color: $black
-        display: block
-        height: calc(25vh - 20px)
-        margin: 0
-        width: 100%
-        padding: 0 20px
-        text-align: left
-        text-decoration: none
-        transition: 0.3s background, 0.3s color
-
-        div
-          strong,
-          span
-            display: block
-          strong
-            color: $primary
-            padding-top: 7vh
-            text-transform: uppercase
-          span
-            color: $white
-            padding-top: 5px
-
   //  EXPERIENCE PAGE
   .experience-wrapper
     height: 100%
     min-height: 100%
     max-height: 100%
     width: 100%
-
-    .experience-title
-      line-height: 58px
-      text-align: center
-      margin: 100px 0 0 0
-
-      & > span
-        background: lighten($white, 100%)
-        color: $black
-        float: none
-        padding: 10px 0 10px 20px
-        perspective: 1000px
-        position: relative
-
-        &:hover .cv-download-button
-          background: lighten($primary, 15%)
-          transform: rotateX(90deg) translateY(-22px)
-
-          &:before
-            transition: background 0.3s
-            background: $primary
-
-        .cv-download-button
-          background: $primary
-          box-sizing: border-box
-          color: $black
-          display: inline-block
-          margin-right: -2px
-          padding: 1px 20px
-          position: relative
-          text-decoration: none
-          text-transform: uppercase
-          transition: transform 0.3s, background 0.3s
-          transform-style: preserve-3d
-          transform-origin: 50% 0
-          white-space: nowrap
-
-          &:before
-            background: darken($primary, 15%)
-            color: $white
-            content: attr(data-hover)
-            top: 100%
-            left: 0
-            width: 100%
-            height: 100%
-            position: absolute
-            text-align: center
-            text-transform: uppercase
-            transition: background 0.3s
-            transform: rotateX(-90deg)
-            transform-origin: 50% 0
-
-    .point-info
-      background: lighten($white, 100%)
-      box-sizing: border-box
-      color: $black
-      display: block
-      left: 50%
-      height: auto
-      margin-left: -150px
-      opacity: 0
-      padding: 10px 20px 30px 20px
-      position: fixed
-      top: 23vh
-      transition: 1s top, 1s opacity
-      width: 350px
-      z-index: -1
-
-      & + .shadow
-        display: none
-        position: fixed
-        top: 0
-        bottom: 0
-        left: 0
-        right: 0
-
-      &.point-info--active
-        opacity: 1
-        top: 20vh
-
-        & + .shadow
-          display: block
-          z-index: 9
-
-      &.point-info--visible
-        z-index: 10
-
-      p
-        text-align: center
-        font-weight: bold
-
-      small
-        color: darken($white, 30%)
-        display: block
-        font-size: 10px
-        padding: 10px 0 0 5px
-
-      ul
-        list-style-type: none
-        margin: 0
-        padding: 10px 0
-
-        li
-          margin: 0 0 0 15px
-          padding: 0
-
-          &:before
-            color: $white
-            content: '-'
-            margin-left: -10px
-            position: absolute
 
     .map-wrapper
       height: 100vh
@@ -510,195 +352,7 @@ body
         max-width: 1400px
         z-index: 2
 
-    ul.experience-filter
-      background: lighten($white, 100%)
-      bottom: 0
-      color: $primary
-      display: flex
-      list-style: none
-      margin: 0 20%
-      overflow: hidden
-      padding: 0
-      position: absolute
-      width: 60%
-      z-index: 3
-
-      li
-        cursor: pointer
-        flex: 1
-        margin: 0 -1px 0 0
-        padding: 0
-        text-align: center
-        perspective: 1000px
-        position: relative
-
-        &:hover span,
-        &.active-filter span
-          background: lighten($white, 100%)
-          transform: rotateX(90deg) translateY(-22px)
-
-          &:before
-            transition: background 0.3s
-            background: $primary
-
-        span
-          background: lighten($white, 100%)
-          box-sizing: border-box
-          color: $black
-          display: block
-          height: 100px
-          line-height: 60px
-          padding: 20px
-          position: relative
-          text-decoration: none
-          text-transform: uppercase
-          transition: transform 0.3s, background 0.3s
-          transform-style: preserve-3d
-          transform-origin: 50% 0
-
-          &:before
-            background: darken($primary, 15%)
-            box-sizing: border-box
-            color: $white
-            content: attr(data-hover)
-            top: 100%
-            left: 0
-            line-height: 60px
-            width: 100%
-            height: 100%
-            padding: 20px
-            position: absolute
-            text-align: center
-            text-transform: uppercase
-            transition: background 0.3s
-            transform: rotateX(-90deg)
-            transform-origin: 50% 0
-
-  // NOTES LIST PAGE
-  .notes-list-wrapper,
-  .projects-list-wrapper
-    display: flex
-    margin-top: 80px
-
-    &:after
-      content: ' '
-      position: fixed
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
-      opacity: 0.1
-      background: url('/assets/img/avatar3bw.svg') no-repeat
-      background-size: contain
-      background-position-x: left
-      background-position-y: bottom
-      animation: animating-opacity 10s infinite
-      z-index: 1
-
-    .calendar-wrapper
-      display: none
-      flex: 1
-      max-width: 248px
-      height: 100vh
-      overflow-x: hidden
-      overflow-y: auto
-      padding-top: 100px
-      padding-bottom: 100px
-      padding-right: 50px
-      position: fixed
-      top: 80px
-      right: 0
-      margin: 0
-      z-index: 2
-
-      .year-title
-        text-align: center
-        margin-top: 10px
-
-      table
-        background: white
-        display: inline-table
-        padding: 10px 20px 20px 20px
-        margin: 0 10px 10px 0
-
-        &:last-of-type
-          margin-bottom: 300px
-
-        td,
-        th
-          text-align: center
-          padding: 5px
-
-          &.day--active:hover,
-          &.day--has-notes
-            background: $primary
-            cursor: pointer
-            color: $white
-
-          &.day--selected
-            background: $black !important
-            color: $white
-
-        th
-          font-weight: normal
-
-      &--active
-        display: inline-block
-        flex: 1
-
-    .notes-list,
-    .projects-list
-      box-sizing: border-box
-      height: calc(100vh - 100px)
-      list-style: none
-      max-width: calc(100% - 246px)
-      width: calc(100% - 246px)
-      padding: 0 0 0 50px
-      position: relative
-      z-index: 2
-
-      .simplebar-track.simplebar-vertical
-        left: 0
-        margin-left: -45px
-
-      h1
-        display: block
-
-      ul.notes
-        display: block
-        list-style: none
-        height: calc(100vh - 100px)
-        margin: 0
-        min-width: 100%
-        padding: 0
-        width: 100%
-
-        li
-          display: block
-          margin: 0 0 10px 0
-          padding: 0
-
-          &:last-of-type
-            margin-bottom: 150px
-
-          a
-            background: $primary
-            box-sizing: border-box
-            color: $black
-            display: inline-block
-            text-decoration: none
-            padding: 20px
-            max-width: 90%
-
-            span
-              color: $white
-
-            &:hover
-              color: $white
-              background: $primary
-      &--filtered li:not(.entry--filtered) a
-        display: none !important
-
+  .notes-list-wrapper
     ul.pagination
       background: rgba($black, 0.65)
       bottom: 0
@@ -904,58 +558,6 @@ body
               margin-left: -20px
               margin-right: 10px
 
-  // ABOUT PAGE
-
-  .about-page-wrapper
-    background: $black
-    height: 100vh
-    margin-top: 0
-    overflow-x: hidden
-    padding-top: 0
-    position: relative
-    width: 100%
-    z-index: 3
-
-    &:after
-      content: ' '
-      position: fixed
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
-      opacity: 0.1
-      background: url('/assets/img/avatar3bw.svg') no-repeat
-      animation: animating-opacity 10s infinite
-      background-size: contain
-      background-position-x: left
-      background-position-y: bottom
-      z-index: 1
-
-    .simplebar-wrapper
-      position: relative
-      z-index: 3
-
-    article
-      color: lighten($primary, 15%)
-      display: block
-      margin: 200px auto
-      max-width: 800px
-      text-align: justify
-      position: relative
-      width: 75%
-      z-index: 2
-
-      h2
-        color: $white
-
-        &:first-of-type
-          font-size: 1.75em
-
-      a
-        color: $white
-        text-decoration: underline
-        text-decoration-color: $primary
-
 // simplebar overrides
 .simplebar-scrollbar:before
   background-color: $primary
@@ -981,203 +583,4 @@ body
     90%, 100%
       content: ''
 
-// PROJECTS
-.projects-list-wrapper
-  .projects-list
-    min-width: 100%
-
-    .projects
-      width: 75%
-      max-width: 717px
-      margin: 0 auto
-      display: flex
-
-      .simplebar-wrapper
-        width: 100%
-        max-width: 100%
-
-    li
-      padding: 15px
-      background: $primary
-      margin-bottom: 15px
-
-      a
-        color: $white
-
-      .title
-        color: $white
-
-      .links
-        text-align: right
-
-        .button
-          text-decoration: none
-          background: $white
-          padding: 5px
-          margin-left: 5px
-          color: $black
-
-          &:hover
-            background: $black
-            color: $white
-
 // RWD
-
-@media screen and (max-width: 1280px)
-  html,
-  body
-    .square-avatar:after
-      background-size: contain
-
-    .home-title
-      font-size: 25px
-      line-height: 1.5em
-      padding-top: 9vh
-
-@media screen and (max-width: 968px)
-  html,
-  body
-    .square-avatar:after
-      background-size: contain
-      margin-left: -50%
-      padding-right: 53%
-    .note-list-entry
-      width: 100%
-
-@media screen and (max-width: 836px)
-  body,
-  html
-    .logo,
-    .logo:before,
-    .logo:after
-      background: $white
-
-    .logo-wrapper
-      margin: 10px
-
-    header
-      background: $primary
-
-      nav
-        left: 100px
-
-    .home-wrapper > .row-flex:first-of-type
-      display: block
-
-    .square-avatar
-      display: block
-      width: 100%
-      max-width: 100%
-      min-width: 100%
-      height: 100vh
-
-    .home-title
-      display: block
-      position: absolute
-      bottom: 0
-      left: 0
-      right: 0
-      top: auto
-      width: 100%
-      margin: 0
-
-    .note-list-entry__wrapper
-      width: 90%
-
-    ul.bottom-bar
-      display: none
-
-    .experience-wrapper
-      ul.experience-filter
-        margin: 0
-        width: 100%
-
-@media screen and (max-width: 700px)
-  body
-    .home-wrapper
-      overflow-y: auto
-
-    header
-      overflow: hidden
-
-      nav
-        height: 78px
-        margin-bottom: -18px
-        overflow-x: auto
-        overflow-y: hidden
-        width: 100%
-
-        ul
-          width: 570px
-          white-space: nowrap
-          overflow: hidden
-
-    .square-avatar
-      height: 500px
-      top: 60px
-      width: 100%
-      position: relative
-      min-width: 100%
-      max-width: 100%
-      height: 100vh
-      opacity: 0.55
-      animation: none
-      transition: none
-
-      &:after
-        background-position: left bottom
-        background-size: contain
-        margin: 0
-        padding: 0
-        width: 100%
-
-    .home-tag
-      width: 75%
-      margin:
-        left: auto
-        right: auto
-
-    .experience-wrapper
-      .point-info
-        width: 90%
-        margin: 0 5%
-        left: auto
-
-    .about-page-wrapper
-      overflow-x: hidden
-      overflow-y: auto
-      width: 100%
-
-      article
-        box-sizing: border-box
-        margin-top: 75px
-        width: 100%
-        overflow: hidden
-        padding-right: 30px
-        padding-left: 25px
-
-    .calendar-wrapper
-      display: none !important
-
-    .notes-list,
-    .projects-list
-      width: 95% !important
-      max-width: 95% !important
-      margin: 0 auto
-      padding-left: 10px !important
-
-      ul.notes li a,
-        text-align: center
-        max-width: 100%
-        min-width: 100%
-        width: 100%
-
-    .note-list-entry,
-    .note-list-entry__wrapper,
-    .projects-list-entry,
-    .projects-list-entry__wrapper
-      width: 100%
-      height: calc(100vh - 60px)
-    .note-list-entry__wrapper
-    .projects-list-entry__wrapper
-      margin: 60px 0 10px 0 !important

@@ -360,11 +360,14 @@ module.exports = {
     _helpers.mkDirByPathSync('./output/assets/css')
     _helpers.mkDirByPathSync('./output/assets/js')
     _helpers.mkDirByPathSync('./output/assets/img')
+    _helpers.mkDirByPathSync('./output/assets/fonts')
     _helpers.mkDirByPathSync('./output/static/')
     _helpers.mkDirByPathSync('./output/vendor/')
     let promises = []
     // copy image assets
     promises.push(_helpers.copyFolderContents(`./theme/${CONFIG.theme}/assets/img/`, './output/assets/img/'))
+    // copy fonts assets
+    promises.push(_helpers.copyFolderContents(`./theme/${CONFIG.theme}/assets/fonts/`, './output/assets/fonts/'))
     // copy content images/static files
     promises.push(_helpers.copyFolderContents('./contents/static/', './output/static/'))
     // copy vendor files

@@ -1,31 +1,32 @@
 extends layout.pug
 
 block content
-  .home-wrapper(data-simplebar, data-simplebar-auto-hide='false')
-    .row.row--flex
+  .row.row--flex
+    .avatar-action.main-container
       .square-avatar
-      //- h1.home-title#home-title
-      //- p.home-tag Just another front-end developer. Vue.js enthusiast. <span>Web maker.</span> Geek. AFOL. Hacker. Writer. Designer. Son. Brother. Father. Husband. Partner. Runner. <span>Engineer.</span> Cook. Learner. Teacher. Driver. Electronic Music Listener. Extreme Martial Arts Fan. <span>Programmer.</span> Wannabe Indie Game Developer. Pixel Art lover. Open Source Contributor. <span>Technocrat.</span> Tinkerer. Coffee addict.
-      //- p.home-tag#home-tag Just another front-end developer. Vue.js fan. Web Crafter. G33k. AFOL. Tech Writer. Designer. Pixel artists. Engineer Programmer. Wannabe Indie Game Developer. Technocrat. Coffee addict. Tools of Choice: JavaScript, Cordova, Node.js, Wordpress, Vue.js, git, Sass, Express.js, bash, Linux, Windows (wsl), Visual Studio Code, Zeplin, Affinity Designer.
-    //- ul.bottom-bar
-    //-   li
-    //-     a(href='/notes/?category=programming')
-    //-       div
-    //-         strong A programmer's notepad
-    //-         span My tips & tricks from real-life projects
-
-    //-   li
-    //-     a(href='/notes/?category=thoughts')
-    //-       div
-    //-         strong Batteries not included
-    //-         span Random thoughts not necessarily related to tech
-    //-   li
-    //-     a(href='/notes/?category=reviews')
-    //-       div
-    //-         strong Spoilers ahead
-    //-         span Sometimes I review various stuff
-    //-   li
-    //-     a(href='/experience')
-    //-       div
-    //-         strong My experience
-    //-         span If you want to learn about amazing projects I've worked on
+      h2 Lukasz Kups
+      p Just another front-end developer. Web crafter. Writer. Making stuff around the web since 2010.
+  .row.row--flex
+    .home-content.main-container
+      h1 Hello, I'm Lukasz - a guy who really enjoy making various things related to the digital media.
+  .gap.gap-h-30
+  .home-content.main-container
+    .row.row--flex
+      .col-50
+        ul.specialties
+          li.title Tools of choice
+          li JavaScript, Vue.js, Vuex, Vue-router, ElementUI, Bootstrap, Bulma, Express.js, Node.js, Webpack, jQuery, Phonegap, Cordova, Wordpress
+      .col-50
+        ul.specialties
+          li.title Software
+          li Visual Studio Code, git, WSL, Affinity Designer, Jira, GitHub, Bitbucket, Leonardo, Zeplin, Sublime Text 3, vim
+    .gap.gap-h-30
+    .row.row--flex
+      .col-50
+        ul.specialties
+          li.title Main field of specialization
+          li Front-end development, Single Page Apps, digital design.
+      .col-50
+        ul.specialties
+          li.title Secondary field of specialization
+          li Node.js-powered APIs, hybrid mobile app development, tech writing.
