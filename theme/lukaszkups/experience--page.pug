@@ -1,12 +1,73 @@
 extends layout.pug
 
 block content
-  .experience-wrapper
-    h1.experience-title
-      span Projects I've worked on around the globe
-        a.cv-download-button(href='/static/lukasz-kups-cv-2019.pdf', data-hover='Download CV', target='_blank')
-          span Download CV
-    #point-info.point-info
-    .shadow
-    .map-wrapper
-      #experience-map.experience-map
+  .experience-wrapper.main-container
+    .row.row--flex
+      .col.col-25
+        .title About me:
+      .col.col-75
+        .title Lukasz Kups
+        p I am a Web Developer with 9 years of experience, focused on Front-end side of the development process. I love creating nice and useful things for the Internet people.
+        p In my spare time I love to readsci-fi books, do some jogging, work on side-projects, write tech articles on personal website or learn how to create my own indie game.
+    .row.row--flex
+      .col.col-25
+        .title Skills:
+      .col.col-75
+        p JavaScript ES6(experienced)
+        p Vue.js / Vuex (experienced)
+        p Git (experienced)
+        p Unit Testing (Mocha, Chai, Jest) (intermediate)
+        p Express.js (intermediate)
+        p Node.js (intermediate)
+        p Wordpress (intermediate)
+        p PhoneGap / Cordova mobile development (intermediate)
+        p Meteor.js (beginner)
+        p Angular.js 1.x (beginner)
+        p React.js (beginner)
+        p Experienced in working with provided backend services built with Ruby On Rails, Django or Node.js frameworks.
+        p Working in Agile methodologies
+    .row.row--flex
+      .col.col-25
+        .title Work history:
+      .col.col-75
+        .title Front-end developer at QContact (remote)
+        p 01/2018 - currently
+        p Front-end development of SaaS application for communication. Using Vue.js, WebRTC, SIP, Webpack, Mocha, Chai, Jest, git
+        .title Front-end developer at Influenster (remote)
+        p 06/2017 –10/2017
+        p Maintaining company product, rebuilt main application module (search) from Django template based to React.js one.
+        .title JavaScript developer at ITM Business sp. z o.o. (Poznan, Poland)
+        p 04/2015 –04/2017
+        p Maintenance and further development of internal front-end framework, creating web applications and Single Page Apps based on company’s product API.Developing mobile applications based on already created web modules. Using JavaScript, jQuery, PhoneGap, Cordova, bits of Angular.js 1.x, git.
+        .title Web developer at ITM Business sp. z o.o. sp. k. (Poznan, Poland)
+        p 10/2013 –03/2015
+        p Creating Wordpress and custom CMS based websites, development of front-end framework for ERP (SaaS) application. Using JavaScript, Wordpress, git.
+        .title Freelance web developer, Webrackets (remote)
+        p 06/2010 –11/2014
+        p Creating Wordpress-based websites, slicing psd files to templates, front-end development.
+    .row.row--flex
+      .col.col-25
+        .title Education
+      .col.col-75
+        .title Poznan University of Technology (Master degree: IT in business processes)
+        p Thesis title: Development of Content Management System using Meteor.js – a Node.js framework.
+        .title Poznan University of Technology (Engineer degree: computer science)
+        p BsC Thesis title: Implementing personal data generator for testing purposes in Ruby on Rails framework.
+    .row.row--flex
+      .col.col-25
+        .title Other resources
+      .col.col-75
+        .title Linkedin
+        p
+          a(href='https://linkedin.com/in/lukaszkups', target='_blank') https://linkedin.com/in/lukaszkups
+        .title Github
+        p
+          a(href='https://github.com/lukaszkups', target='_blank') https://github.com/lukaszkups
+        .title Twitter
+        p
+          a(href='https://twitter.comlukaszkups', target='_blank') https://twitter.com/lukaszkups
+        .title Blog
+        p
+          a(href='https://lukaszkups.net/notes', target='_blank') https://lukaszkups.net/notes
+    div.centered-text
+      a(href='/static/lukasz-kups-cv-2019.pdf', target='_blank', class='download-cv-button') Download my CV
