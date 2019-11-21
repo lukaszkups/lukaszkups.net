@@ -12,6 +12,7 @@ $white: #fff
 $black: #0f0f0f
 $black2: #1a1d20
 $grey: #eee
+$lightGrey: #f7f7f7
 
 @keyframes animating-opacity
   // 0%
@@ -339,8 +340,14 @@ body
     .row + .row
       margin-top: 1.5em
 
+  .notes-content
+    background: $lightGrey
+
+  .notes-main-container
+    width: 100%
+
   .notes-list-wrapper
-    padding: 100px 0
+    padding: 100px 0 0 0
 
     ul.notes
       list-style-type: none
@@ -371,65 +378,64 @@ body
 
         a
           padding: 25px
-          background: $black2
-          display: block
+          background: $grey
           text-decoration: none
-          color: $white
+          color: $black2
           overflow: hidden
           position: relative
-          transition: 0.5s color
           min-height: 100px
+          display: flex
+          align-self: center
+          justify-content: center
+          align-items: center
 
-          &:before
-            content: ' '
+          .txt
+            position: relative
+            z-index: 2
+
+          .bg
             display: block
             position: absolute
-            left: 0
+            left: -20%
             top: 0
             bottom: 0
             background: $primary
-            width: 7px
+            width: 0
             transition: 0.5s width
+            transform: skew(-25deg)
             z-index: 1
 
           &:hover
-            color: $black
-            transition: 0.5s color
-
-            &:before
-              width: 100%
+            .bg
+              width: 130%
               transition: 0.5s width
 
-    ul.pagination
-      background: rgba($black, 0.65)
-      bottom: 0
-      box-sizing: border-box
+  ul.pagination
+    box-sizing: border-box
+    display: block
+    list-style-type: none
+    margin: 0
+    padding: 10px 0 30px 0
+    position: relative
+    text-align: center
+    z-index: 3
+
+    li
       display: inline-block
-      left: 0
-      list-style-type: none
-      margin: 0
-      padding: 10px
-      position: fixed
-      right: 0
-      text-align: center
-      z-index: 3
+      margin: 5px
 
-      li
-        display: inline-block
-        margin: 5px
+      a
+        background: $grey
+        color: $black
+        display: block
+        height: 30px
+        line-height: 30px
+        text-decoration: none
+        width: 30px
 
-        a
+        &.current-page,
+        &:hover
           background: $primary
-          color: $black
-          display: block
-          height: 30px
-          line-height: 30px
-          text-decoration: none
-          width: 30px
-
-          &.current-page,
-          &:hover
-            background: $white
 
   // SINGLE NOTE LIST ENTRY PAGE
 
@@ -462,7 +468,8 @@ body
 
   .note-list-entry,
   .about-page-wrapper
-    min-height: calc(100vh - 100px)
+    height: 100%
+    overflow: hidden
     margin: 0
     padding: 0
     position: relative
@@ -519,9 +526,11 @@ body
 
       blockquote
         color: $black
+        background: $grey
         border-left: 4px solid $primary
         margin: 0
         padding-left: 20px
+        padding-right: 20px
         font-style: italic
 
       p > img,
@@ -566,10 +575,10 @@ body
         text-decoration-color: $primary
 
       li p:last-of-type
-        color: lighten($primary, 15%)
+        color: $black
 
         &:before
-          color: $primary
+          color: $black2
 
       pre,
       pre > code
@@ -590,11 +599,11 @@ body
         padding: 0
 
         li
-          color: $primary
+          color: $black
           padding: 0
 
           p
-            color: $primary
+            color: $black
             padding: 0 0 0 20px
 
             &:before
@@ -603,13 +612,51 @@ body
               margin-left: -20px
               margin-right: 10px
 
-// simplebar overrides
-.simplebar-scrollbar:before
-  background-color: $primary
-  border-radius: 0
+// projects
+.projects-list-wrapper
+  width: 100%
+  padding-top: 100px
 
-.simplebar-track .simplebar-scrollbar.simplebar-visible:before
-  opacity: 1
+  ul.projects
+    list-style-type: none
+    margin: 0
+    padding: 0
+    display: flex
+    flex-wrap: wrap
+
+    li
+      display: block
+      width: 100%
+      background: $grey
+      padding: 20px
+      margin: 0 0 15px 0
+
+      .title
+        text-align: center
+        font-size: 1.5em
+        font-family: $bebas
+
+      div
+        text-align: justify
+
+        a
+          color: $primary
+
+      .links
+        a
+          display: inline-block
+          padding: 5px
+          background: $primary
+          color: $black
+          text-decoration: none
+
+          &:hover
+            cursor: pointer
+            background: $black
+            color: $white
+
+        a + a
+          margin-left: 5px
 
 // for article needs
 .loading-paragraph

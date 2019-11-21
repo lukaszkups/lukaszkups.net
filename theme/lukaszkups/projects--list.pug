@@ -1,9 +1,9 @@
 extends layout.pug
 
 block content
-  .projects-list-wrapper
+  .main-container.projects-list-wrapper
     .projects-list
-      ul.projects(data-simplebar, data-simplebar-auto-hide='false')
+      ul.projects
         each item, index in list.length ? list : ['No entries yet.']
           - const parsedDate = item.meta.date.split('/').map(obj => parseInt(obj)).join('-')
           if !item.meta.hidden

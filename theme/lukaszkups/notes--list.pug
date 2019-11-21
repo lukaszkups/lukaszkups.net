@@ -1,7 +1,7 @@
 extends layout.pug
 
 block content
-  .main-container
+  .main-container.notes-main-container
     .notes-list-wrapper
       #notes-list.notes-list
         ul.notes
@@ -9,7 +9,10 @@ block content
             - const parsedDate = item.meta.date.split('/').map(obj => parseInt(obj)).join('-')
             if !item.meta.hidden
               li(data-date=parsedDate, data-category=item.meta.category, data-tags=item.meta.tags)
-                a(href=item.url) <span>#{item.meta.date}</span> - #{item.meta.title}
+                a(href=item.url)
+                  .txt
+                    <span>#{item.meta.date}</span> - #{item.meta.title}
+                  .bg
   .main-container
     if paginationLinks && paginationLinks.length
       ul#pagination.pagination
