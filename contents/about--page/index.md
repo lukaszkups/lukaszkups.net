@@ -8,7 +8,8 @@ active: 1
 
 ## Front-end engineer
 
-Hi, I'm Łukasz Kupś - a web developer from Poland with 9+ years of experience working both on client & server side of web applications. I create nice and useful things for the Internet people.
+Hi, I'm Łukasz Kupś - a web developer from Poland with 9+ years of experience working both on client & server side of web applications.
+I love creating nice and useful things for the Internet people.
 
 ## Crafting web stuff since 2009
 

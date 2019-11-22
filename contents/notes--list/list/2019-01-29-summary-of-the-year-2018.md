@@ -38,7 +38,7 @@ To be honest I was not so active on my social media accounts during the year, wh
 
 - twitter: ([@lukaszkups](https://twitter.com/lukaszkups)): +52 new followers (71 in total)
 
-- instagram ([@mrmnmly](https://instagram.com/mrmnmly)): +30 new followers (77 in total)
+- instagram ([@lukasz_kups](https://instagram.com/lukasz_kups)): +30 new followers (77 in total)
 
 Again - I'm the only one responsible for this situation - I care more about my code than social media :)
 
