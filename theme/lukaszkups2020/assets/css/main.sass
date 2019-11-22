@@ -388,6 +388,7 @@ body
           align-self: center
           justify-content: center
           align-items: center
+          transition: 0.55s color
 
           .txt
             position: relative
@@ -406,6 +407,9 @@ body
             z-index: 1
 
           &:hover
+            color: $white
+            transition: 0.55s color
+
             .bg
               width: 130%
               transition: 0.5s width
@@ -436,6 +440,7 @@ body
         &.current-page,
         &:hover
           background: $primary
+          color: $white
 
   // SINGLE NOTE LIST ENTRY PAGE
 
@@ -613,6 +618,7 @@ body
               margin-right: 10px
 
 // projects
+.main-container.projects-list-wrapper,
 .projects-list-wrapper
   width: 100%
   padding-top: 100px
@@ -647,7 +653,7 @@ body
           display: inline-block
           padding: 5px
           background: $primary
-          color: $black
+          color: $white
           text-decoration: none
 
           &:hover
@@ -657,6 +663,9 @@ body
 
         a + a
           margin-left: 5px
+
+.main-container.about-page-container
+  width: 100%
 
 // for article needs
 .loading-paragraph

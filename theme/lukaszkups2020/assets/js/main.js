@@ -9,14 +9,14 @@
   const filterNotesByCategory = (category, list) => {
     const notesWrapper = document.querySelector('#notes-list ul.notes')
     notesWrapper.innerHTML = `${list.filter(entry => entry.category.includes(category)).map(entry => `
-      <li><a href='${entry.url}'><span>${entry.date}</span> - ${entry.title}</a></li>
+      <li><a href='${entry.url}'><div class='txt'><span>${entry.date}</span> - ${entry.title}</div><div class='bg'></div></a></li>
     `).join('')}`
   }
 
   const filterNotesByTag = (tag, list) => {
     const notesWrapper = document.querySelector('#notes-list ul.notes')
     notesWrapper.innerHTML = `${list.filter(entry => entry.tags.includes(tag)).map(entry => `
-      <li><a href='${entry.url}'><span>${entry.date}</span> - ${entry.title}</a></li>
+      <li><a href='${entry.url}'><div class='txt'><span>${entry.date}</span> - ${entry.title}</div><div class='bg'></div></a></li>
     `).join('')}`
   }
 
@@ -35,14 +35,12 @@
           notesWrapper.innerHTML = ''
         }
         document.getElementById('pagination').style.display = 'none'
-        document.getElementById('calendar-wrapper').innerHTML = ''
         // handle filtering
         if (category !== null && category.length) {
           filterNotesByCategory(category.toLowerCase(), entryList)
         } else if (tag !== null && tag.length) {
           filterNotesByTag(tag.toLowerCase(), entryList)
         }
-        new SimpleBar(notesWrapper)
       }).catch(err => {
         throw new Error(err)
       })
