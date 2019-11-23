@@ -685,3 +685,63 @@ body
       content: ''
 
 // RWD
+
+@media screen and (max-width: 900px)
+  .main-container
+    box-sizing: border-box
+    padding:
+      left: 10px
+      right: 10px
+
+@media screen and (max-width: 620px)
+  .row,
+  .row--flex
+    flex-wrap: wrap
+    .col,
+    div[class*='col-']
+      width: 100%
+      max-width: 100%
+      min-width: 100%
+      padding-bottom: 15px
+  footer
+    .row
+      .col
+      div[class*='col-']
+        width: 50%
+        max-width: 50%
+        min-width: 50%
+        padding-bottom: 15px
+
+@media screen and (max-width: 490px)
+  html,
+  body
+    .content,
+    header,
+    footer
+      min-width: 460px
+    .content
+      padding-top: 30px
+    .notes-list-wrapper
+      ul.notes
+        li,
+        li:nth-of-type(3n-2),
+        li:nth-of-type(3n-1)
+          width: 100%
+          max-width: 100%
+          min-width: 100%
+    .nav-container
+      background: $white
+      .logo-wrapper,
+      nav
+        display: block
+        clear: both
+      .logo-wrapper
+        margin: 10px 50% 0 calc(50% - 25px)
+      nav
+        float: none
+        width: 100%
+    .note-list-entry__wrapper
+      box-sizing: border-box
+      min-width: 100%
+      width: 100%
+      padding: 100px 15px 0
