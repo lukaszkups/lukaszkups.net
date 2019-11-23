@@ -36,7 +36,7 @@ Even at first look this bracelet look almost the same like its predecessor from 
 # Hilfiger Men's Denim for him
 
 ![img](/static/hilfiger-denim-watch.jpg)
-*Image source: [Tommy Hilfiger/Amazon sale]*
+*Image source: [Tommy Hilfiger/Amazon sale](https://www.amazon.com)*
 
 A Quartz's watch with brown leather calfskin strap - very clean, minimalistic dial and case. It also occurs with black face and strap, but in my opinion this variant looks more unique.
 
