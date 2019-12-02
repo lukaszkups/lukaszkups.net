@@ -14,29 +14,9 @@ $black2: #1a1d20
 $grey: #eee
 $lightGrey: #f7f7f7
 
-@keyframes animating-opacity
-  // 0%
-  //   opacity: 0.1
-  // 25%
-  //   opacity: 0.12
-  // 50%
-  //   opacity: 0.1
-  // 75%
-  //   opacity: 0.08
-  // 100%
-  //   opacity: 0.1
-
-@keyframes animating-opacity-100
-  // 0%
-  //   opacity: 1
-  // 25%
-  //   opacity: 0.8
-  // 50%
-  //   opacity: 0.9
-  // 75%
-  //   opacity: 0.8
-  // 100%
-  //   opacity: 1
+$lightBg: #2b2e35
+$darkBg: #1e2126
+$darkFont: #8a94a8
 
 @keyframes avatar-fade-in
   0%
@@ -223,6 +203,7 @@ body
     width: 100%
     h1
       font-family: $bebas
+      letter-spacing: 0.5px !important
       font-weight: 400
       line-height: 1.5em
 
@@ -237,12 +218,15 @@ body
       line-height: 1.5em
 
       &.title
+        letter-spacing: 0.5px !important
         font-family: $bebas
 
   footer
     background: $grey
     color: $black2
     padding: 20px 0
+    position: relative
+    z-index: 2
 
     a
       color: $black2
@@ -290,6 +274,7 @@ body
     h2
       text-transform: uppercase
       font-family: $bebas
+      letter-spacing: 0.5px !important
       top: 110px
       font-size: 2em
     p
@@ -298,7 +283,6 @@ body
       line-height: 1.5em
 
   .square-avatar
-    animation: animating-opacity-100 10s infinite
     flex: 1
     height: 375px
     overflow: hidden
@@ -332,6 +316,7 @@ body
 
     .title
       font-family: $bebas
+      letter-spacing: 0.5px !important
       font-size: 1.25em
 
     a
@@ -461,8 +446,6 @@ body
       right: 0
       bottom: 0
       opacity: 0.05
-      // background: url('/assets/img/avatar3bw.svg') no-repeat
-      animation: animating-opacity 10s infinite
       background-size: contain
       background-position-x: left
       background-position-y: bottom
@@ -513,6 +496,7 @@ body
     h1
       color: $black
       font-family: $bebas
+      letter-spacing: 0.5px !important
 
     article
       text-align: justify
@@ -527,6 +511,7 @@ body
 
       h1, h2, h3, h4
         color: $black
+        letter-spacing: 1px !important
         font-family: $bebas
 
       blockquote
@@ -641,6 +626,7 @@ body
         text-align: center
         font-size: 1.5em
         font-family: $bebas
+        letter-spacing: 0.5px !important
 
       div
         text-align: justify
@@ -749,3 +735,52 @@ body
       min-width: 100%
       width: 100%
       padding: 100px 15px 0
+
+// dark color mode
+.dark
+  header,
+  footer,
+  .nav-container,
+  nav ul li a,
+  footer ul li a
+    background: $lightBg !important
+    color: $darkFont
+  a:hover,
+  footer ul li a:hover
+    cursor: pointer
+    color: $primary !important
+  .content
+    background: $darkBg !important
+    color: $darkFont
+  .avatar-action
+    background: $black
+    h2, p
+      color: $darkFont
+  article
+    color: $darkFont !important
+    p, h1, h2, h3, h4, h5
+      color: $darkFont !important
+  ul.notes li a,
+  blockquote,
+  ul.projects li
+    background: $lightBg !important
+    .txt
+      color: $darkFont
+      transition: 0.5s color
+  ul.notes li a:hover .txt
+    color: $white
+    transition: 0.5s color
+  .note-list-entry
+    h1, h2, h3, h4, h5,
+    .published
+      color: $darkFont !important
+  .logo
+    background: $white
+    &:before,
+    &:after
+      background: $primary
+  ul.pagination li a
+    background: $lightBg
+    color: $darkFont
+    &:hover
+      color: $white !important

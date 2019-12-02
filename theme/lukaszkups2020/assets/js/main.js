@@ -46,4 +46,23 @@
       })
     }
   }
+  // toggle color mode
+  document.getElementById('logo').addEventListener('click', (e) => {
+    e.preventDefault()
+    let mode = localStorage.getItem('dark-mode')
+    if (mode === 'true') {
+      localStorage.removeItem('dark-mode')
+      document.body.classList.remove('dark')
+    } else {
+      localStorage.setItem('dark-mode', 'true')
+      document.body.classList.add('dark')
+    }
+  })
+  if (document.body.classList.contains('dark')) {
+    localStorage.setItem('dark-mode', 'true')
+  }
+  // get color mode
+  if (localStorage && localStorage.getItem('dark-mode')) {
+    document.body.classList.add('dark')
+  }
 })();
