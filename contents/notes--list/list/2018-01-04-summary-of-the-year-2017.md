@@ -14,7 +14,7 @@ I think the first quarter of the year was the most chaotic - I've decided to loo
 
 ## Work-life imbalance
 
-Because of the cooperation with new workplace I've lacked totally from work-life balance. Despite the fact I've worked remotely it turned out that I was almost whole day at work and absent for my family. During this time I've learned a lot but it cost also a lot of nerves. After couple months of overwork and both physical and mental fatigue we've decided to choose work separately and split up.
+Because of the cooperation with new workplace I've lacked totally from work-life balance. Despite the fact I've worked remotely it turned out that I was almost whole day at work and absent for my family. During this time I've learned a lot but it cost me also a lot of nerves. After couple months of overwork and both physical and mental fatigue we've decided to choose work separately and split up.
 
 ## Freelance & future
 
