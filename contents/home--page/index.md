@@ -7,4 +7,4 @@ active: 0
 
 ## Right now
 
-Currently I'm working on desktop version of [writteli](https://github.com/writteli/writteli) (static site generator used to build i.a. this website) and learning how to create games using [Godot engine](https://godotengine.org/).
+Currently I'm working on desktop version of [writteli](https://github.com/writteli/writteli) (static site generator used to build i.a. this website). Decided to go electron.js-less route and mastering react.js currently to build the app using [Proton-native](https://proton-native.js.org/#/).

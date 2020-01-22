@@ -10,7 +10,8 @@ $bebas: 'Bebas Neue', Verdana
 $primary: #bd8f3a
 $white: #fff
 $black: #0f0f0f
-$black2: #1a1d20
+$black2: #030303
+$black3: #1a1d20
 $grey: #eee
 $lightGrey: #f7f7f7
 
@@ -277,12 +278,16 @@ body
     width: 100%
 
     &.avatar-action-coffee
-      background: #030303
+      background: $black2
 
     h2, p
+      background: $black2
       color: $white
       position: absolute
       left: 50%
+      padding:
+        left: 5px
+        right: 5px
     h2
       text-transform: uppercase
       font-family: $bebas
