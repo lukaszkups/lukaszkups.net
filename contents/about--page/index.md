@@ -11,14 +11,18 @@ active: 1
 Hi, I'm Łukasz Kupś - a web developer from Poland with 9+ years of experience working on client & server side of web applications.
 I love creating nice and useful things for the Internet people.
 
-## Crafting web stuff since 2009
+At the moment I feel most comfortable in working on Vue.js-powered Single Page Applications. Don't get it wrong though, I totally believe in *can-do* mindset and learning other frameworks shouldn't be a huge problem - in the end it's just a tool (that said I also know basics of React.js).
 
-This is my personal web space, where I save / share my thoughts, ideas & experience. I build stuff using Vue.js, Node.js / Express.js and Cordova.
+During my career I also had pleasure working on mobile apps built on top of JavaScript, Phonegap & Cordova. Wordpress theme development from scratch is not a problem for me either.
 
-If You want to know more about my experience - please take a look at my [linkedin](https://www.linkedin.com/in/lukaszkups/) profile, [github](https://github.com/lukaszkups) repository list or [experience](/experience/) page.
+I also like to co-op with Ruby on Rails and Django devs, who provides me APIs for creating beautiful and useful frontend interfaces. I have also built couple simple endpoints using Node.js/Express.js by myself as well.
 
-In my spare time I [blog](/notes/) & [tweet](https://twitter/lukaszkups) about tech-related stuff, take [photos](https://instagram.com/mrmnmly) or commit code to my open-source [repositories](https://github.com/lukaszkups).
+## Crafting web stuff since 2010
 
-I also like to co-op with Ruby on Rails and Django devs, who provides me APIs for creating beautiful and useful frontend interfaces. Creating custom Wordpress templates from scratch is no magic for me either.
+This is my personal web space, where I save / share my thoughts, ideas & experience.
+
+In my spare time I [blog](/notes/) & [tweet](https://twitter/lukaszkups) about tech-related stuff, take [photos](https://instagram.com/lukasz_kups) or commit code to my open-source [repositories](https://github.com/lukaszkups).
+
+If You want to know more about me - please take a look at my [linkedin](https://www.linkedin.com/in/lukaszkups/) profile, [github](https://github.com/lukaszkups) repository list or [experience](/experience/) page.
 
 If You are interested in working together, feel free to contact me via [twitter](https://twitter.com/lukaszkups) or [e-mail](mailto:letstalk@lukaszkups.net).

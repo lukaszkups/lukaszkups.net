@@ -47,21 +47,21 @@
     }
   }
   // toggle color mode
-  document.getElementById('logo').addEventListener('click', (e) => {
-    e.preventDefault()
-    let mode = localStorage.getItem('dark-mode')
-    if (mode === 'true') {
-      localStorage.removeItem('dark-mode')
-      document.body.classList.remove('dark')
-    } else {
-      localStorage.setItem('dark-mode', 'true')
-      document.body.classList.add('dark')
-    }
-  })
-  // get color mode
-  if (localStorage && localStorage.getItem('dark-mode')) {
-    document.body.classList.add('dark')
-  } else {
-    document.body.classList.remove('dark')
-  }
+  // document.getElementById('logo').addEventListener('click', (e) => {
+  //   e.preventDefault()
+  //   let mode = localStorage.getItem('dark-mode')
+  //   if (mode === 'true') {
+  //     localStorage.removeItem('dark-mode')
+  //     document.body.classList.remove('dark')
+  //   } else {
+  //     localStorage.setItem('dark-mode', 'true')
+  //     document.body.classList.add('dark')
+  //   }
+  // })
+  // // get color mode
+  // if (localStorage && localStorage.getItem('dark-mode')) {
+  //   document.body.classList.add('dark')
+  // } else {
+  //   document.body.classList.remove('dark')
+  // }
 })();

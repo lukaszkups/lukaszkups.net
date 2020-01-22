@@ -276,6 +276,9 @@ body
     height: 375px
     width: 100%
 
+    &.avatar-action-coffee
+      background: #030303
+
     h2, p
       color: $white
       position: absolute
@@ -291,7 +294,8 @@ body
       width: 40%
       line-height: 1.5em
 
-  .square-avatar
+  .square-avatar,
+  .coffee-avatar
     flex: 1
     height: 375px
     overflow: hidden
@@ -314,6 +318,10 @@ body
       position: absolute
       top: 10px
       width: 100%
+
+  .coffee-avatar:after
+    background: url('/assets/img/avatar-coffee.jpg') no-repeat
+    background-size: cover
 
   //  EXPERIENCE PAGE
   .experience-wrapper
@@ -773,11 +781,14 @@ body
   .avatar-action
     background: $black
     h2, p
-      color: $darkFont
+      // color: $darkFont
+      color: $white
   article
-    color: $darkFont !important
-    p, h1, h2, h3, h4, h5
+    color: $darkFont
+    p
       color: $darkFont !important
+    h1, h2, h3, h4, h5
+      color: $white !important
   ul.notes li a,
   blockquote,
   ul.projects li
@@ -789,7 +800,8 @@ body
     color: $white
     transition: 0.5s color
   .note-list-entry
-    h1, h2, h3, h4, h5,
+    h1, h2, h3, h4, h5
+      color: $white !important
     .published
       color: $darkFont !important
   .logo
