@@ -16,8 +16,10 @@ $grey: #eee
 $lightGrey: #f7f7f7
 
 $lightBg: #2b2e35
-$darkBg: #1e2126
-$darkFont: #8a94a8
+$darkBg: #121212
+// $darkBg: #1e2126
+$darkFont: #efefef
+// $darkFont: #8a94a8
 
 @keyframes avatar-fade-in
   0%
@@ -207,7 +209,7 @@ body
     width: 100%
     h1, h2
       font-family: $bebas
-      letter-spacing: 0.5px !important
+      letter-spacing: 1px !important
       font-weight: 400
       line-height: 1.5em
     .home-dynamic-content
@@ -228,7 +230,7 @@ body
       line-height: 1.5em
 
       &.title
-        letter-spacing: 0.5px !important
+        letter-spacing: 1px !important
         font-family: $bebas
 
   footer
@@ -291,7 +293,7 @@ body
     h2
       text-transform: uppercase
       font-family: $bebas
-      letter-spacing: 0.5px !important
+      letter-spacing: 1px !important
       top: 110px
       font-size: 2em
     p
@@ -338,7 +340,7 @@ body
 
     .title
       font-family: $bebas
-      letter-spacing: 0.5px !important
+      letter-spacing: 1px !important
       font-size: 1.25em
 
     a
@@ -518,7 +520,7 @@ body
     h1
       color: $black
       font-family: $bebas
-      letter-spacing: 0.5px !important
+      letter-spacing: 1px !important
 
     article
       text-align: justify
@@ -532,7 +534,7 @@ body
         width: 100%
 
       h1, h2, h3, h4
-        color: $black
+        color: $primary
         letter-spacing: 1px !important
         font-family: $bebas
 
@@ -649,7 +651,7 @@ body
         text-align: center
         font-size: 1.5em
         font-family: $bebas
-        letter-spacing: 0.5px !important
+        letter-spacing: 1px !important
 
       div
         text-align: justify
@@ -774,7 +776,8 @@ body
   .nav-container,
   nav ul li a,
   footer ul li a
-    background: $lightBg !important
+    // background: $lightBg !important
+    background: $black2 !important
     color: $darkFont
   a:hover,
   footer ul li a:hover
@@ -793,7 +796,7 @@ body
     p
       color: $darkFont !important
     h1, h2, h3, h4, h5
-      color: $white !important
+      color: $primary !important
   ul.notes li a,
   blockquote,
   ul.projects li
@@ -806,7 +809,7 @@ body
     transition: 0.5s color
   .note-list-entry
     h1, h2, h3, h4, h5
-      color: $white !important
+      color: $primary !important
     .published
       color: $darkFont !important
   .logo
