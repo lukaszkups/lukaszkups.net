@@ -432,8 +432,10 @@ module.exports = {
               module.exports.createOutputFolders(_store).then(() => {
                 module.exports.createOutputListIndexFiles(_store).then(() => {
                   module.exports.createOutputListEntryFiles(_store).then(() => {
-                    module.exports.moveRootFolder().then(() => {
-                      console.log('List entries recompiled.')
+                    module.exports.createListJsonFiles(_store).then(() => {
+                      module.exports.moveRootFolder().then(() => {
+                        console.log('List entries recompiled.')
+                      })
                     })
                   })
                 })
