@@ -596,11 +596,11 @@ body
 
       pre,
       pre > code
-        background: $black
+        background: $black !important
         color: $primary
 
       pre
-        padding: 15px 20px
+        padding: 15px 20px !important
         white-space: pre-wrap
         overflow: hidden
 
@@ -614,18 +614,20 @@ body
 
         li
           color: $black
-          padding: 0
+          padding: 0 0 0 20px
+          box-sizing: border-box
+
+          &:before
+            content: '-'
+            display: inline-block
+            color: inherit !important
+            position: absolute
+            margin-left: -20px
+            margin-top: 3px
 
           p
             color: $black
-            padding: 0 0 0 20px
-
-            &:before
-              content: '-'
-              display: inline-block
-              color: inherit !important
-              margin-left: -20px
-              margin-right: 10px
+            padding: 0
 
 // projects
 .main-container.projects-list-wrapper,
@@ -793,10 +795,23 @@ body
       color: $white
   article
     color: $darkFont
-    p
+    p,
+    ul,
+    ul li
       color: $darkFont !important
     h1, h2, h3, h4, h5
       color: $primary !important
+    pre,
+    pre > code,
+    code
+      background: $black
+      color: $primary !important
+
+    li > code
+      padding: 5px
+
+    pre > code
+      width: 100%
   ul.notes li a,
   blockquote,
   ul.projects li
