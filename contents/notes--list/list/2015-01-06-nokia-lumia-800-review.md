@@ -36,7 +36,7 @@ Besides physical buttons, Lumia 800 has 3 touch icons at the front panel: back, 
 
 (Most)Ports placement is also a plus for Nokia's design team. They're practically invisble during everyday usage - placed on top side of the phone. To access MicroUSB charger port or SIM tray we need to open small covers. On the other hand I can't appreciate placement of 3.5mm audio port on the top side - I prefer bottom one because I have a habit to keep phone upside-down in my pocket - I think it's more natural way of storing phone by most users.
 
-![img](1514936579758-lumia_004.jpg)
+![img](/static/1514936579758-lumia_004.jpg)
 
 Some people also can grumble about the fact that Nokia's device doesn't support external cards - in my opinion 16GB of mass memory is just fine.
 
