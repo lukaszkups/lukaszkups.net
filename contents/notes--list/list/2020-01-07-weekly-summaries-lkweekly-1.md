@@ -30,7 +30,7 @@ I've also seen (by accident) [The Cold Light of Day](https://www.imdb.com/title/
 
 I've started playing [Hyper Light Drifter](https://www.kickstarter.com/projects/1661802484/hyper-light-drifter) on PS4. I literally love this game (especially the relation between the game author and the main protagonist health state story), finished it already couple times on PC, but this is the first time I approach it on the console (and this time I want to finish it on 100% with all secrets etc.). Also playing [Starlit Adventures](https://starlitadventures.com/) with my son - that was the biggest unexpected *wow game* I've found in PS Store for free (and highly recommend it!).
 
-Favourite songs: [Kavinsky - Nighcall](https://open.spotify.com/track/0U0ldCRmgCqhVvD6ksG63j) and [VHS Dreams - Downtown](https://open.spotify.com/track/0HJOnb3DDcVRcCPErosPS7) (great for night car cruising 🎧 )
+Favorite songs: [Kavinsky - Nighcall](https://open.spotify.com/track/0U0ldCRmgCqhVvD6ksG63j) and [VHS Dreams - Downtown](https://open.spotify.com/track/0HJOnb3DDcVRcCPErosPS7) (great for night car cruising 🎧 )
 
 ## Summary
 
