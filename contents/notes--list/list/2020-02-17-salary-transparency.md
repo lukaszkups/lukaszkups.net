@@ -14,7 +14,7 @@ In my opinion - not really (or not THAT much as we would like to).
 
 Besides hidden intent of flexing your ego and *probably* some hopes that it's gonna help somebody I don't think it's gonna make any change.
 
-Kind of such transparency exists already - there is already dozens of anonymous online reports available that shows you how much people earn across the world. If you think that these reports doesn't reflect  you can adjust these numbers with some error margin that might occur while gathering data. Or just analyse couple different reports and take average number of it. In the end it doesn't matter about the VERY EXACT number right? (just to have a general overview 😉)
+Kind of such transparency exists already - there is already dozens of anonymous online reports available that shows you how much people earn across the world. If you think that these reports didn't reflect reality you can always adjust these numbers with some error margin that might occur while gathering data. Or just analyse couple different reports and take average number of it. In the end it doesn't matter about the VERY EXACT number right? (just to have a general overview 😉)
 
 I understand that most people who shared their salaries believes that it might make a change, but after thinking about it I can't really imagine how exactly.
 
@@ -52,7 +52,7 @@ I bet first one occurred way more times than second.
 
 There's a very strange culture that doesn't tend to promote even tiniest achievements but (almost) always gives critical feedback about mistakes.
 
-During my career I've been a part of various teams and learned about their inside-manners. I do recall these which tends to give positive feedback for even smallest accomplishment as a best places to work at - even for less amount of money you can receive somewhere else.
+During my career I've been a part of various teams and learned about their inside-manners. I do recall these which tends to give positive feedback for even smallest accomplishment as a best places to work at - even for less amount of money that you could earn somewhere else.
 
 Don't get me wrong though - if you screw up there should be also some repercussions / feedback as well. But it's totally worth to keep it in balance.
 
@@ -60,7 +60,7 @@ Don't get me wrong though - if you screw up there should be also some repercussi
 
 If you feel that you're being underpaid - check some online sources what's the median salary for your role in the area and try to get a raise. If it's impossible to get one, ask yourself what does really makes you want to work for your current employer - if that money difference that you're missing in your salary really makes a changes for your life - maybe it's time to think about looking for a new workplace?
 
-And speaking about workplace salary transparency, in my opinion knowing how much your current coworkers earn is not really healthy for your relations. Let's make it clear: most people are simply jelaous. You might think that's everything ok about having such knowledge, but only if you're making less than your colleagues. If you ever dare to earn more - be prepared for bits of jealousy from their side (not always, but still.. you probably know what I mean here).
+And speaking about workplace salary transparency, in my opinion knowing how much your current coworkers earn is not really healthy for your relations. Let's make it clear: most people are simply jealous. You might think that's everything ok about having such knowledge, but only if you're making less than your colleagues. If you ever dare to earn more - be prepared for bits of jealousy from their side (not always, but still.. you probably know what I mean here).
 
 I'm aware that there are also differences in salaries based on sex, gender, race, religion and other not-so-really-affecting-developer-work nonsense parameters. It's difficult for me to say anything about that (as I'm white, straight man etc.) but I've worked multiple times in places that had salary inconsistencies arising only from negotiating skills.
 
