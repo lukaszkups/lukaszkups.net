@@ -11,6 +11,6 @@ draft: true
 
 # Some history
 
-Released in XXXXXXX by Microsoft, first called MetroUI, then renamed to Modern UI, a clever solution for interfaces that works great for touch devices. When it was adopted to desktop version of Windows, it really divided community - while delivering great user experience for mobile devices, it wasn't best solution for mouse / touchpad controlled systems.
+Released in INSERT_DATE_HERE by Microsoft, first called MetroUI, then renamed to Modern UI, a clever solution for interfaces that works great for touch devices. When it was adopted to desktop version of Windows, it really divided community - while delivering great user experience for mobile devices, it wasn't best solution for mouse / touchpad controlled systems.
 
 But still, while using a bit more space than traditional icons, it was providing useful information without need launching actual application.
