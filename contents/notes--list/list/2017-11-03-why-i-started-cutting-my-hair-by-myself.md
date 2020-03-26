@@ -10,14 +10,14 @@ active: 2
 
 Since little kid I felt jealous for other kids, who had straight hairs — they could do some fancy hairstyles (which was a pretty serious at that time, when every teenager wanted to emphasize their style :) )
 
-![img](/static/)
+![img](/static/john-snow.jpg)
 *Unfortunately, my curls definitely doesn't look like Jon Snow's.*
 
 Till ending the high school I've always cut my hairs to very short (crew cut), then I had a short affair with dreadlocks (2 years) and then I've tried to grow a bit longer hairs.
 
 During that time I've visited tons of barbers, but every single one of them has making me looks like a LEGO minifigure — I hated that.
 
-![img](/static/)
+![img](/static/lego-minifig.jpg)
 *My (not!)awesome haircut during most of my life.*
 
 After spending lots of money for a service that hasn't satisfied me I've finally decided to buy a hairdressing scissors, electric razor and a comb so I can try cut myself the way I really wanted.
