@@ -28,7 +28,7 @@ After couple ups and downs I've mastered my way of cutting my hairs — still, I
 
 We should take this as an example of using 3rd party services in any part of our lives:
 
-    If service doesn't satisfies us with its outcome, and it's not hard for us to reproduce or improve it, then we should definitely try to do it by ourselves.
+> If service doesn't satisfies us with its outcome, and it's not hard for us to reproduce or improve it, then we should definitely try to do it by ourselves.
 
 We can relate this to e.g. programming — if we're not satisfied with existing solutions/plugins/libraries/frameworks then we should try to create our own.
 
