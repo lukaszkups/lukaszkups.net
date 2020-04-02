@@ -1,6 +1,6 @@
 ---
 title: Don't be a linkedin asshole
-date: 2020/04/02
+date: 2020/04/03
 category: thoughts
 tags: thoughts, covid-19, coronavirus, work, career, helping hand
 active: 2
