@@ -20,13 +20,15 @@ You can imagine how does it feel like - especially if you're not a single anymor
 
 It's very simple yet might make a significant change - it's just a clicking *like* button under any post from people looking for new job. Couple days ago I've realized that this is something I can do on daily basis, without any significant commitment, but still it might help someone.
 
-## Most <strike>developers with overgrown ego</strike> people use linkedin wrong
+## Many <strike>developers with overgrown ego</strike> people use linkedin wrong
 
---Let's make it clear: if you're using somewhat actively linkedin platform and you read all these messages you receive from recruiters about new potentially lucrative job offers then it's just a kind move to answer them - even if you're not interested.--
+<!-- --Let's make it clear: if you're using somewhat actively linkedin platform and you read all these messages you receive from recruiters about new potentially lucrative job offers then it's just a kind move to answer them - even if you're not interested.-- -->
 
-#TODO
+Most of my fellow programmer friends doesn't really like this platform. They complain about receiving lots of jobs offers even they're not currently thinking about any change. All of them declined though when I've asked them if they put any information in their headline that they're not currently interested in new job offers. Also, majority of them don't reply
 
-Many of my fellow programmer friends complains about this platform. People from other  They're most often annoyed because of amount of received job offers.
+On
+
+<!-- annoyed because of amount of received job offers. -->
 
 Personally, I have like 2 or 3 response templates that I sent to recruiters. I will share one of them with you:
 
