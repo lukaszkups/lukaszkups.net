@@ -4,6 +4,7 @@ date: 2020/04/06
 category: thoughts
 tags: thoughts, covid-19, coronavirus, work, career, helping hand
 active: 2
+draft: true
 ---
 
 > Yesterday, my good friend sent me a message with a question: *Dude, what are you doing? Why are you liking so many posts on linkedin lately?*
