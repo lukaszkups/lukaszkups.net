@@ -22,7 +22,7 @@ Luckily, just couple days ago I've started working in more efficient environment
 
 Nothing fancy here - at the moment I focus on my own health & spending more time with kiddos - fortunately Christmas break is coming soon! 🎄🎅😁
 
-Also, thanks to new workflow I have a little bit more time for my own experiments and side projects - already managed to redesign my website, started learning [Godot engine](https://godotengine.org/) and took a look on [Quasar](https://quasar.dev/) framework (which I probably will use to create desktop app for my static site generator, [Writteli](https://github.com/lukaszkups/writteli)).
+Also, thanks to new workflow I have a little bit more time for my own experiments and side projects - already managed to redesign my website, started learning [Godot engine](https://godotengine.org/) and took a look on [Quasar](https://quasar.dev/) framework (which I probably will use to create desktop app for my static site generator, [Writteli](https://github.com/writteli)).
 
 I've planned to share more insights during the process (both in learning Godot and developing Writteli for desktop) so maybe this website will be more alive 🧟 :)
 
