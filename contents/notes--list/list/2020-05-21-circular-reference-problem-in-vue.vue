@@ -12,11 +12,11 @@ For the last couple days I've been working on a component that is meant to reuse
 [Vue warn]: Unknown custom element: XYZ - did you register the component correctly? For recursive components, make sure to provide the "name" option.
 ```
 
-I was confused. Why does it throw me such error if everything seems to work just fine, I've already registered the component's name, everything was looking just fine.
+I was confused. Why does it throw me such error if everything seems to be just fine, I've already registered the component's name, everything was on its place.
 
 When I double-checked all the stuff I thought might relate to this error message, I've started blind guessing - change this or change that and see what happens. But nothing was preventing error from being thrown.
 
-Until I've commented out the component's calling itself it its template.
+Until I've commented out the component's calling itself it its template part.
 
 I was then: OK, so this is really something related to component's recursion - but what's going on exacltly? I'm providing `name` option and all the other stuff.
 
@@ -28,15 +28,15 @@ And to solve that, you can wait until `beforeCreate` lifecycle with registering 
 
 ```
 beforeCreate () {
-  this.$options.components.XyzComponent = require('./XyzComponent.vue').default
+  this.$options.components.XyzComponent = require('@/components/Xyz/XyzComponent.vue').default
 }
 ```
 
-but personally, I prefer another option, that's using Webpack's asynchronous import:
+but personally, I prefer another option, that is using Webpack's asynchronous import:
 
 ```
 components: {
-  XyzComponent: () => import('./XyzComponent.vue')
+  XyzComponent: () => import('@/components/Xyz/XyzComponent.vue')
 }
 ```
 
