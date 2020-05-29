@@ -34,7 +34,10 @@
         if (notesWrapper) {
           notesWrapper.innerHTML = ''
         }
-        document.getElementById('pagination').style.display = 'none'
+        const pagination = document.getElementById('pagination')
+        if (pagination) {
+          pagination.style.display = 'none'
+        }
         // handle filtering
         if (category !== null && category.length) {
           filterNotesByCategory(category.toLowerCase(), entryList)
