@@ -7,6 +7,5 @@ active: 2
 draft: true
 ---
 
-I am a huge fan of mechanical keyboards - that's a fact.
-
+For the last couple years I was a huge fan of mechanical keyboards. I love the *click-clack* sound of each keypress - it's so anti-stress while solving difficult programming problem or when releasing new version of one of your [side]() [projects]()
 
