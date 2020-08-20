@@ -612,6 +612,11 @@ body
         margin: 0
         padding: 0
 
+        & + h1,
+        & + h2,
+        & + h3
+          padding-top: 25px
+
         li
           color: $black
           padding: 0 0 0 20px
@@ -679,6 +684,11 @@ body
 
 .main-container.about-page-container
   width: 100%
+
+.centerize
+  text-align: center
+  & > div
+    margin: 0.5em auto 1.5em auto !important
 
 // for article needs
 .loading-paragraph

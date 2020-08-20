@@ -2,7 +2,7 @@
 title: Surface Duo is the only foldable device that makes sense
 date: 2020/08/14
 category: reviews
-tags: reviews, review, surface, surfaceduo, surface duo, microsoft, msft, hardware, software, smartphone, dual display, android, phone, windows, foldable
+tags: reviews, review, surface, surfaceduo, surface duo, microsoft, msft, hardware, software, smartphone, dual display, android, phone, windows, foldable, mobile
 active: 2
 ---
 
@@ -28,7 +28,7 @@ Since I'm talking about software - this leads to..
 
 ## A brand new (beautiful) Android?
 
-Just look at [this specific moment (8:43)](https://www.youtube.com/watch?v=R1CNwBzYqRs&feature=youtu.be&t=522) - all these icons smoothly moving on screen swipe, or rearranging to other side when you open app list on one of them - just WOW! 😮 
+Just look at [this specific moment (8:43)](https://www.youtube.com/watch?v=R1CNwBzYqRs&feature=youtu.be&t=522) - all these icons smoothly moving on screen swipe, or rearranging to other side when you open app list on one of them - just WOW! 😮
 
 Until this presentation, I was thinking that these animations (which has been shown on the previous commercials as well) were just a cheap move from Microsoft because they were animated in post-production. I was stunned when I realized that all these little details are actually real!
 
@@ -36,9 +36,9 @@ I'm very interested how it's gonna work on daily basis, and how deep Microsoft w
 
 ## My concerns about Surface Duo
 
-I don't care about lack of newest / best processor and I don't care about not having NFC in my mobile device either. 
+I don't care about lack of newest / best processor and I don't care about not having NFC in my mobile device either.
 
-What bothers me though, is the battery life. 
+What bothers me though, is the battery life.
 
 An amount of [3577mAh capacity](https://www.microsoft.com/en-us/surface/devices/surface-duo?activetab=techSpecs ) doesn't look good. Actually, it's pretty average even for a single screen device! Microsoft declares a whole day of staying online, but I'm not really sure about this at the moment. This device is meant to be a secondary workhorse (as a PC/laptop replacement) and I'm pretty sure the actual Screen time will me much shorter.. Or maybe Microsoft will deliver some great optimization on software level.. We'll see, but I don't expect fireworks here 🙂.
 
@@ -48,7 +48,7 @@ I'm very interested in how it's gonna feel like when you'll work in laptop mode 
 
 I'm really excited about this device. I'm also amazed, how Microsoft still [continues being a really innovative company](https://lukaszkups.net/notes/microsoft-is-an-innovative-company-again/). Compared to all these empty slogans that other tech companies serve us every year, this presentation was really cool. There was no bull$hit about trivial stuff that suppose to be *magic* thanks to their product out of nowhere. Presenters just showed us the practical and real-life scenarios when we might want to use their product. Fortunately they didn't go the path where  they first created a stupid problem, and then showed how amazing their product is in solving it. I really like that approach.
 
-At some point during the presentation Panos Panay (Microsoft's Chief Product Officer who was leading this presentation) use words *sexy* - and gosh, this device is really like that! 
+At some point during the presentation Panos Panay (Microsoft's Chief Product Officer who was leading this presentation) use words *sexy* - and gosh, this device is really like that!
 
 If the future of foldabes will go in this direction, I think I've finally got convinced to that concept.
 
