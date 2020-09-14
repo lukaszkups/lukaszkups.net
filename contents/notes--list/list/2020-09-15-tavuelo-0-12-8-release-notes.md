@@ -12,8 +12,8 @@ active: 2
 
 This update contains:
 
-- bumped dependency packages & solved known vulenrabilities
-- fixes `noDataSlot` with appropriate `colspan` so the row with the information about missing data will have the same width as the whole table (across all table columns)
+- dependency bump of the packages & solved known vulenrabilities
+- fix for `noDataSlot` with appropriate `colspan` attribute value - row with the information about missing data will have the same width as the whole table (across all table columns)
 
 [Link to npm](https://www.npmjs.com/package/tavuelo)
 
