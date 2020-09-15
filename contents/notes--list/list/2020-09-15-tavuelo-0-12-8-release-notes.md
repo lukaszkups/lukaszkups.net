@@ -1,6 +1,6 @@
 ---
 title: Tavuelo 0.12.8 release notes
-date: 2020/08/24
+date: 2020/09/15
 category: tavuelo, devlog
 tags: tavuelo, vue, vue.js, devlog, open source, table, data table, component, javascript, js, programming, release notes, changelog
 active: 2
