@@ -21,11 +21,11 @@ During my university times, I've loved to play a flash game, Taberinos by Tonypa
 
 That's how [BOINK!](https://lukaszkups.itch.io/boink) was born.
 
-I've decided to not create a direct 1:1 clone, but something that I'll enjoy more, so I've got rid of idea of lines and set only circles (here: white balls) as a thing to hit (here: *boink to* 😉). Some time after release I've come up with the idea of additional obstacles in the form of spinning evil squares 😈.
+I've decided to not create a direct 1:1 clone, but something that I'll enjoy more, so I've got rid of idea of lines and set only circles (here: white balls) as a thing to hit (here: *boink to* 😉). Some time after initial release I've came up with the idea of additional obstacles in the form of spinning evil squares 😈.
 
 ## Bad ideas
 
-On the initial release, after you boink the white ball it was blinking for couple seconds until vanishing and getting removed from the level. During that time, you were still able to collide with it. This mechanic has been set on purpose - e.g. because from time to time you had a chance to have a med-pack get spawned (which is disappearing after 2 seconds, but if you make it to collect, you're gonna receive 3 additional moves) and I thought that's gonna be a cool additional obstacle if it get spawned away from you and these blinking balls will make you unable to reach it.
+On the initial release, after you boink the white ball it was blinking for couple seconds until vanish and getting removed from the level. During that time, you were still able to collide with it. This mechanic has been set on purpose - e.g. because from time to time you had a chance to get a med-pack spawned (which is disappearing after 2 seconds, but if you were fast enough to collect it, you could receive 3 additional moves) and I thought that's gonna be a cool additional obstacle if it get spawned away from you and these blinking balls will make you unable to reach it.
 
 It turned out that it wasn't that great idea.
 
@@ -35,11 +35,13 @@ Other kinda failure from my side was game balance. I've played my game couple ti
 
 Turned out, that one of my friends has reached the critical point after which he has started receiving more points after each move than he was losing. I had to think over the game rules and how player can receive bonus clicks. That was also the inspiration to add a square entity to the game that will spawn from time to time and make you loss 5 clicks on accidental boink 😉.
 
+Game is still in active development, and I have planned to add at least 2 new features to it.
+
 ## Ending words
 
-I've really enjoyed working with Construct 3. It was also a refreshing experience after working full-time with Vue.js and [Lem](https://lem.pub) in my spare time.
+I've really enjoyed working with Construct 3. It was also a refreshing experience after working full-time (and in spare time) with Vue.js/Node.js/Node-webkit/JavaScript.
 
-I'm pretty sure that I'm gonna keep making some small games as a reset from *serious* development and in the end will buy a full <strike>version</strike> license for Construct 😎
+I'm pretty sure that I'm gonna keep making some small games as a reset from *serious* development and in the end will buy a full <strike>version</strike> license for Construct 😎 (as it is a subscription-based software).
 
 If you ever wanted to create a game, [Construct 3](https://construct.net) is really a good choice to begin with. It has really clean interface and whole workflow is very intuitive.
 
