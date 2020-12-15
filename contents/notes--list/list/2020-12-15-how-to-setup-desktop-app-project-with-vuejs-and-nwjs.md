@@ -91,3 +91,75 @@ npm run nwserve
 
 Most probably NW.js will launch sooner, so you're gonna see an empty window (or window with error inside), but once Vue.js compiles everything, you should see the following screen:
 
+![img](/static/nwjs-vuejs.jpg)
+*Hooray!*
+
+## Using node.js-specific packages in your Vue.js app
+
+Let's say that you want to access your filesystem directly in your Vue.js app - but how? Run another app with the Express.js?
+
+I've got you covered.
+
+There's an downside of my solution though - the [FS-extra](https://www.npmjs.com/package/fs-extra) package will be globally available inside your app.
+
+First, install the `fs-extra` package:
+
+```
+npm i --save fs-extra
+```
+
+Then, open `static/index.html` file and add this into the `<head></head>` section:
+
+```
+<script>
+var global = {}
+if (require) {
+  global.fs = require('fs-extra');
+}
+</script>
+```
+
+And that's it! You can now access `fs-extra` package methods via `global.js` variable in your Vue.js app!
+
+For testing, replace the contents of `src/components/HelloWorld.vue` file with following code:
+
+```
+<template>
+  <div class="hello">
+    <input type="text" v-model="fileUrl"><button @click="checkUrl">VALIDATE</button>
+    <p>Is valid? {{ isValid }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'HelloWorld',
+  data () {
+    return {
+      fileUrl: '',
+      isValid: true
+    }
+  },
+  methods: {
+    checkUrl () {
+      if (this.fileUrl && this.fileUrl.length) {
+        this.isValid = window.global.fs.existsSync(this.fileUrl)
+      } else {
+        this.isValid = false;
+      }
+    }
+  }
+}
+</script>
+```
+
+Your app should look like this now:
+
+![img](/static/url-validator1.jpg)
+
+Try to put any location url of your local disc inside the input, and check if it exists or not by clicking on `VALIDATE` button:
+
+![img](/static/url-validator2.jpg)
+*just a random path to validate*
+
+
