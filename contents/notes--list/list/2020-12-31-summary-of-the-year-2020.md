@@ -26,7 +26,7 @@ PS. Regarding workplace itself, it was a year of change. In the beginning of the
 
 ## Lessons learned
 
-While [Vue.js](https://vuejs.org) framework doesn't have any secrets for me anymore, I've learned a lot about the JavaScript libraries itself and their pain points when trying to do something veeeeery custom with them (I'm talking to you, [ag-grid](https://www.ag-grid.com/)😒).
+While [Vue.js](https://vuejs.org) framework doesn't have any secrets for me anymore, I've learned a lot about working with the advanced, plain JavaScript-based libraries itselves and their pain points when trying to do something veeeeery custom with them (I'm talking to you, [ag-grid](https://www.ag-grid.com/)😒).
 
 Thanks to my side projects, I've learned also how to [integrate Vue with NW.js](/notes/lets-create-desktop-app-using-vuejs-and-nwjs/) in a pretty unusual way.
 
@@ -34,7 +34,7 @@ Thanks to my side projects, I've learned also how to [integrate Vue with NW.js](
 
 562 contributions (233 more than in 2019) - that's the amount of commits I've made solely to my own projects (not counting those from my full-time job) 💪 🔥 I hope I'll manage to keep similiar level next year 😎
 
-My [StackOverflow profile](https://stackoverflow.com/users/1004946/lukaszkups) basically lives its own life and gained mostly by itself extra 576 points this year (4545 in total right now).
+My [StackOverflow profile](https://stackoverflow.com/users/1004946/lukaszkups) basically lives its own life and gained (mostly) by itself extra 576 points this year (4545 in total right now).
 
 This website has been seen by ~24k unique visitors in total (+6k more than last year).
 
@@ -78,14 +78,22 @@ While being on (TV) series, I've watched also [Dorohedoro](https://www.imdb.com/
 
 **Games:**
 
+[Spider-Man](https://store.playstation.com/pl-pl/product/EP9000-CUSA11995_00-MARVELSSPIDERMAN) (PS4) - damn, this game looks beautiful! And I'm really impressed how fast this game loads - kudos to developers from [Insomniac Games](https://insomniac.games/)! 🙌
 
+While I play mostly on PS4, in the end of this year I've also started playing [Stardew Valley](https://www.stardewvalley.net/) on PC (soo relaxing experience!) 🙂
 
-While I play mostly on PS4, in the end of this year I've also started playing [Stardew Valley](https://www.stardewvalley.net/) on PC 🙂
+Besides those two, I still play from time to time [Horizon: Zero Dawn](https://www.playstation.com/en-us/games/horizon-zero-dawn/) (PS4), trying to beat it for 100% 😎.
 
 ## Summary of the summary
 
-I really don't know how this year has went by so fast - it felt like it was way shorter (or maybe crunch time days were just passing by like crazy?) Besides that, it was really OK-ish year - I hope next one will be a bit *slower* than this one :)
+Do you remember when I've wrote that the year went so fast in my [last year summary](/notes/summary-of-the-year-2019/)?
 
-All the best for the incoming 2020! 🎉🍾🎆
+Well this one has gone like:
+
+> January, February, March, Pandemic - and here we are, 2020 is over already
+
+Please, go to sleep 2020, you're drunk.
+
+I hope we all have way better 2021, I wish you all the best and a happy New Year! 🎉🍾🎆
 
 -- ł.
