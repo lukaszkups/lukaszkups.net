@@ -32,11 +32,21 @@ Thanks to my side projects, I've learned also how to [integrate Vue with NW.js](
 
 ## Personal growth stats
 
-562 contributions (233 more than in 2019) - that's the amount of commits I've made solely to my own projects (not counting those from my full-time job) 💪 🔥 I hope I'll manage to keep similiar level next year 😎
+564 contributions (235 more than in 2019) - that's the amount of commits I've made solely to my own projects (not counting those from my full-time job) 💪 🔥 I hope I'll manage to keep similiar level next year 😎
 
 My [StackOverflow profile](https://stackoverflow.com/users/1004946/lukaszkups) basically lives its own life and gained (mostly) by itself extra 576 points this year (4545 in total right now).
 
 This website has been seen by ~24k unique visitors in total (+6k more than last year).
+
+## Small wins
+
+I've managed to keep up with [writing weekly summaries](/notes/?category=lkweekly) of my life for the whole year!
+
+I've beaten my life record (and goal to reach before the end of 2020) of doing chin-ups - I can officially announce that I'm able to do 10 reps! (before starting, my life record was 6 and it was from my teenage times!). Plan for 2021 - be able to do 10 reps of pull-ups (I'm at 4 at the moment 😓) and 20 of chin-ups! 💪
+
+## Small failures
+
+Due to lack of time (or bad time management 🙄) I've ran only couple times during this year (and I think it was LITERALLY a couple (2!) times 😓).
 
 ## Social media
 
@@ -83,6 +93,20 @@ While being on (TV) series, I've watched also [Dorohedoro](https://www.imdb.com/
 While I play mostly on PS4, in the end of this year I've also started playing [Stardew Valley](https://www.stardewvalley.net/) on PC (soo relaxing experience!) 🙂
 
 Besides those two, I still play from time to time [Horizon: Zero Dawn](https://www.playstation.com/en-us/games/horizon-zero-dawn/) (PS4), trying to beat it for 100% 😎.
+
+## Plans for the 2021
+
+Someone wise said once, that *telling God about your plans is the best way to make him laugh* 🙂 but I've decided to share it anyway:
+
+- Release [Tavuelo](https://www.npmjs.com/package/tavuelo) 1.0 (non-beta) version
+
+- Reach at least MVP state with Lem development
+
+- Rebuild/redesign my website, using Lem app 😎
+
+- Achieve my workout goals, run more again, loose weight and keep it under 80kg (I'm 81 - 83kg right now 🙄)
+
+- Spend more time with my family 💑
 
 ## Summary of the summary
 
