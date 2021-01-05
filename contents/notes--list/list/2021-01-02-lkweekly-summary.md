@@ -36,4 +36,18 @@ I feel that maitaining such series on regular basis was a huge motivator for me.
 ![img](/static/github-streak-2.jpg)
 *Those are my only private contributions (not including any activity from my full-time job)*
 
-Despite the feeling of being boosted for execution each week, around [#37](/notes/lkweekly-37/) issue I've become a bit overwhelmed. It was that part of the year where I didn't have much free time to do any extra work with my side-projects and I had to focus on my & family health issues (fortunately not COVID-related ones!). For a couple following weeks I've found motivating myself to write more difficult than usual. Maybe that was a temporary burnout about the whole process.
+Despite the feeling of being boosted for execution each week, around [#37](/notes/lkweekly-37/) issue I've become a bit overwhelmed. It was that part of the year where I didn't have much free time to do any extra work with my side-projects and I had to focus on my & family health issues (fortunately not COVID-related ones!). For a couple following weeks I've found motivating myself to write more difficult than usual.
+
+Maybe that was *just* a temporary burnout about the whole process.
+
+During that specific time, I've switched my side-project focus from [lem](https://lem.pub) & [tavyelo](https://www.npmjs.com/package/tavuelo) into learning how to make games using [Construct 3 engine](https://editor.construct.net/).
+
+And gosh, that was a clever move.
+
+Over 4 weeks time span I've created 2 simple games: *[BOINK!](https://lukaszkups.itch.io/boink)* and *[Ok, broomer](https://lukaszkups.itch.io/ok-broomer)*. It was a good reset for my mind - I've basically switched context from what I had during whole year in my head so I could focus again on my (side-project related) priorities & writing weekly summary notes.
+
+## Wrap-up
+
+This whole [#lkweekly](/notes/?category=lkweekly) project was really interesting.
+
+-- ł.
