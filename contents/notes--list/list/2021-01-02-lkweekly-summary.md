@@ -48,6 +48,6 @@ Over 4 weeks time span I've created 2 simple games: *[BOINK!](https://lukaszkups
 
 ## Wrap-up
 
-This whole [#lkweekly](/notes/?category=lkweekly) project was really interesting.
+This whole [#lkweekly](/notes/?category=lkweekly) project was really interesting experience for me. For the whole year I wasn't really monitoring stats of how many people I'm reaching to with this serie, but
 
 -- ł.
