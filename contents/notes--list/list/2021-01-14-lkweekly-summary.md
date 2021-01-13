@@ -1,6 +1,6 @@
 ---
 title: lkweekly summary
-date: 2021/01/04
+date: 2021/01/14
 category: lkweekly
 tags: weekly summary, lkweekly, diary, summary, weekly, devlog, lkweekly2020
 active: 2
@@ -48,6 +48,8 @@ Over 4 weeks time span I've created 2 simple games: *[BOINK!](https://lukaszkups
 
 ## Wrap-up
 
-This whole [#lkweekly](/notes/?category=lkweekly) project was really interesting experience for me. For the whole year I wasn't really monitoring stats of how many people I'm reaching to with this serie, but
+This whole [#lkweekly](/notes/?category=lkweekly) project was a really interesting experience for me. For the whole year I wasn't really monitoring stats of how many people I'm reaching to with this serie and I was positively surprised with the final numbers when preparing this summary article.
+
+It was also a good exercise of making writing on regular basis a habit. Despite the fact I was a bit tired of it halfway through I actually feel a bit weird now when I'm not writing anymore during the weekend.
 
 -- ł.
