@@ -22,7 +22,7 @@ This is literally a modern piece of art.
 
 Long story short: I don't feel I need any upgrade.
 
-Like many other people, I wasn't aware that Microsoft has already prepared a next generation of Surface Book. Sincerely, I thought that new version will be relased a bit later (like next year or so).
+Like many other people, I wasn't aware that Microsoft has already prepared a next generation of Surface Book. Sincerely, I thought that new version will be released a bit later (like next year or so).
 
 I was only hoping for one particular change - the hinge design
 
@@ -47,7 +47,7 @@ And last but not least - the price.
 
 It's not a huge surprise, that newest, most powerful Surface Book will keep the price level similar to its predecessors. But for me it just doesn't offer that much compared to version 2 that it would convince me to make an upgrade/switch.
 
-So right now - I'm waiting for first Surface Book 3 reviews (just out of curiosity) and most probably (I hope I won't break it in the meantime) for 4th generation of Surface Book 😉.
+So right now - I'm waiting for first Surface Book 3 reviews (just out of curiosity) and most probably (I hope I won't break mine in the meantime) for 4th generation of Surface Book 😉.
 
 PS. For any 1st generation owners of Surface Book - do you consider upgrade/switch? If so, why?
 
