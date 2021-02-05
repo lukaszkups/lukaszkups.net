@@ -6,6 +6,8 @@ tags: reviews, review, hardware, surface, microsoft, surface book, surface book 
 active: 2
 ---
 
+![img](/static/sb2-top.jpg)
+
 > DISCLAIMER: This review is a summary of a 2 year long journey with this device. I'm not related to Microsoft by any means and it reflects my personal feelings about this device
 
 # Beauty & the beast
@@ -25,6 +27,9 @@ While it does its job perfectly, it often gets in your way - especially if you'r
 
 No matter if you choose 13" or 15", the hinge has its *gap* when closed, which makes you feel really uncomfortable to put it into backpack or anywhere else besides your table/laps.
 
+![img](/static/sb2-hinge-gap.jpg)
+*A love-hate relationship*
+
 I've read other users scary stories on reddit about how they've wanted to pick up their devices but grabbed (with lid closed) it too hard and tension just broke it (similarly to their owners hearts & wallets) into pieces.
 
 Let's make it clear - despite its power Surface Book product line seems to be a very precious egg - and I mean an uncooked one here.
@@ -37,9 +42,12 @@ While Microsoft team did a great job with overall balance of the device, you nee
 
 # But fortunately Surface Book 2 does not live by hinge alone
 
+![img](/static/sb2-detached.jpg)
+*Autobots, transform & roll-out!*
+
 Besides being of the best 2in1 Windows-based device, Surface Book offers you one of the best keyboard & literally best touchpad among all available Windows laptops in the market (can compare it on the ergonomics level to devices that apple offers in its MacBook line - yes it's **THAT** good).
 
-Despite the fact that this device has its premiere 3 years ago (which is A LOT, in terms of mobile device performance) it still fulfills its role as a daily workhorse.
+Despite the fact that this device has its premiere 5 years ago (which is A LOT, in terms of mobile device performance) it still fulfills its role as a daily workhorse.
 
 Of course, you won't be able to play Cyberpunk 2077 on ultra graphic settings on it (but I would give it a shot on medium), but being a gaming laptop never was its purpose.
 
@@ -47,21 +55,18 @@ Visual Studio Code, Android Studio, Photoshop, Premiere Pro - all of those progr
 
 The only downside after 2 years of using it was available disk space (my configuration had 256GB SSD, because upgrade to 512GB was insanely expensive), but I've solved it by buying a 256GB SD card and moving my biggest folders/files on it (which works surprisingly well 👍).
 
-# Tablets on the table!
-
-
-
-# Conclusion
+# Final words
 
 Would I recommend buying Surface Book 2 to anyone? I'm... not sure. If you're looking for a apple-grade finish quality, minimalist look & pretty good performance - go for it, but be aware, that for a way lower price you can get similar devices, just without 2in1 functionality.
 
 My personal feelings list after 2 years of using it:
 
 - Thanks to [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) using it a development machine is not a problem
-- It's still a powerful enough machine for my needs (did I mentioned that I've installed [Deus Ex: Mankind Divided] on it, and it runs smoothly on 1080p with graphic settings set to High? 😎)
-- I'm not using its drawing capabilities that much, but from time to time I browse web in tablet mode only
+- It's still a powerful enough machine for my needs (did I mentioned that I've installed [Deus Ex: Mankind Divided](https://en.wikipedia.org/wiki/Deus_Ex:_Mankind_Divided) on it, and it runs smoothly on 1080p with graphic settings set to High? 😎)
+- I'm not using its drawing capabilities that often, but from time to time I'm surfing the internet in tablet mode on the couch, which is pretty dang comfortable!
+- Maybe it's because my lack of experience, but I think drawing on it is difficult to master
 - Battery life is still great - without paying attention to screen brightness, opened apps etc. it lasts for ~6 hours with no hassle
-- Maybe it's because my lack of experience with using it, but I think drawing on it is difficult to master
+- Magnetic charger should be a common standard!
 
 I hope this review will help anyone with the decision to go for it or not - [let me know](https://twitter.com/lukaszkups) !
 
