@@ -16,16 +16,16 @@ It was working EXACTLY the same as 20 years ago.
 
 If you've ever played LEGO Island 2 you probably remember 2 things about it: big (for those times), open-world-alike levels and **THOSE FREAKING-LONG LOADING TIMES**.
 
-And for those who never played this game I mean it - loading times was really long.
+And for those who never played this game I mean it - these loading times was really long.
 
 The **really-really** long ones.
 
-To visualize it: no matter how big level had to be loaded, the loading screen (a spinning CD with printed pizza on top if it + *Loading* label) would take from couple to a dozen minutes (sic!) 🙄.
+To visualize it: no matter what needed to be loaded, the loading screen (a spinning CD with printed pizza on top if it + *Loading* label) would take from couple to a dozen minutes (sic!) 🙄.
 
 ![img](/static/lego-island-loading.jpg)
 *Screen from hell*
 
-After a short investigation (also knows as: *googling*) I've learned that authors of this game set higher priority to loading screen framerate than to loading data itself - so they've set an top limit of data amount that can be loaded per animation frame (sic! level over 9000 🤣).
+After a short investigation (also knows as: *googling*) I've learned that authors of this game set higher priority to loading screen animation framerate than to loading data itself - so they've set an top limit of data amount that can be loaded per animation frame (sic! level over 9000 🤣).
 
 Fortunately, some clever minds has created a patch app that is able to remove this limit (and also couple other "issues").
 
