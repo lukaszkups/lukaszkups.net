@@ -1,6 +1,6 @@
 ---
 title: A loading screen that was (unnecessarily) ruining my childhood
-date: 2021/02/07
+date: 2021/02/08
 category: game development
 tags: game dev, gamedev, game development, programming, bug, bugs, debugging, retro, lego, lego island 2, brickster revenge
 active: 2
