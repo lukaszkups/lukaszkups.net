@@ -4,6 +4,7 @@ date: 2021/02/03
 category: reviews
 tags: reviews, review, hardware, surface, microsoft, surface book, surface book 2, sb2, 2 in 1, 2in1, laptop, tablet
 active: 2
+draft: true
 ---
 
 ![img](/static/sb2-top.jpg)
