@@ -70,6 +70,8 @@ My personal feelings list after 2 years of using it:
 - Battery life is still great - without paying attention to screen brightness, opened apps etc. it lasts for ~6 hours with no hassle
 - Magnetic charger should be a common standard!
 
-I'm very curious if among visitors of my website are happy owners of the Surface Book 2 device 🤔. If so, [let me know](https://twitter.com/lukaszkups) please!
+I'm very curious if among visitors of my website are there any happy owners of the Surface Book 2 device 🤔.
+
+If so, [let me know](https://twitter.com/lukaszkups) please!
 
 -- ł.
