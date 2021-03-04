@@ -52,7 +52,16 @@ this.yourVariable = Object.keys(icons).map((key) => ({
 }));
 ```
 
-And that's it! You can now loop over `this.yourVariable` in your Vue.js component template and list all the icons.
+And that's it! You can now loop over `this.yourVariable` in your Vue.js component template and list all the icons:
+
+```
+<a-icon
+  v-for="icon in yourVariable"
+  :key="icon.icon"
+  :type="icon.icon"
+  :theme="icon.theme"
+/>
+```
 
 If you have any questions, feel free to [contact me](https://twitter.com/lukaszkups)!
 
