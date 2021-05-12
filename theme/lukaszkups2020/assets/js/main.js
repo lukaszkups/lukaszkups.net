@@ -24,14 +24,18 @@
 
   const cvButton = document.querySelector('.download-cv-button');
   if (cvButton) {
-    cvButton.addEventListener('click', () => {
+    cvButton.addEventListener('click', (e) => {
       if (window.navigator.vibrate) {
+        e.preventDefault();
         console.log('Kudos to https://github.com/hjdesigner/vibration-api/ :)');
         window.navigator.vibrate([
           87, 89, 104, 176,
           96, 176, 88, 88,
           79, 241, 176, 377,
           191]);
+        setTimeout(() => {
+          window.open(e.target.href, '_blank').focus()
+        }, 2000);
       } else {
         console.log('Try to download my CV on Chrome using Android device ;)');
       }
