@@ -20,6 +20,24 @@
     `).join('')}`
   }
 
+  // something special ;)
+
+  const cvButton = document.querySelector('.download-cv-button');
+  if (cvButton) {
+    cvButton.addEventListener('click', () => {
+      if (window.navigator.vibrate) {
+        console.log('Kudos to https://github.com/hjdesigner/vibration-api/ :)');
+        window.navigator.vibrate([
+          87, 89, 104, 176,
+          96, 176, 88, 88,
+          79, 241, 176, 377,
+          191]);
+      } else {
+        console.log('Try to download my CV on Chrome using Android device ;)');
+      }
+    })
+  }
+
   // notes filtering
   if (location.pathname === '/notes/') {
     const params = new URLSearchParams(location.search)
