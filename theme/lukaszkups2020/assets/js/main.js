@@ -33,9 +33,7 @@
           96, 176, 88, 88,
           79, 241, 176, 377,
           191]);
-        setTimeout(() => {
-          window.open(e.target.href, '_blank').focus()
-        }, 2000);
+        window.open(e.target.href, '_blank').focus()
       } else {
         console.log('Try to download my CV on Chrome using Android device ;)');
       }
