@@ -1,7 +1,7 @@
 
 ---
 title: How to learn stuff quickly
-date: 2021/11/07
+date: 2021/11/08
 category: thoughts, lifestyle
 tags: thoughts, learning, self-development, short, lifehacks
 active: 2
@@ -18,6 +18,8 @@ In contrast to original write-up, which was focused on learning something that w
 No matter how weird this might sound, changing my attitude towards the materials that I need to learn was a game changer.
 
 Yes, I was just faking my interest into some stuff that seemed totally boring for me and that helped me learn it a lot faster.
+
+How to do it? Imagine that moment when you read some random article and you've just think: *hey, that's interesting!* - just try to mimic that feeling in your head while learning hated material.
 
 I really regret that I've found this *lifehack* at a pretty late stage of my education (during Master Thesis basically) but I'm already trying to pass this knowledge to my kids 🙂.
 
