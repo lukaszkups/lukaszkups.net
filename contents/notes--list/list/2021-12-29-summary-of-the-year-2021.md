@@ -12,7 +12,7 @@ By the end of 2020 year, I've accepted an offer to work in [Mercedes-Benz.io](ht
 
 The transition to a new workplace was very smooth, even though I've agreed with my [previous team](https://www.hicx.com/) to help them in free time when I will be able to.
 
-So the first half of the year was like a marathon. I had to learn TypeScript that is being widely used at [MB.io])(https://www.mercedes-benz.io/), develop new product in given amount of time* and try to help my folks from my previous project as much as I can.
+So the first half of the year was like a marathon. I had to learn TypeScript that is being widely used at [MB.io](https://www.mercedes-benz.io/), develop new product in given amount of time* and try to help my folks from my previous project as much as I can.
 
 \*budget
 
