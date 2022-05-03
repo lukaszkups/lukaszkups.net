@@ -15,13 +15,13 @@ At the moment I feel most comfortable in working on Vue.js-powered Single Page A
 
 During my career I also had pleasure working on mobile apps built on top of JavaScript, Phonegap & Cordova. Wordpress theme development from scratch is not a problem for me either.
 
-I also like to co-op with Ruby on Rails and Django devs, who provides me APIs for creating beautiful and useful frontend interfaces. I have also built couple simple endpoints using Node.js/Express.js by myself as well.
+I like to co-op with Ruby on Rails and Django devs, who provides me APIs for creating beautiful and useful frontend interfaces. I have also built couple simple endpoints using Node.js/Express.js by myself as well.
 
 ## Crafting web stuff since 2010
 
 This is my personal web space, where I save / share my thoughts, ideas & experience.
 
-In my spare time I [blog](/notes/) & [tweet](https://twitter/lukaszkups) about tech-related stuff, take [photos](https://instagram.com/lukasz_kups) or commit code to my open-source [repositories](https://github.com/lukaszkups).
+In my spare time I [blog](/notes/) & [tweet](https://twitter/lukaszkups) about tech-related stuff, [make](https://store.steampowered.com/search/?developer=lukaszkups.net) [games](https://lukaszkups.itch.io) or commit code to my open-source [repositories](https://github.com/lukaszkups).
 
 If You want to know more about me - please take a look at my [linkedin](https://www.linkedin.com/in/lukaszkups/) profile, [github](https://github.com/lukaszkups) repository list or [experience](/experience/) page.
 
