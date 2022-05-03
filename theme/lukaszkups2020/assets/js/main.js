@@ -69,6 +69,13 @@
       })
     }
   }
+
+  const years = document.querySelectorAll('.year')
+  if (years && years.length) {
+    years.forEach((year) => {
+      year.innerText = new Date().getFullYear() - parseInt(year.getAttribute("data-year"));
+    })
+  }
   // toggle color mode
   // document.getElementById('logo').addEventListener('click', (e) => {
   //   e.preventDefault()

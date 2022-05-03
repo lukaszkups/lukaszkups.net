@@ -7,4 +7,4 @@ active: 0
 
 ## Right now
 
-Aside from working as a front-end developer on a full-time basis, I'm working on my indie turn-based game called [Monolith Wars](https://twitter.com/search?q=%23monolithWars).
+Aside from working as a front-end developer on a full-time basis, I'm working on my very own [indie](https://lukaszkups.itch.io/) [games](https://store.steampowered.com/search/?sort_by=_ASC&developer=lukaszkups.net).

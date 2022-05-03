@@ -4,6 +4,7 @@
   "description": "website of lukaszkups",
   "main": "index.js",
   "scripts": {
+    "server-linux": "nvm exec 13 node -e 'require(\"./index.js\").server()'",
     "server": "node -e 'require(\"./index.js\").server()'",
     "compile": "node -e 'require(\"./index.js\").compile()'",
     "deploy": "node -e 'require(\"./index.js\").deploy()'",
