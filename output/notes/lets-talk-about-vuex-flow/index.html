@@ -1,0 +1,154 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta content="text/html;charset=utf-8" http-equiv="Content-Type"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content=""><meta name="keywords" content="programming, webdev, vue.js, vuex, javascript, js, development, webdev, front-end"><link rel="icon" type="image/png" href="/assets/img/favicon-192x192.png" sizes="192x192"><link rel="preload" href="/assets/fonts/Bebas.eot" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.woff" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.ttf" as="font" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/main.css" type="text/css"><title>Let's talk about Vuex flow</title></head><body class="dark"><header><div class="main-container nav-container"><div class="logo-wrapper" id="logo"><div class="logo"></div></div><nav><ul><li><a href="/" data-hover="Home">Home</a></li><li><a href="/about" data-hover="About">About</a></li><li class="active"><a href="/notes" data-hover="Writing">Writing</a></li><li><a href="/projects" data-hover="Projects">Projects</a></li><li><a href="/experience" data-hover="CV">CV</a></li></ul></nav></div></header><div class="content notes-content"><div class="note-list-entry__wrapper"><div class="note-list-entry"><h1>Let's talk about Vuex flow</h1><div class="published">Published at 2019/07/25</div><article><p>DISCLAIMER: In this article I don't want to introduce you how Vuex works (as it's already written at <a href="https://vuex.vuejs.org/">Vuex's official website</a>)</p>
+<p>Instead, I would like to discuss about different approaches I've found people use when working with this library.</p>
+<h2 id="what-is-vuex">What is Vuex?</h2>
+<p>Just as a quick reminder, quoting the official website:</p>
+<blockquote>
+  <p>Vuex is a state management pattern + library for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the state can only be mutated in a predictable fashion.</p>
+</blockquote>
+<p>If you haven't ever worked with it, this article then won't be really interesting for you ;)</p>
+<h2 id="ok-but-what-about-this-flow-thing">Ok, but what about this <em>flow</em> thing?</h2>
+<p>So, I've found that different people handles vuex coding style <em>flow</em> differently. Long story short:</p>
+<ol>
+<li>This is the flow I personally use - always dispatch actions and use generic mutation to change the state:</li>
+</ol>
+<ul>
+<li><p>Using Vuex modules to separate component's logic. So there are modules like <code>user</code>, <code>auth</code>, <code>contacts</code>, <code>editor</code>, <code>comments</code> etc. (but it's up to you if you want to have it - I personally do, even in the smalles projects out there)</p></li>
+<li><p>I define in every module the <code>updateProp</code> action which dispatches mutation that has the same name. It takes 2 arguments: <code>propName</code> and <code>newValue</code>. The reason for this is that I don't trigger/commit mutations directly - I always use <code>updateProp</code> action that commits the final mutation of the chosen property - very often each vuex module have only one generic mutation definition.</p></li>
+</ul>
+<p>Example:</p>
+<pre><code>// user.js vuex module inside store/modules folder
+// ...
+// actions definitions
+updateProp ({ commit }, payload) {
+  commit(updateProp, payload)
+},
+// method that saves props returned from GET request in the store
+updateUserProfile ({ dispatch }, payload) {
+  dispatch('updateProp, { propName: 'firstName', newVal: payload.first_name })
+  dispatch('updateProp, { propName: 'lastName', newVal: payload.last_name })
+  dispatch('updateProp, { propName: 'age', newVal: payload.age })
+}
+// ...
+// mutation definition
+updateProp (state, payload) {
+  state[payload.propName] = payload.newValue
+}</code></pre>
+<ol start="2">
+<li>Dispatching actions only when commiting multiple mutations flow:</li>
+</ol>
+<ul>
+<li><p>Used in module-based vuex architecture or not - depends on the project I've found.</p></li>
+<li><p>Using actions only if there's need of commiting multiple mutations at once (to reduce code lines in the component's code).</p></li>
+<li><p>Commits mutations directly from component's code if only single property needs to be updated.</p></li>
+</ul>
+<p>Example:</p>
+<pre><code>// user.js vuex module inside store/modules folder
+// ...
+// action definition
+updateUserProfile ({ commit, state }, payload) {
+  commit('updateNames', { firstName: payload.first_name', lastName: payload.last_name })
+  commit('updateAge, payload.age)
+  commit('updateAvatar, payload.avatar_url)
+}
+// but then also in component's code:
+// ...
+data () {
+  return {
+    localAge: 34
+  }
+},
+// ...
+methods: {
+  updateAge () {
+    // can commit mutation directly from component's code
+    this.$store.commit('user/updateAge', this.localAge)
+  }
+}</code></pre>
+<ol start="3">
+<li>Using actions only for async stuff flow:</li>
+</ol>
+<ul>
+<li><p>Like in #2, it randomly vary if it uses vuex modules or not - depends mostly on project size</p></li>
+<li><p>Commits mutations directly from component's code.</p></li>
+<li><p>Use actions only for asynchronous tasks (e.g. fetching data from API).</p></li>
+</ul>
+<ol start="3">
+<li>Always use actions, but they can commit multiple mutations inside:</li>
+</ol>
+<ul>
+<li><p>Same as in #2 and #3 regarding vuex modules usage or not.</p></li>
+<li><p>Component's logic always dispatches actions, but they freely commits as many mutations as they want.</p></li>
+</ul>
+<p>Example:</p>
+<pre><code>// user.js vuex module inside store/modules folder
+// ...
+// actions definitions
+updateUserProfile ({ commit }, payload) {
+  commit('updateNames', { firstName: payload.first_name', lastName: payload.last_name })
+  commit('updateAge, payload.age)
+  commit('updateAvatar, payload.avatar_url)
+},
+updateAge ({ commit }, payload) {
+  commit('updateAge, payload.age)
+}
+// but then also in component's code:
+// ...
+data () {
+  return {
+    localAge: 34
+  }
+},
+// ...
+methods: {
+  updateAge () {
+    // from components, we always dispatch actions in this flow
+    this.$store.dispatch('user/updateAge', this.localAge)
+  }
+}</code></pre>
+<ol start="5">
+<li>Using dedicated mutations and actions:</li>
+</ol>
+<ul>
+<li><p>Same as in #2, #3 and #3 regarding vuex modules usage or not.</p></li>
+<li><p>Using dedicated mutations for any kind of value change. Very often it makes vuex files pretty big.</p></li>
+</ul>
+<p>Example:</p>
+<pre><code>// user.js vuex module inside store/modules folder
+// ...
+// actions definitions
+updateUserProfile ({ dispatch }, payload) {
+  dispatch('updateFirstName, payload.first_name)
+  dispatch('updatelastName, payload.last_name)
+  dispatch('updateAge, payload.age)
+},
+updateFirstName ({ commit }, payload) {
+  commit('updateFirstName, payload.age)
+},
+updateFirstName ({ commit }, payload) {
+  commit('updateFirstName, payload.age)
+},
+updateAge ({ commit }, payload) {
+  commit('updateAge, payload.age)
+}
+// ...
+// mutations definitions
+updateFirstName (state, payload) {
+  state.firstName = payload
+},
+updateLastName (state, payload) {
+  state.lastName = payload
+},
+updateAge (state, payload) {
+  state.age = payload
+},</code></pre>
+<ol start="6">
+<li>Non-unified flow:</li>
+</ol>
+<ul>
+<li><p>Again, same as in #2, #3, #4 &amp; #5 regarding vuex modules usage or not.</p></li>
+<li><p>There's clearly no pattern - sometimes action code dispatches mutations, sometimes mutations are commited directly from component's code.</p></li>
+</ul>
+<h2 id="summary">Summary</h2>
+<p>As you can see there's an easy way to spot the differencies. To be honest, I'm not sure if there's one, true <em>the Vue way</em> of handling this (if you do, please let me know! :) ). I've just found the #1 one as the most consistent of handling data flow in the app (but at the same time I'm not sure if it's not an amount-of-updateProp-actions-dispatch-overkill - what do you think?)</p>
+<p>Btw. If you know/met different Vuex <em>flows</em> - please let me know :)</p>
+<p>-- ł.</p></article><div class="published"><p>Categories:<a class="category-link" href="/notes/?category=programming">programming</a><a class="category-link" href="/notes/?category=vue.js">vue.js</a><a class="category-link" href="/notes/?category=tech">tech</a></p><p>Tags:<a class="category-link" href="/notes/?tag=programming">programming</a><a class="category-link" href="/notes/?tag=webdev">webdev</a><a class="category-link" href="/notes/?tag=vue.js">vue.js</a><a class="category-link" href="/notes/?tag=vuex">vuex</a><a class="category-link" href="/notes/?tag=javascript">javascript</a><a class="category-link" href="/notes/?tag=js">js</a><a class="category-link" href="/notes/?tag=development">development</a><a class="category-link" href="/notes/?tag=webdev">webdev</a><a class="category-link" href="/notes/?tag=front-end">front-end</a></p></div></div></div></div><footer><div class="main-container footer-container"><div class="row"><div class="col-25"><ul><li class="title">Links</li><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/notes">Writing</a></li><li><a href="/projects">Projects</a></li><li><a href="/experience">CV</a></li></ul></div><div class="col-25"><ul><li class="title">Projects</li><li><a href="https://github.com/lukaszkups">Open Source Code</a></li><li><a href="https://store.steampowered.com/app/1935130/Terry_Poorflyer/">Terry Poorflyer PC game</a></li><li><a href="https://lukaszkups.itch.io/">Game prototypes</a></li></ul></div><div class="col-25"><ul><li class="title">Categories</li><li><a href="/notes/?tag=programming">Programming</a></li><li><a href="/notes/?tag=vue">Vue.js</a></li><li><a href="/notes/?tag=reviews">Reviews</a></li><li><a href="/notes/?tag=thoughts">Thoughts</a></li></ul></div><div class="col-25"><ul><li class="title">Social</li><li><a href="https://twitter.com/lukaszkups">Twitter</a></li><li><a href="https://github.com/lukaszkups">GitHub</a></li><li><a href="https://linkedin.com/in/lukaszkups">LinkedIn</a></li><li><a href="https://gum.co/tATgO?wanted=true" target="_blank">Buy me a coffee</a></li></ul></div></div><div class="row copyrights">©&nbsp;<span id="year">2020</span>&nbsp;lukaszkups. All Rights Reserved.</div></div></footer><script src="/assets/js/main.js"></script><script src="https://gumroad.com/js/gumroad.js"></script></body></html>

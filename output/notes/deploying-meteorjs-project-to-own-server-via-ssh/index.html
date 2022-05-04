@@ -1,0 +1,103 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta content="text/html;charset=utf-8" http-equiv="Content-Type"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content=""><meta name="keywords" content="meteor, meteor.js, email, e-mail, smtp, pop3, sending email, sending emails, js, javascript, back-end, front-end, fullstack, node, node.js"><link rel="icon" type="image/png" href="/assets/img/favicon-192x192.png" sizes="192x192"><link rel="preload" href="/assets/fonts/Bebas.eot" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.woff" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.ttf" as="font" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/main.css" type="text/css"><title>Deploying Meteor.js project to own server via SSH.</title></head><body class="dark"><header><div class="main-container nav-container"><div class="logo-wrapper" id="logo"><div class="logo"></div></div><nav><ul><li><a href="/" data-hover="Home">Home</a></li><li><a href="/about" data-hover="About">About</a></li><li class="active"><a href="/notes" data-hover="Writing">Writing</a></li><li><a href="/projects" data-hover="Projects">Projects</a></li><li><a href="/experience" data-hover="CV">CV</a></li></ul></nav></div></header><div class="content notes-content"><div class="note-list-entry__wrapper"><div class="note-list-entry"><h1>Deploying Meteor.js project to own server via SSH.</h1><div class="published">Published at 2015/01/12</div><article><p>Today I've spent most time of the day on figuring out how to deploy an Meteor.js app to own server via ssh.</p>
+<blockquote>
+  <p>Disclaimer: I'm a programmer guy - not a server an admin's wizard. So please calm down, be polite and eventually send me an email if You see something wrong in this article ;)</p>
+</blockquote>
+<h2 id="ssh-login-and-basic-server-setup">SSH login and basic server setup</h2>
+<p>First, login to Your server via ssh:</p>
+<pre><code>ssh yourServerLogin@yourServerIp</code></pre>
+<p>When prompted, type Your server password and process to server connection. Let's install necessary tools first (<code>nginx</code>):</p>
+<pre><code>sudo apt-get update
+sudo apt-get install nginx</code></pre>
+<p>Now You can manage nginx processes with these commands:</p>
+<pre><code>sudo service nginx stop
+sudo service nginx start
+sudo service nginx restart</code></pre>
+<h1 id="nodejs-installation">Node.js installation</h1>
+<p>Let's install Node.js environment, which is required to run our app:</p>
+<pre><code>sudo apt-get update
+sudo apt-get install upgrade
+sudo apt-get install nodejs</code></pre>
+<p>(You can also use NVM (Node.js Version Manager) or any other tool You want)</p>
+<h2 id="mongo-database">Mongo database</h2>
+<p>As You probably know, Meteor.js uses MongoDB as its main database system so let's prepare our server to deal with it:</p>
+<pre><code>sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+sudo apt-get update
+sudo apt-get install mongodb-10gen</code></pre>
+<p>Now start mongoDB as a Daemon with log records file:</p>
+<pre><code>mongod --fork --logpath /var/log/mongodb.log</code></pre>
+<p>The next thing is to add a system-wide MongoDB admin role:</p>
+<pre><code>mongo
+db = db.getSiblingDB('admin')
+db.createUser({user: 'admin', pwd: 'yourAdminPassword', roles: ['userAdminAnyDatabase']})
+exit</code></pre>
+<p>In the next step, we need to edit MongoDB configuration file and uncomment following line:</p>
+<pre><code>#file path: /etc/mongodb.conf
+auth = true</code></pre>
+<p>And then restart the MongoDB server:</p>
+<pre><code>sudo service mongodb restart</code></pre>
+<p>The final (mongo related) step will be adding admin role to our application database. First, we need to login to our MongoDB admin account:</p>
+<pre><code>mongo -u admin -p --authenticationDatabase admin</code></pre>
+<p>You will be asked for the password that You've set at one of the previous steps. After that You can create user and database for Your app:</p>
+<pre><code>use yourAppDatabaseName
+db.createUser({ user: 'yourAppDbUserName', pwd: 'yourSuperSecureDbAppUserPassword', roles: [ 'readWrite' ] })</code></pre>
+<h2 id="going-back-to-nginx">Going back to Nginx</h2>
+<p>Now we have to configure Nginx for our application - let's create configuration file for Your app:</p>
+<pre><code>touch /etc/nginx/sites-available/yourApp.com</code></pre>
+<p>And here's the example code of this file:</p>
+<pre><code>upstream yourApp {
+    server 127.0.0.1:3000;
+}
+
+server {
+    listen 0.0.0.0:3000;
+    server_name yourApp.com;
+    access_log /var/log/nginx/yourApp.log;
+
+    location / {
+        proxy_pass http://yourApp/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $http_host;
+
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forward-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forward-Proto http;
+        proxy_set_header X-Nginx-Proxy true;
+
+        proxy_redirect off;
+    }
+}</code></pre>
+<p>Now, You have to create symbolic link for this file:</p>
+<pre><code>sudo ln -s /etc/nginx/sites-available/yourApp.com /etc/nginx/sites-enabled/yourApp.com</code></pre>
+<p>And then, You can restart Nginx with command: sudo service nginx restart.</p>
+<h2 id="deployment">Deployment</h2>
+<p>Let's finally deploy our application. Login to your server via ssh and clone Your app repo:</p>
+<pre><code>cd /usr/local/www/
+git clone yourAppGitCloneUrl
+cd yourClonedAppFolder</code></pre>
+<p>Now, install Meteor.js and bundle Your app - we're doing it on server because sometimes bundling app between different operating system (like osx and ubuntu linux) can cause errors with used node modules (e.g. bcrypt).</p>
+<pre><code>curl https://install.meteor.com/ | sh
+meteor bundle yourAppName.com.tar.gz</code></pre>
+<p>Move Your (bundled) app to proper directory and unpack it:</p>
+<pre><code>mv yourAppName.com.tar.gz ../
+tar -vxzf yourAppName.com.tar.gz
+rm yourAppName.com.tar.gz</code></pre>
+<p>Now, to keep our app always live, let's install forever:</p>
+<pre><code>sudo npm install -g forever</code></pre>
+<p>Finally, we can plug in our app to Mongo database and run it, using forever:</p>
+<pre><code>cd yourAppName.com
+PORT=3000 MONGO_URL=mongodb://yourAppAdminUserName:adminPassword@127.0.0.1:27017/yourAppName ROOT_URL=http://yourAppName.com forever -f start main.js</code></pre>
+<p>And your application is live now. You can check its status every time by following command:</p>
+<pre><code>forever list
+# an example result:
+info:    Forever processes running
+data:        uid          command                     script              forever pid   id    logfile                         uptime
+data:        [0] H74M    userdown                    app/main.js     56789   12345       /root/.forever/zxy.log  0:0:0:0.788
+data:        [1] uv8C        /usr/local/bin/node     main.js         65432   23456       /root/.forever/xyz.log  2:2:50:36.647</code></pre>
+<p>You can always restart any forever process with command:</p>
+<pre><code>#forever restart uid e.g.
+forever restart 1</code></pre>
+<p>And that's practically all. Special thanks to guys from gentlenode who wrote very similar blog post, which was an inspiration for writing this one (I've added couple own tips, but also rewrite most stuff to make sure that I will always have access to this knowledge).</p>
+<p>-- ł.</p></article><div class="published"><p>Categories:<a class="category-link" href="/notes/?category=programming">programming</a></p><p>Tags:<a class="category-link" href="/notes/?tag=meteor">meteor</a><a class="category-link" href="/notes/?tag=meteor.js">meteor.js</a><a class="category-link" href="/notes/?tag=email">email</a><a class="category-link" href="/notes/?tag=e-mail">e-mail</a><a class="category-link" href="/notes/?tag=smtp">smtp</a><a class="category-link" href="/notes/?tag=pop3">pop3</a><a class="category-link" href="/notes/?tag=sending email">sending email</a><a class="category-link" href="/notes/?tag=sending emails">sending emails</a><a class="category-link" href="/notes/?tag=js">js</a><a class="category-link" href="/notes/?tag=javascript">javascript</a><a class="category-link" href="/notes/?tag=back-end">back-end</a><a class="category-link" href="/notes/?tag=front-end">front-end</a><a class="category-link" href="/notes/?tag=fullstack">fullstack</a><a class="category-link" href="/notes/?tag=node">node</a><a class="category-link" href="/notes/?tag=node.js">node.js</a></p></div></div></div></div><footer><div class="main-container footer-container"><div class="row"><div class="col-25"><ul><li class="title">Links</li><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/notes">Writing</a></li><li><a href="/projects">Projects</a></li><li><a href="/experience">CV</a></li></ul></div><div class="col-25"><ul><li class="title">Projects</li><li><a href="https://github.com/lukaszkups">Open Source Code</a></li><li><a href="https://store.steampowered.com/app/1935130/Terry_Poorflyer/">Terry Poorflyer PC game</a></li><li><a href="https://lukaszkups.itch.io/">Game prototypes</a></li></ul></div><div class="col-25"><ul><li class="title">Categories</li><li><a href="/notes/?tag=programming">Programming</a></li><li><a href="/notes/?tag=vue">Vue.js</a></li><li><a href="/notes/?tag=reviews">Reviews</a></li><li><a href="/notes/?tag=thoughts">Thoughts</a></li></ul></div><div class="col-25"><ul><li class="title">Social</li><li><a href="https://twitter.com/lukaszkups">Twitter</a></li><li><a href="https://github.com/lukaszkups">GitHub</a></li><li><a href="https://linkedin.com/in/lukaszkups">LinkedIn</a></li><li><a href="https://gum.co/tATgO?wanted=true" target="_blank">Buy me a coffee</a></li></ul></div></div><div class="row copyrights">©&nbsp;<span id="year">2020</span>&nbsp;lukaszkups. All Rights Reserved.</div></div></footer><script src="/assets/js/main.js"></script><script src="https://gumroad.com/js/gumroad.js"></script></body></html>

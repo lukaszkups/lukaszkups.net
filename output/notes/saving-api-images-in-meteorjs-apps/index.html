@@ -1,0 +1,92 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta content="text/html;charset=utf-8" http-equiv="Content-Type"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content=""><meta name="keywords" content="meteor, meteor.js, node, node.js, backend, back-end, back-end dev, back-end development, programming, js, javascript, gridfs, file system, fs"><link rel="icon" type="image/png" href="/assets/img/favicon-192x192.png" sizes="192x192"><link rel="preload" href="/assets/fonts/Bebas.eot" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.woff" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.ttf" as="font" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/main.css" type="text/css"><title>Saving API Images in Meteor.js apps</title></head><body class="dark"><header><div class="main-container nav-container"><div class="logo-wrapper" id="logo"><div class="logo"></div></div><nav><ul><li><a href="/" data-hover="Home">Home</a></li><li><a href="/about" data-hover="About">About</a></li><li class="active"><a href="/notes" data-hover="Writing">Writing</a></li><li><a href="/projects" data-hover="Projects">Projects</a></li><li><a href="/experience" data-hover="CV">CV</a></li></ul></nav></div></header><div class="content notes-content"><div class="note-list-entry__wrapper"><div class="note-list-entry"><h1>Saving API Images in Meteor.js apps</h1><div class="published">Published at 2015/11/23</div><article><blockquote>
+  <p>Today I would like to share my experience with saving image files from external APIs.</p>
+</blockquote>
+<p>Consider this scenario: You have to develop an mobile app, that downloads some data and files from external API and saves those files locally to work offline if necessary.</p>
+<h2 id="packages">Packages</h2>
+<p>First, we need to install proper Meteor.js plugins which enables to interact with files (more info):</p>
+<pre><code>meteor add cfs:standard-packages</code></pre>
+<p>This is the main set of packages, that will help us dealing with files - I'm very happy that someone did such great job and solved file management problems in really painful way.</p>
+<p>Also, we have to install a storage adapter package - my favorite is <code>gridfs</code>. If You're using newest Meteor version then You should have it merged into Meteor's core - on the other case You have to install it:</p>
+<pre><code>meteor add cfs:gridfs</code></pre>
+<h2 id="collection">Collection</h2>
+<p>Okay, so we have all necessary tools, now we have to define our file / media collections:</p>
+<pre><code>/* lib/models.js */
+Media = new FS.Collection("media", {
+  stores: [new FS.Store.GridFS("media")]
+});</code></pre>
+<p>Thanks to <code>/lib/</code> file path, our collection definition will be available both on the server and the client side of the app.</p>
+<h2 id="cross-origin-resource-sharing-cors">Cross-Origin Resource Sharing (CORS)</h2>
+<p>In this step, we will make sure that we don't get a CORS error. To ensure this, we have to add adequate header to our request:</p>
+<pre><code>/* server/private_helpers.js */
+Meteor.startup(function(){
+  WebApp.connectHandlers.use(function(req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    return next();
+  });
+});</code></pre>
+<h2 id="getting-file-via-api">Getting file via API</h2>
+<p>Now it's time to get the file path via our API. You can do this in couple ways - e.g. via Meteor's HTTP package (meteor add http) or classically - via ajax request.</p>
+<p>Personally, I decided to go classy and used jQuery (❤promises):</p>
+<pre><code>/* client/public_helpers.js  */
+
+var imageArr = [];
+var getApiFiles = function(){
+  var dfd = new $.Deferred();
+  $.ajax({
+    url: PATH_TO_REMOTE_API,
+    dataType: 'json'
+  }).done(function(data){
+    imageArr = data;
+    dfd.resolve(imageArr);
+  }).error(function(error){
+    console.log('getImage error');
+  });
+  return dfd.promise();
+};</code></pre>
+<p>Let's assume that the response (in our case <code>imageArr</code>) will look like this:</p>
+<pre><code>[
+  {
+    id: 1,
+    photo: "/media/image1.jpg",
+    default: false
+  },
+  {
+    id: 2,
+    photo: "/media/image2.jpg",
+    default: false
+  },
+    id: 3,
+    photo: "/media/image3.jpg",
+    default: true
+  }
+]</code></pre>
+<h2 id="file-downloading-meteor-method">File downloading Meteor method</h2>
+<p>To make everything work, we have to add server side file downloading method:</p>
+<pre><code>/* server/private_helpers.js  */
+Meteor.methods({
+  saveFile: function(filePath){
+    var file = new FS.File();
+    file.attachData(filePath, function(err){
+      if(err){
+        throw err;
+      }
+      Media.insert(file, function(err, fileObj){
+        return fileObj._id;
+      });
+    });
+  }
+});</code></pre>
+<h2 id="final-function">Final function</h2>
+<p>In the last step, we have to execute our methods properly:</p>
+<pre><code>/* client/helpers.js */
+$.when(getApiFiles()).done(function(){
+  for(var img in imageArr){
+    var img_id = Meteor.call('saveFile', "http://remote-domain.xyz" + imageArr[img].photo);
+
+    /* here You can process additional features, e.g. attaching img_id to another collection etc. */
+  }
+});</code></pre>
+<p>And that's it! Now You can use Your saved files in Your Meteor.js application locally, even without internet connection.</p>
+<p>I've read couple comments that FS package should not be used in production, but in my opinion it just do the job perfectly. Until Meteor Core Development Team provide an official solution to handle file management You can be sure that I'll be using these packages - and therefore You should ;)</p>
+<p>If You have any questions or suggestions, please let me know.</p>
+<p>-- ł.</p></article><div class="published"><p>Categories:<a class="category-link" href="/notes/?category=programming">programming</a></p><p>Tags:<a class="category-link" href="/notes/?tag=meteor">meteor</a><a class="category-link" href="/notes/?tag=meteor.js">meteor.js</a><a class="category-link" href="/notes/?tag=node">node</a><a class="category-link" href="/notes/?tag=node.js">node.js</a><a class="category-link" href="/notes/?tag=backend">backend</a><a class="category-link" href="/notes/?tag=back-end">back-end</a><a class="category-link" href="/notes/?tag=back-end dev">back-end dev</a><a class="category-link" href="/notes/?tag=back-end development">back-end development</a><a class="category-link" href="/notes/?tag=programming">programming</a><a class="category-link" href="/notes/?tag=js">js</a><a class="category-link" href="/notes/?tag=javascript">javascript</a><a class="category-link" href="/notes/?tag=gridfs">gridfs</a><a class="category-link" href="/notes/?tag=file system">file system</a><a class="category-link" href="/notes/?tag=fs">fs</a></p></div></div></div></div><footer><div class="main-container footer-container"><div class="row"><div class="col-25"><ul><li class="title">Links</li><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/notes">Writing</a></li><li><a href="/projects">Projects</a></li><li><a href="/experience">CV</a></li></ul></div><div class="col-25"><ul><li class="title">Projects</li><li><a href="https://github.com/lukaszkups">Open Source Code</a></li><li><a href="https://store.steampowered.com/app/1935130/Terry_Poorflyer/">Terry Poorflyer PC game</a></li><li><a href="https://lukaszkups.itch.io/">Game prototypes</a></li></ul></div><div class="col-25"><ul><li class="title">Categories</li><li><a href="/notes/?tag=programming">Programming</a></li><li><a href="/notes/?tag=vue">Vue.js</a></li><li><a href="/notes/?tag=reviews">Reviews</a></li><li><a href="/notes/?tag=thoughts">Thoughts</a></li></ul></div><div class="col-25"><ul><li class="title">Social</li><li><a href="https://twitter.com/lukaszkups">Twitter</a></li><li><a href="https://github.com/lukaszkups">GitHub</a></li><li><a href="https://linkedin.com/in/lukaszkups">LinkedIn</a></li><li><a href="https://gum.co/tATgO?wanted=true" target="_blank">Buy me a coffee</a></li></ul></div></div><div class="row copyrights">©&nbsp;<span id="year">2020</span>&nbsp;lukaszkups. All Rights Reserved.</div></div></footer><script src="/assets/js/main.js"></script><script src="https://gumroad.com/js/gumroad.js"></script></body></html>

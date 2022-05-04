@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta content="text/html;charset=utf-8" http-equiv="Content-Type"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content=""><meta name="keywords" content="tech, vue.js, javascript, js, programming, webdev, front-end, front-end developer, front-end development, developer, programmer"><link rel="icon" type="image/png" href="/assets/img/favicon-192x192.png" sizes="192x192"><link rel="preload" href="/assets/fonts/Bebas.eot" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.woff" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.ttf" as="font" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/main.css" type="text/css"><title>Thanks to Vue.js I've found front-end development fun again</title></head><body class="dark"><header><div class="main-container nav-container"><div class="logo-wrapper" id="logo"><div class="logo"></div></div><nav><ul><li><a href="/" data-hover="Home">Home</a></li><li><a href="/about" data-hover="About">About</a></li><li class="active"><a href="/notes" data-hover="Writing">Writing</a></li><li><a href="/projects" data-hover="Projects">Projects</a></li><li><a href="/experience" data-hover="CV">CV</a></li></ul></nav></div></header><div class="content notes-content"><div class="note-list-entry__wrapper"><div class="note-list-entry"><h1>Thanks to Vue.js I've found front-end development fun again</h1><div class="published">Published at 2018/09/23</div><article><blockquote>
+  <p>Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.</p>
+</blockquote>
+<p>Couple days ago I’ve decided to check Vue.js out. And it ended with a deep dive. After couple hours with documentation, I totally fell in love with this framework.</p>
+<p>The last time I’ve been feeling so much fun during coding sessions was when I was learning Meteor.js. It feels refreshing, it brings fun, it makes development fun again.</p>
+<p>But why? To be honest, I don’t know -  the whole architecture of this tool suits me very well -  and that’s maybe because I’ve found it very similar to my own idea when I was trying to develop my very own JavaScript framework :)</p>
+<h2 id="single-file-components">Single File Components</h2>
+<p>When I first saw this simple idea, I was just amazed why I haven’t seen earlier such clean and simple approach of developing web apps.</p>
+<p><img src="/static/brain-explosion.gif" alt="img" /><br />
+<em>My head when I saw SFC for the first time in action</em></p>
+<p>So, what’s so great about it? Just take a look at an example below:</p>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;{{ title }}&lt;/h1&gt;
+    &lt;h3&gt;{{ subtitle }}&lt;/h3&gt;
+    &lt;p&gt;Current state of the counter is: {{ counter }}&lt;/p&gt;
+    &lt;button @click="increaseCounter"&gt;Increase Counter!&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&lt;script&gt;
+  export default {
+    data: function(){
+      title: "Hello Everybody",
+      subtitle: "Just an example",
+      counter: 0
+    },
+    methods: {
+      increaseCounter() {
+        this.counter++;
+        console.log('Counter increased!');
+      }
+    }
+  }
+&lt;/script&gt;
+&lt;style scoped&gt;
+  h1 {
+    color: red;
+    text-decoration: underline;
+  }
+  h3 {
+    font-weight: 900;
+  }
+&lt;/style&gt;</code></pre>
+<p>With couple lines of code we have a working Vue.js component, ready to re-use in various places of our code.</p>
+<p>I love the idea of defining the component’s structure in one file, but divided by 3 sections:</p>
+<ul>
+<li><p>HTML template, with some extra Vue.js directives and custom props (AngularJS inspired? ). I’m really happy that this is a default -  I really can’t stand JSX’s syntax (but You can use it anyway with Vue.js),</p></li>
+<li><p>JavaScript code, which handles all the component’s behavior and data (logic),</p></li>
+<li><p>Style block, which can be scoped or not.</p></li>
+</ul>
+<p>I suppose that other frameworks out there also supports this approach, but IMHO they’re not popularized it so much as Vue. Okay, You can say that React.js has its render method, but I really don’t like jsx syntax - I want good old HTML. And okay no. 2 - You can use good old HTML instead of jsx, but it is not recommended way of developing React apps.</p>
+<h2 id="flexibility">Flexibility</h2>
+<p>You can use Vue.js with Your favorite jQuery libraries and ES5 syntax (just include Vue.js source file in the document - no bundlers needed!). You can also use ES6, with importing/exporting modules and other new JavaScript features as well. Even server-side rendering is not a problem.</p>
+<p>You can build just a simple widget for Your website, or spread functionality into multiple Single File Components, or use vue-router and vuex to create rich Single Page Application! There are also rumors that Vue’s alternative to React Native is almost ready - feel free to check out a WEEX project.</p>
+<h2 id="sugar-syntax">Sugar Syntax</h2>
+<p>For the long time I was thinking why exactly Angular 1, 2, React or Ember doesn’t suit me at all. Was it a problem of level of additional abstraction? Amount of creating unnecessary boilerplate code?</p>
+<p>No.</p>
+<p>The way how Vue.js solves creating Single Page Applications (or Web Interfaces) with such intuitive syntax is just a pure magic for me. Everything seems be polished to serve best experience for developer working with it. I’ll repeat myself again, but the last time I’ve felt something like this was when I was learning Meteor.js - so much stuff has been done under the hood, but this magic is fully understandable - You know why it works like this or why Vue.js core devs has solved this like that.</p>
+<p>Maybe calling it very suitable/intuitive naming conventions and well-thought out architecture is a very good summary of what I really wanted to explain here ;)</p>
+<h2 id="learning-curve">Learning curve</h2>
+<p>What can I say here? Learning Vue.js is like learning jQuery -  it’s THAT simple, yet powerful.</p>
+<h2 id="ending-words">Ending words</h2>
+<p>The purpose of this article is not to convince anyone to use Vue.js right now. Watching on the current market interest in Europe, there is a lot work to do to promote Vue. As far as I know, the main Vue valley is in the Eastern globe (Asia) - I hope that trend/hype on Vue.js will come as fast as possible here.</p>
+<p>-- ł.</p>
+<blockquote>
+  <p>This is a re-post - it was originialy posted on my previous blog at 28/04/2017.</p>
+</blockquote></article><div class="published"><p>Categories:<a class="category-link" href="/notes/?category=programming">programming</a><a class="category-link" href="/notes/?category=reviews">reviews</a><a class="category-link" href="/notes/?category=tech">tech</a></p><p>Tags:<a class="category-link" href="/notes/?tag=tech">tech</a><a class="category-link" href="/notes/?tag=vue.js">vue.js</a><a class="category-link" href="/notes/?tag=javascript">javascript</a><a class="category-link" href="/notes/?tag=js">js</a><a class="category-link" href="/notes/?tag=programming">programming</a><a class="category-link" href="/notes/?tag=webdev">webdev</a><a class="category-link" href="/notes/?tag=front-end">front-end</a><a class="category-link" href="/notes/?tag=front-end developer">front-end developer</a><a class="category-link" href="/notes/?tag=front-end development">front-end development</a><a class="category-link" href="/notes/?tag=developer">developer</a><a class="category-link" href="/notes/?tag=programmer">programmer</a></p></div></div></div></div><footer><div class="main-container footer-container"><div class="row"><div class="col-25"><ul><li class="title">Links</li><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/notes">Writing</a></li><li><a href="/projects">Projects</a></li><li><a href="/experience">CV</a></li></ul></div><div class="col-25"><ul><li class="title">Projects</li><li><a href="https://github.com/lukaszkups">Open Source Code</a></li><li><a href="https://store.steampowered.com/app/1935130/Terry_Poorflyer/">Terry Poorflyer PC game</a></li><li><a href="https://lukaszkups.itch.io/">Game prototypes</a></li></ul></div><div class="col-25"><ul><li class="title">Categories</li><li><a href="/notes/?tag=programming">Programming</a></li><li><a href="/notes/?tag=vue">Vue.js</a></li><li><a href="/notes/?tag=reviews">Reviews</a></li><li><a href="/notes/?tag=thoughts">Thoughts</a></li></ul></div><div class="col-25"><ul><li class="title">Social</li><li><a href="https://twitter.com/lukaszkups">Twitter</a></li><li><a href="https://github.com/lukaszkups">GitHub</a></li><li><a href="https://linkedin.com/in/lukaszkups">LinkedIn</a></li><li><a href="https://gum.co/tATgO?wanted=true" target="_blank">Buy me a coffee</a></li></ul></div></div><div class="row copyrights">©&nbsp;<span id="year">2020</span>&nbsp;lukaszkups. All Rights Reserved.</div></div></footer><script src="/assets/js/main.js"></script><script src="https://gumroad.com/js/gumroad.js"></script></body></html>

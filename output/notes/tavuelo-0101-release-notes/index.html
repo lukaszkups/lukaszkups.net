@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta content="text/html;charset=utf-8" http-equiv="Content-Type"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content=""><meta name="keywords" content="tavuelo, vue, vue.js, devlog, open source, table, data table, component, javascript, js, programming, release notes, changelog"><link rel="icon" type="image/png" href="/assets/img/favicon-192x192.png" sizes="192x192"><link rel="preload" href="/assets/fonts/Bebas.eot" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.woff" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.ttf" as="font" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/main.css" type="text/css"><title>Tavuelo 0.10.1 release notes</title></head><body class="dark"><header><div class="main-container nav-container"><div class="logo-wrapper" id="logo"><div class="logo"></div></div><nav><ul><li><a href="/" data-hover="Home">Home</a></li><li><a href="/about" data-hover="About">About</a></li><li class="active"><a href="/notes" data-hover="Writing">Writing</a></li><li><a href="/projects" data-hover="Projects">Projects</a></li><li><a href="/experience" data-hover="CV">CV</a></li></ul></nav></div></header><div class="content notes-content"><div class="note-list-entry__wrapper"><div class="note-list-entry"><h1>Tavuelo 0.10.1 release notes</h1><div class="published">Published at 2020/02/11</div><article><blockquote>
+  <p>Tavuelo is my first open source package. It is a easy to use yet highly customizable table component, created for use in Vue.js projects.</p>
+</blockquote>
+<h1 id="changelog">Changelog</h1>
+<p>Finally added handling <code>slot</code> blocks for table cells. You can use it to define custom template inside each column or when you want to display something extra when there is no data in the table (for example a nice image). Since the beginning this was the biggest feature that has been waiting to be implemented.</p>
+<p>If you don't want to control empty table message via slot, you can change the default <code>No data</code> text by setting it to other string via <code>noDataLabel</code> tavuelo component property.</p>
+<p>Sometimes you want to use in your table totally custom columns, that shows computed data (e.g. when using mentioned slot-based column cell templates) but how to handle sorting and filtering for such columns? Well, tavuelo does that for you via new <code>computedValue</code> column property.</p>
+<p>Added new properties:</p>
+<ul>
+<li><p><code>noDataLabel</code> - a string prop (default value: <code>No data</code>) - it is displayed when there's no data in the table available (or because of applied filter/search)</p></li>
+<li><p><code>useNoDataSlot</code> - a boolean prop (default value: <code>false</code>) - toggle usage of slot block that will be visible when there won't be any results available (or again, because of applied filter/search). It automatically overrides the label string set via <code>noDataLabel</code> property.<br />
+Example of the slot:</p></li>
+</ul>
+<pre><code>&lt;template slot='noDataSlot'&gt;
+  &lt;img src="/images/no-data.jpg" alt="no data" class="block--centered" /&gt;
+  &lt;p class="text--red text--centered"&gt;There is no data here!&lt;/p&gt;
+&lt;/template&gt;</code></pre>
+<p>Column definition new properties and changes:</p>
+<ul>
+<li><p><code>type</code> prop has new available value: <code>slot</code> - it determines if tavuelo should use default cell templates or slots. To use cell slots properly, it requires also to set value to <code>slotName</code> property</p></li>
+<li><p><code>slotName</code> - a string property that contains template name that will be used for this column slot. Template also uses as a <code>slot-scope</code> current row object, represented by <code>entry</code> variable. Example column slot template code:</p></li>
+</ul>
+<pre><code>&lt;template slot='fullName' slot-scope='{entry}'&gt;
+  {{ entry.first_name }} {{ entry.last_name }}
+&lt;/template&gt;</code></pre>
+<ul>
+<li><code>computedValue</code> - a function that uses current row as an argument, used to compute value for custom columns. As a most basic example we can use a column that contains full name, with values represented by following code:</li>
+</ul>
+<pre><code>{
+  title: 'Full name',
+  dataSource: 'fullName',
+  type: 'slot',
+  slotName: 'fullName',
+  computedValue: row =&gt; `${row.first_name} ${row.last_name}`
+}</code></pre>
+<p>This value will be used when sorting and filtering, only if there's no such data source available in data set that is used in the table (so if there's already <code>full_name</code> data in each record of the data set, it will be used instead of this computed value)</p>
+<p>Besides above changes, example components code and readme file has been updated as well. You can check it <a href="https://www.npmjs.com/package/tavuelo">here</a> and customize table code with newly added properties. You can also clone package repository to your machine, and run the example mini-project easily via <code>npm run serve</code> command.</p>
+<p><a href="https://www.npmjs.com/package/tavuelo">Link to npm</a></p>
+<p><a href="https://github.com/lukaszkups/tavuelo">Link to github</a></p>
+<p>-- ł.</p></article><div class="published"><p>Categories:<a class="category-link" href="/notes/?category=tavuelo">tavuelo</a><a class="category-link" href="/notes/?category=devlog">devlog</a></p><p>Tags:<a class="category-link" href="/notes/?tag=tavuelo">tavuelo</a><a class="category-link" href="/notes/?tag=vue">vue</a><a class="category-link" href="/notes/?tag=vue.js">vue.js</a><a class="category-link" href="/notes/?tag=devlog">devlog</a><a class="category-link" href="/notes/?tag=open source">open source</a><a class="category-link" href="/notes/?tag=table">table</a><a class="category-link" href="/notes/?tag=data table">data table</a><a class="category-link" href="/notes/?tag=component">component</a><a class="category-link" href="/notes/?tag=javascript">javascript</a><a class="category-link" href="/notes/?tag=js">js</a><a class="category-link" href="/notes/?tag=programming">programming</a><a class="category-link" href="/notes/?tag=release notes">release notes</a><a class="category-link" href="/notes/?tag=changelog">changelog</a></p></div></div></div></div><footer><div class="main-container footer-container"><div class="row"><div class="col-25"><ul><li class="title">Links</li><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/notes">Writing</a></li><li><a href="/projects">Projects</a></li><li><a href="/experience">CV</a></li></ul></div><div class="col-25"><ul><li class="title">Projects</li><li><a href="https://github.com/lukaszkups">Open Source Code</a></li><li><a href="https://store.steampowered.com/app/1935130/Terry_Poorflyer/">Terry Poorflyer PC game</a></li><li><a href="https://lukaszkups.itch.io/">Game prototypes</a></li></ul></div><div class="col-25"><ul><li class="title">Categories</li><li><a href="/notes/?tag=programming">Programming</a></li><li><a href="/notes/?tag=vue">Vue.js</a></li><li><a href="/notes/?tag=reviews">Reviews</a></li><li><a href="/notes/?tag=thoughts">Thoughts</a></li></ul></div><div class="col-25"><ul><li class="title">Social</li><li><a href="https://twitter.com/lukaszkups">Twitter</a></li><li><a href="https://github.com/lukaszkups">GitHub</a></li><li><a href="https://linkedin.com/in/lukaszkups">LinkedIn</a></li><li><a href="https://gum.co/tATgO?wanted=true" target="_blank">Buy me a coffee</a></li></ul></div></div><div class="row copyrights">©&nbsp;<span id="year">2020</span>&nbsp;lukaszkups. All Rights Reserved.</div></div></footer><script src="/assets/js/main.js"></script><script src="https://gumroad.com/js/gumroad.js"></script></body></html>

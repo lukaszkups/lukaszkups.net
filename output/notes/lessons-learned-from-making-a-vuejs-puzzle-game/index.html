@@ -1,0 +1,96 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta content="text/html;charset=utf-8" http-equiv="Content-Type"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content=""><meta name="keywords" content="vue.js, vue, js, javascript, programming, webdev, web development, development"><link rel="icon" type="image/png" href="/assets/img/favicon-192x192.png" sizes="192x192"><link rel="preload" href="/assets/fonts/Bebas.eot" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.woff" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.ttf" as="font" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/main.css" type="text/css"><title>Lessons learned from making a Vue.js puzzle game</title></head><body class="dark"><header><div class="main-container nav-container"><div class="logo-wrapper" id="logo"><div class="logo"></div></div><nav><ul><li><a href="/" data-hover="Home">Home</a></li><li><a href="/about" data-hover="About">About</a></li><li class="active"><a href="/notes" data-hover="Writing">Writing</a></li><li><a href="/projects" data-hover="Projects">Projects</a></li><li><a href="/experience" data-hover="CV">CV</a></li></ul></nav></div></header><div class="content notes-content"><div class="note-list-entry__wrapper"><div class="note-list-entry"><h1>Lessons learned from making a Vue.js puzzle game</h1><div class="published">Published at 2017/11/17</div><article><p>For the last couple weeks I was taking a part of multiple recruiting processes. Most of them required to do simple tasks to show my way of doing things and programming experience.</p>
+<p>And this article is about one of them.</p>
+<p>One of the companies asked me to do a simple puzzle game based on provided mockups and assets. It has to require player name on start, count time taken to solve the puzzles and ask player to start over or save score and display table of 10 best highest scores.</p>
+<p><img src="/static/1514932542100-puzzle1.png" alt="img" /></p>
+<p>This was one of these tasks where I have almost total control what I want to use to develop it — the only requirements was to use webpack as module bundler, html5, ES6, some CSS3 preprocessor and json-server package to serve/store player scores.</p>
+<h2 id="lessons-learned">Lessons learned</h2>
+<p>I’ve decided to use one of existing <a href="https://github.com/vuejs-templates">Vue.js templates</a> (webpack). I’ve configured it to work with sass preprocessor and resources loader (so I can use css variables without the need to import whole file in Vue single file components).</p>
+<h2 id="using-slots-for-reusable-components">Using slots for reusable components</h2>
+<p>When I started working on this task I planned to create as reusable components as (easily) possible. One of them was a popup component, which uses <code>&lt;slot&gt;&lt;/slot&gt;</code> for passing its contents directly in template.</p>
+<pre><code>&lt;template&gt;
+  &lt;div
+    class="popup"
+    v-if="showWindow"&gt;
+    &lt;div class="popup__window"&gt;
+      &lt;div class="popup__title-bar"&gt;
+        &lt;h2 class="popup__window-name"&gt;{{ windowName }}&lt;/h2&gt;
+        &lt;span
+          class="popup__close-icon"
+          @click="closePopup"
+          v-if="closeable"
+        &gt;
+          x
+        &lt;/span&gt;
+      &lt;/div&gt;
+      &lt;div class="popup__content-wrapper"&gt;
+        &lt;slot&gt;&lt;/slot&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+<h2 id="vuex">Vuex</h2>
+<p>The other thing is that I’ve decided to use Vuex for state management. At first I thought that this app is too small to use it, but after creating couple first components I was very happy of my decision. Vuex saved me from hacking around multiple event buses and make my code more clean and straightforward. In addition, I’ve learned about it’s limitations when we're dealing with arrays:</p>
+<pre><code>updateTile(state, payload) {
+    // This won't work:
+    // state.tiles[payload.order] = payload;
+    // Because of reactive var limitations mentioned here: https://vuejs.org/v2/guide/list.html#Caveats
+    state.tiles.splice(payload.order, 1, payload);
+},</code></pre>
+<p>And I’ve spread main store into multiple modules:</p>
+<pre><code>import Vue from 'vue';
+import Vuex from 'vuex';
+
+import loginPopup from './modules/loginPopup';
+import errors from './modules/errors';
+import timer from './modules/timer';
+import board from './modules/board';
+import puzzle from './modules/puzzle';
+import score from './modules/score';
+
+Vue.use(Vuex);
+
+export default new Vuex.Store({
+  modules: {
+    loginPopup,
+    errors,
+    timer,
+    board,
+    puzzle,
+    score,
+  },
+});</code></pre>
+<p>I’ve also learned how to make store actions promise-based so I can chain it with <code>.then()</code> as a callback caller.</p>
+<pre><code>removePuzzle({ commit }, payload) {
+  return new Promise((resolve) =&gt; {
+    commit('removePuzzle', payload);
+    resolve();
+  });
+},</code></pre>
+<h2 id="mixins">Mixins</h2>
+<p>I’ve decided to separate core game functionality (puzzle preparation, start, restart etc.) into dedicated mixin that can be imported in multiple places of the application, such as main game wrapper, user login popup and scores list popup (for restart button).<br />
+High scores</p>
+<p>To get high scores list with top 10 results I’ve used axios (which should I finally abandon for the sake of fetch API which I tend to forget about constantly).</p>
+<p>Luckily, json-server has already built-in filters so I can get necessary data in a form I need: <code>/scores?_sort=score&amp;_order=asc&amp;_limit=10</code>.</p>
+<h2 id="main-app-concept">Main app concept</h2>
+<p>When I first read task requirements I was thinking about how to solve creating puzzle tiles from actual image. The first idea was to mess a bit with HTML5 canvas but on second run I thought it will be a bit of an overkill. I’ve googled a bit about this topic and I’ve found a very simple solution: modifying background-position css property! :)</p>
+<pre><code>generatePuzzleTiles() {
+  const tiles = [];
+  for (let x = 0; x &lt; 9; x += 1) {
+    tiles.push({
+      inPlace: true,
+      order: x,
+      styles: {
+        background: `url(${PuzzleImage}) no-repeat`,
+        backgroundPositionX: `-${(x % 3) * this.tileSize}px`,
+        backgroundPositionY: `-${Math.floor(x / 3) * this.tileSize}px`,
+        height: `${this.tileSize}px`,
+        width: `${this.tileSize}px`,
+      },
+    });
+  }
+  this.tiles = tiles;
+},</code></pre>
+<h2 id="final-words">Final words</h2>
+<p>In overall, I’m pretty satisfied with the final effect. It took me not so long time to finish, and the code is pretty clean and readable. As (almost) always, I feel bad that I haven’t forced myself to write some tests to it. But maybe some day.. ;)</p>
+<p>The whole code is available on <a href="https://github.com/lukaszkups/puzzle-game">github</a> — feel free to share what do You think about it.</p>
+<p>-- ł.</p></article><div class="published"><p>Categories:<a class="category-link" href="/notes/?category=programming">programming</a></p><p>Tags:<a class="category-link" href="/notes/?tag=vue.js">vue.js</a><a class="category-link" href="/notes/?tag=vue">vue</a><a class="category-link" href="/notes/?tag=js">js</a><a class="category-link" href="/notes/?tag=javascript">javascript</a><a class="category-link" href="/notes/?tag=programming">programming</a><a class="category-link" href="/notes/?tag=webdev">webdev</a><a class="category-link" href="/notes/?tag=web development">web development</a><a class="category-link" href="/notes/?tag=development">development</a></p></div></div></div></div><footer><div class="main-container footer-container"><div class="row"><div class="col-25"><ul><li class="title">Links</li><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/notes">Writing</a></li><li><a href="/projects">Projects</a></li><li><a href="/experience">CV</a></li></ul></div><div class="col-25"><ul><li class="title">Projects</li><li><a href="https://github.com/lukaszkups">Open Source Code</a></li><li><a href="https://store.steampowered.com/app/1935130/Terry_Poorflyer/">Terry Poorflyer PC game</a></li><li><a href="https://lukaszkups.itch.io/">Game prototypes</a></li></ul></div><div class="col-25"><ul><li class="title">Categories</li><li><a href="/notes/?tag=programming">Programming</a></li><li><a href="/notes/?tag=vue">Vue.js</a></li><li><a href="/notes/?tag=reviews">Reviews</a></li><li><a href="/notes/?tag=thoughts">Thoughts</a></li></ul></div><div class="col-25"><ul><li class="title">Social</li><li><a href="https://twitter.com/lukaszkups">Twitter</a></li><li><a href="https://github.com/lukaszkups">GitHub</a></li><li><a href="https://linkedin.com/in/lukaszkups">LinkedIn</a></li><li><a href="https://gum.co/tATgO?wanted=true" target="_blank">Buy me a coffee</a></li></ul></div></div><div class="row copyrights">©&nbsp;<span id="year">2020</span>&nbsp;lukaszkups. All Rights Reserved.</div></div></footer><script src="/assets/js/main.js"></script><script src="https://gumroad.com/js/gumroad.js"></script></body></html>

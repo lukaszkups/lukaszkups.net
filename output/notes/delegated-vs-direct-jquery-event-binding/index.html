@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta content="text/html;charset=utf-8" http-equiv="Content-Type"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content=""><meta name="keywords" content="javascript, jquery, js, webdev, webdevelopment, web development, front-end, front-end development, programming, event delegation, event binding"><link rel="icon" type="image/png" href="/assets/img/favicon-192x192.png" sizes="192x192"><link rel="preload" href="/assets/fonts/Bebas.eot" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.woff" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.ttf" as="font" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/main.css" type="text/css"><title>Delegated vs direct jQuery event binding</title></head><body class="dark"><header><div class="main-container nav-container"><div class="logo-wrapper" id="logo"><div class="logo"></div></div><nav><ul><li><a href="/" data-hover="Home">Home</a></li><li><a href="/about" data-hover="About">About</a></li><li class="active"><a href="/notes" data-hover="Writing">Writing</a></li><li><a href="/projects" data-hover="Projects">Projects</a></li><li><a href="/experience" data-hover="CV">CV</a></li></ul></nav></div></header><div class="content notes-content"><div class="note-list-entry__wrapper"><div class="note-list-entry"><h1>Delegated vs direct jQuery event binding</h1><div class="published">Published at 2015/05/03</div><article><h1 id="delegated-vs-direct-jquery-event-binding">Delegated vs direct jQuery event binding</h1>
+<p>Today I would like to show the difference between two event binding methods (as a example I will take <code>.on()</code> method):</p>
+<ul>
+<li>direct:</li>
+</ul>
+<pre><code>$('div span').on('click', function(){
+    console.log('clicked!');
+});</code></pre>
+<ul>
+<li>and delegated one:</li>
+</ul>
+<pre><code>$('div').on('click', 'span', function(){
+    console.log('clicked!');
+});</code></pre>
+<p>The difference in code is very subtle, but in functionality (spoiler alert) delegated version of the code is far more flexible and universal.</p>
+<h2 id="delgated-vs-direct--dynamic-vs-static">Delgated vs direct === Dynamic vs static</h2>
+<p>Direct version of jQuery <code>.on()</code> method allows You to bind the event to actually added elements in the document.</p>
+<p>On the other side, dynamic version of jQuery <code>on()</code> method allows You to bind events to all elements that will match the query - also those added dynamically (e.g. added by other jQuery methods).</p>
+<p>So, if we have a HTML like this:</p>
+<pre><code>&lt;ul id="exampleList"&gt;
+    &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>..and we'll bind the events to <code>&lt;li&gt;</code> elements:</p>
+<pre><code>//first solution:
+$('ul#exampleList li').on('click', function(){
+    console.log('clicked!');
+});
+
+//second solution:
+$('ul#exampleList').on('click', 'li', function(){
+    console.log('clicked!');
+});</code></pre>
+<p>And then we're add dynamically couple new <code>&lt;li&gt;</code> elements:</p>
+<pre><code>for(var i=0; i&lt;3; i++){
+    $('ul#exampleList').append('&lt;li&gt;&lt;/li&gt;');
+}</code></pre>
+<p>So we will have something like this:</p>
+<pre><code>&lt;ul id="exampleList"&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<p>Using first solution of event binding, the click event will work only for first <code>&lt;li&gt;</code> element - the one that existed before code execution.</p>
+<p>The second solution provides event binding support for elements which exists during event binding code execution and those which will be dynamically added later.</p>
+<p>So, if You want to work with dynamically loaded elements, use the second (<em>Delegated</em>) solution of event binding.</p>
+<p>-- ł.</p></article><div class="published"><p>Categories:<a class="category-link" href="/notes/?category=programming">programming</a></p><p>Tags:<a class="category-link" href="/notes/?tag=javascript">javascript</a><a class="category-link" href="/notes/?tag=jquery">jquery</a><a class="category-link" href="/notes/?tag=js">js</a><a class="category-link" href="/notes/?tag=webdev">webdev</a><a class="category-link" href="/notes/?tag=webdevelopment">webdevelopment</a><a class="category-link" href="/notes/?tag=web development">web development</a><a class="category-link" href="/notes/?tag=front-end">front-end</a><a class="category-link" href="/notes/?tag=front-end development">front-end development</a><a class="category-link" href="/notes/?tag=programming">programming</a><a class="category-link" href="/notes/?tag=event delegation">event delegation</a><a class="category-link" href="/notes/?tag=event binding">event binding</a></p></div></div></div></div><footer><div class="main-container footer-container"><div class="row"><div class="col-25"><ul><li class="title">Links</li><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/notes">Writing</a></li><li><a href="/projects">Projects</a></li><li><a href="/experience">CV</a></li></ul></div><div class="col-25"><ul><li class="title">Projects</li><li><a href="https://github.com/lukaszkups">Open Source Code</a></li><li><a href="https://store.steampowered.com/app/1935130/Terry_Poorflyer/">Terry Poorflyer PC game</a></li><li><a href="https://lukaszkups.itch.io/">Game prototypes</a></li></ul></div><div class="col-25"><ul><li class="title">Categories</li><li><a href="/notes/?tag=programming">Programming</a></li><li><a href="/notes/?tag=vue">Vue.js</a></li><li><a href="/notes/?tag=reviews">Reviews</a></li><li><a href="/notes/?tag=thoughts">Thoughts</a></li></ul></div><div class="col-25"><ul><li class="title">Social</li><li><a href="https://twitter.com/lukaszkups">Twitter</a></li><li><a href="https://github.com/lukaszkups">GitHub</a></li><li><a href="https://linkedin.com/in/lukaszkups">LinkedIn</a></li><li><a href="https://gum.co/tATgO?wanted=true" target="_blank">Buy me a coffee</a></li></ul></div></div><div class="row copyrights">©&nbsp;<span id="year">2020</span>&nbsp;lukaszkups. All Rights Reserved.</div></div></footer><script src="/assets/js/main.js"></script><script src="https://gumroad.com/js/gumroad.js"></script></body></html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta content="text/html;charset=utf-8" http-equiv="Content-Type"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="description" content=""><meta name="keywords" content="meteor, meteor.js, email, e-mail, smtp, pop3, sending email, sending emails, js, javascript, back-end, front-end, fullstack, node, node.js"><link rel="icon" type="image/png" href="/assets/img/favicon-192x192.png" sizes="192x192"><link rel="preload" href="/assets/fonts/Bebas.eot" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.woff" as="font" crossorigin="anonymous"><link rel="preload" href="/assets/fonts/Bebas.ttf" as="font" crossorigin="anonymous"><link rel="stylesheet" href="/assets/css/main.css" type="text/css"><title>Sending e-mails with Meteor.js</title></head><body class="dark"><header><div class="main-container nav-container"><div class="logo-wrapper" id="logo"><div class="logo"></div></div><nav><ul><li><a href="/" data-hover="Home">Home</a></li><li><a href="/about" data-hover="About">About</a></li><li class="active"><a href="/notes" data-hover="Writing">Writing</a></li><li><a href="/projects" data-hover="Projects">Projects</a></li><li><a href="/experience" data-hover="CV">CV</a></li></ul></nav></div></header><div class="content notes-content"><div class="note-list-entry__wrapper"><div class="note-list-entry"><h1>Sending e-mails with Meteor.js</h1><div class="published">Published at 2015/01/12</div><article><blockquote>
+  <p>This is my personal wrap-up explanation of the code available in official <a href="https://docs.meteor.com/">Meteor.js</a> documentation.</p>
+</blockquote>
+<p>Today I had to implement contact form for one of my Meteor.js project. At first I've jumped to official Meteor.js documentation and analize email mechanics.</p>
+<p>At the beginning, we have to install <code>email</code> package (via terminal):</p>
+<pre><code>meteor add email</code></pre>
+<p>Next, we need to declare our email settings - to do that, let's create a <code>server/smtp.js</code> file:</p>
+<pre><code>// smtp.js file contents
+Meteor.startup(function(){
+  process.env.MAIL_URL = 'smtp://email_username:email_password@email_host:email_port/';
+});</code></pre>
+<p>Example for gmail:</p>
+<pre><code>Meteor.startup(function(){
+  process.env.MAIL_URL = 'smtp://boo.foo:superDooperPassword@smtp.gmail.com:587/';
+});</code></pre>
+<p>We can also use custom domain email account:</p>
+<pre><code>Meteor.startup(function(){
+  process.env.MAIL_URL = 'smtp://boo.foo@awesomedomain.com:superDooperPassword@smtp.gmail.com:587/';
+});</code></pre>
+<p>After everything is set, let's register actual sending method, available for client (but declared on server so place code below somewhere under <code>server/</code> folder):</p>
+<pre><code>// In your server code: define a method that the client can call
+Meteor.methods({
+  sendEmail: function (to, from, subject, text) {
+    check([to, from, subject, text], [String]);
+
+    // Let other method calls from the same client start running,
+    // without waiting for the email sending to complete.
+    this.unblock();
+
+    //actual email sending method
+    Email.send({
+      to: to,
+      from: from,
+      subject: subject,
+      text: text
+    });
+  }
+});</code></pre>
+<p>Those function arguments are of course optional - we can also add cc, bcc, Reply-To, html or headers.</p>
+<p>My example for contact form:</p>
+<pre><code>Meteor.methods({
+  sendEmail: function (text) {
+    check([text], [String]);
+
+    this.unblock();
+
+    Email.send({
+      to: 'support@myClientProject.com',
+      from: 'contact@myClientProject.com',
+      subject: 'New message from contact form',
+      text: text
+    });
+  }
+});</code></pre>
+<p>After we declared our server method, let's create actual sending event:</p>
+<pre><code>Template.contactFormTemplate.events({
+  'submit form#contactForm':function(e){
+    var contactForm = $(e.currentTarget),
+      fname = contactForm.find('#firstName').val(),
+      lname = contactForm.find('#lastName').val(),
+      email = contactForm.find('#email').val(),
+      phone = contactForm.find('#phone').val(),
+      message = contactForm.find("#message").val();
+
+    //isFilled and isEmail are my helper methods, which checks if variable exists or is email address valid
+    if(isFilled(fname) &amp;&amp; isFilled(lname) &amp;&amp; isFilled(email) &amp;&amp; isFilled(phone) &amp;&amp; isFilled(message) &amp;&amp; isEmail(email)){
+      var dataText = "Message from: " + fname + " " + lname + "\rEmail: " + email + "\rPhone: " + phone + "\rContent:" + message;
+
+      Meteor.call('sendEmail', dataText);
+      //throwAlert is my helper method which creates popup with message
+      throwAlert('Email send.', 'success');
+    }else{
+      throwAlert('An error occurred. Sorry', 'error');
+      return false;
+    }
+  }
+});</code></pre>
+<p>Besides of code above, You need of course some html template code:</p>
+<pre><code>&lt;template name="contactFormTemplate"&gt;
+  &lt;form id="contactForm"&gt;
+    &lt;input type="text" name="firstName" id="firstName" placeholder="First name"&gt;
+    &lt;input type="text" name="lastName" id="lastName" placeholder="last name"&gt;
+    &lt;input type="text" name="phone" id="phone" placeholder="Phone number"&gt;
+    &lt;input type="email" name="email" id="email" placeholder="Your email address"&gt;
+    &lt;textarea id="message"&gt;&lt;/textarea&gt;
+    &lt;input type="submit" value="Send"&gt;
+  &lt;/form&gt;
+&lt;/template&gt;</code></pre>
+<p>And that's all - it was THAT easy. You can now add <code>{{&gt; contactFormTemplate}}</code> tag to any template You want and enjoy Your awesome contact form :)</p>
+<p>-- ł.</p></article><div class="published"><p>Categories:<a class="category-link" href="/notes/?category=programming">programming</a></p><p>Tags:<a class="category-link" href="/notes/?tag=meteor">meteor</a><a class="category-link" href="/notes/?tag=meteor.js">meteor.js</a><a class="category-link" href="/notes/?tag=email">email</a><a class="category-link" href="/notes/?tag=e-mail">e-mail</a><a class="category-link" href="/notes/?tag=smtp">smtp</a><a class="category-link" href="/notes/?tag=pop3">pop3</a><a class="category-link" href="/notes/?tag=sending email">sending email</a><a class="category-link" href="/notes/?tag=sending emails">sending emails</a><a class="category-link" href="/notes/?tag=js">js</a><a class="category-link" href="/notes/?tag=javascript">javascript</a><a class="category-link" href="/notes/?tag=back-end">back-end</a><a class="category-link" href="/notes/?tag=front-end">front-end</a><a class="category-link" href="/notes/?tag=fullstack">fullstack</a><a class="category-link" href="/notes/?tag=node">node</a><a class="category-link" href="/notes/?tag=node.js">node.js</a></p></div></div></div></div><footer><div class="main-container footer-container"><div class="row"><div class="col-25"><ul><li class="title">Links</li><li><a href="/">Home</a></li><li><a href="/about">About</a></li><li><a href="/notes">Writing</a></li><li><a href="/projects">Projects</a></li><li><a href="/experience">CV</a></li></ul></div><div class="col-25"><ul><li class="title">Projects</li><li><a href="https://github.com/lukaszkups">Open Source Code</a></li><li><a href="https://store.steampowered.com/app/1935130/Terry_Poorflyer/">Terry Poorflyer PC game</a></li><li><a href="https://lukaszkups.itch.io/">Game prototypes</a></li></ul></div><div class="col-25"><ul><li class="title">Categories</li><li><a href="/notes/?tag=programming">Programming</a></li><li><a href="/notes/?tag=vue">Vue.js</a></li><li><a href="/notes/?tag=reviews">Reviews</a></li><li><a href="/notes/?tag=thoughts">Thoughts</a></li></ul></div><div class="col-25"><ul><li class="title">Social</li><li><a href="https://twitter.com/lukaszkups">Twitter</a></li><li><a href="https://github.com/lukaszkups">GitHub</a></li><li><a href="https://linkedin.com/in/lukaszkups">LinkedIn</a></li><li><a href="https://gum.co/tATgO?wanted=true" target="_blank">Buy me a coffee</a></li></ul></div></div><div class="row copyrights">©&nbsp;<span id="year">2020</span>&nbsp;lukaszkups. All Rights Reserved.</div></div></footer><script src="/assets/js/main.js"></script><script src="https://gumroad.com/js/gumroad.js"></script></body></html>
