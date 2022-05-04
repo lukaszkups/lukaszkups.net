@@ -404,7 +404,7 @@ module.exports = {
     })
   },
   compileOnce: (_store) => {
-    _helpers.deleteFolderRecursive('./output/') // empty output folder for new content
+    // _helpers.deleteFolderRecursive('./output/') // empty output folder for new content
     return module.exports.compile(_store)
   },
   watchForChanges: (_store) => {
