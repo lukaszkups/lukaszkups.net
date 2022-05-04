@@ -1,6 +1,6 @@
 ---
 title: Summary of the Year 2021
-date: 2020/12/29
+date: 2021/12/29
 category: reviews
 tags: reviews, review, summary, yearly, year, year in review, summary of the year
 active: 2
