@@ -34,7 +34,7 @@ git checkout --orphan gh-pages
 Next we have to clean all the contents from our `output` folder's git track:
 
 ```
-git rm -rf .
+rm -rf .
 ```
 
 Now re-check if You are on `gh-pages` branch - there's possibility that You're now on detached state - if so then type:
