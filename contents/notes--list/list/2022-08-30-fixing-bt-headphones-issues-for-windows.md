@@ -2,7 +2,7 @@
 title: Fixing Bluetooth Headphone issues on Windows 10 and 11
 date: 2022/08/30
 category: windows, sysops, hardware, software
-tags: windows, windows11, windows10, win11, win10, windows 10, windows 11, bluetooth, headphones, edifier, edifier x3
+tags: windows, windows11, windows10, win11, win10, windows 10, windows 11, bluetooth, headphones, edifier, edifier x2
 active: 2
 ---
 
@@ -10,7 +10,7 @@ active: 2
 
 In the last year I've switched laptop twice - first to MSI GS66 and now I work on ASUS Zenbook 14 OLED model.
 
-During that time I've also started using bluetooth wireless headphones - Edifier X3 to be exact.
+During that time I've also started using bluetooth wireless headphones - Edifier X2 to be exact.
 
 It was working flawlessly, besides the times when it doesn't.
 
