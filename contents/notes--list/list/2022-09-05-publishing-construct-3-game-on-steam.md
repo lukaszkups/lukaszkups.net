@@ -8,7 +8,11 @@ active: 2
 
 > Disclaimer: Huge part of this guide is based on [Greenworks official Addon for Construct 3](https://www.construct.net/en/make-games/addons/84/greenworks/documentation), filled with extra information that is not included there, which I've found after spending many hours of trying out different things and tons of googling.
 
-> Disclaimer II: This is solely technical part of preparing and releasing your game, you should have already added your game in your Steam admin panel with filled all the information about your game (e.g. screenshots, graphica medias, descriptions and market availabilities or prices)
+&nbsp;
+
+> Disclaimer II: This is solely technical part of preparing and releasing your game, you should have already added it in your Steam admin panel with filled all the information about your game (e.g. screenshots, graphica medias, descriptions and market availabilities or prices)
+
+&nbsp;
 
 > Disclaimer III: This guide can be used not only for Construct 3-related games, but for NW.js-compatible ones in general
 
@@ -18,7 +22,7 @@ What you're gonna need is [Steamworks SDK](https://partner.steamgames.com/doc/sd
 
 Once you have everything downloaded, what you're gonna need is to export your Construct 3 game as NW.js project.
 
-> IMPORTANT! Your game needs to be using [Official Construct 3 Greenworks plugin](https://www.construct.net/en/make-games/addons/84/greenworks) installed!
+> IMPORTANT! If you want to have Your game integrated with Steam API features (e.g. Steam Achievements) your game projects needs to be using [Official Construct 3 Greenworks plugin](https://www.construct.net/en/make-games/addons/84/greenworks) !
 
 # Identifying your game
 
@@ -100,6 +104,8 @@ Example contents for `depot_build_1002.vdf` file:
   }
 }
 ```
+
+> Disclaimer: This guide has been prepared to work on Windows OS, so your configurations might vary (e.g. `\` vs `/` in file paths)
 
 # Preparing game files / adding Stamworks DLLs
 
