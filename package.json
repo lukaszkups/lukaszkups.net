@@ -13,14 +13,16 @@
   "author": "lukaszkups",
   "license": "UNLICENSED",
   "devDependencies": {
+    "dart-sass": "^1.25.0",
     "fs": "0.0.1-security",
-    "ftp-deploy": "^2.3.0"
+    "ftp-deploy": "^2.3.0",
+    "node-sass": "npm:dart-sass@^1.25.0",
+    "node-sass-install": "^1.0.2"
   },
   "dependencies": {
     "fs-extra": "^7.0.1",
     "ftp-deploy": "^2.3.1",
     "http-server": "^0.12.1",
-    "node-sass": "^4.13.1",
     "node-watch": "^0.6.0",
     "pug": "^2.0.3",
     "showdown": "^1.9.1",
