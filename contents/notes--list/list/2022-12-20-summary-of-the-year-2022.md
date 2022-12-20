@@ -116,7 +116,7 @@ Similar to previous year I'm not really sure - maybe not releasing any other gam
 
 - Start running on regular manner again
 
-- Spent more time with my family and genrally offline (it has already begun since some time and I hope continuing that)
+- Spent more time with my family and offline in general (it has already begun since some time and I hope continuing that)
 
 - If possible, expand idea of [Monolith Wars](https://lukaszkups.itch.io/monolith-wars) game/universe - either way it will be a turn-based tactical game or [top-down shooter](https://twitter.com/lukaszkups/status/1537882838657224707).
 
