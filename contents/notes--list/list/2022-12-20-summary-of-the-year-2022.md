@@ -1,6 +1,6 @@
 ---
 title: Summary of the Year 2022
-date: 2021/12/20
+date: 2022/12/20
 category: reviews
 tags: reviews, review, summary, yearly, year, year in review, summary of the year
 active: 2
