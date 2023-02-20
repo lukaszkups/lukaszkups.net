@@ -6,7 +6,7 @@ block content
       #notes-list.notes-list
         ul.notes
           each item, index in list.length ? list : ['No entries yet.']
-            - const parsedDate = item.meta.date.split('/').map(obj => parseInt(obj)).join('-')
+            - const parsedDate = (item.meta.date || '').split('/').map(obj => parseInt(obj)).join('-')
             if !item.meta.hidden
               li(data-date=parsedDate, data-category=item.meta.category, data-tags=item.meta.tags)
                 a(href=item.url)
