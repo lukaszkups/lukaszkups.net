@@ -1,6 +1,6 @@
 ---
 title: Solving ENOENT No such file or directory issue, related to uv_cwd
-date: 2021/03/04
+date: 2023/03/04
 category: programming, tech
 tags: programming, webdev, front-end, web development, web developer, front-end developer, front-end development, javascript, js, command line, cmd, bash, node.js, node, nodejs, npm, monorepo
 active: 2
