@@ -1,31 +1,15 @@
 {
   "name": "lukaszkups.net",
-  "version": "1.0.0",
-  "description": "website of lukaszkups",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "server-linux": "nvm exec 13 node -e 'require(\"./index.js\").server()'",
-    "server": "node -e 'require(\"./index.js\").server()'",
-    "compile": "node -e 'require(\"./index.js\").compile()'",
-    "deploy": "node -e 'require(\"./index.js\").deploy()'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-  "author": "lukaszkups",
-  "license": "UNLICENSED",
   "devDependencies": {
-    "dart-sass": "^1.25.0",
-    "fs": "0.0.1-security",
-    "ftp-deploy": "^2.3.0",
-    "node-sass": "npm:dart-sass@^1.25.0",
-    "node-sass-install": "^1.0.2"
-  },
-  "dependencies": {
-    "fs-extra": "^7.0.1",
-    "ftp-deploy": "^2.3.1",
-    "http-server": "^0.12.1",
-    "node-watch": "^0.6.0",
-    "pug": "^2.0.3",
-    "showdown": "^1.9.1",
-    "uglify-es": "^3.3.9"
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
   }
 }
