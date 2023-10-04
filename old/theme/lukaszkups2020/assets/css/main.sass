@@ -1,0 +1,854 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap')
+
+@font-face
+  font-family: 'Bebas Neue'
+  src: url('/assets/fonts/Bebas.eot')
+  src: url('/assets/fonts/Bebas.eot#iefix') format('embedded-opentype'), url('/assets/fonts/Bebas.woff') format('woff'), url('/assets/fonts/Bebas.ttf') format('ttf')
+  font-display: swap
+
+$roboto: 'Roboto Condensed', sans-serif
+$bebas: 'Bebas Neue', Verdana
+$primary: #bd8f3a
+$white: #fff
+$black: #0f0f0f
+$black2: #030303
+$black3: #1a1d20
+$grey: #eee
+$lightGrey: #f7f7f7
+
+$lightBg: #2b2e35
+$darkBg: #121212
+// $darkBg: #1e2126
+$darkFont: #efefef
+// $darkFont: #8a94a8
+
+@keyframes avatar-fade-in
+  0%
+    opacity: 0
+    top: 50px
+  100%
+    opacity: 1
+    top: 10px
+
+@keyframes map-point-glow
+  0%
+    box-shadow: 0 0 0 0 $white
+  50%
+    box-shadow: 0 0 10px 0 $white
+  100%
+    box-shadow: 0 0 0 0 $white
+
+
+.logo-wrapper
+  display: inline-block
+  height: 50px
+  margin: 10px 0 0 0
+  padding: 0
+  width: 50px
+  overflow: visible
+  background-color: transparent
+  border: none
+  outline: 0
+
+.logo
+  background-color: $primary
+  -webkit-transform: skew(25deg,0deg)
+  -ms-transform: skew(25deg,0deg)
+  transform: skew(25deg,0deg)
+  float: left
+  clear: both
+  width: 11.428px
+  height: 10px
+  margin-top: 18px
+  margin-left: 15px
+  &,
+  &:after,
+  &:before
+    display: block
+    position: relative
+  &:after,
+  &:before
+    content: " "
+    background-color: $black
+    -webkit-transform: skew(-50deg,0deg)
+    -ms-transform: skew(-50deg,0deg)
+    transform: skew(-50deg,0deg)
+  &:before
+    margin-top: -10px
+    margin-left: 17.3px
+    margin-right: -18px
+    height: 10px
+  &:after
+    margin-top: 10px
+    margin-left: -5.9px
+    margin-right: -7.3px
+    height: 10px
+
+html,
+body
+  background: $white
+  font-family: $roboto
+  height: 100%
+  margin: 0
+  min-height: 100%
+  padding: 0
+  width: 100%
+  max-width: 100%
+
+  .content
+    min-height: calc(90vh + 60px)
+
+  strike
+    text-decoration-color: $white
+
+  .gap
+    display: block
+    clear: both
+    width: 100%
+
+    &.gap-h-30
+      height: 30px
+  .row
+    display: flex
+    margin: 0
+    padding: 0
+    width: 100%
+
+    .col-25
+      flex: 1
+      max-width: 25%
+    .col-50
+      flex: 1
+      max-width: 50%
+    .col-75
+      flex: 1
+      max-width: 75%
+
+  .centered-text
+    text-align: center !important
+
+  .download-cv-button,
+  .gold-button
+    display: inline-block
+    padding: 10px
+    background: $primary
+    color: $white !important
+    text-decoration: none
+    margin: 25px auto
+
+    &:hover
+      background: $black
+
+  .main-container
+    margin: 0 auto
+    width: 75%
+    max-width: 900px
+    // min-width: 700px TODO
+
+  .nav-container,
+  .footer-container
+    width: 100%
+
+  .nav-container
+    height: inherit
+
+  .white-bg
+    background: $white
+
+  header
+    display: block
+    left: 0
+    height: 60px
+    position: fixed
+    right: 0
+    top: 0
+    z-index: 5
+    background: $white
+
+    nav
+      display: inline-block
+      float: right
+      font-size: 14px
+      height: 60px
+      letter-spacing: 1px
+      width: auto
+      margin-right: -15px
+
+      ul
+        list-style: none
+        margin: 0
+        overflow: hidden
+        padding: 0
+
+        li
+          display: inline-block
+          padding: 0
+          position: relative
+
+          a
+            background: $white
+            color: $black
+            display: block
+            height: 60px
+            line-height: 60px
+            padding: 0 20px
+            position: relative
+            text-decoration: none
+            text-transform: uppercase
+
+            &:hover
+              color: $primary
+
+          &.active
+            a
+              background: $white
+              color: $primary
+
+              &:before
+                background: $white
+                color: $primary
+  .home-content
+    width: 100%
+    h1, h2
+      font-family: $bebas
+      letter-spacing: 1px !important
+      font-weight: 400
+      line-height: 1.5em
+    .home-dynamic-content
+      padding-bottom: 50px
+      h2
+        font-size: 32px
+      a
+        color: $primary
+
+  .specialties
+    margin: 0
+    padding: 0
+    list-style: none
+
+    li
+      margin: 0
+      padding: 5px 0
+      line-height: 1.5em
+
+      &.title
+        letter-spacing: 1px !important
+        font-family: $bebas
+
+  footer
+    background: $grey
+    color: $black2
+    padding: 20px 0
+    position: relative
+    z-index: 2
+
+    a
+      color: $black2
+      text-decoration: none
+
+      &:hover
+        color: $primary
+
+    ul
+      margin: 20px 0
+      padding: 0
+      line-height: 1.5em
+      list-style: none
+
+      li
+        margin: 0
+        padding: 5px 0
+        font-size: 0.8em
+
+        &.title
+          font-weight: 900
+          font-size: 1em
+          text-transform: uppercase
+
+    .copyrights
+      display: block
+      font-size: 0.8em
+      text-align: right
+
+  .avatar-action
+    background: $black2
+    display: block
+    overflow: hidden
+    position: relative
+    margin-top: 100px
+    margin-bottom: 20px
+    color: $black
+    height: 375px
+    width: 100%
+
+    &.avatar-action-coffee
+      background: $black2
+
+    h2, p
+      background: $black2
+      color: $white
+      position: absolute
+      left: 50%
+      padding:
+        left: 5px
+        right: 5px
+    h2
+      text-transform: uppercase
+      font-family: $bebas
+      letter-spacing: 1px !important
+      top: 110px
+      font-size: 2em
+    p
+      top: 170px
+      width: 40%
+      line-height: 1.5em
+
+  .square-avatar,
+  .coffee-avatar
+    flex: 1
+    height: 375px
+    overflow: hidden
+    position: relative
+    width: 375px
+
+    &:after
+      animation: avatar-fade-in 2s
+      background: url('/assets/img/avatar3yellow.svg') no-repeat
+      background-size: contain
+      background-position-x: left
+      background-position-y: bottom
+      content: ' '
+      display: block
+      height: 100%
+      left: -5px
+      padding-right: 5px
+      min-height: 100%
+      min-width: 100%
+      position: absolute
+      top: 10px
+      width: 100%
+
+  .coffee-avatar:after
+    background: url('/assets/img/avatar-coffee.jpg') no-repeat
+    background-size: cover
+
+  //  EXPERIENCE PAGE
+  .experience-wrapper
+    padding-top: 100px
+    height: 100%
+    min-height: 100%
+    max-height: 100%
+    width: 100%
+
+    .title
+      font-family: $bebas
+      letter-spacing: 1px !important
+      font-size: 1.25em
+
+    a
+      color: $primary
+
+    .row + .row
+      margin-top: 1.5em
+
+  .notes-content
+    background: $lightGrey
+
+  .notes-main-container
+    width: 100%
+
+  .notes-list-wrapper
+    padding: 100px 0 0 0
+
+    ul.notes
+      list-style-type: none
+      margin: 0
+      padding: 0
+      display: flex
+      flex-wrap: wrap
+
+      li
+        flex: 1
+        box-sizing: border-box
+        display: inline-block
+        min-width: 49%
+        max-width: 49%
+        padding: 0
+        margin-bottom: 15px
+
+        &:nth-of-type(3n - 1)
+          margin-left: 1%
+
+        &:nth-of-type(3n - 2)
+          margin-right: 1%
+
+        &:nth-of-type(3n)
+          display: block
+          min-width: 100%
+          max-width: 100%
+
+        a
+          padding: 25px
+          background: $grey
+          text-decoration: none
+          color: $black2
+          overflow: hidden
+          position: relative
+          min-height: 100px
+          display: flex
+          align-self: center
+          justify-content: center
+          align-items: center
+          transition: 0.55s color
+
+          .txt
+            position: relative
+            z-index: 2
+
+          .bg
+            display: block
+            position: absolute
+            left: -20%
+            top: 0
+            bottom: 0
+            background: $primary
+            width: 0
+            transition: 0.5s width
+            transform: skew(-25deg)
+            z-index: 1
+
+          &:hover
+            color: $white
+            transition: 0.55s color
+
+            .bg
+              width: 130%
+              transition: 0.5s width
+
+  ul.pagination
+    box-sizing: border-box
+    display: block
+    list-style-type: none
+    margin: 0
+    padding: 10px 0 30px 0
+    position: relative
+    text-align: center
+    z-index: 3
+
+    li
+      display: inline-block
+      margin: 5px
+
+      a
+        background: $grey
+        color: $black
+        display: block
+        height: 30px
+        line-height: 30px
+        text-decoration: none
+        width: 30px
+
+        &.current-page,
+        &:hover
+          background: $primary
+          color: $white
+
+  // SINGLE NOTE LIST ENTRY PAGE
+
+  .note-list-entry__wrapper
+    box-sizing: border-box
+    display: block
+    margin: 0 auto
+    padding: 100px 0
+    max-width: 800px
+    overflow: hidden
+    width: 75%
+
+    &:after
+      content: ' '
+      position: fixed
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      opacity: 0.05
+      background-size: contain
+      background-position-x: left
+      background-position-y: bottom
+      z-index: 1
+
+    .simplebar-track
+      position: fixed
+
+  .note-list-entry,
+  .about-page-wrapper
+    height: 100%
+    overflow: hidden
+    margin: 0
+    padding: 0
+    position: relative
+    width: 100%
+    z-index: 2
+
+    h1,
+    article,
+    .published
+      box-sizing: border-box
+      color: $black
+      clear: both
+      display: block
+      float: left
+      padding: 20px 0
+      margin: 0 0 20px 0
+
+    h1,
+    .published
+      clear: both
+      display: inline-block
+
+    .published
+      color: $black
+      margin: 0
+
+      .category-link
+        color: $primary
+        margin-left: 5px
+        text-decoration: underline
+        text-decoration-color: $primary
+
+        &:not(:last-of-type):after
+          content: ','
+
+    h1
+      color: $black
+      font-family: $bebas
+      letter-spacing: 1px !important
+
+    article
+      text-align: justify
+      width: 100%
+
+      h1, h2, h3, h4, p
+        display: block
+        line-height: 1.5em
+        margin: 0
+        padding: 15px 0
+        width: 100%
+
+      h1, h2, h3, h4
+        color: $primary
+        letter-spacing: 1px !important
+        font-family: $bebas
+
+      blockquote
+        color: $black
+        background: $grey
+        border-left: 4px solid $primary
+        margin: 0
+        padding-left: 20px
+        padding-right: 20px
+        font-style: italic
+
+      p > img,
+      .image + p > a > img
+        display: block
+        clear: both
+        margin: 0 auto
+        max-width: 100%
+        height: auto
+      p > img + br
+        display: block
+        height: 0
+      p > img + br + em,
+      p > iframe + em
+        display: block
+        text-align: center
+        font-size: 0.9em
+        font-style: italic
+      p > iframe
+        display: block
+        margin: 0 auto
+      .image + p > a
+        color: inherit
+        display: block
+        text-align: center
+        text-decoration: none
+
+      em,
+      p em
+        font-style: italic
+
+      p code
+        background: $black
+        color: $primary
+        padding: 5px
+        vertical-align: baseline
+
+      a,
+      p a
+        color: $primary
+        text-decoration: underline
+        text-decoration-color: $primary
+
+      li p:last-of-type
+        color: $black
+
+        &:before
+          color: $black2
+
+      pre,
+      pre > code
+        background: $black !important
+        color: $primary
+
+      pre
+        padding: 15px 20px !important
+        white-space: pre-wrap
+        overflow: hidden
+
+      pre > code
+        width: 100%
+
+      ul
+        list-style-type: none
+        margin: 0
+        padding: 0
+
+        & + h1,
+        & + h2,
+        & + h3
+          padding-top: 25px
+
+        li
+          color: $black
+          padding: 0 0 0 20px
+          box-sizing: border-box
+
+          &:before
+            content: '-'
+            display: inline-block
+            color: inherit !important
+            position: absolute
+            margin-left: -20px
+            margin-top: 3px
+
+          p
+            color: $black
+            padding: 0
+
+// projects
+.main-container.projects-list-wrapper,
+.projects-list-wrapper
+  width: 100%
+  padding-top: 100px
+
+  ul.projects
+    list-style-type: none
+    margin: 0
+    padding: 0
+    display: flex
+    flex-wrap: wrap
+
+    li
+      display: block
+      width: 100%
+      background: $grey
+      padding: 20px
+      margin: 0 0 15px 0
+
+      .title
+        text-align: center
+        font-size: 1.5em
+        font-family: $bebas
+        letter-spacing: 1px !important
+
+      div
+        text-align: justify
+
+        a
+          color: $primary
+
+      .links
+        a
+          display: inline-block
+          padding: 5px
+          background: $primary
+          color: $white
+          text-decoration: none
+
+          &:hover
+            cursor: pointer
+            background: $black
+            color: $white
+
+        a + a
+          margin-left: 5px
+
+.main-container.about-page-container
+  width: 100%
+
+.centerize
+  text-align: center
+  & > div
+    margin: 0.5em auto 1.5em auto !important
+
+// for article needs
+.loading-paragraph
+  span
+    &:before
+      animation: dots 2s linear infinite
+      content: ''
+
+  @keyframes dots
+    0%, 20%
+      content: '.'
+    40%
+      content: '..'
+    60%
+      content: '...'
+    90%, 100%
+      content: ''
+
+// RWD
+
+@media screen and (max-width: 900px)
+  .main-container:not(.avatar-action)
+    box-sizing: border-box
+    padding:
+      left: 10px
+      right: 10px
+
+@media screen and (max-width: 620px)
+  .row,
+  .row--flex
+    flex-wrap: wrap
+    .col,
+    div[class*='col-']
+      width: 100%
+      max-width: 100%
+      min-width: 100%
+      padding-bottom: 15px
+  footer
+    .row
+      .col
+      div[class*='col-']
+        width: 50%
+        max-width: 50%
+        min-width: 50%
+        padding-bottom: 15px
+
+@media screen and (max-width: 500px)
+  html,
+  body
+    .content,
+    header,
+    footer
+      min-width: 300px
+    .content
+      padding-top: 30px
+    .notes-list-wrapper
+      ul.notes
+        li,
+        li:nth-of-type(3n-2),
+        li:nth-of-type(3n-1)
+          width: 100%
+          max-width: 100%
+          min-width: 100%
+    .nav-container
+      background: $white
+      .logo-wrapper,
+      nav
+        display: block
+        width: 100%
+        clear: both
+        background: inherit
+        margin:
+          left: -10px
+          right: -10px
+        padding:
+          left: 10px
+          right: 10px
+      .logo-wrapper
+        margin: 10px 50% 0 calc(50% - 25px)
+      nav
+        float: none
+        width: 100%
+        ul
+          text-align: center
+          li a
+            padding: 0 5px
+    .note-list-entry__wrapper
+      box-sizing: border-box
+      min-width: 100%
+      width: 100%
+      padding: 100px 15px 0
+
+// dark color mode
+.dark
+  header,
+  footer,
+  .nav-container,
+  nav ul li a,
+  footer ul li a
+    // background: $lightBg !important
+    background: $black2 !important
+    color: $darkFont
+  a:hover,
+  footer ul li a:hover
+    cursor: pointer
+    color: $primary !important
+  .content
+    background: $darkBg !important
+    color: $darkFont
+  .avatar-action
+    background: $black
+    h2, p
+      // color: $darkFont
+      color: $white
+  article
+    color: $darkFont
+    p,
+    ul,
+    ul li
+      color: $darkFont !important
+    h1, h2, h3, h4, h5
+      color: $primary !important
+    pre,
+    pre > code,
+    code
+      background: $black
+      color: $primary !important
+
+    li > code
+      padding: 5px
+
+    pre > code
+      width: 100%
+  ul.notes li a,
+  blockquote,
+  ul.projects li
+    background: $lightBg !important
+    .txt
+      color: $darkFont
+      transition: 0.5s color
+    .title
+      img
+        margin-left: 10px
+  ul.notes li a:hover .txt
+    color: $white
+    transition: 0.5s color
+  .note-list-entry
+    h1, h2, h3, h4, h5
+      color: $primary !important
+    .published
+      color: $darkFont !important
+  .logo
+    background: $white
+    &:before,
+    &:after
+      background: $primary
+  ul.pagination li a
+    background: $lightBg
+    color: $darkFont
+    &:hover
+      color: $white !important
