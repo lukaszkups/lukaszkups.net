@@ -1,16 +1,14 @@
-const fs = require('fs')
-const fse = require('fs-extra')
-const path = require('path')
-const http = require('http-server')
-const sass = require('node-sass')
-const UglifyJS = require('uglify-es')
-const CONFIG = require('./../config')
-const FtpDeploy = require('ftp-deploy')
-const ftpDeploy = new FtpDeploy()
+import * as fs from 'fs';
+import fse from 'fs-extra';
+import path from 'path';
+import http from 'http-server';
+import sass from 'node-sass';
+import UglifyJS from 'uglify-es';
+import CONFIG from './../config.json' assert { type: "json" };
 
-module.exports = {
+export default {
   // method below source: https://stackoverflow.com/a/40686853/1004946
-  mkDirByPathSync: (targetDir, { isRelativeToScript = false } = {}) => {
+  mkDirByPathSync: (targetDir: string, { isRelativeToScript = false } = {}) => {
     const sep = path.sep
     const initDir = path.isAbsolute(targetDir) ? sep : ''
     const baseDir = isRelativeToScript ? __dirname : '.'
@@ -18,7 +16,7 @@ module.exports = {
       const curDir = path.resolve(baseDir, parentDir, childDir)
       try {
         fs.mkdirSync(curDir)
-      } catch (err) {
+      } catch (err: any) {
         if (err.code === 'EEXIST') { // curDir already exists!
           return curDir
         }
@@ -34,11 +32,11 @@ module.exports = {
       return curDir
     }, initDir)
   },
-  slugify: (string) => {
+  slugify: (txt: string) => {
     const a = 'àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;'
     const b = 'aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------'
     const p = new RegExp(a.split('').join('|'), 'g')
-    return string.toString().toLowerCase()
+    return txt.toString().toLowerCase()
       .replace(/\s+/g, '-') // Replace spaces with
       .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
       .replace(/&/g, '-and-') // Replace & with ‘and’
@@ -47,7 +45,7 @@ module.exports = {
       .replace(/^-+/, '') // Trim — from start of text .replace(/-+$/, '') // Trim — from end of text
   },
   // method below source: https://geedew.com/remove-a-directory-that-is-not-empty-in-nodejs/
-  deleteFolderRecursive: (url) => {
+  deleteFolderRecursive: (url: string) => {
     if (fs.existsSync(url)) {
       fs.readdirSync(url).forEach((file) => {
         var curPath = url + "/" + file
@@ -60,13 +58,13 @@ module.exports = {
       fs.rmdirSync(url)
     }
   },
-  compileSass: (_source, _target) => {
+  compileSass: (_source: any, _target: any) => {
     return new Promise((resolve, reject) => {
       sass.render({
         file: _source,
         outputStyle: 'compressed',
         indentedSyntax: CONFIG.indentedSass || false
-      }, (err, result) => {
+      }, (err: any, result: any) => {
         if (err) {
           reject(err)
         } else {
@@ -76,13 +74,13 @@ module.exports = {
             } else {
               resolve(result)
             }
-          })
+          });
         }
       })
     })
   },
-  uglifyJs: (_source, _target) => {
-    return new Promise((resolve, reject) => {
+  uglifyJs: (_source: any, _target: any) => {
+    return new Promise((resolve: (value: void) => void, reject) => {
       fs.readFile(path.normalize(_source), 'utf8', (err, data) => {
         if (err) {
           reject(err)
@@ -105,13 +103,13 @@ module.exports = {
       })
     })
   },
-  copyFolderContents: (_sourcePath, _targetPath) => {
+  copyFolderContents: (_sourcePath: string, _targetPath: string) => {
     return new Promise((resolve, reject) => {
       fs.readdir(path.normalize(_sourcePath), (err, files) => {
         if (!err) {
-          let promises = []
+          let promises: Promise<void>[] = []
           files.forEach(file => {
-            promises.push(new Promise((resolve, reject) => {
+            promises.push(new Promise((resolve: (value: void) => void, reject) => {
               const sourceFile = `${_sourcePath}${file}`
               const targetFile = `${_targetPath}${file}`
               fs.writeFile(path.normalize(targetFile), fs.readFileSync(path.normalize(sourceFile))  , (err) => {
@@ -124,6 +122,7 @@ module.exports = {
             }))
           })
           Promise.all(promises).then(() => {
+            // @ts-ignore
             resolve()
           })
         } else {
@@ -132,8 +131,8 @@ module.exports = {
       })
     })
   },
-  copyFolderRecursively: (_sourcePath, _targetPath) => {
-    return new Promise((resolve, reject) => {
+  copyFolderRecursively: (_sourcePath: string, _targetPath: string) => {
+    return new Promise((resolve: (value: void) => void, reject) => {
       fse.copy(path.normalize(_sourcePath), path.normalize(_targetPath)).then(() => {
         resolve()
       }).catch(err => {
@@ -143,25 +142,9 @@ module.exports = {
   },
   startServer: () => {
     const server = http.createServer({root: './output/'})
+    // @ts-ignore
     server.listen(CONFIG.port || 3001)
+    // @ts-ignore
     console.log(`Output folder is now served under http://localhost:${CONFIG.port || 3000}`)
   },
-  deployViaFtp: () => {
-    if (CONFIG && CONFIG.deployViaFtp === true) {
-      if (CONFIG.ftpConfig && CONFIG.ftpConfig.user && CONFIG.ftpConfig.localRoot) {
-        ftpDeploy.on('uploading', (data) => {
-          process.stdout.write(`Ftp deploy progress: ${data.transferredFileCount} / ${data.totalFilesCount}\r`)
-        })
-        ftpDeploy.deploy(CONFIG.ftpConfig).then(() => {
-          console.log('All files has been deployed to your ftp server.')
-        }).catch(err => {
-          throw new Error(err && err.message ? err.message : err)
-        })
-      } else {
-        throw new Error('ERROR: Fill in ftp credentials in config.js file to enable built-in deployment.')
-      }
-    } else {
-      throw new Error('ERROR: Deployment via ftp is turned off in config.js file.')
-    }
-  }
 }
