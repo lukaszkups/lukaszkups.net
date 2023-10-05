@@ -84,11 +84,12 @@ export const getMdFileContents = (_path: string, _index: number, _parentOutputPa
           url: '',
           template: ''
         }
+        // console.log(_parentOutputPath)
         obj.output = _parentOutputPath ? `${_parentOutputPath}${obj.slug}/index.html` :`./output/${obj.slug}/index.html`
-        if (parentObj && parentObj.slug) {
+        if (parentObj && parentObj.slug && parentObj.slug.length) {
           obj.url = `/${parentObj.slug}/${obj.slug}/`
         }
-        if (parentObj && parentObj.entryTemplate) {
+        if (parentObj && parentObj.entryTemplate && parentObj.entryTemplate.length) {
           obj.template = parentObj.entryTemplate
         }
         resolve(obj)
@@ -214,6 +215,7 @@ export const  createOutputPageFiles = (_store: any, contentTemplateOptions = {})
   let promises: Promise<void>[] = []
   _store.pages.map((page: any) => {
     promises.push(new Promise((resolve: (value: void) => void, reject) => {
+      console.log(123123, page.template)
       const contentTemplate = pug.compileFile(page.template)
       const parsedContentTemplate = contentTemplate({
         title: page.meta && page.meta.title ? page.meta.title : '',
@@ -369,13 +371,15 @@ export const createOutputListEntryFiles = (_store: any, contentTemplateOptions =
 
 export const createOutputFiles = (_store: any) => {
   // @ts-ignore
+  console.log(0)
   return createOutputPageFiles(_store).then(() => {
-    // @ts-ignore
+    console.log(1)
     return createOutputListIndexFiles(_store).then(() => {
-      // @ts-ignore
+      console.log(2)
       return createOutputListEntryFiles(_store).then(() => {
-        // @ts-ignore
+       console.log(3)
         return prepareAssets().then(() => {
+          console.log(4)
           return Promise.resolve(_store)
         })
       })
@@ -426,8 +430,10 @@ export const compile = (_store: any) => {
   return getAllContent(_store).then(() => {
     // @ts-ignore
     return createOutputFolders(_store).then(() => {
+      console.log("00000000000000000")
       // @ts-ignore
       return createOutputFiles(_store).then(() => {
+        console.log(111111111111111111)
         // @ts-ignore
         return createListJsonFiles(_store).then(() => {
           // @ts-ignore

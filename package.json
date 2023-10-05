@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "server": "ts-node --esm ./src/server",
-    "compile": "ts-node ./src/compile-once"
+    "compile": "ts-node --esm ./src/compile-once"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.2",

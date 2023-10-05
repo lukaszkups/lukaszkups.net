@@ -1,8 +1,8 @@
-import content from './content';
+import { compileOnce } from './content.ts';
 
 const store = {
   pages: [],
   lists: [],
 }
 
-content.compileOnce(store);
+compileOnce(store);
