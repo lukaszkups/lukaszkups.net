@@ -135,7 +135,7 @@ export default {
     return new Promise((resolve: (value: void) => void, reject) => {
       fse.copy(path.normalize(_sourcePath), path.normalize(_targetPath)).then(() => {
         resolve()
-      }).catch(err => {
+      }).catch((err: any) => {
         reject(err)
       })
     })
@@ -143,7 +143,7 @@ export default {
   startServer: () => {
     const server = http.createServer({root: './output/'})
     // @ts-ignore
-    server.listen(CONFIG.port || 3001)
+    server.listen(CONFIG.port || 3000)
     // @ts-ignore
     console.log(`Output folder is now served under http://localhost:${CONFIG.port || 3000}`)
   },

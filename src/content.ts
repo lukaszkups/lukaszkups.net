@@ -81,16 +81,16 @@ export const getMdFileContents = (_path: string, _index: number, _parentOutputPa
           meta: meta,
           slug: meta && meta.slug ? meta.slug : _helpers.slugify(meta.title || Date.now()),
           content: mdObj,
-          output: '',
-          url: '',
-          template: ''
         }
         // console.log(_parentOutputPath)
+        // @ts-ignore
         obj.output = _parentOutputPath ? `${_parentOutputPath}${obj.slug}/index.html` :`./output/${obj.slug}/index.html`
         if (parentObj && parentObj.slug && parentObj.slug.length) {
+          // @ts-ignore
           obj.url = `/${parentObj.slug}/${obj.slug}/`
         }
         if (parentObj && parentObj.entryTemplate && parentObj.entryTemplate.length) {
+          // @ts-ignore
           obj.template = parentObj.entryTemplate
         }
         resolve(obj)
@@ -119,7 +119,6 @@ export const getAllContent = (_store: any) => {
     })
     // get all pages file contents
     _store.pages.map((page: any, index: number) => {
-      console.log('get pages content?')
       // @ts-ignore
       promises.push(getMdFileContents(page.path, index).then((obj: any) => {
         _store.pages[index] = {...page, ...obj}
@@ -217,7 +216,6 @@ export const  createOutputPageFiles = (_store: any, contentTemplateOptions = {})
   let promises: Promise<void>[] = []
   _store.pages.map((page: any) => {
     promises.push(new Promise((resolve: (value: void) => void, reject) => {
-      // console.log(123123, page.slug, page.template)
       if (page.template && page.template.length) {
         const contentTemplate = pug.compileFile(page.template)
         const parsedContentTemplate = contentTemplate({
@@ -283,7 +281,6 @@ export const createOutputListIndexFiles = (_store: any, contentTemplateOptions =
   let promises: Promise<void>[] = []
   _store.lists.map((list: any) => {
     // list template
-    // console.log('list', list.template)
     const contentTemplate = pug.compileFile(list.template)
     // list object
     let listObject = {
@@ -378,15 +375,10 @@ export const createOutputListEntryFiles = (_store: any, contentTemplateOptions =
 
 export const createOutputFiles = (_store: any) => {
   // @ts-ignore
-  console.log(0)
   return createOutputPageFiles(_store).then(() => {
-    console.log(1)
     return createOutputListIndexFiles(_store).then(() => {
-      console.log(2)
       return createOutputListEntryFiles(_store).then(() => {
-       console.log(3)
         return prepareAssets().then(() => {
-          console.log(4)
           return Promise.resolve(_store)
         })
       })
@@ -435,7 +427,6 @@ export const moveRootFolder = () => {
 export const compile = (_store: any) => {
   // @ts-ignore
   return getAllContent(_store).then(() => {
-    // console.log(_store.lists)
     // @ts-ignore
     return createOutputFolders(_store).then(() => {
       // @ts-ignore
@@ -464,7 +455,6 @@ export const watchForChanges = (_store: any) => {
     // @ts-ignore
     watch([path.normalize('./contents/'), path.normalize(`./theme/${CONFIG.theme}/`)], {recursive: true}, (evt: any, name: string) => {
       const urlArr = name.split(path.sep)
-      console.log(name)
       // recompile pages only
       if (name.includes('contents')) {
         if (name.includes('--page')) {
@@ -484,7 +474,6 @@ export const watchForChanges = (_store: any) => {
         // recompile list entries & list index files
         } else if (urlArr.includes('list')) {
           // @ts-ignore
-          console.log(222222222222)
           getAllContent(_store).then((_store: any) => {
             // @ts-ignore
             createOutputFolders(_store).then(() => {
@@ -533,8 +522,3 @@ export const watchForChanges = (_store: any) => {
     })
   })
 }
-
-// export const init = (_store: any) => {
-//   // @ts-ignore 
-//   server(_store)
-// }
