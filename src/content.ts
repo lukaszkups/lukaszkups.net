@@ -71,6 +71,7 @@ export const getListEntries = (_path: string, listObj: any) => {
 
 export const getMdFileContents = (_path: string, _index: number, _parentOutputPath: string, parentObj: any) => {
   return new Promise((resolve, reject) => {
+    // console.log('path', _path)
     fs.readFile(path.normalize(_path), 'utf8', (err: any, data: any) => {
       if (!err) {
         const mdObj = _mdConverter.makeHtml(data)
@@ -118,6 +119,7 @@ export const getAllContent = (_store: any) => {
     })
     // get all pages file contents
     _store.pages.map((page: any, index: number) => {
+      console.log('get pages content?')
       // @ts-ignore
       promises.push(getMdFileContents(page.path, index).then((obj: any) => {
         _store.pages[index] = {...page, ...obj}
@@ -215,24 +217,28 @@ export const  createOutputPageFiles = (_store: any, contentTemplateOptions = {})
   let promises: Promise<void>[] = []
   _store.pages.map((page: any) => {
     promises.push(new Promise((resolve: (value: void) => void, reject) => {
-      console.log(123123, page.template)
-      const contentTemplate = pug.compileFile(page.template)
-      const parsedContentTemplate = contentTemplate({
-        title: page.meta && page.meta.title ? page.meta.title : '',
-        date: page.meta && page.meta.date ? page.meta.date : '',
-        tags: page.meta && page.meta.tags ? page.meta.tags : '',
-        description: page.meta && page.meta.description ? page.meta.description : '',
-        content: page.content,
-        meta: page.meta || {},
-        ...contentTemplateOptions
-      })
-      fs.writeFile(path.normalize(page.output), parsedContentTemplate, (err: any) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve()
-        }
-      })
+      // console.log(123123, page.slug, page.template)
+      if (page.template && page.template.length) {
+        const contentTemplate = pug.compileFile(page.template)
+        const parsedContentTemplate = contentTemplate({
+          title: page.meta && page.meta.title ? page.meta.title : '',
+          date: page.meta && page.meta.date ? page.meta.date : '',
+          tags: page.meta && page.meta.tags ? page.meta.tags : '',
+          description: page.meta && page.meta.description ? page.meta.description : '',
+          content: page.content,
+          meta: page.meta || {},
+          ...contentTemplateOptions
+        })
+        fs.writeFile(path.normalize(page.output), parsedContentTemplate, (err: any) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve()
+          }
+        })
+      } else {
+        resolve()
+      }
     }))
   })
   return Promise.all(promises).then(() => {
@@ -277,6 +283,7 @@ export const createOutputListIndexFiles = (_store: any, contentTemplateOptions =
   let promises: Promise<void>[] = []
   _store.lists.map((list: any) => {
     // list template
+    // console.log('list', list.template)
     const contentTemplate = pug.compileFile(list.template)
     // list object
     let listObject = {
@@ -428,12 +435,11 @@ export const moveRootFolder = () => {
 export const compile = (_store: any) => {
   // @ts-ignore
   return getAllContent(_store).then(() => {
+    // console.log(_store.lists)
     // @ts-ignore
     return createOutputFolders(_store).then(() => {
-      console.log("00000000000000000")
       // @ts-ignore
       return createOutputFiles(_store).then(() => {
-        console.log(111111111111111111)
         // @ts-ignore
         return createListJsonFiles(_store).then(() => {
           // @ts-ignore
@@ -478,6 +484,7 @@ export const watchForChanges = (_store: any) => {
         // recompile list entries & list index files
         } else if (urlArr.includes('list')) {
           // @ts-ignore
+          console.log(222222222222)
           getAllContent(_store).then((_store: any) => {
             // @ts-ignore
             createOutputFolders(_store).then(() => {
