@@ -8,12 +8,15 @@
 
 $roboto: 'Roboto Condensed', sans-serif
 $bebas: 'Bebas Neue', Verdana
-// $primary1: #900
+// $primary2: #900
 // $primary2: #DAA520 //goldenrod
-// $primary1: #4682B4
 // $primary2: #4682B4
-$primary1: #FFA500
+// $primary2: #4682B4
 $primary2: #FFA500
+// $primary2: #FFA500
+// $primary2: #fecc04
+$primary2: #48fe22 // green1
+// $primary2: #2297fe // blue1
 $black1: #121212
 $white1: #fff
 $white2: #e9e9e9
@@ -28,17 +31,17 @@ $darkFont: #121212
 // $darkFont: #8a94a8
 $shadow1: rgba(0,0,0,0.1) 0px 5px 9px
 
-$programmingBg: #FFA500
+$programmingBg: #83ff66
 $programmingTxt: $white1
-$tavueloBg: #FFD700
+$tavueloBg: #96ff7c
 $tavueloTxt: $black1
-$lifestyleBg: #fffb05
+$lifestyleBg: #48fe05
 $lifestyleTxt: $black1
-$reviewsBg: #ffe505
+$reviewsBg: #a5ff90
 $reviewsTxt: $black1
-$lkweeklyBg: #F0E68C
+$lkweeklyBg: #40fe22
 $lkweeklyTxt: $black1
-$gamedevBg: #ffc905
+$gamedevBg: #18fe22
 $gamedevTxt: $black1
 
 @keyframes avatar-fade-in
@@ -70,7 +73,7 @@ $gamedevTxt: $black1
   outline: 0
 
 .logo
-  background-color: $primary1
+  background-color: $primary2
   -webkit-transform: skew(25deg,0deg)
   -ms-transform: skew(25deg,0deg)
   transform: skew(25deg,0deg)
@@ -153,7 +156,7 @@ body
   .gold-button
     display: inline-block
     padding: 10px
-    background: $primary1
+    background: $primary2
     color: $white1 !important
     text-decoration: none
     margin: 25px auto
@@ -222,16 +225,16 @@ body
             text-transform: uppercase
 
             &:hover
-              color: $primary1
+              color: $primary2
 
           &.active
             a
-              // background: $primary1
-              color: $primary1
+              // background: $primary2
+              color: $primary2
 
               &:before
-                // background: $primary1
-                color: $primary1
+                // background: $primary2
+                color: $primary2
   .home-content
     padding-top: 85px
     margin-bottom: 45px
@@ -265,7 +268,7 @@ body
       text-decoration: none
 
       &:hover
-        background: $primary1
+        background: $primary2
         color: $black1
 
   .specialties
@@ -301,7 +304,7 @@ body
       text-decoration: none
 
       &:hover
-        color: $primary1
+        color: $primary2
 
     ul
       margin: 20px 0
@@ -338,7 +341,7 @@ body
       background: $black1
       color: $white1
       position: absolute
-      left: 50%
+      left: 10%
       padding:
         left: 5px
         right: 5px
@@ -359,7 +362,7 @@ body
 
       h2,
       p > span
-        color: $primary1
+        color: $primary2
         background: #000
       p
         background: #000
@@ -371,17 +374,18 @@ body
     overflow: hidden
     position: relative
     width: 375px
+    float: right
 
     &:after
       animation: avatar-fade-in 2s
-      background: url('/assets/img/avatar3bw.png') no-repeat
+      background: url('/assets/img/avatar-locs-white.png') no-repeat
       background-size: contain
       background-position-x: left
       background-position-y: bottom
       content: ' '
       display: block
       height: 100%
-      left: -5px
+      left: 50px
       padding-right: 5px
       min-height: 100%
       min-width: 100%
@@ -407,7 +411,7 @@ body
       font-size: 1.25em
 
     a
-      color: $primary1
+      color: $primary2
 
     .row + .row
       margin-top: 1.5em
@@ -416,7 +420,7 @@ body
     background: $white1
 
     a
-      color: $primary1
+      color: $primary2
 
   .notes-main-container
     width: 100%
@@ -516,7 +520,7 @@ body
 
         &.current-page:hover,
         &:hover
-          background: $primary1
+          background: $primary2
           color: $white1
 
         &.current-page
@@ -613,7 +617,7 @@ body
       blockquote
         color: $black1
         background: $grey
-        border-left: 4px solid $primary1
+        border-left: 4px solid $primary2
         margin: 0
         padding-left: 20px
         padding-right: 20px
@@ -664,7 +668,7 @@ body
 
         &:hover
           color: $white1
-          background: $primary1
+          background: $primary2
 
       li p:last-of-type
         color: $black1
@@ -675,7 +679,7 @@ body
       pre,
       pre > code
         background: $black1 !important
-        color: $primary1
+        color: $primary2
 
       pre
         padding: 15px 20px !important
@@ -743,13 +747,13 @@ body
         text-align: justify
 
         a
-          color: $primary1
+          color: $primary2
 
       .links
         a
           display: inline-block
           padding: 5px
-          background: $primary1
+          background: $primary2
           color: $white1
           text-decoration: none
 
