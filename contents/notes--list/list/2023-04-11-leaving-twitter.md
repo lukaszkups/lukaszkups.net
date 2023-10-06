@@ -4,6 +4,7 @@ date: 2023/04/11
 category: thoughts
 tags: thoughts, twitter, mastodon, social media
 active: 2
+draft: true
 ---
 
 > &tldr; I can't stand the current state of twitter that is happening recently. My timeline is no longer showing me what I want to and it feels like I don't have any control about it. So I've decided to leave twitter and move to [mastodon](https://mastodon.social/@lukaszkups). I hope that twitter will reborn one day.
