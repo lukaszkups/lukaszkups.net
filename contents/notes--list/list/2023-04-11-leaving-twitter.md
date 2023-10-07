@@ -25,7 +25,7 @@ Most recently I've become interested into [game development](https://store.steam
 
 At April 14, 2022 [Elon Musk has bought the twitter](https://en.wikipedia.org/wiki/Acquisition_of_Twitter_by_Elon_Musk). Internet didn't blow up as some of people was expecting it, but it was a first step of the incoming changes that were inevitable from that point.
 
-To be honest, I didn't care that much, at least in the beginning. I do find it bizzare though, when I've heard about gigantic layoffs in the company itself, especially that it was another big layoff that has happened in a very short amount of time - I've felt bad for the people that had to look for another job while there are already many other people doing that as well.
+To be honest, I didn't care that much, at least in the beginning. I do find it bizzare though, when I've heard about gigantic layoffs in the company itself, especially that it was another big layoff that has happened in a very short amount of time - I've felt really bad for the people that had to look for another job while there are already many others doing that as well.
 
 Time passed, and so the new ideas appeared on how Elon Musk sees the future of the twitter: limiting visibility/discoverability, forcing user to pay for Twitter Blue plan, you name it.
 
@@ -34,8 +34,9 @@ I've even tried Twitter Blue for one month. And to be honest, I do feel that dis
 # Leaving self 
 
 
+
 # Summary
 
-14 years is A LOT. And you can say that you've become a part of the community that you've belonged for so long time - and so do I feel that way!
+14 years is A LOT. And you can say that you've become a part of the community that you've actively belonged to for so long time - and so do I feel that way! For me, personally this is an end of some kind of era.
 
 
