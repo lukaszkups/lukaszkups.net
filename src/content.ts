@@ -8,7 +8,7 @@ import _helpers, { KeyableInterface } from './helpers.ts';
 import Showdown from 'showdown';
 
 
-export class RakunWritter {
+export default class RakunWritter {
   mdConverter: typeof Showdown;
   store: {
     pages: any[],
@@ -29,7 +29,7 @@ export class RakunWritter {
       if (!err) {
         let pagesArr: any[] = [];
         let listsArr: any[] = [];
-        files.forEach(obj => {
+        files.forEach((obj) => {
           if (obj.includes('--page')) {
             pagesArr.push({
               id: listsArr.length + 1,
@@ -37,7 +37,7 @@ export class RakunWritter {
               template: path.normalize(`./theme/${CONFIG.theme}/${obj}.pug`),
               meta: {},
               contents: ''
-            })
+            });
           } else if (obj.includes('--list')) {
             listsArr.push({
               id: listsArr.length + 1,
@@ -48,7 +48,7 @@ export class RakunWritter {
               meta: {},
               contents: '',
               entries: []
-            })
+            });
           }
         })
         this.store.pages = pagesArr;
@@ -60,7 +60,7 @@ export class RakunWritter {
   }
 
   async getListEntries(filePath: string, listObj: any) {
-    await fs.readdir(path.normalize(filePath), (err: any, files: any) => {
+    await fs.readdir(path.normalize(filePath), async (err: any, files: any) => {
       if (!err) {
         let promises: any[] = [];
         files.forEach((obj: any, index: number) => {
@@ -111,20 +111,20 @@ export class RakunWritter {
   async getAllContent() {
     await this.getPages();
     // get all lists file contents
-    this.store.lists.map((list: any, index: number) => {
+    await this.store.lists.map(async (list: any, index: number) => {
       const obj = await this.getMdFileContents(list.path, index);
       this.store.lists[index] = {...this.store.lists[index], ...obj};
       const arr = await this.getListEntries(list.entriesPath, list);
       this.store.lists[index].entries = arr;
     });
     // get all pages file contents
-    this.store.pages.map((page: any, index: number) => {
+    await this.store.pages.map(async (page: any, index: number) => {
       const obj = await this.getMdFileContents(page.path, index);
       this.store.pages[index] = {...page, ...obj};
     });
     // resolve all files, generate slugs/meta etc.
     // get all list entries contents
-    this.store.lists.map((list: any, index: number) => {
+    await this.store.lists.map(async (list: any, index: number) => {
       const arr = await this.getListEntries(list.entriesPath, list);
       this.store.lists[index].entries = arr;
     });
