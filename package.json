@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "server": "ts-node --esm ./src/server",
+    "server2": "ts-node --esm ./src/server",
+    "server": "node --loader ts-node/esm ./src/server.ts",
     "compile": "ts-node --esm ./src/compile-once"
   },
   "devDependencies": {

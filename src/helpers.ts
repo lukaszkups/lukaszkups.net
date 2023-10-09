@@ -6,6 +6,10 @@ import sass from 'node-sass';
 import UglifyJS from 'uglify-es';
 import CONFIG from './../config.json' assert { type: "json" };
 
+export interface KeyableInterface {
+  [key: string]: any;
+}
+
 export default {
   // method below source: https://stackoverflow.com/a/40686853/1004946
   mkDirByPathSync: (targetDir: string, { isRelativeToScript = false } = {}) => {
