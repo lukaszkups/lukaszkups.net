@@ -1,8 +1,4 @@
-import { compileOnce } from './content.ts';
+import RakunWritter from './content.ts';
 
-const store = {
-  pages: [],
-  lists: [],
-}
-
-compileOnce(store);
+const rkn = new RakunWritter();
+rkn.compileOnce();

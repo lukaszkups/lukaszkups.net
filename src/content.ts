@@ -1,20 +1,27 @@
 import * as fs from 'fs';
+import fse from 'fs-extra';
 import showdown from 'showdown';
 import pug from 'pug';
-import CONFIG from './../config.json' assert { type: "json" };
 import path from 'path';
 import watch from 'node-watch';
-import _helpers, { KeyableInterface } from './helpers.ts';
-import Showdown from 'showdown';
+// import this.config from './../this.config.json' assert { type: "json" };
+// import this from './helpers.ts';
+import sass from 'node-sass';
+import UglifyJS from 'uglify-es';
+import http from 'http-server';
 
+interface KeyableInterface {
+  [key: string]: any;
+}
 
 export default class RakunWritter {
-  mdConverter: typeof Showdown;
+  mdConverter: typeof showdown;
   store: {
     pages: any[],
     lists: any[]
   }
-  constructor() {
+  config: any;
+  constructor(configFileUrl: string) {
     this.mdConverter = new showdown.Converter({metadata: true});
     this.mdConverter.setFlavor('github');
 
@@ -22,6 +29,132 @@ export default class RakunWritter {
       pages: [],
       lists: [],
     }
+    this.config = fs.readFileSync(path.normalize(configFileUrl));
+  }
+
+  // method below source: https://stackoverflow.com/a/40686853/1004946
+  mkDirByPathSync(targetDir: string, { isRelativeToScript = false } = {}) {
+    const sep = path.sep;
+    const initDir = path.isAbsolute(targetDir) ? sep : '';
+    const baseDir = isRelativeToScript ? __dirname : '.';
+    return targetDir.split(sep).reduce((parentDir, childDir) => {
+      const curDir = path.resolve(baseDir, parentDir, childDir);
+      try {
+        fs.mkdirSync(curDir);
+      } catch (err: any) {
+        if (err.code === 'EEXIST') { // curDir already exists!
+          return curDir;
+        }
+        // To avoid `EISDIR` error on Mac and `EACCES`-->`ENOENT` and `EPERM` on Windows.
+        if (err.code === 'ENOENT') { // Throw the original parentDir error on curDir `ENOENT` failure.
+          throw new Error(`EACCES: permission denied, mkdir '${parentDir}'`);
+        }
+        const caughtErr = ['EACCES', 'EPERM', 'EISDIR'].indexOf(err.code) > -1;
+        if (!caughtErr || caughtErr && curDir === path.resolve(targetDir)) {
+          throw err; // Throw if it's just the last created dir.
+        }
+      }
+      return curDir;
+    }, initDir);
+  }
+
+  slugify(txt: string) {
+    const a = 'àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;';
+    const b = 'aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------';
+    const p = new RegExp(a.split('').join('|'), 'g');
+    return txt.toString().toLowerCase()
+      .replace(/\s+/g, '-') // Replace spaces with
+      .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+      .replace(/&/g, '-and-') // Replace & with ‘and’
+      .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+      .replace(/\-\-+/g, '-') // Replace multiple — with single -
+      .replace(/^-+/, ''); // Trim — from start of text .replace(/-+$/, '') // Trim — from end of text
+  }
+
+  // method below source: https://geedew.com/remove-a-directory-that-is-not-empty-in-nodejs/
+  deleteFolderRecursive(url: string) {
+    if (fs.existsSync(url)) {
+      fs.readdirSync(url).forEach((file) => {
+        const curPath = url + "/" + file;
+        if(fs.lstatSync(curPath).isDirectory()) { // recurse
+          this.deleteFolderRecursive(path.normalize(curPath));
+        } else { // delete file
+          fs.unlinkSync(curPath);
+        }
+      })
+      fs.rmdirSync(url);
+    }
+  }
+
+  async compileSass(_source: any, _target: any) {
+    await sass.render({
+      file: _source,
+      outputStyle: 'compressed',
+      indentedSyntax: this.config.indentedSass || false
+    }, async (err: any, result: any) => {
+      if (err) {
+        throw new Error(err);
+      } else {
+        await fs.writeFile(path.normalize(_target), result && result.css ? result.css : '', (err: any) => {
+          if (err) {
+            throw new Error(err);
+          }
+        });
+      }
+    })
+  }
+
+  async uglifyJs(_source: any, _target: any) {
+    await fs.readFile(path.normalize(_source), 'utf8', async (err: any, data) => {
+      if (err) {
+        throw new Error(err);
+      } else {
+        const uglified = UglifyJS.minify(data, {
+          ie8: this.config.ie8support || false
+        });
+        if (uglified && uglified.error) {
+          throw new Error(uglified.error);
+        } else if (uglified && uglified.code) {
+          await fs.writeFile(_target, uglified.code, async (error: any) => {
+            if (error) {
+              throw new Error(error);
+            }
+          });
+        }
+      }
+    });
+  }
+
+  async copyFolderContents(_sourcePath: string, _targetPath: string) {
+    await fs.readdir(path.normalize(_sourcePath), async (err: any, files) => {
+      if (!err) {
+        await files.forEach(async (file) => {
+          const sourceFile = `${_sourcePath}${file}`;
+          const targetFile = `${_targetPath}${file}`;
+          await fs.writeFile(path.normalize(targetFile), fs.readFileSync(path.normalize(sourceFile)), (err: any) => {
+            if (err) {
+              throw new Error(err);
+            }
+          });
+        });
+      } else {
+        throw new Error(err);
+      }
+    });
+  }
+
+  async copyFolderRecursively(_sourcePath: string, _targetPath: string) {
+    try {
+      await fse.copy(path.normalize(_sourcePath), path.normalize(_targetPath));
+    } catch (err: any) {
+      throw new Error(err);
+    }
+  }
+
+  startServer() {
+    const server = http.createServer({root: './output/'});
+    server.listen(this.config.port || 3000);
+    console.log(`Output folder is now served under http://localhost:${this.config.port || 3000}`);
   }
 
   async getPages() {
@@ -34,7 +167,7 @@ export default class RakunWritter {
             pagesArr.push({
               id: listsArr.length + 1,
               path: path.normalize(`./contents/${obj}/index.md`),
-              template: path.normalize(`./theme/${CONFIG.theme}/${obj}.pug`),
+              template: path.normalize(`./theme/${this.config.theme}/${obj}.pug`),
               meta: {},
               contents: ''
             });
@@ -43,8 +176,8 @@ export default class RakunWritter {
               id: listsArr.length + 1,
               path: path.normalize(`./contents/${obj}/index.md`),
               entriesPath: path.normalize(`./contents/${obj}/list/`),
-              template: path.normalize(`./theme/${CONFIG.theme}/${obj}.pug`),
-              entryTemplate: path.normalize(`./theme/${CONFIG.theme}/${obj}--entry.pug`),
+              template: path.normalize(`./theme/${this.config.theme}/${obj}.pug`),
+              entryTemplate: path.normalize(`./theme/${this.config.theme}/${obj}--entry.pug`),
               meta: {},
               contents: '',
               entries: []
@@ -68,7 +201,7 @@ export default class RakunWritter {
           promises.push(getMdFileContents(`${filePath}${obj}`, index, path.normalize(`./output/${listObj.slug}/`), listObj));
         })
         let arr = await Promise.all(promises);
-        if (CONFIG.excludeDrafts === true) {
+        if (this.config.excludeDrafts === true) {
           arr = arr.filter((obj: any) => !obj.meta.draft);
         }
         return arr.reverse();
@@ -87,7 +220,7 @@ export default class RakunWritter {
         let obj = {
           id: _index + 1,
           meta: meta,
-          slug: meta && meta.slug ? meta.slug : _helpers.slugify(meta.title || Date.now()),
+          slug: meta && meta.slug ? meta.slug : this.slugify(meta.title || Date.now()),
           content: mdObj,
         }
         // @ts-ignore
@@ -136,44 +269,44 @@ export default class RakunWritter {
 
   async createOutputFolders() {
     // create output folders for pages
-    this.store.pages.map((page: any) => {
+    this.store.pages.map(async (page: any) => {
         try {
-          await _helpers.mkDirByPathSync(page.output.slice(0, -10));
+          await this.mkDirByPathSync(page.output.slice(0, -10));
         } catch (err) {
           throw new Error(err as string | undefined);
         }
     })
 
     // create output folders list index
-    this.store.lists.map((list: any) => {
+    this.store.lists.map(async (list: any) => {
       try {
-        await _helpers.mkDirByPathSync(list.output.slice(0, -10));
+        await this.mkDirByPathSync(list.output.slice(0, -10));
       } catch (err) {
         throw new Error(err as string | undefined);
       }
     });
 
     // create output folders for list entries / pagination
-    this.store.lists.map((list: any) => {
+    await this.store.lists.map(async (list: any) => {
       // if list has pagination
-      if (CONFIG && CONFIG.pagination && (CONFIG.pagination as KeyableInterface)[list.slug]) {
-        const perPage = (CONFIG.pagination as KeyableInterface)[list.slug];
+      if (this.config && this.config.pagination && (this.config.pagination as KeyableInterface)[list.slug]) {
+        const perPage = (this.config.pagination as KeyableInterface)[list.slug];
         let pages = Math.ceil(list.entries.length / perPage);
         list.paginationLinks = [];
         for (let i = 0; i < pages; i++) {
           // let first page doesn't have to contain page number
-          list.paginationLinks.push(i === 0 ? list.output : `${list.output.slice(0, -11)}/${CONFIG.paginationSlug}${i + 1}/index.html`);
+          list.paginationLinks.push(i === 0 ? list.output : `${list.output.slice(0, -11)}/${this.config.paginationSlug}${i + 1}/index.html`);
           try {
-            await _helpers.mkDirByPathSync(path.normalize(list.paginationLinks[i].slice(0, -10)));
+            await this.mkDirByPathSync(path.normalize(list.paginationLinks[i].slice(0, -10)));
           } catch (error) {
             throw new Error(error as string | undefined);
           }
         }
       }
       // prepare folders for list entries
-      list.entries.map(async (entry: any) => {
+      await list.entries.map(async (entry: any) => {
         try {
-          await _helpers.mkDirByPathSync(path.normalize(entry.output.slice(0, -10)));
+          await this.mkDirByPathSync(path.normalize(entry.output.slice(0, -10)));
         } catch (error) {
           throw new Error(error as string | undefined);
         }
@@ -244,7 +377,7 @@ export default class RakunWritter {
         meta: list.meta || {},
         ...contentTemplateOptions,
       }
-      // add pagination helper property if list has configured pagination feature
+      // add pagination helper property if list has this.configured pagination feature
       if (list.paginationLinks && list.paginationLinks.length > 1) {
         // @ts-ignore
         listObject.paginationLinks = [];
@@ -254,7 +387,7 @@ export default class RakunWritter {
         });
       }
       // page size variable
-      const pageSize = (CONFIG.pagination as KeyableInterface)[list.slug];
+      const pageSize = (this.config.pagination as KeyableInterface)[list.slug];
       // if list has pagination
       if (list.paginationLinks && list.paginationLinks.length > 1) {
         await list.paginationLinks.map(async (page: any, index: number) => {
@@ -305,24 +438,24 @@ export default class RakunWritter {
   }
 
   async prepareAssets() {
-    _helpers.mkDirByPathSync('./output/assets/css');
-    _helpers.mkDirByPathSync('./output/assets/js');
-    _helpers.mkDirByPathSync('./output/assets/img');
-    _helpers.mkDirByPathSync('./output/assets/fonts');
-    _helpers.mkDirByPathSync('./output/static/');
-    _helpers.mkDirByPathSync('./output/vendor/');
+    this.mkDirByPathSync('./output/assets/css');
+    this.mkDirByPathSync('./output/assets/js');
+    this.mkDirByPathSync('./output/assets/img');
+    this.mkDirByPathSync('./output/assets/fonts');
+    this.mkDirByPathSync('./output/static/');
+    this.mkDirByPathSync('./output/vendor/');
     // copy image assets
-    await _helpers.copyFolderContents(`./theme/${CONFIG.theme}/assets/img/`, './output/assets/img/');
+    await this.copyFolderContents(`./theme/${this.config.theme}/assets/img/`, './output/assets/img/');
     // copy fonts assets
-    await _helpers.copyFolderContents(`./theme/${CONFIG.theme}/assets/fonts/`, './output/assets/fonts/');
+    await this.copyFolderContents(`./theme/${this.config.theme}/assets/fonts/`, './output/assets/fonts/');
     // copy content images/static files
-    await _helpers.copyFolderContents('./contents/static/', './output/static/');
+    await this.copyFolderContents('./contents/static/', './output/static/');
     // copy vendor files
-    await _helpers.copyFolderRecursively(CONFIG.vendorsPath || `./theme/${CONFIG.theme}/vendor/`, './output/vendor/');
+    await this.copyFolderRecursively(this.config.vendorsPath || `./theme/${this.config.theme}/vendor/`, './output/vendor/');
     // compile sass
-    await _helpers.compileSass(`./theme/${CONFIG.theme}/assets/css/main.sass`, './output/assets/css/main.css');
+    await this.compileSass(`./theme/${this.config.theme}/assets/css/main.sass`, './output/assets/css/main.css');
     // compile js
-    await _helpers.uglifyJs(`./theme/${CONFIG.theme}/assets/js/main.js`, './output/assets/js/main.js');
+    await this.uglifyJs(`./theme/${this.config.theme}/assets/js/main.js`, './output/assets/js/main.js');
 }
 
   async createOutputFiles() {
@@ -333,10 +466,10 @@ export default class RakunWritter {
   }
 
    async moveRootFolder() {
-    if (CONFIG.rootFolder) {
-      await _helpers.copyFolderContents(`./output/${CONFIG.rootFolder}/`, `./output/`);
+    if (this.config.rootFolder) {
+      await this.copyFolderContents(`./output/${this.config.rootFolder}/`, `./output/`);
     }
-    console.log('No root page folder has been defined in CONFIG file.');
+    console.log('No root page folder has been defined in this.config file.');
   }
 
   async compile() {
@@ -348,15 +481,16 @@ export default class RakunWritter {
   }
 
   async compileOnce() {
-    // _helpers.deleteFolderRecursive('./output/') // empty output folder for new content
+    // this.deleteFolderRecursive('./output/') // empty output folder for new content
     await this.compile();
   }
   
   async watchForChanges() {
-    _helpers.startServer();
+    this.startServer();
     await this.compileOnce();
     console.log('Initial compile completed.');
-    await watch([path.normalize('./contents/'), path.normalize(`./theme/${CONFIG.theme}/`)], {recursive: true}, async (evt: any, name: string) => {
+    // @ts-ignore
+    await watch([path.normalize('./contents/'), path.normalize(`./theme/${this.config.theme}/`)], {recursive: true}, async (evt: any, name: string) => {
       const urlArr = name.split(path.sep);
       // recompile pages only
       if (name.includes('contents')) {
