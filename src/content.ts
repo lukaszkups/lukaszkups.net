@@ -29,7 +29,7 @@ export default class RakunWritter {
       pages: [],
       lists: [],
     }
-    this.config = fs.readFileSync(path.normalize(configFileUrl));
+    this.config = JSON.parse(fs.readFileSync(path.normalize(configFileUrl), { encoding: 'utf-8'}) || '{}');
   }
 
   // method below source: https://stackoverflow.com/a/40686853/1004946
@@ -138,6 +138,7 @@ export default class RakunWritter {
           });
         });
       } else {
+        console.log('There was an error while moving ',_sourcePath, ' to ', _targetPath);
         throw new Error(err);
       }
     });
@@ -211,7 +212,6 @@ export default class RakunWritter {
     });
   }
 
-  
   async getMdFileContents(filePath: string, _index: number, _parentOutputPath?: string, parentObj?: any): Promise<any> {
     await fs.readFile(path.normalize(filePath), 'utf8', (err: any, data: any) => {
       if (!err) {
@@ -222,9 +222,11 @@ export default class RakunWritter {
           meta: meta,
           slug: meta && meta.slug ? meta.slug : this.slugify(meta.title || Date.now()),
           content: mdObj,
+          output: null,
         }
         // @ts-ignore
         obj.output = _parentOutputPath ? `${_parentOutputPath}${obj.slug}/index.html` :`./output/${obj.slug}/index.html`;
+        console.log('output: ', obj.output);
         if (parentObj && parentObj.slug && parentObj.slug.length) {
           // @ts-ignore
           obj.url = `/${parentObj.slug}/${obj.slug}/`;
@@ -339,26 +341,28 @@ export default class RakunWritter {
   
   async createListJsonFiles() {
     await this.store.lists.map(async (list: any) => {
-      let url = list.output.split('/');
-      url[url.length - 1] = 'list.json';
-      url = `./${url.join('/')}`;
-      let entries = [...list.entries];
-      let parsedList: any[] = [];
-      entries.map(entry => {
-        parsedList.push({
-          id: entry.id,
-          title: entry.meta.title,
-          date: entry.meta.date,
-          category: entry.meta.category,
-          tags: entry.meta.tags,
-          url: entry.output.slice(6, -10)
+      let url = list.output?.split('/');
+      if (url) {
+        url[url.length - 1] = 'list.json';
+        url = `./${url.join('/')}`;
+        let entries = [...list.entries];
+        let parsedList: any[] = [];
+        entries.map(entry => {
+          parsedList.push({
+            id: entry.id,
+            title: entry.meta.title,
+            date: entry.meta.date,
+            category: entry.meta.category,
+            tags: entry.meta.tags,
+            url: entry.output.slice(6, -10)
+          });
         });
-      });
-      await fs.writeFile(path.normalize(url), JSON.stringify({list: parsedList}), (err: any) => {
-        if (err) {
-          throw new Error(err);
-        }
-      });
+        await fs.writeFile(path.normalize(url), JSON.stringify({list: parsedList}), (err: any) => {
+          if (err) {
+            throw new Error(err);
+          }
+        });
+      }
     });
   }
   
@@ -456,7 +460,7 @@ export default class RakunWritter {
     await this.compileSass(`./theme/${this.config.theme}/assets/css/main.sass`, './output/assets/css/main.css');
     // compile js
     await this.uglifyJs(`./theme/${this.config.theme}/assets/js/main.js`, './output/assets/js/main.js');
-}
+  }
 
   async createOutputFiles() {
     await this.createOutputPageFiles();
@@ -465,11 +469,13 @@ export default class RakunWritter {
     await this.prepareAssets();
   }
 
-   async moveRootFolder() {
+  async moveRootFolder() {
     if (this.config.rootFolder) {
-      await this.copyFolderContents(`./output/${this.config.rootFolder}/`, `./output/`);
+      // TODO 111
+      // await this.copyFolderContents(`./output/${this.config.rootFolder}/`, `./output/`);
+    } else {
+      console.log('No root page folder has been defined in this.config file.');
     }
-    console.log('No root page folder has been defined in this.config file.');
   }
 
   async compile() {
@@ -481,7 +487,7 @@ export default class RakunWritter {
   }
 
   async compileOnce() {
-    // this.deleteFolderRecursive('./output/') // empty output folder for new content
+    this.deleteFolderRecursive('./output/') // empty output folder for new content
     await this.compile();
   }
   
@@ -494,29 +500,24 @@ export default class RakunWritter {
       const urlArr = name.split(path.sep);
       // recompile pages only
       if (name.includes('contents')) {
+        await this.getAllContent();
+        await this.createOutputFolders();
+
         if (name.includes('--page')) {
-          await this.getAllContent();
-          await this.createOutputFolders();
           await this.createOutputPageFiles();
-          await this.moveRootFolder();
           console.log('Pages recompiled.')
         // recompile list entries & list index files
         } else if (urlArr.includes('list')) {
-          await this.getAllContent();
-          await this.createOutputFolders();
           await this.createOutputListIndexFiles();
           await this.createOutputListEntryFiles();
           await this.createListJsonFiles();
-          await this.moveRootFolder();
           console.log('List entries recompiled.');
         // recompile list index files
         } else if (name.includes('--list')) {
-          await this.getAllContent();
-          await this.createOutputFolders();
           await this.createOutputListIndexFiles();
-          await this.moveRootFolder();
           console.log('List indexes recompiled.');
         }
+        await this.moveRootFolder();
       // recompile assets
       } else if (urlArr.includes('assets')){
         await this.prepareAssets();
