@@ -6,4 +6,4 @@ itemLayout: notes--list--entry
 active: 2
 ---
 
-#My random thoughts
+# My random thoughts

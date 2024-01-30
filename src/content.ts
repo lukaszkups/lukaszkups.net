@@ -9,13 +9,15 @@ import watch from 'node-watch';
 import sass from 'node-sass';
 import UglifyJS from 'uglify-es';
 import http from 'http-server';
+// @ts-ignore-next-line
+import { Converter } from 'showdown';
 
 interface KeyableInterface {
   [key: string]: any;
 }
 
 export default class RakunWritter {
-  mdConverter: typeof showdown;
+  mdConverter: Converter;
   store: {
     pages: any[],
     lists: any[]
@@ -113,7 +115,7 @@ export default class RakunWritter {
           ie8: this.config.ie8support || false
         });
         if (uglified && uglified.error) {
-          throw new Error(uglified.error);
+          throw new Error(uglified.error as unknown as string);
         } else if (uglified && uglified.code) {
           await fs.writeFile(_target, uglified.code, async (error: any) => {
             if (error) {
