@@ -1,9 +1,0 @@
-- var menu = [{id: 0, name: 'Home', url: '/'}, {id: 1, name: 'About', url: '/about'}, {id: 2, name: 'Notes', url: '/notes'}, {id: 3, name: 'Experience', url: '/experience'}, {id: 4, name: 'Projects', url: '/projects'}]
-header
-  .logo-wrapper
-    .logo
-  nav
-    ul
-      each item in menu
-        li(class=meta.active == item.id ? 'active': '')
-          a(href=item.url, data-hover=item.name) #{item.name}
