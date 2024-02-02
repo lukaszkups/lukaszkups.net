@@ -59,7 +59,7 @@ class Engine {
       // create reusable object that we send to render functions
       const contentObj = {
         meta: meta,
-        slug: meta && meta.slug ? meta.slug : slugify(meta.title || Date.now()),
+        slug: meta?.slug || slugify(meta.title || Date.now()),
         content: htmlContent
       }
       // create destination file url
@@ -87,14 +87,15 @@ class Engine {
       // read single file
       const txtContent = fs.readFileSync(path.join(routePath, sourceFilePath), 'utf8');
       // extract metadata from the current file
-      const meta = fm(txtContent)
-      const slug = meta && meta.slug ? meta.slug : slugify(meta.title || Date.now());
+      const meta = fm(txtContent);
+      const slug = meta?.attributes?.slug || slugify(meta?.attributes?.title || Date.now());
       // create reusable object that we send to render functions
       const contentItemObj = {
-        meta: meta,
+        meta: meta?.attributes || { title: Date.now() },
         slug: slug,
-        url: `${routePath}slug/`
+        url: `${route.listItemUrl}${slug}/`
       }
+      // add list item to collection
       contentObj.items.push(contentItemObj);
     });
     // create destination file url
@@ -105,6 +106,10 @@ class Engine {
     const content = route.template(contentObj);
     // save file in the final path as index.html (for seamless routing)
     fs.writeFileSync(path.join(outputFilePath, 'index.html'), content);
+    // save json file for search purposes
+    if (route.createSearchIndex) {
+      fs.writeFileSync(path.join(outputFilePath, 'search.json'), JSON.stringify(contentObj));
+    }
   }
 }
 
