@@ -1,0 +1,19 @@
+# lukaszkups.net
+
+## Tutorial:
+
+First, make sure that you can run `node` commands as `sudo`:
+
+```
+whereis node
+
+<response_url>
+
+sudo ln -s <response_url> /usr/bin/node
+```
+
+Then run build command:
+
+```
+npm run build
+```

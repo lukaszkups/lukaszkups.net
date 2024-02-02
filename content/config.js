@@ -1,10 +1,10 @@
-import notesRenderer from './../theme/templates/note';
-import notesListRenderer from './../theme/templates/notes-list';
-import notesIndexRenderer from './../theme/templates/notes-index';
-import projectsListRenderer from './../theme/templates/projects-list';
-import homeRenderer from './../theme/templates/home';
-import aboutRenderer from './../theme/templates/about';
-import experienceRenderer from './../theme/templates/experience';
+import notesRenderer from './../theme/templates/note.js';
+import notesListRenderer from './../theme/templates/notes-list.js';
+import notesIndexRenderer from './../theme/templates/notes-index.js';
+import projectsListRenderer from './../theme/templates/projects-list.js';
+import homeRenderer from './../theme/templates/home.js';
+import aboutRenderer from './../theme/templates/about.js';
+import experienceRenderer from './../theme/templates/experience.js';
 
 export const routes = [
   {

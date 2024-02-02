@@ -1,3 +1,5 @@
-export default render = (content) => {
+const render = (content) => {
   return ``
 }
+
+export default render;
