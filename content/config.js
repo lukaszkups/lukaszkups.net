@@ -77,6 +77,10 @@ export const routes = [
     destination: '/output/notes/2015/',
     listItemUrl: '/notes/2015/',
     createSearchIndex: true,
+    content: {
+      title: 'lukaszkups.net - Blog notes',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, Blog, Blogger, Blogging, lifestyle, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: notesListRenderer,
   },
   {
@@ -86,6 +90,10 @@ export const routes = [
     destination: '/output/notes/2017/',
     listItemUrl: '/notes/2017/',
     createSearchIndex: true,
+    content: {
+      title: 'lukaszkups.net - Blog notes',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, Blog, Blogger, Blogging, lifestyle, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: notesListRenderer,
   },
   {
@@ -95,6 +103,10 @@ export const routes = [
     destination: '/output/notes/2018/',
     listItemUrl: '/notes/2018/',
     createSearchIndex: true,
+    content: {
+      title: 'lukaszkups.net - Blog notes',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, Blog, Blogger, Blogging, lifestyle, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: notesListRenderer,
   },
   {
@@ -104,6 +116,10 @@ export const routes = [
     destination: '/output/notes/2019/',
     listItemUrl: '/notes/2019/',
     createSearchIndex: true,
+    content: {
+      title: 'lukaszkups.net - Blog notes',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, Blog, Blogger, Blogging, lifestyle, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: notesListRenderer,
   },
   {
@@ -113,6 +129,10 @@ export const routes = [
     destination: '/output/notes/2020/',
     listItemUrl: '/notes/2020/',
     createSearchIndex: true,
+    content: {
+      title: 'lukaszkups.net - Blog notes',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, Blog, Blogger, Blogging, lifestyle, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: notesListRenderer,
   },
   {
@@ -122,6 +142,10 @@ export const routes = [
     destination: '/output/notes/2021/',
     listItemUrl: '/notes/2021/',
     createSearchIndex: true,
+    content: {
+      title: 'lukaszkups.net - Blog notes',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, Blog, Blogger, Blogging, lifestyle, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: notesListRenderer,
   },
   {
@@ -131,6 +155,10 @@ export const routes = [
     destination: '/output/notes/2022/',
     listItemUrl: '/notes/2022/',
     createSearchIndex: true,
+    content: {
+      title: 'lukaszkups.net - Blog notes',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, Blog, Blogger, Blogging, lifestyle, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: notesListRenderer,
   },
   {
@@ -140,6 +168,10 @@ export const routes = [
     destination: '/output/notes/2023/',
     listItemUrl: '/notes/2023/',
     createSearchIndex: true,
+    content: {
+      title: 'lukaszkups.net - Blog notes',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, Blog, Blogger, Blogging, lifestyle, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: notesListRenderer,
   },
   {
@@ -149,12 +181,20 @@ export const routes = [
     destination: '/output/notes/2024/',
     listItemUrl: '/notes/2024/',
     createSearchIndex: true,
+    content: {
+      title: 'lukaszkups.net - Blog notes',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, Blog, Blogger, Blogging, lifestyle, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: notesListRenderer,
   },
   {
     id: 'notes-index',
     type: 'static',
     destination: '/output/notes/',
+    content: {
+      title: 'lukaszkups.net - Blog notes',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, Blog, Blogger, Blogging, lifestyle, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: notesIndexRenderer,
   },
   {
@@ -168,6 +208,10 @@ export const routes = [
     id: 'home',
     type: 'static',
     destination: '/output/',
+    content: {
+      title: 'lukaszkups.net - Just Another Front-end developer',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, portfolio, web developer, webdev, programming, programmer, technology, tech writing, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: homeRenderer,
   },
   {
@@ -180,6 +224,10 @@ export const routes = [
     id: 'experience',
     type: 'static',
     destination: '/output/experience/',
+    content: {
+      title: 'lukaszkups.net - Front-end developer',
+      tags: 'Front-end developer, FE dev, gamedev, JavaScript, TypeScript, programmer, web developer, webdev, technology, tech writer, Vue.js, Vue, Vue.js 2, Vue.js 3, Vue 2, Vue 3, Construct 3'
+    },
     template: experienceRenderer,
   },
 ];

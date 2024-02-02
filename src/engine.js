@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import showdown from 'showdown';
 import fm from 'front-matter';
-import { ensureDirExists, getAllFilesWithinDirectory, slugify } from "./helpers/files.js";
+import { clearFolder, ensureDirExists, getAllFilesWithinDirectory, slugify } from "./helpers/files.js";
 
 class Engine {
   constructor(args) {
@@ -31,12 +31,15 @@ class Engine {
   }
 
   compileRoutes() {
+    clearFolder(path.join(this.path, 'output/*'));
     this.routes.forEach((route) => {
       if (route) {
         if (route.type === 'dynamic') {
           this.compileDynamicRoute(route);
         } else if (route.type === 'list') {
           this.compileListRoute(route);
+        } else if (route.type === 'static') {
+          this.compileStaticRoute(route);
         }
       }
     });
@@ -47,7 +50,7 @@ class Engine {
     // collect markdown files within directory
     const sourceFilePaths = getAllFilesWithinDirectory(routePath);
     // create destination list directory (will contain folders 1 per list item with index.html file inside)
-    ensureDirExists(route.destination);
+    ensureDirExists(path.join(this.path, route.destination));
     // loop over source files and save them in destination directory
     sourceFilePaths.forEach((sourceFilePath) => {
       // read single file
@@ -61,6 +64,10 @@ class Engine {
         meta: meta,
         slug: meta?.slug || slugify(meta.title || Date.now()),
         content: htmlContent
+      }
+      // Add route-based content to the object
+      if (route.content) {
+        contentObj.routeContent = route.content;
       }
       // create destination file url
       const outputFilePath = path.join(this.path, route.destination, contentObj.slug);
@@ -102,14 +109,29 @@ class Engine {
     const outputFilePath = path.join(this.path, route.destination);
     // create destination route folder
     ensureDirExists(outputFilePath);
-    // compile content object with template
-    const content = route.template(contentObj);
-    // save file in the final path as index.html (for seamless routing)
-    fs.writeFileSync(path.join(outputFilePath, 'index.html'), content);
     // save json file for search purposes
     if (route.createSearchIndex) {
       fs.writeFileSync(path.join(outputFilePath, 'search.json'), JSON.stringify(contentObj));
     }
+    // Add route-based content to the object
+    if (route.content) {
+      contentObj.routeContent = route.content;
+    }
+    // compile content object with template
+    const content = route.template(contentObj);
+    // save file in the final path as index.html (for seamless routing)
+    fs.writeFileSync(path.join(outputFilePath, 'index.html'), content);
+  }
+
+  compileStaticRoute(route) {
+    // create destination file url
+    const outputFilePath = path.join(this.path, route.destination);
+    // create destination directory (will contain index.html inside)
+    ensureDirExists(outputFilePath);
+    // compile content object with template
+    const content = route.template(route.content || { title: Date.now() });
+    // save file in the final path as index.html (for seamless routing)
+    fs.writeFileSync(path.join(outputFilePath, 'index.html'), content);
   }
 }
 

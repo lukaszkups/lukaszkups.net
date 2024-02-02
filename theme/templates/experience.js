@@ -1,5 +1,5 @@
 const render = (contentData) => {
-  return ``;
+  return `<div>${contentData.title}</div>`;
 }
 
 export default render;
