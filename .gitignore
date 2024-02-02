@@ -11,7 +11,6 @@ node_modules
 dist
 dist-ssr
 *.local
-output/*
 
 # Editor directories and files
 .vscode/*
@@ -23,6 +22,3 @@ output/*
 *.njsproj
 *.sln
 *.sw?
-
-*:Zone.Identifier
-package-lock.json
