@@ -75,6 +75,8 @@ export const routes = [
     type: 'list',
     source: '/content/pages/notes/2015/',
     destination: '/output/notes/2015/',
+    listItemUrl: '/notes/2015/',
+    createSearchIndex: true,
     template: notesListRenderer,
   },
   {
@@ -82,6 +84,8 @@ export const routes = [
     type: 'list',
     source: '/content/pages/notes/2017/',
     destination: '/output/notes/2017/',
+    listItemUrl: '/notes/2017/',
+    createSearchIndex: true,
     template: notesListRenderer,
   },
   {
@@ -89,6 +93,8 @@ export const routes = [
     type: 'list',
     source: '/content/pages/notes/2018/',
     destination: '/output/notes/2018/',
+    listItemUrl: '/notes/2018/',
+    createSearchIndex: true,
     template: notesListRenderer,
   },
   {
@@ -96,6 +102,8 @@ export const routes = [
     type: 'list',
     source: '/content/pages/notes/2019/',
     destination: '/output/notes/2019/',
+    listItemUrl: '/notes/2019/',
+    createSearchIndex: true,
     template: notesListRenderer,
   },
   {
@@ -103,6 +111,8 @@ export const routes = [
     type: 'list',
     source: '/content/pages/notes/2020/',
     destination: '/output/notes/2020/',
+    listItemUrl: '/notes/2020/',
+    createSearchIndex: true,
     template: notesListRenderer,
   },
   {
@@ -110,6 +120,8 @@ export const routes = [
     type: 'list',
     source: '/content/pages/notes/2021/',
     destination: '/output/notes/2021/',
+    listItemUrl: '/notes/2021/',
+    createSearchIndex: true,
     template: notesListRenderer,
   },
   {
@@ -117,6 +129,8 @@ export const routes = [
     type: 'list',
     source: '/content/pages/notes/2022/',
     destination: '/output/notes/2022/',
+    listItemUrl: '/notes/2022/',
+    createSearchIndex: true,
     template: notesListRenderer,
   },
   {
@@ -124,6 +138,8 @@ export const routes = [
     type: 'list',
     source: '/content/pages/notes/2023/',
     destination: '/output/notes/2023/',
+    listItemUrl: '/notes/2023/',
+    createSearchIndex: true,
     template: notesListRenderer,
   },
   {
@@ -131,6 +147,8 @@ export const routes = [
     type: 'list',
     source: '/content/pages/notes/2024/',
     destination: '/output/notes/2024/',
+    listItemUrl: '/notes/2024/',
+    createSearchIndex: true,
     template: notesListRenderer,
   },
   {

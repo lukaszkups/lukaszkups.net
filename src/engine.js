@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import showdown from 'showdown';
+import fm from 'front-matter';
 import { ensureDirExists, getAllFilesWithinDirectory, slugify } from "./helpers/files.js";
 
 class Engine {
@@ -34,6 +35,8 @@ class Engine {
       if (route) {
         if (route.type === 'dynamic') {
           this.compileDynamicRoute(route);
+        } else if (route.type === 'list') {
+          this.compileListRoute(route);
         }
       }
     });
@@ -68,6 +71,40 @@ class Engine {
       // save file in the final path as index.html (for seamless routing)
       fs.writeFileSync(path.join(outputFilePath, 'index.html'), content);
     });
+  }
+
+  compileListRoute(route) {
+    const contentObj = {
+      items: [],
+    }
+    const routePath = path.join(this.path, route.source);
+    // collect markdown files within directory
+    const sourceFilePaths = getAllFilesWithinDirectory(routePath);
+    // create destination list directory (will contain folders 1 per list item with index.html file inside)
+    ensureDirExists(route.destination);
+    // loop over source files
+    sourceFilePaths.forEach((sourceFilePath) => {
+      // read single file
+      const txtContent = fs.readFileSync(path.join(routePath, sourceFilePath), 'utf8');
+      // extract metadata from the current file
+      const meta = fm(txtContent)
+      const slug = meta && meta.slug ? meta.slug : slugify(meta.title || Date.now());
+      // create reusable object that we send to render functions
+      const contentItemObj = {
+        meta: meta,
+        slug: slug,
+        url: `${routePath}slug/`
+      }
+      contentObj.items.push(contentItemObj);
+    });
+    // create destination file url
+    const outputFilePath = path.join(this.path, route.destination);
+    // create destination route folder
+    ensureDirExists(outputFilePath);
+    // compile content object with template
+    const content = route.template(contentObj);
+    // save file in the final path as index.html (for seamless routing)
+    fs.writeFileSync(path.join(outputFilePath, 'index.html'), content);
   }
 }
 

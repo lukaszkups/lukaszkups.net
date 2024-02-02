@@ -1,5 +1,8 @@
 const render = (content) => {
-  return ``
+  return `
+    <div>${JSON.stringify(content.meta)}</div>
+    <div>${content.content}</div>
+  `
 }
 
 export default render;
