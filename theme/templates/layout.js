@@ -1,9 +1,11 @@
-import renderHead from './head';
-import renderNav from './nav';
-import renderFooter from './footer';
+import renderHead from './head.js';
+import renderNav from './nav.js';
+import renderFooter from './footer.js';
 
-const render = (contentData, contentTemplateRenderFunction) => {
-  return `<html>
+const renderLayout = (contentData, contentTemplateRenderFunction) => {
+  return `
+  <!DOCTYPE html>
+  <html lang="en">
     <head>
       ${renderHead(contentData)}
     </head>
@@ -15,4 +17,4 @@ const render = (contentData, contentTemplateRenderFunction) => {
   </html>`
 }
 
-export default render;
+export default renderLayout;

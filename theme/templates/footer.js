@@ -1,5 +1,8 @@
 const render = (contentData) => {
-  return ``;
+  return `
+    <footer></footer>
+    <script src="/assets/js/main.js"></script>
+  `;
 }
 
 export default render;

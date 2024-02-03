@@ -43,6 +43,7 @@ class Engine {
         }
       }
     });
+    this.copyPublicDir();
   }
 
   compileDynamicRoute(route) {
@@ -132,6 +133,12 @@ class Engine {
     const content = route.template(route.content || { title: Date.now() });
     // save file in the final path as index.html (for seamless routing)
     fs.writeFileSync(path.join(outputFilePath, 'index.html'), content);
+  }
+
+  copyPublicDir() {
+    const assetsPath = path.join(this.path, 'output/assets');
+    ensureDirExists(assetsPath);
+    fs.cpSync(path.join(this.path, 'public'), assetsPath, { recursive: true });
   }
 }
 
