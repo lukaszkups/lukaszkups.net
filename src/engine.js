@@ -44,6 +44,7 @@ class Engine {
       }
     });
     this.copyPublicDir();
+    this.copyContentStaticDir();
   }
 
   compileDynamicRoute(route) {
@@ -136,9 +137,15 @@ class Engine {
   }
 
   copyPublicDir() {
-    const assetsPath = path.join(this.path, 'output/assets');
-    ensureDirExists(assetsPath);
-    fs.cpSync(path.join(this.path, 'public'), assetsPath, { recursive: true });
+    const outputAssetsPath = path.join(this.path, 'output/assets');
+    ensureDirExists(outputAssetsPath);
+    fs.cpSync(path.join(this.path, 'theme/assets'), outputAssetsPath, { recursive: true });
+  }
+
+  copyContentStaticDir() {
+    const outputStaticPath = path.join(this.path, 'output/static');
+    ensureDirExists(outputStaticPath);
+    fs.cpSync(path.join(this.path, 'content/static'), outputStaticPath, { recursive: true });
   }
 }
 

@@ -6,7 +6,8 @@ const render = (contentData) => {
     <title>${contentData?.title || ''}</title>
     <ta>${contentData?.tags || ''}</title>
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="icon" href="/assets/images/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
   `;
 }
 
