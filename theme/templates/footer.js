@@ -1,5 +1,8 @@
 const render = (contentData) => {
   return `
+  <div class="footer-right-now">
+    <div class="main-container"><span>Current status:</span> Besides working as a full-time FE dev at <a href="https://www.mercedes-benz.io">MB.io</a> I'm catching up with writing all the pending tech articles!</div>
+  </div>
     <footer>
       <div class="main-container footer-container">
         <div class="row">
@@ -45,7 +48,7 @@ const render = (contentData) => {
             </ul>
           </div>
         </div>
-        <div class="row copyrights">
+        <div class="row copy">
           ©&nbsp;
           <span class="lk-update-year">2024</span>
           &nbsp;lukaszkups. All Rights Reserved.
