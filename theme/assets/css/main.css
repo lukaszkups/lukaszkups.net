@@ -1,3 +1,7 @@
+:root {
+  --gold: #ecbd29;
+  --blue: #373b44;
+}
 
 body {
   background: #fff;
@@ -62,4 +66,176 @@ footer ul li.title {
 .footer-container {
   width: 100%;
   color: #121212;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 10;
+}
+
+.logo-wrapper {
+  display: inline-block;
+  height: 50px;
+  margin: 10px 0 0 0;
+  padding: 0;
+  width: 50px;
+  overflow: visible;
+  background-color: transparent;
+  border: none;
+  outline: 0;
+}
+
+.logo {
+  display: block;
+  position: relative;
+  background-color: var(--gold);
+  -webkit-transform: skew(25deg, 0deg);
+  -ms-transform: skew(25deg, 0deg);
+  transform: skew(25deg, 0deg);
+  float: left;
+  clear: both;
+  width: 11.428px;
+  height: 10px;
+  margin-top: 18px;
+  margin-left: 15px;
+}
+
+.logo::after, .logo::before
+{
+  display: block;
+  position: relative;
+  content: " ";
+  background-color: #fff;
+  -webkit-transform: skew(-50deg, 0deg);
+  -ms-transform: skew(-50deg, 0deg);
+  transform: skew(-50deg, 0deg);
+}
+
+.logo::after
+{
+  margin-top: 10px;
+  margin-left: -5.9px;
+  margin-right: -7.3px;
+  height: 10px;
+}
+
+.logo::before
+{
+  margin-top: -10px;
+  margin-left: 17.3px;
+  margin-right: -18px;
+  height: 10px;
+}
+
+.hero-wrapper,
+.hero-wrapper-bg {
+  width: 100%;
+  height: 80vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-wrapper {
+  background: #fff;
+}
+
+@keyframes slide-in-hero-bg {
+  0% {
+    right: 120vw;
+  }
+  100% {
+    right: 0;
+  }
+}
+
+.hero-wrapper-bg {
+  box-sizing: border-box;
+  background: var(--blue);
+  position: absolute;
+  top: 0;
+  border-style: solid;
+  border-color: var(--blue) transparent transparent transparent;
+  border-width: 100px 100px 0 0;
+  animation: slide-in-hero-bg 0.4s;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    margin-bottom: -10px;
+  }
+  100% {
+    opacity: 1;
+    margin-bottom: 0;
+  }
+}
+
+.hero-avatar-image {
+  width: 500px;
+  height: 500px;
+  background: url('/assets/images/home-hero-image.png');
+  background-size: contain;
+  animation: fade-in 1s;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+@keyframes slide-in-gold-bar {
+  0% {
+    left: 100vw;
+  }
+  50% {
+    left: 10vw;
+  }
+  100% {
+    left: 50vw;
+  }
+}
+
+.hero-line {
+  position: absolute;
+  background: var(--gold);
+  width: 50px;
+  height: 150vh;
+  transform: skew(-30deg);
+  top: 0;
+  left: 50vw;
+  animation: slide-in-gold-bar 1s;
+}
+
+.main-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  line-height: 50px;
+  float: right;
+}
+
+.main-menu li {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.main-menu li a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  padding: 0 10px;
+}
+
+.main-menu li.nav-active a {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.main-menu li a:hover {
+  text-decoration: underline;
 }
