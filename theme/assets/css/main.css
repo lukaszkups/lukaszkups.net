@@ -325,6 +325,8 @@ nav {
   position: relative;
   overflow: hidden;
   padding-bottom: 15vh;
+  font-size: 1.25em;
+  line-height: 1.5em;
 }
 
 .main-container--middle-home {
@@ -589,7 +591,7 @@ footer ul li.title {
   background-size: contain;
   background-color: #000;
   position: absolute;
-  right: 10vh;
+  right: 30vh;
   bottom: 0;
   z-index: 1;
   animation: fade-in 1s;
@@ -619,9 +621,15 @@ footer ul li.title {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: -1;
 }
 
 /* -------------------------------------------------------------------------------------------- COMMON ARTICLE-RELATED STYLES */
+
+article {
+  text-align: justify;
+  line-height: 1.5em;
+}
 
 article h1,
 article h2,
@@ -632,14 +640,16 @@ article h5 {
   letter-spacing: 1px;
 }
 
-article p {
-  line-height: 1.5em;
-}
-
 article a,
 article p a,
 article li a {
   color: var(--gold);
+}
+
+article a:hover,
+article p a:hover,
+article li a:hover {
+  color: var(--blue-alt);
 }
 
 /* -------------------------------------------------------------------------------------------- MEDIA QUERIES */
@@ -657,6 +667,13 @@ article li a {
 
   .logo-wrapper {
     margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .about-hero-avatar {
+    right: auto;
+    left: 25vw;
   }
 }
 
@@ -678,5 +695,10 @@ article li a {
 
   .middle-section .section-wrapper:hover > span {
     transform: skew(0deg);
+  }
+
+  .about-hero-avatar {
+    right: auto;
+    left: auto;
   }
 }

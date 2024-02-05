@@ -5,7 +5,7 @@ const renderExperience = (contentData) => {
 }
 
 const render = (contentData) => {
-  contentData.navIndex = 1;
+  contentData.navIndex = 4;
   return renderLayout(contentData, renderExperience);
 }
 export default render;
