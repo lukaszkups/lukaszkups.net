@@ -200,7 +200,7 @@ nav {
     right: 120vw;
   }
   100% {
-    right: 0;
+    right: -10vw;
   }
 }
 
@@ -209,6 +209,7 @@ nav {
   background: var(--blue-dark);
   position: absolute;
   top: 0;
+  width: 110vw;
   animation: slide-in-hero-bg 1s;
   transform: skew(-30deg);
 }
@@ -248,7 +249,7 @@ nav {
     left: 5vw;
   }
   55% {
-    width: 50px;
+    width: 10vw;
   }
   75% {
     left: 35vw;
@@ -266,7 +267,7 @@ nav {
   transform: skew(-30deg);
   top: 0;
   left: 35vw;
-  animation: slide-in-gold-bar 1s;
+  animation: slide-in-gold-bar 1.75s;
   z-index: 1;
 }
 
@@ -341,8 +342,6 @@ nav {
   z-index: 2;
   display: inline-block;
   clear: both;
-  /* background-color: #fff;
-  transition: background-color 0.5s; */
   padding: 30px;
   cursor: default;
 }
@@ -670,6 +669,7 @@ footer ul li.title {
   font-size: 4vw;
   text-decoration: none;
   line-height: 30vh;
+  transition: font-size 0.25s;
 }
 
 .notes-years-wrapper li span {
@@ -682,12 +682,24 @@ footer ul li.title {
   background: #000;
   z-index: 1;
 }
+
 .notes-years-wrapper li:hover {
   padding: 0 20px;
   transition: 0.25s padding;
 }
 
+.notes-years-wrapper li:hover a, 
+  .notes-years-wrapper li.active a {
+  color: #000;
+  font-size: 7vw;
+  transition: font-size 0.25s;
+}
+
 .notes-years-wrapper li:hover span {
+  background-color: #fff;
+}
+
+.notes-years-wrapper li.active span {
   background-color: var(--gold);
 }
 
@@ -708,6 +720,29 @@ footer ul li.title {
 
 .notes-index-wrapper h2 span {
   animation: blinking 0.5s infinite;
+}
+
+.notes-years-wrapper--small {
+  height: 10vh;
+}
+
+.notes-years-wrapper--small li a {
+  height: 10vh;
+  font-size: 1.5em !important;
+  line-height: 10vh !important;
+}
+
+.article-list-wrapper {
+  background: var(--blue-dark);
+  width: 100vh;
+  height: 30vh;
+  margin: 0;
+  padding: 5px;
+  display: flex;
+}
+
+.article-list-wrapper .article-list-item {
+  flex: 1;
 }
 
 /* -------------------------------------------------------------------------------------------- COMMON ARTICLE-RELATED STYLES */
