@@ -218,6 +218,7 @@ export const routes = [
     id: 'about',
     type: 'static',
     destination: '/output/about/',
+    source: '/content/pages/about.md',
     template: aboutRenderer,
   },
   {

@@ -58,7 +58,7 @@ class Engine {
       // read single file
       const txtContent = fs.readFileSync(path.join(routePath, sourceFilePath), 'utf8');
       // extract markdown and parse it into HTML
-      const htmlContent = this.markdown.makeHtml(txtContent);
+      const htmlContent = this.markdown.makeHtml(txtContent).replace(/\n/g, "\n<br/>");
       // extract metadata from the current file
       const meta = this.markdown.getMetadata();
       // create reusable object that we send to render functions
@@ -130,6 +130,20 @@ class Engine {
     const outputFilePath = path.join(this.path, route.destination);
     // create destination directory (will contain index.html inside)
     ensureDirExists(outputFilePath);
+    // if source prop is passed (to direct .md file) then fetch its contents
+    if (route.source) {
+      const txtContent = fs.readFileSync(path.join(this.path, route.source), 'utf8');
+      // extract metadata from the current file
+      const htmlContent = this.markdown.makeHtml(txtContent).replace(/\n/g, '');
+      // extract metadata from the current file
+      const meta = this.markdown.getMetadata();
+      // create reusable object that we send to render functions
+      const contentObj = {
+        meta: meta,
+        content: htmlContent
+      }
+      route.content = { ...contentObj, ...route.content };
+    }
     // compile content object with template
     const content = route.template(route.content || { title: Date.now() });
     // save file in the final path as index.html (for seamless routing)

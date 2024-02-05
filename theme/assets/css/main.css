@@ -63,53 +63,6 @@ body {
   height: 0;
 }
 
-footer {
-  background: var(--blue-dark);
-  color: #fff;
-  padding: 20px 0;
-  position: relative;
-}
-
-footer .title {
-  color: #fff;
-}
-
-footer a {
-  color: #fff;
-  text-decoration: none;
-}
-
-footer .copy {
-  color: #fff;
-  font-size: 0.8em;
-  display: block;
-  text-align: right;
-}
-
-footer a:hover {
-  color: var(--gold);
-  text-decoration: underline;
-}
-
-footer ul {
-  margin: 20px 0;
-  padding: 0;
-  line-height: 1.5em;
-  list-style: none;
-}
-
-footer ul li {
-  margin: 0;
-  padding: 5px 0;
-  font-size: 0.8em;
-}
-
-footer ul li.title {
-  font-weight: 900;
-  font-size: 1em;
-  text-transform: uppercase;
-}
-
 .main-container {
   margin: 0 auto;
   max-width: 1100px;
@@ -120,6 +73,8 @@ footer ul li.title {
   color: #121212;
   margin: 0 auto;
 }
+
+/* -------------------------------------------------------------------------------------------- TOP PAGE NAV */
 
 nav {
   position: fixed;
@@ -188,8 +143,50 @@ nav {
 }
 
 
+.main-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  line-height: 50px;
+  float: right;
+  letter-spacing: 1px;
+  background: rgba(0,0,0,0.25);
+}
+
+.main-menu li {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  background-image: linear-gradient(var(--gold), var(--gold));
+  background-size: 100% 3px;
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+  transition: background-size 0.5s;
+}
+
+.main-menu li a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  padding: 0 20px;
+}
+
+.main-menu li.nav-active {
+  background-image: linear-gradient(#121212, #121212);
+  background-size: 100% 100%;
+}
+
+.main-menu li:hover {
+  color: #000;
+  background-size: 100% 100%;
+  transition: background-size 0.5s;
+}
+
+/* -------------------------------------------------------------------------------------------- HOME PAGE */
+
 .hero-wrapper,
-.hero-wrapper-bg {
+.hero-wrapper-bg,
+.about-hero-wrapper {
   width: 100%;
   height: 85vh;
   margin: 0;
@@ -212,7 +209,7 @@ nav {
   background: var(--blue-dark);
   position: absolute;
   top: 0;
-  animation: slide-in-hero-bg 1.25s;
+  animation: slide-in-hero-bg 1s;
   transform: skew(-30deg);
 }
 
@@ -244,28 +241,31 @@ nav {
     left: 100vw;
     width: 100vw;
   }
-  25% {
+  15% {
     width: 100vw;
   }
-  50% {
+  30% {
     left: 5vw;
   }
-  85% {
+  55% {
     width: 50px;
   }
+  75% {
+    left: 35vw;
+  }
   100% {
-    left: 15vw;
+    width: 100vw;
   }
 }
 
 .hero-line {
   position: absolute;
   background: var(--gold);
-  width: 50px;
+  width: 100vw;
   height: 150vh;
   transform: skew(-30deg);
   top: 0;
-  left: 15vw;
+  left: 35vw;
   animation: slide-in-gold-bar 1s;
   z-index: 1;
 }
@@ -316,45 +316,6 @@ nav {
   font-size: 1.5em;
   margin-top: 5em;
   padding: 5px 10px;
-}
-
-.main-menu {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  line-height: 50px;
-  float: right;
-  letter-spacing: 1px;
-  background: rgba(0,0,0,0.25);
-}
-
-.main-menu li {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  background-image: linear-gradient(var(--gold), var(--gold));
-  background-size: 100% 3px;
-  background-repeat: no-repeat;
-  background-position: 100% 0%;
-  transition: background-size 0.5s;
-}
-
-.main-menu li a {
-  display: block;
-  text-decoration: none;
-  color: #fff;
-  padding: 0 20px;
-}
-
-.main-menu li.nav-active {
-  background-image: linear-gradient(#121212, #121212);
-  background-size: 100% 100%;
-}
-
-.main-menu li:hover {
-  color: #000;
-  background-size: 100% 100%;
-  transition: background-size 0.5s;
 }
 
 .middle-section {
@@ -459,6 +420,72 @@ nav {
   opacity: 0.4;
 }
 
+
+#particles-js {
+  z-index: 1;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: var(--white-alt); 
+  background-image: url(""); 
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  background-position: 50% 50%;
+}
+
+/* -------------------------------------------------------------------------------------------- FOOTER */
+
+footer {
+  background: var(--blue-dark);
+  color: #fff;
+  padding: 20px 0;
+  position: relative;
+}
+
+footer .title {
+  color: #fff;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer .copy {
+  color: #fff;
+  font-size: 0.8em;
+  display: block;
+  text-align: right;
+}
+
+footer a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+footer ul {
+  margin: 20px 0;
+  padding: 0;
+  line-height: 1.5em;
+  list-style: none;
+}
+
+footer ul li {
+  margin: 0;
+  padding: 5px 0;
+  font-size: 0.8em;
+}
+
+footer ul li.title {
+  font-weight: 900;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
 .footer-right-now {
   display: block;
   background-color: var(--gold);
@@ -482,6 +509,141 @@ nav {
   color: #000;
 }
 
+/* -------------------------------------------------------------------------------------------- ABOUT PAGE */
+
+
+.stack-container {
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20vh;
+  position: relative;
+  z-index: 2;
+}
+
+.stack {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@keyframes stack {
+  0% {
+    opacity: 0;
+    transform: translateX(-10%);
+    text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+  };
+  60% {
+    opacity: 0.5;
+    transform: translateX(10%);
+  }
+  80% {
+    transform: none;
+    opacity: 1;
+    text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+  }
+  100% {
+    text-shadow: none;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+    transform: translate(var(--glitch-translate));
+  }
+  2% {
+    text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+  }
+  4%, 100% {  text-shadow: none; transform: none; }
+}
+
+.stack span {
+  font-weight: bold;
+  grid-row-start: 1;
+  grid-column-start: 1;
+  font-size: 4rem;
+  --stack-height: calc(100% / var(--stacks) - 1px);
+  --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+  --clip-top: calc(var(--stack-height) * var(--index));
+  --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+  clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+  animation: stack 340ms cubic-bezier(.46,.29,0,1.24) 1 backwards calc(var(--index) * 120ms), glitch 1.5s ease infinite 1.5s alternate-reverse;
+}
+
+.stack span:nth-child(odd) { --glitch-translate: 8px; }
+.stack span:nth-child(even) { --glitch-translate: -8px; }
+
+.about-hero-wrapper {
+  height: 50vh;
+  background-size: contain;
+  background-color: #000;
+  text-align: center;
+  overflow: hidden;
+}
+
+.about-hero-avatar {
+  width: 50vh;
+  height: 50vh;
+  background: url('/assets/images/avatar-coffee.jpg') no-repeat right bottom;
+  background-size: contain;
+  background-color: #000;
+  position: absolute;
+  right: 10vh;
+  bottom: 0;
+  z-index: 1;
+  animation: fade-in 1s;
+}
+
+.middle-section--about {
+  min-height: 50vh;
+}
+
+.about-me-content {
+  background: rgba(255,255,255,0.75);
+  padding: 10px 30px 30px 30px;
+  margin-top: 30px;
+  position: relative;
+  overflow: hidden;
+  /* border: 1px solid #eee; */
+  border-radius: 3px;
+}
+
+.about-me-content::before {
+  content: '';
+  position: absolute;
+  box-shadow: inset 0 0 0 3000px rgba(215, 215, 215, 0.192);
+  filter: blur(10px);
+  border-radius: 15px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* -------------------------------------------------------------------------------------------- COMMON ARTICLE-RELATED STYLES */
+
+article h1,
+article h2,
+article h3,
+article h4,
+article h5 {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+}
+
+article p {
+  line-height: 1.5em;
+}
+
+article a,
+article p a,
+article li a {
+  color: var(--gold);
+}
+
+/* -------------------------------------------------------------------------------------------- MEDIA QUERIES */
+
 @media screen and (max-width: 1100px) {
   .main-container {
     width: 90vw;
@@ -496,22 +658,6 @@ nav {
   .logo-wrapper {
     margin-left: 20px;
   }
-}
-
-#particles-js {
-  z-index: 1;
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background-color: var(--white-alt); 
-  background-image: url(""); 
-  background-repeat: no-repeat; 
-  background-size: cover; 
-  background-position: 50% 50%;
 }
 
 /* min screen size */
