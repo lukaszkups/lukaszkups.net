@@ -423,7 +423,8 @@ nav {
 }
 
 
-#particles-js {
+#particles-js,
+#particles-js--gold{
   z-index: 1;
   position: absolute;
   display: block;
@@ -432,11 +433,6 @@ nav {
   top: 0;
   left: 0;
   overflow: hidden;
-  background-color: var(--white-alt); 
-  background-image: url(""); 
-  background-repeat: no-repeat; 
-  background-size: cover; 
-  background-position: 50% 50%;
 }
 
 /* -------------------------------------------------------------------------------------------- FOOTER */
@@ -624,6 +620,96 @@ footer ul li.title {
   z-index: -1;
 }
 
+/* -------------------------------------------------------------------------------------------- NOTES-RELATED PAGES */
+
+.notes-index-wrapper,
+.notes-years-wrapper {
+  background: var(--blue-dark);
+  color: #fff;
+  text-align: center;
+  height: 50vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.notes-index-wrapper h2 {
+  margin-top: 20vh;
+  font-size: 4em;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+}
+
+.notes-years-wrapper {
+  background: #000;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 30vh;
+}
+
+.notes-years-wrapper li {
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  position: relative;
+  transition: 0.25s padding;
+}
+
+.notes-years-wrapper li a {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  font-size: 4vw;
+  text-decoration: none;
+  line-height: 30vh;
+}
+
+.notes-years-wrapper li span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: skew(-10deg);
+  background: #000;
+  z-index: 1;
+}
+.notes-years-wrapper li:hover {
+  padding: 0 20px;
+  transition: 0.25s padding;
+}
+
+.notes-years-wrapper li:hover span {
+  background-color: var(--gold);
+}
+
+@keyframes blinking {
+  0% {
+    visibility: visible;
+  }
+  49% {
+    visibility: visible;
+  }
+  50% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+
+.notes-index-wrapper h2 span {
+  animation: blinking 0.5s infinite;
+}
+
 /* -------------------------------------------------------------------------------------------- COMMON ARTICLE-RELATED STYLES */
 
 article {
@@ -674,6 +760,32 @@ article li a:hover {
   .about-hero-avatar {
     right: auto;
     left: 25vw;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .notes-years-wrapper {
+    display: block;
+    height: auto;
+  }
+
+  .notes-years-wrapper li {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    height: 50px;
+  }
+
+  .notes-years-wrapper li:hover {
+    padding: 0;
+  }
+
+  .notes-years-wrapper li a {
+    line-height: 50px;
+  }
+
+  .notes-years-wrapper li span {
+    transform: skew(0deg);
   }
 }
 
