@@ -26,3 +26,19 @@ export const slugify = (txt) => {
 export const clearFolder = async (path) => {
   await fs.rm(path, { recursive: true }, () => ({}));
 }
+
+export const stripFromQuotes = (title) => {
+  if (
+    title && 
+    title[0] === '"' && 
+    title[title.length - 1] === '"'
+  ) {
+    return title.slice(1, -1);
+  } else if (
+    title &&
+    title.includes('&quot;') 
+  ) {
+    return title.replace(/&quot;/g, '');
+  }
+  return title;
+}

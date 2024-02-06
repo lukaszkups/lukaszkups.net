@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import showdown from 'showdown';
 import fm from 'front-matter';
-import { clearFolder, ensureDirExists, getAllFilesWithinDirectory, slugify } from "./helpers/files.js";
+import { clearFolder, ensureDirExists, getAllFilesWithinDirectory, slugify, stripFromQuotes } from "./helpers/files.js";
 
 class Engine {
   constructor(args) {
@@ -58,9 +58,13 @@ class Engine {
       // read single file
       const txtContent = fs.readFileSync(path.join(routePath, sourceFilePath), 'utf8');
       // extract markdown and parse it into HTML
-      const htmlContent = this.markdown.makeHtml(txtContent).replace(/\n/g, "\n<br/>");
+      const htmlContent = this.markdown.makeHtml(txtContent);
       // extract metadata from the current file
       const meta = this.markdown.getMetadata();
+      // Remove extra quotation characters from title
+      if (meta?.title) {
+        meta.title = stripFromQuotes(meta.title);
+      }
       // create reusable object that we send to render functions
       const contentObj = {
         meta: meta,
@@ -97,6 +101,10 @@ class Engine {
       const txtContent = fs.readFileSync(path.join(routePath, sourceFilePath), 'utf8');
       // extract metadata from the current file
       const meta = fm(txtContent);
+      // Remove extra quotation characters from title
+      if (meta?.attributes?.title) {
+        meta.attributes.title = stripFromQuotes(meta.attributes.title);
+      }
       const slug = meta?.attributes?.slug || slugify(meta?.attributes?.title || Date.now());
       // create reusable object that we send to render functions
       const contentItemObj = {
@@ -104,6 +112,7 @@ class Engine {
         slug: slug,
         url: `${route.listItemUrl}${slug}/`
       }
+      
       // add list item to collection
       contentObj.items.push(contentItemObj);
     });
@@ -136,7 +145,7 @@ class Engine {
     if (route.source) {
       const txtContent = fs.readFileSync(path.join(this.path, route.source), 'utf8');
       // extract metadata from the current file
-      const htmlContent = this.markdown.makeHtml(txtContent).replace(/\n/g, '');
+      const htmlContent = this.markdown.makeHtml(txtContent);
       // extract metadata from the current file
       const meta = this.markdown.getMetadata();
       // create reusable object that we send to render functions

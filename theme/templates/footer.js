@@ -55,8 +55,10 @@ const render = (contentData) => {
         </div>
       </div>
     </footer>
-    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/highlight.min.js"></script>
     <script src="https://gumroad.com/js/gumroad.js"></script>
+    <link rel="stylesheet" href="/assets/css/highlightjs.monokai-sublime.min.css" />
+    <script src="/assets/js/main.js"></script>
   `;
 }
 

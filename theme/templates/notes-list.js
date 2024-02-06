@@ -20,11 +20,15 @@ const renderArticle = (article) => {
 
 const renderArticles = (articles) => {
   let htmlString = '';
-  articles.forEach((article) => {
-    if (!article.meta.draft) {
-      htmlString += renderArticle(article);
-    }
-  });
+  if (articles?.length) {
+    articles.forEach((article) => {
+      if (!article.meta.draft) {
+        htmlString += renderArticle(article);
+      }
+    });
+  } else {
+    htmlString += '<h1 class="no-articles-yet">No articles yet, working on it!</h1>'
+  }
   return htmlString;
 }
 
