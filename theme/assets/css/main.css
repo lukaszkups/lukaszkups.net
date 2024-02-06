@@ -724,6 +724,7 @@ footer ul li.title {
 
 .notes-years-wrapper--small {
   height: 10vh;
+  padding-top: 6px;
 }
 
 .notes-years-wrapper--small li a {
@@ -734,15 +735,56 @@ footer ul li.title {
 
 .article-list-wrapper {
   background: var(--blue-dark);
-  width: 100vh;
-  height: 30vh;
+  width: 100%;
   margin: 0;
-  padding: 5px;
-  display: flex;
+  padding: 5px 0;
+  display: block;
 }
 
-.article-list-wrapper .article-list-item {
-  flex: 1;
+
+/* Container box to set the sides relative to */
+.cube {
+  display: block;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto 5px 0;
+	height: 50px;
+	transition: transform 0.2s;
+	transform-style: preserve-3d;
+  line-height: 50px;
+  text-decoration: none;
+}
+
+.article-list-wrapper .cube:last-of-type {
+  margin-bottom: 0;
+}
+
+.cube h2 {
+  margin: 0;
+  padding: 0;
+}
+
+/* The two faces of the cube */
+.flippety,.flop {
+	background: rgb(247, 247, 247);
+	height: 50px;
+  text-decoration: none;
+  color: #000;
+}
+
+/* Position the faces */
+.flippety {
+	transform: translateZ(25px);
+}
+
+.flop {
+	transform: rotateX(-90deg) translateZ(-50px);
+  background: var(--gold);
+}
+
+/* Rotate the cube */
+.cube:hover {
+	transform: rotateX(90deg);
 }
 
 /* -------------------------------------------------------------------------------------------- COMMON ARTICLE-RELATED STYLES */
@@ -821,6 +863,10 @@ article li a:hover {
 
   .notes-years-wrapper li span {
     transform: skew(0deg);
+  }
+
+  .notes-years-wrapper--small {
+    display: none;
   }
 }
 

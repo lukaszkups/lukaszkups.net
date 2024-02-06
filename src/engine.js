@@ -107,6 +107,8 @@ class Engine {
       // add list item to collection
       contentObj.items.push(contentItemObj);
     });
+    // Reverse the order so the posts will come from newest at the top
+    contentObj.items.reverse();
     // create destination file url
     const outputFilePath = path.join(this.path, route.destination);
     // create destination route folder

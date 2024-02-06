@@ -1,4 +1,3 @@
-
 ---
 title: Casual gaming and problem of next-gen consoles
 date: 2020/10/21

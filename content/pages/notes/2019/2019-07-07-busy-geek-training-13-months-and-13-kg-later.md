@@ -1,5 +1,5 @@
 ---
-title: Busy geek training #1 - 13 months and 13 kilograms later
+title: "Busy geek training #1 - 13 months and 13 kilograms later"
 date: 2019/07/05
 category: busy geek training, lifestyle, sport, thoughts
 tags: busy geek training, life hacks, lifehack, sport, workout, activity, working out, lifestyle, geek, geek training

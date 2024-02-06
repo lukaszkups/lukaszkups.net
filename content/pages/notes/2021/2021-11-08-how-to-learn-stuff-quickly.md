@@ -1,4 +1,3 @@
-
 ---
 title: How to learn stuff quickly
 date: 2021/11/08

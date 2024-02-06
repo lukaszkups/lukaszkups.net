@@ -1,5 +1,5 @@
 ---
-title: Let's talk about #30DE0B
+title: "Let's talk about #30DE0B"
 date: 2023/10/07
 category: webdev, programming, design, webdesign
 tags: webdev, webdevelopment, programming, js, css3, css, javascript, html, html5, web, web development, web developer, webdeveloper, front-end, ts, typescript

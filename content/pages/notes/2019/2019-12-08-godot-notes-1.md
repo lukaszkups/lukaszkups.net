@@ -1,5 +1,5 @@
 ---
-title: Godot Notes #1
+title: "Godot Notes #1"
 date: 2019/12/08
 category: gamedev, programming, shortie, devlog
 tags: programming, godot, gamedev, devlog, shortie

@@ -1,5 +1,5 @@
 ---
-title: Busy geek training #2 - lessons learned
+title: "Busy geek training #2 - lessons learned"
 date: 2019/07/05
 category: busy geek training, lifestyle, sport, thoughts
 tags: busy geek training, life hacks, lifehack, sport, workout, activity, working out, lifestyle, geek, geek training

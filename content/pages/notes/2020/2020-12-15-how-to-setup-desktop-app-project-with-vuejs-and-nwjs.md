@@ -1,4 +1,3 @@
-
 ---
 title: How to setup a desktop app project with Vue.js and NW.js
 date: 2020/12/15

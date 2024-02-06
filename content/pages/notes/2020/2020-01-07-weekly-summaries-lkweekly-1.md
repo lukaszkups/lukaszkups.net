@@ -1,5 +1,5 @@
 ---
-title: lkweekly #1 - introduction
+title: "lkweekly #1 - introduction"
 date: 2020/01/07
 category: lkweekly
 tags: weekly summary, lkweekly, diary, summary, weekly, devlog, lkweekly2020
