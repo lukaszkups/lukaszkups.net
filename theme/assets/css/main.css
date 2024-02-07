@@ -45,6 +45,10 @@ body {
   letter-spacing: 1px;
 }
 
+.centered-text {
+  text-align: center !important;
+}
+
 .row {
   display: flex;
   margin: 0;
@@ -55,6 +59,11 @@ body {
 .col-25 {
   flex: 1;
   max-width: 25%;
+}
+
+.col-75 {
+  flex: 1;
+  max-width: 75%;
 }
 
 .clearfix {
@@ -173,7 +182,7 @@ nav {
 }
 
 .main-menu li.nav-active {
-  background-image: linear-gradient(#121212, #121212);
+  background-image: linear-gradient(var(--gold), var(--gold));
   background-size: 100% 100%;
 }
 
@@ -424,7 +433,8 @@ nav {
 
 
 #particles-js,
-#particles-js--gold{
+#particles-js--gold,
+#particles-js--exp{
   z-index: 1;
   position: absolute;
   display: block;
@@ -623,6 +633,7 @@ footer ul li.title {
 /* -------------------------------------------------------------------------------------------- NOTES-RELATED PAGES */
 
 .notes-index-wrapper,
+.exp-index-wrapper,
 .notes-years-wrapper {
   background: var(--blue-dark);
   color: #fff;
@@ -634,14 +645,16 @@ footer ul li.title {
   position: relative;
 }
 
-.notes-index-wrapper {
+.notes-index-wrapper,
+.exp-index-wrapper {
   display: flex;
   align-content: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.notes-index-wrapper h2 {
+.notes-index-wrapper h2,
+.exp-index-wrapper h2 {
   font-size: 4em;
   letter-spacing: 1px;
   position: relative;
@@ -651,7 +664,8 @@ footer ul li.title {
   max-width: 1000px;
 }
 
-.notes-index-wrapper p {
+.notes-index-wrapper p,
+.exp-index-wrapper p {
   display: block;
   position: relative;
   z-index: 2;
@@ -932,6 +946,68 @@ footer ul li.title {
   left: -30%;
   width: 150%;
 }
+/* -------------------------------------------------------------------------------------------- EXPERIENCE PAGE */
+
+.experience-wrapper {
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 3;
+  padding-bottom: 3vh;
+  font-size: 1.25em;
+}
+
+.experience-wrapper .experience-h2 {
+  padding-top: 15vh;
+  padding-bottom: 15vh;
+}
+
+.experience-wrapper.main-container {
+  text-align: left;
+  height: auto;
+}
+
+.experience-wrapper .row + .row {
+  margin-top: 1.5em;
+}
+
+.experience-wrapper .title {
+  font-family: "Bebas Neue", Verdana;
+  letter-spacing: 1px;
+  font-size: 1.25em;
+}
+
+.experience-wrapper p {
+  text-align: justify;
+  line-height: 1.5em;
+}
+
+.experience-wrapper p a {
+  color: var(--gold);
+}
+
+.experience-wrapper p a:hover {
+  cursor: pointer;
+  color: #fff;
+}
+
+.download-cv-button {
+  display: inline-block;
+  padding: 10px;
+  background: var(--gold);
+  color: #000;
+  text-decoration: none;
+  margin: 25px auto;
+}
+
+.download-cv-button:hover {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.exp-index-wrapper span {
+  color: #fff;
+}
 
 /* -------------------------------------------------------------------------------------------- COMMON ARTICLE-RELATED STYLES */
 
@@ -1072,8 +1148,16 @@ pre code.hljs {
 }
 
 @media screen and (max-width: 1000px) {
-  .notes-index-wrapper h2 {
+  .notes-index-wrapper h2,
+  .exp-index-wrapper h2{
     font-size: 6vw;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .experience-wrapper,
+  .experience-wrapper p {
+    font-size: 1em;
   }
 }
 
@@ -1141,7 +1225,8 @@ pre code.hljs {
     left: auto;
   }
 
-  .notes-index-wrapper h2 {
+  .notes-index-wrapper h2,
+  .exp-index-wrapper h2 {
     width: 100%;
     margin: 0;
   }

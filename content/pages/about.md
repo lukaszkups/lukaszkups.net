@@ -2,13 +2,13 @@
 title: About page
 tags: front-end, javascript, js, webdev, web developer, front-end developer, web development
 slug: about
-description: Description about about page ;)
+description: It's a me, Lukasz!
 active: 1
 ---
 
 ## Front-end engineer
 
-Hi, I'm Łukasz Kupś - a web developer from Poland with <span class="year" data-year="2010">12</span>+ years of experience working on client & server side of web applications.
+Hi, I'm Łukasz Kupś - a web developer from Poland with <span class="lk-calculate-timespan" data-since-year="2010">14</span>+ years of experience working on client & server side of web applications.
 I love creating nice and useful things for the Internet people.
 
 At the moment I feel most comfortable in working on Vue.js-powered Single Page Applications. Don't get it wrong though, I totally believe in *can-do* mindset and learning other frameworks shouldn't be a huge problem - in the end it's just a tool (that said I also know basics of React.js).
