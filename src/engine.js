@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import showdown from 'showdown';
 import fm from 'front-matter';
+import UglifyJS from 'uglify-js';
+import uglifycss from 'uglifycss';
 import { clearFolder, ensureDirExists, getAllFilesWithinDirectory, slugify, stripFromQuotes } from "./helpers/files.js";
 
 class Engine {
@@ -187,6 +189,26 @@ class Engine {
     const outputSearchPath = path.join(this.path, outputUrl);
     ensureDirExists(outputSearchPath);
     fs.writeFileSync(path.join(outputSearchPath, 'search.json'), JSON.stringify(jsonArr));
+  }
+
+  minify(urlArr) {
+    urlArr.forEach((url) => {
+      const outputStaticPath = path.join(this.path, url);
+      if (fs.existsSync(outputStaticPath)) {
+        const txtContent = fs.readFileSync(outputStaticPath, 'utf8') || '';
+        if (txtContent) {
+          // handle js minification
+          if (url.includes('.js')) {
+            const result = UglifyJS.minify(txtContent);
+            fs.writeFileSync(outputStaticPath, result?.code || txtContent);
+            // handle css minification
+          } else if (url.includes('.css')) {
+            const result = uglifycss.processString(txtContent);
+            fs.writeFileSync(outputStaticPath, result || txtContent);
+          }
+        }
+      }
+    });
   }
 }
 

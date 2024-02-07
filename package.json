@@ -11,6 +11,8 @@
     "front-matter": "^4.0.2",
     "http-server": "^14.1.1",
     "showdown": "^2.1.0",
+    "uglify-js": "^3.17.4",
+    "uglifycss": "^0.0.29",
     "vite": "^5.0.8"
   }
 }
