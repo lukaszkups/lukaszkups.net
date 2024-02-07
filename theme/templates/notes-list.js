@@ -7,7 +7,7 @@ const getActiveYearClass = (currentYear, selectedYear) => {
 
 const renderArticle = (article) => {
   return `
-  <a class="cube" href="${article.url}">
+  <a class="cube article-item" href="${article.url}">
     <div class="flippety">
       <h2>${article?.meta?.title || JSON.stringify(article)} - ${article?.meta?.date}</h2>
     </div>
@@ -49,7 +49,7 @@ const renderNotesList = (contentData) => {
     <ul class="notes-years-wrapper notes-years-wrapper--small bebas">
       ${renderYearSelector(contentData)}
     </ul>
-    <div class="article-list-wrapper bebas">
+    <div id="notes-list" class="article-list-wrapper bebas">
       ${renderArticles(contentData.items)}
     </div>
   `;

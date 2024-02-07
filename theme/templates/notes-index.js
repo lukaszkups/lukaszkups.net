@@ -18,6 +18,7 @@ const renderNotesIndex = (contentData) => {
     <ul class="notes-years-wrapper bebas">
       ${renderYearSelector(contentData)}
     </ul>
+    <div id="notes-list" class="article-list-wrapper bebas"></div>
   `;
 }
 

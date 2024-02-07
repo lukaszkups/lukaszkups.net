@@ -172,6 +172,22 @@ class Engine {
     ensureDirExists(outputStaticPath);
     fs.cpSync(path.join(this.path, 'content/static'), outputStaticPath, { recursive: true });
   }
+
+  mergeAllSearchResults(urlArr, outputUrl) {
+    const jsonArr = { data: [] };
+    urlArr.forEach((url) => {
+      const txtContent = fs.readFileSync(path.join(this.path, url), 'utf8') || '{}';
+      if (txtContent !== '{}') {
+        const jsonContent = JSON.parse(txtContent);
+        if (jsonContent && jsonContent.items) {
+          jsonArr.data.push(...jsonContent.items);
+        }
+      }
+    });
+    const outputSearchPath = path.join(this.path, outputUrl);
+    ensureDirExists(outputSearchPath);
+    fs.writeFileSync(path.join(outputSearchPath, 'search.json'), JSON.stringify(jsonArr));
+  }
 }
 
 const engine = new Engine();

@@ -36,6 +36,7 @@ const render = (contentData) => {
           <div class="col-25">
             <ul>
               <li class="title">Social</li>
+              <li><a href="https://mastodon.social/@lukaszkups">Mastodon</a></li>
               <li><a href="https://twitter.com/lukaszkups">Twitter</a></li>
               <li><a href="https://github.com/lukaszkups">GitHub</a></li>
               <li><a href="https://linkedin.com/in/lukaszkups">LinkedIn</a></li>

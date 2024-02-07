@@ -95,10 +95,12 @@ const renderExperience = (contentData) => {
             <p><a href="https://linkedin.com/in/lukaszkups" target="_blank">https://linkedin.com/in/lukaszkups</a></p>
             <div class="title">Github</div>
             <p><a href="https://github.com/lukaszkups" target="_blank">https://github.com/lukaszkups</a></p>
-            <div class="title">Twitter</div>
-            <p><a href="https://twitter.com/lukaszkups" target="_blank">https://twitter.com/lukaszkups</a></p>
             <div class="title">Blog</div>
             <p><a href="https://lukaszkups.net/notes" target="_blank">https://lukaszkups.net/notes</a></p>
+            <div class="title">Mastodon</div>
+            <p><a href="https://mastodon.social/@lukaszkups" target="_blank">https://mastodon.social/@lukaszkups</a></p>
+            <div class="title">Twitter</div>
+            <p><a href="https://twitter.com/lukaszkups" target="_blank">https://twitter.com/lukaszkups</a></p>
           </div>
         </div>
         <div class="centered-text"><a class="download-cv-button" href="/static/images/lukasz-kups-cv-2024.pdf" target="_blank">Download my CV</a></div>

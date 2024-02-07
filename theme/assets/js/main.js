@@ -111,3 +111,54 @@ if (document.getElementById('particles-js--exp')) {
 
 // code syntax highlight
 hljs.highlightAll();
+
+// search-related stuff
+
+const renderArticle = (article) => {
+  return `
+    <a class="cube article-item" href="${article.url}">
+      <div class="flippety">
+        <h2>${article?.meta?.title || JSON.stringify(article)} - ${article?.meta?.date}</h2>
+      </div>
+      <div class="flop">
+        <h2>${article?.meta?.title || JSON.stringify(article)} - ${article?.meta?.date}</h2>
+      </div>
+    </a>
+  `
+}
+
+const filterNotesByCategory = (category, list) => {
+  const notesWrapper = document.getElementById('notes-list');
+  notesWrapper.innerHTML = `${list.filter((entry) => entry?.meta?.category.includes(category)).map((entry) => renderArticle(entry)).join('')}`;
+}
+
+const filterNotesByTag = (tag, list) => {
+  const notesWrapper = document.getElementById('notes-list');
+  notesWrapper.innerHTML = `${list.filter((entry) => entry?.meta?.tags.includes(tag)).map(entry => renderArticle(entry)).join('')}`;
+}
+
+// notes filtering
+if (location.pathname.includes('/notes/')) {
+  const params = new URLSearchParams(location.search);
+  const category = params.get('category');
+  const tag = params.get('tag');
+  // get full entry list if needed
+  if ((category !== null && category.length) || (tag !== null && tag.length)) {
+    fetch('/notes/search.json').then(resp => resp.json()).then((resp) => {
+      const entryList = resp && resp.data && resp.data.length ? resp.data : [];
+      // remove current notes entry, calendars and hide pagination
+      const notesWrapper = document.getElementById('notes-list');
+      if (notesWrapper) {
+        notesWrapper.innerHTML = '';
+      }
+      // handle filtering
+      if (category !== null && category.length) {
+        filterNotesByCategory(category.toLowerCase(), entryList);
+      } else if (tag !== null && tag.length) {
+        filterNotesByTag(tag.toLowerCase(), entryList);
+      }
+    }).catch(err => {
+      throw new Error(err);
+    })
+  }
+}
