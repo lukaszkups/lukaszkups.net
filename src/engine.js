@@ -182,7 +182,7 @@ class Engine {
       if (txtContent !== '{}') {
         const jsonContent = JSON.parse(txtContent);
         if (jsonContent && jsonContent.items) {
-          jsonArr.data.push(...jsonContent.items);
+          jsonArr.data.push(...jsonContent.items.filter((note) => !note.meta.draft));
         }
       }
     });
