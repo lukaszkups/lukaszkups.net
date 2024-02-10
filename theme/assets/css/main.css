@@ -157,6 +157,10 @@ nav {
   background: #fff;
 }
 
+.main-menu-clickable,
+#main-menu-clickable {
+  display: none;
+}
 
 .main-menu {
   list-style-type: none;
@@ -1200,12 +1204,12 @@ pre code.hljs {
 
 @media screen and (max-width: 650px) {
   .hero-wrapper .hero-h2 {
-    left: 10%;
+    left: 20%;
   }
 
   .hero-wrapper .hero-p {
-    left: 10%;
-    right: 10%;
+    left: 20%;
+    right: 20%;
   }
 
   .hero-wrapper-bg {
@@ -1220,7 +1224,6 @@ pre code.hljs {
   .about-hero-avatar {
     right: -20vw;
   }
-
 }
 
 @media screen and (max-width: 555px) {
@@ -1259,6 +1262,24 @@ pre code.hljs {
     margin-right: 0;
     width: 100%;
     max-width: 100%;
+  }
+
+  .article-list-wrapper .cube,
+  .article-list-wrapper .cube .flippety,
+  .article-list-wrapper .cube .flop {
+    height: 100px;
+  }
+
+  .article-list-wrapper .cube .flippety,
+  .article-list-wrapper .cube .flop {
+    display: flex;
+  }
+
+  .article-list-wrapper .cube h2 {
+    line-height: 1.5em;
+    align-self: center;
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -1359,15 +1380,62 @@ pre code.hljs {
     margin-left: calc(50vw - 25px);
   }
 
+  .main-menu-clickable {
+    display: block;
+    position: absolute;
+    top: 24px;
+    right: 30px;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    width: 20px;
+    height: 14px;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .main-menu-clickable:hover,
+  .main-menu-clickable:hover:after {
+    cursor: pointer;
+    border-color: var(--gold);
+  }
+
+  .main-menu-clickable::after {
+    content: '';
+    width: 20px;
+    border-top: 2px solid #fff;
+    margin-top: 4px;
+    display: block;
+  }
+
   nav .main-menu {
     text-align: center;
     border-top: 3px solid var(--gold);
-    min-width: 430px;
+    display: none;
+  }
+
+  nav #main-menu-clickable:checked + .main-menu {
+    display: block;
+    position: fixed;
+    top: 65px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
   }
 
   nav .main-menu li {
     margin-top: -3px;
+    display: block;
+    background: none;
   }
+
+  nav .main-menu li:hover, 
+    nav .main-menu li:hover a {
+    cursor: pointer;
+    background-color: #fff;
+    color: #000;
+  }
+
 
   nav .main-menu li a {
     margin-top: 3px;

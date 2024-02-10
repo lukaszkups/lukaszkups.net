@@ -15,6 +15,8 @@ const render = (contentData) => {
     <nav>
       <div class="main-container main-container--nav">
         <div class="logo-wrapper"><div class="logo"></div></div>
+        <label for="main-menu-clickable" class="main-menu-clickable"></label>
+        <input type="checkbox" id="main-menu-clickable">
         <ul class="main-menu bebas">
           ${navItems}
         </ul>
