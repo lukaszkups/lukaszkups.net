@@ -11,7 +11,7 @@ const renderExperience = (contentData) => {
         <div class="row row--flex">
           <div class="col col-25"><div class="title">About me:</div></div>
           <div class="col col-75">
-            <div class="title">Lukasz Kups</div>
+            <div class="title">Łukasz Kupś</div>
             <p>I am a Web Developer with <span class="lk-calculate-timespan" data-since-year="2010">14</span>+ years of experience, focused on Front-end side of the development process. I love creating nice and useful things for the Internet people.</p>
             <p>In my spare time I love to read sci-fi books, do some jogging, work on side-projects, write tech articles on personal website or create my own indie games.</p>
           </div>

@@ -7,7 +7,7 @@ const renderHome = (contentData) => {
       <div class="hero-line"></div>
       <div class="hero-avatar-image"></div>
       <h2 class="hero-h2 bebas">Hello<span></span></h2>
-      <p class="hero-p">I'm Lukasz - I help companies with various things related to the digital media.<span></span></p>
+      <p class="hero-p">I'm Łukasz - I help companies with various things related to the digital media.<span></span></p>
     </div>
     <div class="middle-section">
       <div class="main-container main-container--middle-home">
