@@ -14,7 +14,7 @@ What it was a year! There's a lot happening in my life recently, so maybe let's 
 
 *Expect nothing, prepare for anything* - this is probably my golden quote for the 2023 year (and for any incoming one too 🙂). A lot of stuff has been going on - changing workplace in April, started house build (while I was known as a person who won't ever want to build a house) - you name it!
 
-January 2024 was crazy, as I was busy aligning with both of those topics above at the same time, while still working full-time at [https://www.mercedes-benz.io](MB.io) - you can just imagine me living in a Zombie mode basically whole month straight 🧟‍♂️.
+January 2024 was crazy, as I was busy aligning with both of those topics above at the same time, while still working full-time at [MB.io](https://www.mercedes-benz.io) - you can just imagine me living in a Zombie mode basically whole month straight 🧟‍♂️.
 
 ## Personal growth stats
 
@@ -22,11 +22,11 @@ January 2024 was crazy, as I was busy aligning with both of those topics above a
 
 To keep the tradition alive: my [Stackoverflow profile](https://stackoverflow.com/users/1004946/lukaszkups) lives on its own - but somehow my stats has grown by 325 points (so I have 5870 reputation points in total).
 
-During previous year I've realized that my static site generator stack was really outdated and needed some modern touches - I've quickly copy-pasted everything (while modernizing syntax a little bit during the process), added [https://vitejs.dev/](Vite) and some basic TypeScript support.
+During previous year I've realized that my static site generator stack was really outdated and needed some modern touches - I've quickly copy-pasted everything (while modernizing syntax a little bit during the process), added [Vite](https://vitejs.dev/) and some basic TypeScript support.
 
 Unfortunately, after a really short time I've started getting troubles to manage ANYTHING on this website (due to some random dependency/TypeScript/Node.js version errors and incompabilities)
 
-So I've decided to rewrite everything - and now I hope that's gonna motivate me to write again a lot more here (as having only 2 articles in [/notes/2023/](2023) is really lame for my self-standards 😅).
+So I've decided to rewrite everything - and now I hope that's gonna motivate me to write again a lot more here (as having only 2 articles in [2023](/notes/2023/) is really lame for my self-standards 😅).
 
 ## Social media
 
@@ -53,7 +53,7 @@ Started reading *The Three Body Problem* saga - already read 1st book, currently
 
 Still waiting for the remaining 9 issues of *Transformers G1* classic comics 🙄 (and really getting irritated because of it)
 
-Started collecting [Katsuhiro's Otomo AKIRA](https://en.wikipedia.org/wiki/Akira_(manga)) manga 😎 (I do love it, read it twice already in the past in pdf version).
+Started collecting [Katsuhiro Otomo's AKIRA](https://en.wikipedia.org/wiki/Akira_(manga)) manga 😎 (I do love it, read it twice already in the past in pdf version).
 
 **Movies:**
 
