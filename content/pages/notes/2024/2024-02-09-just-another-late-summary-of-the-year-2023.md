@@ -1,6 +1,6 @@
 ---
 title: Just another late summary of the year 2023
-date: 2015/01/12
+date: 2024/02/09
 category: reviews
 tags: reviews, review, summary, yearly, year, year in review, summary of the year
 active: 2

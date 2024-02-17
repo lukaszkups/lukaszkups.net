@@ -10,7 +10,6 @@ const render = (contentData) => {
     <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
     <link rel="preload" href="/assets/fonts/RobotoCondensed.ttf" as="font" crossorigin="anonymous" />
     <link rel="preload" href="/assets/fonts/RobotoCondensed-Italic.ttf" as="font" crossorigin="anonymous" />
-    <link rel="preload" href="/assets/fonts/Bebas.eot" as="font" crossorigin="anonymous" />
     <link rel="preload" href="/assets/fonts/Bebas.woff" as="font" crossorigin="anonymous" />
     <link rel="preload" href="/assets/fonts/Bebas.ttf" as="font" crossorigin="anonymous" />
     <script src="/assets/js/particles.min.js"></script> 
