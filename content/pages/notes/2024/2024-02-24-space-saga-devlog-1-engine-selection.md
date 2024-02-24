@@ -70,7 +70,7 @@ I've learned about this engine from [Drew Conley](https://www.youtube.com/@DrewC
 
 Really weird to me at first, but after a while it become top choice. Really flexible and powerful engine, has unique approach of building a game from components (imagine that every element of a game is a component that is build from smaller components). It has very simple API that seems to be really easy to start working with and documentation is really well written.
 
-Really great introduction video I've found:
+Here's a great introduction video I've found:
 
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/iRXI6ThRJvM?si=UHz3rBoeM_jraYSJ" title="YouTube video player" frameborder="0"></iframe>
 
