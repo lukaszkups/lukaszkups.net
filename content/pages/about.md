@@ -2,7 +2,7 @@
 title: About page
 tags: front-end, javascript, js, webdev, web developer, front-end developer, web development
 slug: about
-description: It's a me, Lukasz!
+description: It's a me, Łukasz!
 active: 1
 ---
 
