@@ -1001,12 +1001,16 @@ footer ul li.title {
 }
 
 .download-cv-button {
-  display: inline-block;
-  padding: 10px;
-  background: var(--gold);
-  color: #000;
-  text-decoration: none;
-  margin: 25px auto;
+  width: 25%;
+  margin: 10px auto;
+}
+
+.download-cv-button .flippety {
+  background-color: var(--gold);
+}
+
+.download-cv-button .flop {
+  background-color: #fff;
 }
 
 .download-cv-button:hover {
@@ -1054,13 +1058,19 @@ article h5 {
 article a,
 article p a,
 article li a {
-  color: var(--gold);
+  background-color: var(--gold);
+  padding: 0 0.5em;
+  display: inline-block;
+  color: var(--black);
+  text-decoration: none;
 }
 
 article a:hover,
 article p a:hover,
 article li a:hover {
-  color: var(--blue-alt);
+  color: #fff;
+  background-color: var(--black);
+  text-decoration: underline;
 }
 
 article p img {
@@ -1145,6 +1155,23 @@ pre code.hljs {
 .article-content-wrapper article {
   font-size: 1.25em;
   line-height: 1.75em;
+}
+
+/* -------------------------------------------------------------------------------------------- COMMENTBOX.IO STYLES */
+
+.comment-section > p {
+  text-align: center;
+  background-color: var(--gold);
+  color: var(--black);
+  padding: 5px 10px;
+  display: inline-block;
+  margin: 10px auto;
+  cursor: pointer;
+}
+
+.comment-section > p:hover {
+  background-color: var(--black);
+  color: #fff;
 }
 
 /* -------------------------------------------------------------------------------------------- MEDIA QUERIES */

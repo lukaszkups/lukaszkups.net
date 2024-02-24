@@ -12,6 +12,14 @@ const renderNote = (contentData) => {
       <article>
         ${contentData.content}
       </article>
+
+      <div class="comment-section">
+        <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+        <p id="show-comment-button">Click here to show comments</p>
+        <div id="comment-section">
+          <div class="commentbox"></div>
+        </div>
+      </div>
     </div>
   </div>
   `;

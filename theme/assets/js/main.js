@@ -162,3 +162,17 @@ if (location.pathname.includes('/notes/')) {
     })
   }
 }
+
+// Comment section activation
+
+const commentsBtn = document.getElementById('show-comment-button');
+if (commentsBtn) {
+  commentsBtn.addEventListener('click', () => {
+    const commentSection = document.getElementById('comment-section');
+    if (commentSection) {
+      commentBox('5702030953807872-proj');
+    }
+    commentsBtn.remove();
+  });
+}
+
