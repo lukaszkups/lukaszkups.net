@@ -20,7 +20,7 @@ Game would be split into different "modes":
 
 - When you arrive to your destination, you will be able to select (planet) area where you want to land and then travel by foot (this topic is still TBD really 😉) - most of the destinations will be hidden during first visits and you will unlock new of them during game
 
-- Combat mode - I'm still struggling on decision with this one. I want this game to be a demake successor of Phantasy Star Online (1) game, which I am big fan of, but I don't really know if I want to make battles real-time, like in *Hyper Light Drifter* style or turn-based, like in classic jRPGs.
+- Combat mode - I'm still struggling on decision with this one. I want this game to be a demake successor of Phantasy Star Online (1), which I am big fan of, but I don't really know if I want to make battles real-time like in *Hyper Light Drifter* style or turn-based, like in classic jRPGs.
 
 As you can see, this game will consist of various modes and I would love to develop all of them inside one game engine - that's why I've spend couple last weeks checking on what market can offer me (I was also thinking about building own engine from scratch, then I've switched to use [Pixi.js](https://pixijs.com/) as my renderer, but in the end I've abandoned that idea as it would be way too slow approach).
 
@@ -30,7 +30,7 @@ Here's a list of game engines that I've checked, with a short description about 
 
 ### Construct 3
 
-My long time beloved game engine, I've already created some [games](https://lukaszkups.itch.io) with it, even [released one on Steam](https://store.steampowered.com/app/1935130/Terry_Poorflyer/) - it's really developer-friendly for smaller games, but I can't imagine creating comfortably something like to make now. Also yearly subscription fee is not cheap, which is the biggest flaw for me.
+My long time beloved game engine, I've already created some [games](https://lukaszkups.itch.io) with it, even [released one on Steam](https://store.steampowered.com/app/1935130/Terry_Poorflyer/) - it's really developer-friendly for smaller games, but I can't imagine creating comfortably something like I'm about to make now. Also its yearly subscription fee is not cheap, which is the biggest flaw for me.
 
 ![img](/static/construct3-ui.jpg)
 *I have developed many prototypes and small games using this engine, I can say that this game engine really introduced me to most of gamedev concepts🙌*
