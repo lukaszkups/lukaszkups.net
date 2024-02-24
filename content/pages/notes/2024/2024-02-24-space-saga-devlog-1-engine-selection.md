@@ -80,7 +80,7 @@ Here's a great introduction video I've found:
 
 Most powerful, with long on the market history candidate. It offers wide range of plugins and features. 
 
-In my opinion the biggest downside is that Phaser.js has very weird documentation - not really developer-friendly, even it has many example projects to browse, it doesn't really "clicks" to me when I am searching for something or want to learn how to make games with it effectively.
+In my opinion the biggest downside is that Phaser.js has very weird documentation - not really developer-friendly, even though it has many example projects to browse, this approach simply doesn't really "clicks" to me when I am searching for something in particular or want to learn how to make games with this engine effectively.
 
 [Link](https://phaser.io/)
 
