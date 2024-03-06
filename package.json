@@ -4,12 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run build && http-server output",
+    "dev": "sudo node ./watch.js | http-server output",
     "build": "sudo node ./build.js"
   },
   "devDependencies": {
     "front-matter": "^4.0.2",
     "http-server": "^14.1.1",
+    "node-watch": "^0.7.4",
     "showdown": "^2.1.0",
     "uglify-js": "^3.17.4",
     "uglifycss": "^0.0.29",
