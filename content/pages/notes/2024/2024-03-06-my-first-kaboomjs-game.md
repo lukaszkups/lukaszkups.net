@@ -18,7 +18,7 @@ So what game I've made actually?
 
 Whelp, probably you've guessed it already:
 
-<iframe frameborder="0" src="https://itch.io/embed-upload/9874533?color=0484d1" allowfullscreen="" width="800" height="620"><a href="https://lukaszkups.itch.io/boink-kaboom">Play Boink! (Open Source Kaboom.js project) on itch.io</a></iframe>
+<iframe frameborder="0" src="https://itch.io/embed-upload/9881328?color=000000" allowfullscreen="" width="100%" style="height:unset; aspect-ratio:4/3"><a href="https://lukaszkups.itch.io/boink-kaboom">Play Boink! (Open Source Kaboom.js project) on itch.io</a></iframe>
 
 (if game above doesn't work, you can [play it here](https://lukaszkups.itch.io/boink-kaboom) or [browse its source code here](https://github.com/lukaszkups/boink-kaboom))
 
