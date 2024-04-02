@@ -44,18 +44,21 @@ const renderExperience = (contentData) => {
         <div class="row row--flex">
           <div class="col col-25"><div class="title">Work history:</div></div>
           <div class="col col-75">
+          <div class="title">Senior Software Engineer at Altium (remote)</div>
+            <p>04/2024 - currently</p>
+            <p>TBA</p>
             <div class="title">Front-end developer at Mercedes-Benz.io (remote)</div>
-            <p>02/2021 - currently</p>
+            <p>02/2021 - 04/2024</p>
             <p>In the first 6 moths I've been developing an internal MVP project, based on provided prototype & documentation.</p>
             <p>After succesfully finishing MVP I've been assigned to another MB.io project, that will be used across all the markets that are being handled by Mercedes-Benz company.</p>
             <p>Technologies used: Vue.js, TypeScript, JavaScript, Node.js, Jest, Jenkins, Sass, Webpack, Adobe AEM.</p>
-            <div class="title">Front-end developer at Upstack.co (remote)</div>
-            <p>02/2020 - currently</p>
-            <p>Contract / freelance front-end development via Upstack platform.</p>
             <div class="title">Full-stack freelance web developer (remote)</div>
-            <p>01/2015 - currently</p>
+            <p>01/2015 - 04/2024</p>
             <p>A-Z web development from UI design to the deployment on client's server. Working on side-projects that automate everyday programming tasks.</p>
             <p>Using Node.js, JavaScript, Vue.js, Express.js, Webpack, Gulp.js, Brunch.js, Sass, git, Construct 3.</p>
+            <div class="title">Front-end developer at Upstack.co (remote)</div>
+            <p>02/2020 - 12/2023</p>
+            <p>Contract / freelance front-end development via Upstack platform.</p>
             <div class="title">Front-end developer at HICX Solutions (remote)</div>
             <p>02/2020 - 08/2021</p>
             <p>Maintaining company product, developing new functionalities using Vue.js framework.</p>

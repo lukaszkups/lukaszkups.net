@@ -1,7 +1,7 @@
 const render = (contentData) => {
   return `
   <div class="footer-right-now">
-    <div class="main-container"><span>Current status:</span> Besides working as a full-time FE dev at <a href="https://www.mercedes-benz.io">MB.io</a> I'm catching up with writing all the pending tech articles!</div>
+    <div class="main-container"><span>Current status:</span> Besides working as a full-time FE dev at <a href="https://altium.com">Altium</a> I'm working on my another indie game 😎</div>
   </div>
     <footer>
       <div class="main-container footer-container">
