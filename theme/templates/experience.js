@@ -46,7 +46,7 @@ const renderExperience = (contentData) => {
           <div class="col col-75">
           <div class="title">Senior Software Engineer at Altium (remote)</div>
             <p>04/2024 - currently</p>
-            <p>TBA</p>
+            <p>Extending Altium 365 web application with new modules and functionalities.</p>
             <div class="title">Front-end developer at Mercedes-Benz.io (remote)</div>
             <p>02/2021 - 04/2024</p>
             <p>In the first 6 moths I've been developing an internal MVP project, based on provided prototype & documentation.</p>

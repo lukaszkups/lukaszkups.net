@@ -4,6 +4,7 @@ date: 2024/04/16
 category: programming, architecture
 tags: programming, js, javascript, ts, typescript, architecture, authentication
 active: 2
+draft: true
 ---
 
 So you are going to develop an application that will be used on various markets across the globe by thousands of users.
