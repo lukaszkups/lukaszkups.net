@@ -107,7 +107,7 @@ const renderExperience = (contentData) => {
           </div>
         </div>
         <div class="centered-text download-cv-button">
-          <a class="cube article-item" href="/assets/images/lukasz-kups-cv-2024.pdf" target="_blank">
+          <a class="cube article-item" href="/static/lukasz-kups-cv-2024.pdf" target="_blank">
             <div class="flippety">Download my CV</div>
             <div class="flop">Download my CV</div>
           </a>
